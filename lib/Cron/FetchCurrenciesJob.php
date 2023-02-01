@@ -16,8 +16,8 @@ class FetchCurrenciesJob extends TimedJob {
     $this->logger = $logger;
 
     // Run once a day
-    $this->setInterval(60);
-    // $this->setTimeSensitivity(\OCP\BackgroundJob\IJob::TIME_INSENSITIVE);
+    $this->setInterval(3600 * 24);
+    $this->setTimeSensitivity(\OCP\BackgroundJob\IJob::TIME_INSENSITIVE);
   }
 
   protected function run($arguments) {
