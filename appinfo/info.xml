@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+  <!--
+    SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
+    SPDX-License-Identifier: CC0-1.0
+    -->
+  <id>autocurrency</id>
+  <name>Auto Currency</name>
+  <summary>Automatically fills the currency rates for your Cospend projects daily.</summary>
+  <description><![CDATA[This app will run once a day and update your currency information for each project on Cospend.
+
+It will use the default currency as the base, and will fill existing currencies with their conversion rates.]]></description>
+  <version>0.0.1</version>
+  <licence>agpl</licence>
+  <author mail="contact@casraf.dev" homepage="https://github.com/chenasraf">Chen Asraf</author>
+  <namespace>AutoCurrency</namespace>
+  <category>organization</category>
+  <bugs>https://github.com/chenasraf/nextcloud-auto-currency/issues</bugs>
+  <dependencies>
+    <nextcloud min-version="25" max-version="25"/>
+  </dependencies>
+  <navigations>
+    <navigation>
+      <name>Auto Currency</name>
+      <route>autocurrency.page.index</route>
+    </navigation>
+  </navigations>
+</info>
