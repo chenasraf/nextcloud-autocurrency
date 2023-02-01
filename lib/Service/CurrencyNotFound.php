@@ -5,5 +5,5 @@ declare(strict_types=1);
 
 namespace OCA\AutoCurrency\Service;
 
-class NoteNotFound extends \Exception {
+class CurrencyNotFound extends \Exception {
 }

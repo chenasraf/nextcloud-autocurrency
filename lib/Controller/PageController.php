@@ -9,20 +9,24 @@ use OCA\AutoCurrency\AppInfo\Application;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
+use OCP\BackgroundJob\IJobList;
 use OCP\Util;
 
 class PageController extends Controller {
-	public function __construct(IRequest $request) {
-		parent::__construct(Application::APP_ID, $request);
-	}
+  private IJobList $jobList;
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
-	public function index(): TemplateResponse {
-		Util::addScript(Application::APP_ID, 'autocurrency-main');
+  public function __construct(IRequest $request, IJobList $jobList) {
+    parent::__construct(Application::APP_ID, $request);
+    $this->jobList = $jobList;
+  }
 
-		return new TemplateResponse(Application::APP_ID, 'main');
-	}
+  /**
+   * @NoAdminRequired
+   * @NoCSRFRequired
+   */
+  public function index(): TemplateResponse {
+    Util::addScript(Application::APP_ID, 'autocurrency-main');
+    // $this->jobList->add('OCA\AutoCurrency\BackgroundJob\FetchCurrenciesJob');
+    return new TemplateResponse(Application::APP_ID, 'main');
+  }
 }

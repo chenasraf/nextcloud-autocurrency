@@ -25,4 +25,7 @@ It will use the default currency as the base, and will fill existing currencies 
       <route>autocurrency.page.index</route>
     </navigation>
   </navigations>
+  <background-jobs>
+    <job>OCA\AutoCurrency\Cron\FetchCurrenciesJob</job>
+  </background-jobs>
 </info>
