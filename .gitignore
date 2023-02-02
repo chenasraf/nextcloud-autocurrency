@@ -131,3 +131,5 @@ dist
 
 /js
 /css
+/build
+/vendor
