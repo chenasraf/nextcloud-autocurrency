@@ -112,8 +112,10 @@ source:
 	rm -rf $(source_build_directory)
 	mkdir -p $(source_build_directory)
 	tar czf $(source_package_name).tar.gz \
-	--exclude-vcs \
+	--exclude="**/.git/**/*" \
 	--exclude="../$(app_name)/build" \
+	--exclude="../$(app_name)/tests" \
+	--exclude="../$(app_name)/src" \
 	--exclude="../$(app_name)/js/node_modules" \
 	--exclude="../$(app_name)/node_modules" \
 	--exclude="../$(app_name)/*.log" \
@@ -127,7 +129,7 @@ appstore:
 	rm -rf $(appstore_build_directory)
 	mkdir -p $(appstore_build_directory)
 	tar czf $(appstore_package_name).tar.gz \
-	--exclude-vcs \
+	--exclude="**/.git/**/*" \
 	--exclude="../$(app_name)/build" \
 	--exclude="../$(app_name)/tests" \
 	--exclude="../$(app_name)/Makefile" \
@@ -148,6 +150,7 @@ appstore:
 	--exclude="../$(app_name)/protractor\.*" \
 	--exclude="../$(app_name)/.*" \
 	--exclude="../$(app_name)/js/.*" \
+	--exclude="../$(app_name)/src" \
 	--exclude="../$(source_build_directory)" \
 	--exclude="../$(appstore_build_directory)" \
   ../$(app_name)

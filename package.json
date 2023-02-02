@@ -1,7 +1,7 @@
 {
   "name": "autocurrency",
   "description": "Automatically fills the currency rates for your Cospend projects daily.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Chen Asraf <contact@casraf.dev>",
   "contributors": [],
   "bugs": {

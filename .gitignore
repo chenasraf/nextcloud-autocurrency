@@ -133,3 +133,5 @@ dist
 /css
 /build
 /vendor
+
+.DS_Store
