@@ -27,6 +27,23 @@ This rule applies to main and additional currencies.
 
 Place this app in **nextcloud/apps/** or **nextcloud/custom_apps/**
 
+> App Store link coming once app has been a bit more matured.
+
+## Contributing
+
+I am developing this package on my free time, so any support, whether code, issues, or just stars is
+very helpful to sustaining its life. If you are feeling incredibly generous and would like to donate
+just a small amount to help sustain this project, I would be very very thankful!
+
+<a href='https://ko-fi.com/casraf' target='_blank'>
+  <img height='36' style='border:0px;height:36px;'
+    src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3'
+    alt='Buy Me a Coffee at ko-fi.com' />
+</a>
+
+I welcome any issues or pull requests on GitHub. If you find a bug, or would like a new feature,
+don't hesitate to open an appropriate issue and I will do my best to reply promptly.
+
 ## Development
 
 ### Building the app
