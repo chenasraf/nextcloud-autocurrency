@@ -44,7 +44,7 @@ don't hesitate to open an appropriate issue and I will do my best to reply promp
   <category>organization</category>
   <bugs>https://github.com/chenasraf/nextcloud-autocurrency/issues</bugs>
   <dependencies>
-    <nextcloud min-version="25" max-version="25"/>
+    <nextcloud min-version="25" max-version="30"/>
   </dependencies>
   <navigations>
     <navigation>
@@ -55,4 +55,8 @@ don't hesitate to open an appropriate issue and I will do my best to reply promp
   <background-jobs>
     <job>OCA\AutoCurrency\Cron\FetchCurrenciesJob</job>
   </background-jobs>
+  <settings>
+    <admin>OCA\AutoCurrency\Settings\CurrencyAdmin</admin>
+    <admin-section>OCA\AutoCurrency\Sections\CurrencyAdmin</admin-section>
+</settings>
 </info>
