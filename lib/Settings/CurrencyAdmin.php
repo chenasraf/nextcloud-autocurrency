@@ -5,6 +5,8 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\Settings\ISettings;
+use OCP\Util;
+use OCA\AutoCurrency\AppInfo;
 
 class CurrencyAdmin implements ISettings {
     private IL10N $l;
@@ -20,10 +22,14 @@ class CurrencyAdmin implements ISettings {
      */
     public function getForm() {
         $parameters = [
-            'mySetting' => $this->config->getSystemValue('my_notes_setting', true),
+            // 'mySetting' => $this->config->getSystemValue('my_notes_setting', true),
+            'mySetting' => 'Hello World!',
         ];
 
-        return new TemplateResponse('settings', 'settings/admin', $parameters, '');
+        Util::addScript(AppInfo\Application::APP_ID, 'autocurrency-main');
+        Util::addStyle(AppInfo\Application::APP_ID, 'autocurrency-style');
+
+        return new TemplateResponse('autocurrency', 'settings', $parameters, '');
     }
 
     public function getSection() {
