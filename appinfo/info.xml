@@ -1,12 +1,9 @@
 <?xml version="1.0"?>
-<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
-  <!--
-    SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
-    SPDX-License-Identifier: CC0-1.0
-    -->
-  <id>autocurrency</id>
-  <name>Auto Currency</name>
-  <summary>Automatically fills the currency rates for your Cospend projects daily.</summary>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>autocurrency</id>
+	<name>Auto Currency</name>
+	<summary>Automatically fills the currency rates for your Cospend projects daily.</summary>
   <description><![CDATA[This NextCloud app automatically fetches currency information for your Cospend projects, and fills
 them up using the main currency as base. No more manually updating exchange rates!
 
@@ -25,8 +22,6 @@ Will all be considered "USD" for conversion purposes.
 
 This rule applies to main and additional currencies.
 
-## Contributing
-
 I am developing this package on my free time, so any support, whether code, issues, or just stars is
 very helpful to sustaining its life. If you are feeling incredibly generous and would like to donate
 just a small amount to help sustain this project, I would be very very thankful!
@@ -37,26 +32,20 @@ just a small amount to help sustain this project, I would be very very thankful!
 
 I welcome any issues or pull requests on GitHub. If you find a bug, or would like a new feature,
 don't hesitate to open an appropriate issue and I will do my best to reply promptly.]]></description>
-  <version>0.1.0</version>
-  <licence>agpl</licence>
-  <author mail="contact@casraf.dev" homepage="https://github.com/chenasraf">Chen Asraf</author>
-  <namespace>AutoCurrency</namespace>
-  <category>organization</category>
-  <bugs>https://github.com/chenasraf/nextcloud-autocurrency/issues</bugs>
-  <dependencies>
-    <nextcloud min-version="25" max-version="30"/>
-  </dependencies>
-  <navigations>
-    <navigation>
-      <name>Auto Currency</name>
-      <route>autocurrency.page.index</route>
-    </navigation>
-  </navigations>
+	<version>1.0.0</version>
+	<licence>agpl</licence>
+	<author mail="contact@casraf.dev" homepage="https://casraf.dev">Chen Asraf</author>
+	<namespace>AutoCurrency</namespace>
+	<category>organization</category>
+	<bugs>https://github.com/chenasraf/nextcloud-autocurrency/issues</bugs>
+	<dependencies>
+		<nextcloud min-version="29" max-version="31"/>
+	</dependencies>
   <background-jobs>
     <job>OCA\AutoCurrency\Cron\FetchCurrenciesJob</job>
   </background-jobs>
   <settings>
     <admin>OCA\AutoCurrency\Settings\CurrencyAdmin</admin>
     <admin-section>OCA\AutoCurrency\Sections\CurrencyAdmin</admin-section>
-</settings>
+  </settings>
 </info>
