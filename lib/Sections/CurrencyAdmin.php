@@ -23,7 +23,7 @@ class CurrencyAdmin implements IIconSection {
     }
 
     public function getName(): string {
-        return $this->l->t('Notes tutorial');
+        return $this->l->t('Auto Currency');
     }
 
     public function getPriority(): int {

@@ -1,38 +1,78 @@
 {
-  "name": "nextcloud/autocurrency",
-  "description": "Automatically fills the currency rates for your Cospend projects daily.",
-  "type": "project",
-  "license": "AGPL-3.0-or-later",
-  "authors": [
-    {
-      "name": "Chen Asraf"
-    }
-  ],
-  "require-dev": {
-    "phpunit/phpunit": "^9",
-    "sabre/dav": "^4.1",
-    "sabre/xml": "^2.2",
-    "symfony/event-dispatcher": "^5.3.11",
-    "christophwurst/nextcloud": "dev-master@dev",
-    "psalm/phar": "^4.10",
-    "nextcloud/coding-standard": "^1.0"
-  },
-  "scripts": {
-    "lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
-    "cs:check": "php-cs-fixer fix --dry-run --diff",
-    "cs:fix": "php-cs-fixer fix",
-    "psalm": "psalm.phar --threads=1",
-    "psalm:update-baseline": "psalm.phar --threads=1 --update-baseline",
-    "psalm:update-baseline:force": "psalm.phar --threads=1 --update-baseline --set-baseline=tests/psalm-baseline.xml",
-    "psalm:clear": "psalm.phar --clear-cache && psalm --clear-global-cache",
-    "psalm:fix": "psalm.phar --alter --issues=InvalidReturnType,InvalidNullableReturnType,MissingParamType,InvalidFalsableReturnType"
-  },
-  "config": {
-    "allow-plugins": {
-      "composer/package-versions-deprecated": true
-    },
-    "platform": {
-      "php": "7.4"
-    }
-  }
+	"name": "nextcloud/autocurrency",
+	"description": "This NextCloud app automatically fetches currency information for your Cospend projects, and fills
+them up using the main currency as base. No more manually updating exchange rates!
+
+It will automatically run once a day and use your currency names to fetch the correct rate.
+
+The name will be fetched using the first 3-uppercase-letter appearance in the name.
+
+For example:
+
+- USD
+- $ USD
+- USD $
+- United States Dollars (USD)
+
+Will all be considered "USD" for conversion purposes.
+
+This rule applies to main and additional currencies.
+
+## Contributing
+
+I am developing this package on my free time, so any support, whether code, issues, or just stars is
+very helpful to sustaining its life. If you are feeling incredibly generous and would like to donate
+just a small amount to help sustain this project, I would be very very thankful!
+
+<a href='https://ko-fi.com/casraf' target='_blank'>
+  <img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' alt='Buy Me a Coffee at ko-fi.com' />
+</a>
+
+I welcome any issues or pull requests on GitHub. If you find a bug, or would like a new feature,
+don't hesitate to open an appropriate issue and I will do my best to reply promptly.",
+	"license": "AGPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Chen Asraf",
+			"email": "contact@casraf.dev",
+			"homepage": "https://casraf.dev"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"OCA\\AutoCurrency\\": "lib/"
+		}
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"@composer bin all install --ansi"
+		],
+		"post-update-cmd": [
+			"@composer bin all update --ansi"
+		],
+		"lint": "find . -name \\*.php -not -path './vendor/*' -not -path './vendor-bin/*' -not -path './build/*' -print0 | xargs -0 -n1 php -l",
+		"cs:check": "php-cs-fixer fix --dry-run --diff",
+		"cs:fix": "php-cs-fixer fix",
+		"psalm": "psalm --threads=1 --no-cache",
+		"test:unit": "phpunit tests -c tests/phpunit.xml --colors=always --fail-on-warning --fail-on-risky",
+		"openapi": "generate-spec"
+	},
+	"require": {
+		"bamarni/composer-bin-plugin": "^1.8",
+		"php": "^8.1"
+	},
+	"require-dev": {
+		"nextcloud/ocp": "dev-stable29",
+		"roave/security-advisories": "dev-latest"
+	},
+	"config": {
+		"allow-plugins": {
+			"bamarni/composer-bin-plugin": true
+		},
+		"optimize-autoloader": true,
+		"sort-packages": true,
+		"platform": {
+			"php": "8.1"
+		}
+	}
 }
