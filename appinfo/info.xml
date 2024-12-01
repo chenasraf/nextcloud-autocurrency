@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
 <info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
-	<id>autocurrency</id>
+  <!--
+    SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
+    SPDX-License-Identifier: CC0-1.0
+  -->
+  <id>autocurrency</id>
 	<name>Auto Currency</name>
 	<summary>Automatically fills the currency rates for your Cospend projects daily.</summary>
   <description><![CDATA[This NextCloud app automatically fetches currency information for your Cospend projects, and fills
@@ -21,6 +25,8 @@ For example:
 Will all be considered "USD" for conversion purposes.
 
 This rule applies to main and additional currencies.
+
+## Contributing
 
 I am developing this package on my free time, so any support, whether code, issues, or just stars is
 very helpful to sustaining its life. If you are feeling incredibly generous and would like to donate
