@@ -10,3 +10,6 @@
 /node_modules/
 /js/
 .DS_Store
+composer.lock
+build/tools/composer.phar
+tsconfig.app.tsbuildinfo
