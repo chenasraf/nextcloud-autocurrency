@@ -9,6 +9,7 @@
             :options="intervals"
             input-label="Currency conversion rate update interval"
             required
+            :disabled="interval == null"
           />
           <div class="submit-buttons">
             <NcButton native-type="submit">Save</NcButton>
@@ -24,6 +25,7 @@
 import NcAppSettingsSection from '@nextcloud/vue/dist/Components/NcAppSettingsSection.js'
 import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import axios from '@nextcloud/axios'
 
 export default {
 	name: 'App',
@@ -47,9 +49,26 @@ export default {
     }
   },
   created() {
-    this.interval = this.getIntervalByValue(24).label
+    // this.interval = this.getIntervalByValue(24).label
+    this.fetchSettings()
   },
   methods: {
+    async fetchSettings() {
+      try {
+        const resp = await axios.get('/cron')
+        const data = resp.data.ocs.data
+        console.debug('[DEBUG] Settings fetched', data)
+        const interval = this.getIntervalByValue(data.interval)
+        if (interval) {
+          console.debug('[DEBUG] Interval found', interval)
+          this.interval = interval.label
+        } else {
+          console.warn('Invalid interval value', data.interval)
+        }
+      } catch (e) {
+        console.error('Failed to fetch settings', e)
+      }
+    },
     getIntervalByValue(value) {
       return this.intervalOptions.find((x) => x.value === value)
     },
