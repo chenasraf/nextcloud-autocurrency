@@ -6,8 +6,10 @@
 name: Lint php-cs
 
 on:
-  - pull_request
-  - push
+  pull_request:
+  push:
+    branches:
+      - master
 
 permissions:
   contents: read
