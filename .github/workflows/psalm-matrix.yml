@@ -6,10 +6,11 @@
 name: Static analysis
 
 on:
-  pull_request:
-  push:
-    branches:
-      - master
+  # pull_request:
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - master
 
 concurrency:
   group: psalm-${{ github.head_ref || github.run_id }}

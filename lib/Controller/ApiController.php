@@ -27,12 +27,6 @@ class ApiController extends OCSController {
 	/** @var FetchCurrenciesService */
 	private $service;
 
-	/** @var IDateTimeFormatter */
-	// private $dateTimeFormatter;
-
-	/** @var IJobList */
-	// private $jobList;
-
 	/**
 	 * Admin constructor.
 	 *
@@ -48,15 +42,11 @@ class ApiController extends OCSController {
 		IAppConfig $config,
 		IL10N $l,
 		FetchCurrenciesService $service,
-		// IDateTimeFormatter $dateTimeFormatter,
-		// IJobList $jobList,
 	) {
 		parent::__construct($appName, $request);
 		$this->config = $config;
 		$this->l = $l;
 		$this->service = $service;
-		// $this->dateTimeFormatter = $dateTimeFormatter;
-		// $this->jobList = $jobList;
 	}
 
 	/**
@@ -77,7 +67,7 @@ class ApiController extends OCSController {
 	/**
 	 * Get current cron information
 	 *
-	 * @return DataResponse<Http::STATUS_OK, array{last_update:string,interval:int}, array{}>
+	 * @return DataResponse<Http::STATUS_OK, array{last_update:non-empty-string|null,interval:int}, array{}>
 	 *
 	 * 200: Data returned
 	 */
@@ -99,7 +89,7 @@ class ApiController extends OCSController {
 	/**
 	 * Run cron immediately
 	 *
-	 * @return DataResponse<Http::STATUS_OK, array{status:string}, array{}>
+	 * @return DataResponse<Http::STATUS_OK, array{status:non-empty-string}, array{}>
 	 *
 	 * 200: Data returned
 	 */
