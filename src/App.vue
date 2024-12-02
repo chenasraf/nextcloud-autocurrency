@@ -16,9 +16,7 @@
             <div class="cron-last-update-container">
               <NcButton @click="doCron" :disabled="loading">Fetch Rates Now</NcButton>
 
-              <div>
-                Rates last fetched: {{ loading ? "..." : lastUpdateStr }}
-              </div>
+              <div>Rates last fetched: {{ loading ? '...' : lastUpdateStr }}</div>
             </div>
           </div>
           <div class="submit-buttons">
@@ -39,12 +37,12 @@ import { parseISO as parseDate } from 'date-fns/parseISO'
 import { format as formatDate } from 'date-fns/format'
 
 export default {
-	name: 'App',
-	components: {
+  name: 'App',
+  components: {
     NcAppSettingsSection,
     NcSelect,
     NcButton,
-	},
+  },
   data() {
     return {
       loading: true,
@@ -125,7 +123,7 @@ export default {
     },
     lastUpdateStr() {
       if (!this.lastUpdate) {
-      return 'Never'
+        return 'Never'
       }
       return formatDate(this.lastUpdate, 'yyyy-MM-dd HH:mm:ss')
     },
