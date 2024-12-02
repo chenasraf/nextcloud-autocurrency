@@ -5,7 +5,9 @@
 
 name: Lint php
 
-on: pull_request
+on:
+  - pull_request
+  - push
 
 permissions:
   contents: read
