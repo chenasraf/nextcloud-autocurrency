@@ -104,7 +104,9 @@
                                                     ],
                                                     "properties": {
                                                         "last_update": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "nullable": true,
+                                                            "minLength": 1
                                                         },
                                                         "interval": {
                                                             "type": "integer",
@@ -176,7 +178,8 @@
                                                     ],
                                                     "properties": {
                                                         "status": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "minLength": 1
                                                         }
                                                     }
                                                 }
@@ -246,7 +249,8 @@
                                                     ],
                                                     "properties": {
                                                         "status": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "minLength": 1
                                                         }
                                                     }
                                                 }
