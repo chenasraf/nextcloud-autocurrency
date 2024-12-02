@@ -3,7 +3,7 @@ SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
 SPDX-License-Identifier: CC0-1.0
 -->
 
-# Auto Currency
+# Auto Currency for Cospend
 
 This NextCloud app automatically fetches currency information for your Cospend projects, and fills
 them up using the main currency as base. No more manually updating exchange rates!
