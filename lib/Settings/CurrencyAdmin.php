@@ -4,16 +4,16 @@ namespace OCA\AutoCurrency\Settings;
 
 use OCA\AutoCurrency\AppInfo;
 use OCP\AppFramework\Http\TemplateResponse;
-use OCP\IConfig;
+use OCP\IAppConfig;
 use OCP\IL10N;
 use OCP\Settings\ISettings;
 use OCP\Util;
 
 class CurrencyAdmin implements ISettings {
 	private IL10N $l;
-	private IConfig $config;
+	private IAppConfig $config;
 
-	public function __construct(IConfig $config, IL10N $l) {
+	public function __construct(IAppConfig $config, IL10N $l) {
 		$this->config = $config;
 		$this->l = $l;
 	}

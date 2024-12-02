@@ -7,10 +7,9 @@ namespace OCA\AutoCurrency\Controller;
 use OCA\AutoCurrency\Service\FetchCurrenciesService;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\ApiRoute;
-use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
-use OCP\IConfig;
+use OCP\IAppConfig;
 use OCP\IDateTimeFormatter;
 use OCP\IL10N;
 use OCP\IRequest;
@@ -19,7 +18,7 @@ use OCP\IRequest;
  * @psalm-suppress UnusedClass
  */
 class ApiController extends OCSController {
-	/** @var IConfig */
+	/** @var IAppConfig */
 	private $config;
 
 	/** @var IL10N */
@@ -38,7 +37,7 @@ class ApiController extends OCSController {
 	 * Admin constructor.
 	 *
 	 * @param Collector $collector
-	 * @param IConfig $config
+	 * @param IAppConfig $config
 	 * @param IL10N $l
 	 * @param IDateTimeFormatter $dateTimeFormatter
 	 * @param IJobList $jobList
@@ -46,7 +45,7 @@ class ApiController extends OCSController {
 	public function __construct(
 		string $appName,
 		IRequest $request,
-		IConfig $config,
+		IAppConfig $config,
 		IL10N $l,
 		FetchCurrenciesService $service,
 		// IDateTimeFormatter $dateTimeFormatter,
@@ -85,15 +84,12 @@ class ApiController extends OCSController {
 	// #[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/api/cron')]
 	public function getCronInfo(): DataResponse {
-		$lastUpdate = $this->config->getAppValue('autocurrency', 'last_update', '');
+		$lastUpdate = $this->config->getValueString('autocurrency', 'last_update', '');
 		if ($lastUpdate === '') {
 			$lastUpdate = null;
 		}
 
-		$interval = intval($this->config->getAppValue('autocurrency', 'cron_interval', '24'));
-		// if ($lastUpdate !== null) {
-		//   $lastUpdate = $this->dateTimeFormatter->formatDate($lastUpdate)
-		// }
+		$interval = $this->config->getValueInt('autocurrency', 'cron_interval', 24);
 
 		return new DataResponse(
 			['last_update' => $lastUpdate, 'interval' => $interval]

@@ -6,14 +6,24 @@ namespace Controller;
 
 use OCA\AutoCurrency\AppInfo\Application;
 use OCA\AutoCurrency\Controller\ApiController;
+use OCA\AutoCurrency\Service\FetchCurrenciesService;
+use OCP\IAppConfig;
+use OCP\IL10N;
 use OCP\IRequest;
 use PHPUnit\Framework\TestCase;
 
 class ApiTest extends TestCase {
-	public function testIndex() {
+	public function testIndex(): void {
 		$request = $this->createMock(IRequest::class);
-		$controller = new ApiController(Application::APP_ID, $request);
+		$config = $this->createMock(IAppConfig::class);
+		$l = $this->createMock(IL10N::class);
+		$service = $this->createMock(FetchCurrenciesService::class);
 
-		$this->assertEquals($controller->index()->getData()['message'], 'Hello world!');
+		$controller = new ApiController(Application::APP_ID, $request, $config, $l, $service);
+
+		$resp = $controller->getCronInfo()->getData();
+		echo json_encode($resp);
+		$this->assertEquals(null, $resp['last_update']);
+		$this->assertEquals(0, $resp['interval']);
 	}
 }

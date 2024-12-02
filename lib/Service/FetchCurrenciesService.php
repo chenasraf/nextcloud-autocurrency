@@ -14,18 +14,18 @@ use OCA\AutoCurrency\Db\CurrencyMapper;
 
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
-use OCP\IConfig;
+use OCP\IAppConfig;
 use Psr\Log\LoggerInterface;
 
 class FetchCurrenciesService {
 	private static $EXCHANGE_URL = 'https://api.exchangerate.host/latest?base={base}';
-	private IConfig $config;
+	private IAppConfig $config;
 	private CurrencyMapper $currencyMapper;
 	private CospendProjectMapper $projectMapper;
 	private LoggerInterface $logger;
 
 	public function __construct(
-		IConfig $config,
+		IAppConfig $config,
 		CurrencyMapper $currencyMapper,
 		CospendProjectMapper $projectMapper,
 		LoggerInterface $logger,
@@ -73,7 +73,7 @@ class FetchCurrenciesService {
 		}
 
 		$lastUpdate = date('c');
-		$this->config->setAppValue('autocurrency', 'last_update', $lastUpdate);
+		$this->config->setValueString('autocurrency', 'last_update', $lastUpdate);
 	}
 
 	private function getCurrencyName(string $name): string {
