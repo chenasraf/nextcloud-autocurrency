@@ -110,7 +110,7 @@ class ApiController extends OCSController {
 	// #[NoAdminRequired]
 	#[ApiRoute(verb: 'POST', url: '/api/cron/run')]
 	public function runCron(): DataResponse {
-		$this->service->doCron();
+		$this->service->fetchCurrencyRates();
 
 		return new DataResponse(
 			['status' => 'OK']

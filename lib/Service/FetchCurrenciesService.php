@@ -36,7 +36,7 @@ class FetchCurrenciesService {
 		$this->logger = $logger;
 	}
 
-	public function doCron(): void {
+	public function fetchCurrencyRates(): void {
 		$this->logger->info('Starting cron job to fetch currencies');
 		$projects = $this->projectMapper->findAll();
 		$currencyMap = [];
