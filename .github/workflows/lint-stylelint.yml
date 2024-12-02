@@ -33,4 +33,4 @@ jobs:
           pnpm i --frozen-lockfile
 
       - name: Lint
-        run: npm run stylelint
+        run: pnpm stylelint

@@ -2,7 +2,7 @@ import App from './App.vue'
 import './style.scss'
 import { createApp } from 'vue'
 import axios from '@nextcloud/axios'
-import { generateUrl, generateOcsUrl } from '@nextcloud/router'
+import { generateOcsUrl } from '@nextcloud/router'
 
 const baseURL = generateOcsUrl('/apps/autocurrency/api')
 axios.defaults.baseURL = baseURL
