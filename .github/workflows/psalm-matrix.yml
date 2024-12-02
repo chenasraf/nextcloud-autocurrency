@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   matrix:
-    runs-on: ubuntu-latest-low
+    runs-on: ubuntu-latest
     outputs:
       ocp-matrix: ${{ steps.versions.outputs.ocp-matrix }}
     steps:
@@ -56,7 +56,7 @@ jobs:
         run: composer run psalm
 
   summary:
-    runs-on: ubuntu-latest-low
+    runs-on: ubuntu-latest
     needs: static-analysis
 
     if: always()
