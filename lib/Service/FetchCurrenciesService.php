@@ -99,7 +99,7 @@ class FetchCurrenciesService {
 	/**
 	 * @return never
 	 */
-	private function handleException(Exception $e) {
+	private function handleException(Exception $e): void {
 		if ($e instanceof DoesNotExistException ||
 		  $e instanceof MultipleObjectsReturnedException) {
 			throw new CurrencyNotFound($e->getMessage());

@@ -21,19 +21,13 @@ class CurrencyAdmin implements ISettings {
 	/**
 	 * @return TemplateResponse
 	 */
-	public function getForm() {
-		$parameters = [
-			// 'mySetting' => $this->config->getSystemValue('my_notes_setting', true),
-			'mySetting' => 'Hello World!',
-		];
-
+	public function getForm(): TemplateResponse {
 		Util::addScript(AppInfo\Application::APP_ID, 'autocurrency-main');
 		Util::addStyle(AppInfo\Application::APP_ID, 'autocurrency-style');
-
-		return new TemplateResponse('autocurrency', 'settings', $parameters, '');
+		return new TemplateResponse('autocurrency', 'settings', [], '');
 	}
 
-	public function getSection() {
+	public function getSection(): string {
 		return 'autocurrency'; // Name of the previously created section.
 	}
 
@@ -44,7 +38,7 @@ class CurrencyAdmin implements ISettings {
 	 *
 	 * E.g.: 70
 	 */
-	public function getPriority() {
+	public function getPriority(): int {
 		return 10;
 	}
 }
