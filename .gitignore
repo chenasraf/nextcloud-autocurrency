@@ -11,5 +11,5 @@
 /js/
 .DS_Store
 composer.lock
-build/tools/composer.phar
+build/
 tsconfig.app.tsbuildinfo
