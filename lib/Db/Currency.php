@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 // SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
 // SPDX-License-Identifier: AGPL-3.0-or-later
@@ -19,16 +20,16 @@ use OCP\AppFramework\Db\Entity;
  * @method setProjectId(string $exchangeRate): void
  */
 class Currency extends Entity implements JsonSerializable {
-  protected string $name = '';
-  protected string $exchangeRate = '';
-  protected string $projectid = '';
+	protected string $name = '';
+	protected string $exchangeRate = '';
+	protected string $projectid = '';
 
-  public function jsonSerialize(): array {
-    return [
-      'id' => $this->id,
-      'name' => $this->name,
-      'exchange_rate' => $this->exchangeRate,
-      'projectid' => $this->projectid,
-    ];
-  }
+	public function jsonSerialize(): array {
+		return [
+			'id' => $this->id,
+			'name' => $this->name,
+			'exchange_rate' => $this->exchangeRate,
+			'projectid' => $this->projectid,
+		];
+	}
 }

@@ -101,7 +101,7 @@ class ApiController extends OCSController {
 	}
 
 	/**
-	 * Run cron immediately.
+	 * Run cron immediately
 	 *
 	 * @return DataResponse<Http::STATUS_OK, array{status:string}, array{}>
 	 *
@@ -118,7 +118,7 @@ class ApiController extends OCSController {
 	}
 
 	/**
-	 * Update auto currency settings.
+	 * Update auto currency settings
 	 *
 	 * @return DataResponse<Http::STATUS_OK, array{status:string}, array{}>
 	 *
