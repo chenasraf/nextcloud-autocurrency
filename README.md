@@ -8,11 +8,21 @@ SPDX-License-Identifier: CC0-1.0
 This NextCloud app automatically fetches currency information for your Cospend projects, and fills
 them up using the main currency as base. No more manually updating exchange rates!
 
-It will automatically run once a day and use your currency names to fetch the correct rate.
+It will automatically run once a day by default and use your currency names to fetch the correct
+rate.
 
-The name will be fetched using the first 3-uppercase-letter appearance in the name.
+Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
 
-For example:
+## Preparing currency data
+
+To make this work, a 3-letter currency code must be in the name of the currency.
+
+Currencies of different code lengths are not currently supported (but are planned).
+
+The currency code will be fetched using the first 3-uppercase-letter occurrence in the name defined
+on Cospend.
+
+For example, to properly set USD as currency, set the name to one of (but not limited to):
 
 - USD
 - $ USD
@@ -21,7 +31,11 @@ For example:
 
 Will all be considered "USD" for conversion purposes.
 
-This rule applies to main and additional currencies.
+This rule applies to **main** and **additional currencies**.
+
+To see the full list of available currencies, visit
+[this page](https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json) and
+refer to the keys of the JSON response (not the values).
 
 ## Installation
 
