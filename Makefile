@@ -80,6 +80,7 @@ endif
 # Installs pnpm dependencies
 .PHONY: pnpm
 pnpm:
+	pnpm install --frozen-lockfile
 ifeq (,$(wildcard $(CURDIR)/package.json))
 	cd js && $(pnpm) build
 else

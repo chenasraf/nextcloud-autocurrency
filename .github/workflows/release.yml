@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
 
     name: Prepare Release
@@ -42,13 +42,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build App
-        run: make && make appstore
+        run: |
+          npm i -g pnpm
+          make && make appstore
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: autocurrency.tar.gz
-          path: build/artifacts/appstore/autocurrency.tar.gz
+          path: build/artifacts/appstore/nextcloud-autocurrency.tar.gz
 
   changelog:
     name: Update Changelog
@@ -56,31 +58,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate changelog
-        id: changelog
-        uses: metcalfc/changelog-generator@v4.3.1
-        with:
-          myToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Get Release Tag
+      - name: Get Release Tags
         run: |
+          LAST_VERSION=$(git tag --sort=version:refname | head -n 1)
+          LAST_VERSION="${LAST_VERSION#v}"
           VERSION="${{ github.ref_name }}"
           VERSION="${VERSION#v}"
           echo VERSION=${VERSION} >> $GITHUB_ENV
+          echo LAST_VERSION=${LAST_VERSION} >> $GITHUB_ENV
+
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v4
+        with:
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+          base-ref: ${{ env.LAST_VERSION }}
 
       - name: Write Changelog
         run: |
-          LAST_VERSION=$(git tag --sort=version:refname | tail -n 1)
+          LAST_VERSION="${{ env.LAST_VERSION }}"
           VERSION="${{ env.VERSION }}"
-          chlg=$(cat << "EOF"
+          cat >chlog.tmp << 'EOF'
           ${{ steps.changelog.outputs.changelog }}
-          EOF)
-          chlg="## [v$VERSION ($(date +%Y-%m-%d))](https://github.com/chenasraf/nextcloud-autocurrency/compare/$LAST_VERSION...$VERSION)\n\n$chlg"
+          EOF
+          chlg="$(cat chlog.tmp)"
+          chlg="## [v$VERSION ($(date +%Y-%m-%d))](https://github.com/chenasraf/nextcloud-autocurrency/compare/v$LAST_VERSION...v$VERSION)\n\n$chlg"
           chlg="<!--CHANGELOG-PLACEHOLDER-->\n$chlg"
-          sed -i "s/<!--CHANGELOG-PLACEHOLDER-->/${chlg}/" CHANGELOG.md
+          sed -i "s|<!--CHANGELOG-PLACEHOLDER-->|${chlg}|" CHANGELOG.md
 
       - name: Commit & Push
         run: |
+          git config user.name "GitHub Actions"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
           git commit -m "chore(release): v${{ env.VERSION }}"
 
@@ -89,18 +101,27 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    needs: [build, changelog]
+
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Get Release Tag
         run: |
+          LAST_VERSION=$(git tag --sort=version:refname | head -n 1)
+          LAST_VERSION="${LAST_VERSION#v}"
           VERSION="${{ github.ref_name }}"
           VERSION="${VERSION#v}"
           echo VERSION=${VERSION} >> $GITHUB_ENV
+          echo LAST_VERSION=${LAST_VERSION} >> $GITHUB_ENV
+
       - name: Download Artifacts
         uses: actions/download-artifact@v4
 
       - name: Generate changelog
         id: changelog
-        uses: metcalfc/changelog-generator@v4.3.1
+        uses: metcalfc/changelog-generator@v4
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
 
