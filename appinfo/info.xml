@@ -38,7 +38,7 @@ just a small amount to help sustain this project, I would be very very thankful!
 
 I welcome any issues or pull requests on GitHub. If you find a bug, or would like a new feature,
 don't hesitate to open an appropriate issue and I will do my best to reply promptly.]]></description>
-	<version>0.2.0-beta.1</version>
+	<version>0.2.0</version>
 	<licence>agpl</licence>
 	<author mail="contact@casraf.dev" homepage="https://casraf.dev">Chen Asraf</author>
 	<namespace>AutoCurrency</namespace>
