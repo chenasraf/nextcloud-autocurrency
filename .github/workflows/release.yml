@@ -50,10 +50,43 @@ jobs:
           name: autocurrency.tar.gz
           path: build/artifacts/appstore/autocurrency.tar.gz
 
+  changelog:
+    name: Update Changelog
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v4.3.1
+        with:
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Release Tag
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"
+          echo VERSION=${VERSION} >> $GITHUB_ENV
+
+      - name: Write Changelog
+        run: |
+          LAST_VERSION=$(git tag --sort=version:refname | tail -n 1)
+          VERSION="${{ env.VERSION }}"
+          chlg=$(cat << "EOF"
+          ${{ steps.changelog.outputs.changelog }}
+          EOF)
+          chlg="## [v$VERSION ($(date +%Y-%m-%d))](https://github.com/chenasraf/nextcloud-autocurrency/compare/$LAST_VERSION...$VERSION)\n\n$chlg"
+          chlg="<!--CHANGELOG-PLACEHOLDER-->\n$chlg"
+          sed -i "s/<!--CHANGELOG-PLACEHOLDER-->/${chlg}/" CHANGELOG.md
+
+      - name: Commit & Push
+        run: |
+          git add CHANGELOG.md
+          git commit -m "chore(release): v${{ env.VERSION }}"
+
   release:
     name: Create Release
 
-    if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, 'v') }}
     runs-on: ubuntu-latest
 
     steps:
@@ -65,6 +98,12 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
 
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v4.3.1
+        with:
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         env:
@@ -73,6 +112,11 @@ jobs:
           name: Release ${{ github.ref_name }}
           body: |
             Auto Currency for Cospend Release ${{ env.VERSION }}
+
+            ## Changelog
+
+            ${{ steps.changelog.outputs.changelog }}
+
           draft: false
           prerelease: ${{ startsWith(github.ref_name, 'v') && (contains(github.ref, '-beta') || contains(github.ref, '-rc')) }}
           files: |
