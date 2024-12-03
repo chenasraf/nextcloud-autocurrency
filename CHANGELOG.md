@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.2.0...v0.2.1) (2024-12-03)
+
+
+### Bug Fixes
+
+* release artifact tar ([8d632ef](https://github.com/chenasraf/nextcloud-autocurrency/commit/8d632ef7f215255246f209ab6e0593ef786e2bfc))
+
 ## [0.2.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.1.0...v0.2.0) (2024-12-03)
 
 
