@@ -18,7 +18,7 @@ use OCP\IAppConfig;
 use Psr\Log\LoggerInterface;
 
 class FetchCurrenciesService {
-	private static $EXCHANGE_URL = 'https://api.exchangerate.host/latest?base={base}';
+	private static $EXCHANGE_URL = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{base}.json';
 	private IAppConfig $config;
 	private CurrencyMapper $currencyMapper;
 	private CospendProjectMapper $projectMapper;
@@ -41,31 +41,35 @@ class FetchCurrenciesService {
 		$projects = $this->projectMapper->findAll();
 		$currencyMap = [];
 
+		$this->logger->info('Found ' . count($projects) . ' projects');
+
 		foreach ($projects as $project) {
 			$base = $this->getCurrencyName($project->getCurrencyname());
+			$lbase = strtolower($base);
 
 			if (isset($currencyMap[$base])) {
 				$json = $currencyMap[$base];
 			} else {
 				// request currency exchange rates from the API
 				$this->logger->info('Fetching exchange rates for base currency ' . $base);
-				$fp = fopen(str_replace('{base}', $base, FetchCurrenciesService::$EXCHANGE_URL), 'r');
+				$fp = fopen(str_replace('{base}', $lbase, FetchCurrenciesService::$EXCHANGE_URL), 'r');
 				$data = stream_get_contents($fp);
 				fclose($fp);
 				$json = json_decode($data, true);
 				$this->logger->info('Fetched exchange rates for base currency: ' . json_encode($json));
-				if ($json['success'] == false) {
+				if ($json[$lbase] == null) {
 					$this->logger->error(new \Error('Failed to fetch exchange rates for base currency ' . $base));
 					continue;
 				}
-				$currencyMap[$base] = $json;
+				$currencyMap[$lbase] = $json;
 			}
 
 			$currencies = $this->findAll($project->id);
 
 			foreach ($currencies as $currency) {
 				$cur = $this->getCurrencyName($currency->getName());
-				$newRate = floatval(number_format(1 / $json['rates'][$cur], 2));
+				$lcur = strtolower($cur);
+				$newRate = floatval(number_format(1 / $json[$lbase][$lcur], 2));
 				$currency->setExchangeRate($newRate);
 				$this->logger->info('Setting exchange rate for currency ' . $cur . ' to ' . $newRate);
 				$this->currencyMapper->update($currency);
