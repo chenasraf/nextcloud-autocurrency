@@ -57,6 +57,9 @@ jobs:
     needs: [build]
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Download builds
         uses: actions/download-artifact@v4
 
@@ -66,7 +69,7 @@ jobs:
           sudo apt-get install libxml2-utils
 
           xmlfile="appinfo/info.xml"
-          version=$(xmllint --xpath "/info/version" appinfo/info.xml | cut -f2 -d'>' | cut -f1 -d'<')
+          version=$(xmllint --xpath "/info/version" "$xmlfile" | cut -f2 -d'>' | cut -f1 -d'<')
           if [[ -z "$version" ]]; then
             echo "Failed to get version from $xmlfile"
             exit 1
