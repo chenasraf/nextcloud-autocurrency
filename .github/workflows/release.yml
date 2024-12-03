@@ -63,20 +63,6 @@ jobs:
       - name: Download builds
         uses: actions/download-artifact@v4
 
-      - name: Set version.txt
-        run: |
-          sudo apt-get update
-          sudo apt-get install libxml2-utils
-
-          xmlfile="appinfo/info.xml"
-          version=$(xmllint --xpath "/info/version" "$xmlfile" | cut -f2 -d'>' | cut -f1 -d'<')
-          if [[ -z "$version" ]]; then
-            echo "Failed to get version from $xmlfile"
-            exit 1
-          fi
-          echo "Found version: $version"
-          echo $version > version.txt
-
       - uses: googleapis/release-please-action@v4
         id: release
         with:
