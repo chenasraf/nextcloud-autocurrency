@@ -44,12 +44,14 @@ jobs:
         run: |
           npm i -g pnpm
           make && make appstore
+          cd build/artifacts/appstore
+          mv nextcloud-autocurrency.tar.gz autocurrency.tar.gz
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: autocurrency.tar.gz
-          path: build/artifacts/appstore/nextcloud-autocurrency.tar.gz
+          path: build/artifacts/appstore/autocurrency.tar.gz
 
   release-please:
     name: Release
@@ -72,4 +74,6 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ steps.release.outputs.tag_name }} autocurrency.tar.gz/autocurrency.tar.gz
+        run: |
+          ls -la autocurrency.tar.gz
+          gh release upload ${{ steps.release.outputs.tag_name }} autocurrency.tar.gz/autocurrency.tar.gz
