@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.2.1...v0.3.0) (2024-12-04)
+
+
+### Features
+
+* improve currency matching ([8738623](https://github.com/chenasraf/nextcloud-autocurrency/commit/87386235c22a6dcd09f17cbeaa094152ccfd8540))
+
 ## [0.2.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.2.0...v0.2.1) (2024-12-03)
 
 
