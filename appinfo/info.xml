@@ -10,33 +10,12 @@
   <description><![CDATA[This NextCloud app automatically fetches currency information for your Cospend projects, and fills
 them up using the main currency as base. No more manually updating exchange rates!
 
-It will automatically run once a day and use your currency names to fetch the correct rate.
+It will automatically run once a day by default and use your currency names to fetch the correct
+rate.
 
-The name will be fetched using the first 3-uppercase-letter appearance in the name.
+Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
 
-For example:
-
-- USD
-- $ USD
-- USD $
-- United States Dollars (USD)
-
-Will all be considered "USD" for conversion purposes.
-
-This rule applies to main and additional currencies.
-
-## Contributing
-
-I am developing this package on my free time, so any support, whether code, issues, or just stars is
-very helpful to sustaining its life. If you are feeling incredibly generous and would like to donate
-just a small amount to help sustain this project, I would be very very thankful!
-
-<a href='https://ko-fi.com/casraf' target='_blank'>
-  <img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' alt='Buy Me a Coffee at ko-fi.com' />
-</a>
-
-I welcome any issues or pull requests on GitHub. If you find a bug, or would like a new feature,
-don't hesitate to open an appropriate issue and I will do my best to reply promptly.]]></description>
+**Note**: This is a companion app to Cospend. Without Cospend, this app will not work.]]></description>
 	<version>0.2.1</version>
 	<licence>agpl</licence>
 	<author mail="contact@casraf.dev" homepage="https://casraf.dev">Chen Asraf</author>

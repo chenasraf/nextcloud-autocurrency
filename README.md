@@ -13,25 +13,18 @@ rate.
 
 Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
 
+**Note**: This is a companion app to Cospend. Without Cospend, this app will not work.
+
 ## Preparing currency data
 
-To make this work, a 3-letter currency code must be in the name of the currency.
+For both main and additional currencies, you must include in the currency name, one of the following:
 
-Currencies of different code lengths are not currently supported (but are planned).
+- Currency symbol (`$`, `€`, `£`, etc.)
+- Currency code (USD, EUR, GBP, etc.) - case insensitive
 
-The currency code will be fetched using the first 3-uppercase-letter occurrence in the name defined
-on Cospend.
+Using one of these will be enough to fetch the correct rate.
 
-For example, to properly set USD as currency, set the name to one of (but not limited to):
-
-- USD
-- $ USD
-- USD $
-- United States Dollars (USD)
-
-Will all be considered "USD" for conversion purposes.
-
-This rule applies to **main** and **additional currencies**.
+For a list of available currencies, see [currencies.json](lib/Service/symbols.json).
 
 To see the full list of available currencies, visit
 [this page](https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json) and

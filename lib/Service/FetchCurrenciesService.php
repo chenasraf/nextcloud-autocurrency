@@ -19,10 +19,18 @@ use Psr\Log\LoggerInterface;
 
 class FetchCurrenciesService {
 	private static $EXCHANGE_URL = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{base}.json';
+	private static $SYMBOLS_FILE = __DIR__ . '/symbols.json';
+
 	private IAppConfig $config;
+
 	private CurrencyMapper $currencyMapper;
+
 	private CospendProjectMapper $projectMapper;
+
 	private LoggerInterface $logger;
+
+	/* @var array<string, array<symbol: string, name: string, symbol_native: string, decimal_digits: int, rounding: int, code: string, name_plural: string>> */
+	private array $symbols;
 
 	public function __construct(
 		IAppConfig $config,
@@ -34,6 +42,7 @@ class FetchCurrenciesService {
 		$this->currencyMapper = $currencyMapper;
 		$this->projectMapper = $projectMapper;
 		$this->logger = $logger;
+		$this->loadSymbols();
 	}
 
 	public function fetchCurrencyRates(): void {
@@ -68,8 +77,13 @@ class FetchCurrenciesService {
 
 			foreach ($currencies as $currency) {
 				$cur = $this->getCurrencyName($currency->getName());
+				if ($cur === null) {
+					$this->logger->error('Currency not found: ' . $currency->getName());
+					continue;
+				}
 				$lcur = strtolower($cur);
-				$newRate = floatval(number_format(1 / $json[$lbase][$lcur], 2));
+				$baseRate = $json[$lbase][$lcur];
+				$newRate = floatval(number_format(1 / $baseRate, 2));
 				$currency->setExchangeRate($newRate);
 				$this->logger->info('Setting exchange rate for currency ' . $cur . ' to ' . $newRate);
 				$this->currencyMapper->update($currency);
@@ -80,17 +94,35 @@ class FetchCurrenciesService {
 		$this->config->setValueString('autocurrency', 'last_update', $lastUpdate);
 	}
 
-	private function getCurrencyName(string $name): string {
-		// find 3-letter currency code for the base currency
-		preg_match('/([A-Z]{3})/', $name, $matches);
+	/** Match the currency name from the known currencies. **/
+	private function getCurrencyName(string $name): ?string {
+		foreach ($this->symbols as $cur => $currency) {
+			// e.g. usd
+			$id = strtolower($cur);
+			if (strtolower($name) === $id) {
+				return $id;
+			}
 
-		$this->logger->info('Matches: ' . json_encode($matches));
+			// e.g. $
+			$symbol = $currency['symbol'];
+			if (str_contains($name, $symbol)) {
+				return $id;
+			}
 
-		if (count($matches) === 2) {
-			$name = $matches[1];
+			// e.g. $ USD
+			preg_match('/\b' . $id . '\b/', strtolower($name), $matches);
+			if (count($matches) > 0) {
+				return $id;
+			}
 		}
 
-		return $name;
+		return null;
+	}
+
+	/** Load symbols from the symbols.json file */
+	private function loadSymbols(): void {
+		$this->symbols = json_decode(file_get_contents(FetchCurrenciesService::$SYMBOLS_FILE), true);
+		$this->logger->info('Loaded symbols: ' . json_encode($this->symbols));
 	}
 
 	/**
