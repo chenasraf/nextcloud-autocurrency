@@ -10,25 +10,28 @@
       <p>Currency names must contain at least <b>one of</b>:</p>
 
       <ol class="ol">
-        <li>The currency symbol - e.g. <code>$</code>, <code>€</code>, <code>£</code></li>
+        <li>
+          The currency symbol - e.g. <code>$</code>, <code>€</code>,
+          <code>£</code>
+        </li>
         <li>
           The currency code - e.g. <code>USD</code>, <code>EUR</code>,
           <code>GBP</code> (case-insensitive)
         </li>
       </ol>
 
+      <p>Example names:</p>
+
+      <ul>
+        <li>✅ <code>$</code></li>
+        <li>✅ <code>USD</code></li>
+        <li>✅ <code>$ USD</code></li>
+        <li>❌ <code>US Dollar</code></li>
+        <li>❌ <code>United States Dollar</code></li>
+      </ul>
+
       <NcNoteCard type="info">
         <p>The naming rules apply for both main &amp; additional currencies.</p>
-
-        <p>Example names:</p>
-
-        <ul>
-          <li>✅ <code>$</code></li>
-          <li>✅ <code>USD</code></li>
-          <li>✅ <code>$ USD</code></li>
-          <li>❌ <code>US Dollar</code></li>
-          <li>❌ <code>United States Dollar</code></li>
-        </ul>
       </NcNoteCard>
     </NcAppSettingsSection>
     <NcAppSettingsSection name="Cron Settings">
@@ -191,9 +194,12 @@ export default {
     margin: 0.5em 0;
   }
 
-  ol,
-  ul {
+  ol {
     padding-left: 2.5em;
+  }
+
+  ul {
+    padding-left: 1em;
   }
 }
 </style>
