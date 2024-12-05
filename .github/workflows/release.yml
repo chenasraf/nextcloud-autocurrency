@@ -75,5 +75,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls -la autocurrency.tar.gz
-          gh release upload ${{ steps.release.outputs.tag_name }} autocurrency.tar.gz/autocurrency.tar.gz
+          gh release upload ${{ steps.release.outputs.tag_name }} build/artifacts/appstore/autocurrency.tar.gz
