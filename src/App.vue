@@ -34,6 +34,7 @@
         <p>The naming rules apply for both main &amp; additional currencies.</p>
       </NcNoteCard>
     </NcAppSettingsSection>
+
     <NcAppSettingsSection name="Cron Settings">
       <section>
         <form @submit.prevent @submit="save">
@@ -169,7 +170,6 @@ export default {
 
 <style scoped lang="scss">
 #autocurrency-content {
-  /* margin: 0 16px; */
   h2:first-child {
     margin-top: 0;
   }
