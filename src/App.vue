@@ -20,6 +20,10 @@
         </li>
       </ol>
 
+      <NcNoteCard type="info">
+        <p>The naming rules apply for both main &amp; additional currencies.</p>
+      </NcNoteCard>
+
       <p>Example names:</p>
 
       <ul>
@@ -29,10 +33,6 @@
         <li>❌ <code>US Dollar</code></li>
         <li>❌ <code>United States Dollar</code></li>
       </ul>
-
-      <NcNoteCard type="info">
-        <p>The naming rules apply for both main &amp; additional currencies.</p>
-      </NcNoteCard>
     </NcAppSettingsSection>
 
     <NcAppSettingsSection name="Cron Settings">
