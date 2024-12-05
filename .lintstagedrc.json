@@ -2,7 +2,7 @@
   "*.{ts,vue}": [
     "eslint --fix"
   ],
-  "*.{scss,vue,ts}": [
+  "*.{scss,vue,ts,md}": [
     "prettier --write"
   ],
   "*.php": [
