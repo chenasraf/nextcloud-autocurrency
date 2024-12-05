@@ -29,9 +29,25 @@ For a full list of available currencies, see [symbols.json](lib/Service/symbols.
 
 ## Installation
 
+> App Store link coming once app has been a bit more matured.
+
 Place this app in **nextcloud/apps/** or **nextcloud/custom_apps/**
 
-> App Store link coming once app has been a bit more matured.
+Here is a quick installation script you can use as base. Modify the first variable lines to match
+your setup:
+
+```bash
+NCDIR="/path/to/root/of/nextcloud" # Root directory of your Nextcloud instance
+APPDIR="/custom_apps" # App install directory
+APPVER="0.5.0" # App version to install
+
+cd "$NCDIR/$APPDIR"
+curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v${APPVER}/autocurrency.tar.gz -o autocurrency.tar.gz
+tar xfv autocurrency.tar.gz
+rm -rf autocurrency.tar.gz
+```
+
+Then enable the app as you normally would from Nextcloud's Apps page.
 
 ## Contributing
 
