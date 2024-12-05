@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.3.0...v0.4.0) (2024-12-05)
+
+
+### Features
+
+* add admin page intro section ([023b2fd](https://github.com/chenasraf/nextcloud-autocurrency/commit/023b2fd61c28cfdcb9a787b4cb4b5d853dffcdad))
+
+
+### Bug Fixes
+
+* only include available currencies ([902522f](https://github.com/chenasraf/nextcloud-autocurrency/commit/902522f20f29382a837c0062a0c08c3f681cef73))
+
 ## [0.3.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.2.1...v0.3.0) (2024-12-04)
 
 
