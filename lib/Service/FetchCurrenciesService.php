@@ -96,21 +96,22 @@ class FetchCurrenciesService {
 
 	/** Match the currency name from the known currencies. **/
 	private function getCurrencyName(string $name): ?string {
+		$name = strtolower($name);
 		foreach ($this->symbols as $cur => $currency) {
 			// e.g. usd
 			$id = strtolower($cur);
-			if (strtolower($name) === $id) {
+			if (($name) === $id) {
 				return $id;
 			}
 
-			// e.g. $
+			// e.g. $, $ USD
 			$symbol = $currency['symbol'];
 			if (str_contains($name, $symbol)) {
 				return $id;
 			}
 
-			// e.g. $ USD
-			preg_match('/\b' . $id . '\b/', strtolower($name), $matches);
+			// e.g. US Dollar (USD)
+			preg_match('/\b' . $id . '\b/', $name, $matches);
 			if (count($matches) > 0) {
 				return $id;
 			}
