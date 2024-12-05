@@ -16,7 +16,7 @@ class CurrencyAdmin implements IIconSection {
 	}
 
 	public function getIcon(): string {
-		return $this->urlGenerator->imagePath('autocurrency', 'app.svg');
+		return $this->urlGenerator->imagePath('autocurrency', 'app-dark.svg');
 	}
 
 	public function getID(): string {
