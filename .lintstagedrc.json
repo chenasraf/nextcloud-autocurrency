@@ -1,0 +1,11 @@
+{
+  "*.{ts,vue}": [
+    "eslint --fix"
+  ],
+  "*.{scss,vue,ts}": [
+    "prettier --write"
+  ],
+  "*.php": [
+    "/usr/local/bin/php vendor-bin/cs-fixer/vendor/php-cs-fixer/shim/php-cs-fixer.phar fix"
+  ]
+}

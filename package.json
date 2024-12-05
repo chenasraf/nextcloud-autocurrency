@@ -11,7 +11,8 @@
     "dev": "vite build --watch",
     "build": "vue-tsc -b && vite build",
     "lint": "eslint src",
-    "format": "eslint --fix src && prettier --write src"
+    "format": "eslint --fix src && prettier --write src",
+    "prepare": "husky"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
@@ -33,6 +34,8 @@
     "@nextcloud/stylelint-config": "^2.4.0",
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.16.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
     "sass": "^1.81.0",
     "sass-embedded": "^1.81.0",
     "typescript": "^5.6.3",
