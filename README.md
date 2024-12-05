@@ -17,18 +17,15 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 
 ## Preparing currency data
 
-For both main and additional currencies, you must include in the currency name, one of the following:
+For both main and additional currencies, you must include in the currency name, one of the
+following:
 
 - Currency symbol (`$`, `€`, `£`, etc.)
 - Currency code (USD, EUR, GBP, etc.) - case insensitive
 
 Using one of these will be enough to fetch the correct rate.
 
-For a list of available currencies, see [currencies.json](lib/Service/symbols.json).
-
-To see the full list of available currencies, visit
-[this page](https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json) and
-refer to the keys of the JSON response (not the values).
+For a full list of available currencies, see [symbols.json](lib/Service/symbols.json).
 
 ## Installation
 

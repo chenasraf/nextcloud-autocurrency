@@ -29,7 +29,17 @@ class FetchCurrenciesService {
 
 	private LoggerInterface $logger;
 
-	/* @var array<string, array<symbol: string, name: string, symbol_native: string, decimal_digits: int, rounding: int, code: string, name_plural: string>> */
+	/**
+	 * @var array<string, array{
+	 *     symbol: string,
+	 *     name: string,
+	 *     symbol_native: string,
+	 *     decimal_digits: int,
+	 *     rounding: int,
+	 *     code: string,
+	 *     name_plural: string
+	 * }>
+	 */
 	private array $symbols;
 
 	public function __construct(
