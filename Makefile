@@ -139,6 +139,7 @@ appstore:
 		--exclude="../$(app_name)/*.log" \
 		--exclude="../$(app_name)/phpunit*xml" \
 		--exclude="../$(app_name)/composer.*" \
+		--exclude="../$(app_name)/node_modules" \
 		--exclude="../$(app_name)/js/node_modules" \
 		--exclude="../$(app_name)/js/tests" \
 		--exclude="../$(app_name)/js/test" \
@@ -179,4 +180,5 @@ sign:
 	TMPF="$$(mktemp)"; \
 	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency.tar.gz -o $${TMPF}; \
 	echo; \
-	openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(appname).key $${TMPF} | openssl base64
+	openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(appname).key $${TMPF} | openssl base64; \
+	rm -rf $${TMPF}
