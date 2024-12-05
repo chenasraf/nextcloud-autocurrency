@@ -162,3 +162,13 @@ appstore:
 test: composer
 	$(CURDIR)/vendor/phpunit/phpunit/phpunit -c tests/phpunit.xml
 	( test ! -f tests/phpunit.integration.xml ) || $(CURDIR)/vendor/phpunit/phpunit/phpunit -c tests/phpunit.integration.xml
+
+.PHONY: lint
+lint:
+	pnpm lint
+	build/tools/composer.phar run lint
+
+.PHONY: format
+format:
+	pnpm format
+	build/tools/composer.phar run format
