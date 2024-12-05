@@ -24,6 +24,7 @@ jobs:
 
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
 
     steps:
       - name: Checkout
@@ -75,5 +76,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls -la autocurrency.tar.gz
-          gh release upload ${{ steps.release.outputs.tag_name }} autocurrency.tar.gz/autocurrency.tar.gz
+          gh release upload ${{ needs.release-please.outputs.tag_name }} build/artifacts/appstore/autocurrency.tar.gz
