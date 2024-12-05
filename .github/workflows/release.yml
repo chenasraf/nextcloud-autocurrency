@@ -91,7 +91,7 @@ jobs:
           name: autocurrency.tar.gz
 
       - name: Verify File Existence
-        run: ls -l autocurrency.tar.gz
+        run: ls -l -d -1 "$PWD/autocurrency.tar.gz"
 
       - name: Upload to Release
         if: ${{ needs.release.outputs.release_created }}
