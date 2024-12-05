@@ -38,6 +38,7 @@
 #    },
 
 app_name=autocurrency
+dir_name=$(notdir $(CURDIR))
 build_tools_directory=$(CURDIR)/build/tools
 source_build_directory=$(CURDIR)/build/artifacts/source
 source_package_name=$(source_build_directory)/$(app_name)
@@ -45,6 +46,11 @@ appstore_build_directory=$(CURDIR)/build/artifacts/appstore
 appstore_package_name=$(appstore_build_directory)/$(app_name)
 pnpm=$(shell which pnpm 2> /dev/null)
 composer=$(shell which composer 2> /dev/null)
+ifeq ($(shell uname),Darwin)
+	tar=gtar
+else
+	tar=tar
+endif
 
 all: build
 
@@ -53,15 +59,9 @@ all: build
 # is present, the pnpm step is skipped
 .PHONY: build
 build:
-ifneq (,$(wildcard $(CURDIR)/composer.json))
+	make deps
 	make composer
-endif
-ifneq (,$(wildcard $(CURDIR)/package.json))
 	make pnpm
-endif
-ifneq (,$(wildcard $(CURDIR)/js/package.json))
-	make pnpm
-endif
 
 # Installs and updates the composer dependencies. If composer is not installed
 # a copy is fetched from the web
@@ -85,6 +85,27 @@ ifeq (,$(wildcard $(CURDIR)/package.json))
 	cd js && $(pnpm) build
 else
 	pnpm build
+endif
+
+.PHONY: deps
+deps:
+	@echo "Checking dependencies"
+# on mac, install gnu-tar via brew
+ifeq ($(shell uname),Darwin)
+	@which gtar; \
+	if [ $$? -ne 0 ]; then \
+		brew install gnu-tar; \
+	else \
+		echo "gtar already installed"; \
+	fi
+else
+	@which tar; \
+	if [ $$? -ne 0 ]; then \
+		echo "Please install tar"; \
+		exit 1; \
+	else \
+		echo "tar already installed"; \
+	fi
 endif
 
 # Removes the appstore build
@@ -113,17 +134,18 @@ source:
 	rm -rf $(source_build_directory)
 	mkdir -p $(source_build_directory)
 	rm -rf $(appstore_package_name).tar.gz
-	tar czf $(source_package_name).tar.gz \
+	$(tar) czf $(source_package_name).tar.gz \
+		--transform "s|^../$(dir_name)|$(app_name)|" \
 		--exclude="**/.git/**/*" \
-		--exclude="../$(app_name)/build" \
-		--exclude="../$(app_name)/tests" \
-		--exclude="../$(app_name)/src" \
-		--exclude="../$(app_name)/js/node_modules" \
-		--exclude="../$(app_name)/node_modules" \
-		--exclude="../$(app_name)/*.log" \
-		--exclude="../$(app_name)/js/*.log" \
+		--exclude="../$(dir_name)/build" \
+		--exclude="../$(dir_name)/tests" \
+		--exclude="../$(dir_name)/src" \
+		--exclude="../$(dir_name)/js/node_modules" \
+		--exclude="../$(dir_name)/node_modules" \
+		--exclude="../$(dir_name)/*.log" \
+		--exclude="../$(dir_name)/js/*.log" \
 		--exclude="../$(source_build_directory)" \
-		../$(app_name)
+		../$(dir_name)
 
 # Builds the source package for the app store, ignores php and js tests
 .PHONY: appstore
@@ -131,32 +153,33 @@ appstore:
 	rm -rf $(appstore_build_directory)
 	mkdir -p $(appstore_build_directory)
 	rm -rf $(appstore_package_name).tar.gz
-	tar czf $(appstore_package_name).tar.gz \
+	$(tar) czf $(appstore_package_name).tar.gz \
+		--transform "s|^../$(dir_name)|$(app_name)|" \
 		--exclude="**/.git/**/*" \
-		--exclude="../$(app_name)/build" \
-		--exclude="../$(app_name)/tests" \
-		--exclude="../$(app_name)/Makefile" \
-		--exclude="../$(app_name)/*.log" \
-		--exclude="../$(app_name)/phpunit*xml" \
-		--exclude="../$(app_name)/composer.*" \
-		--exclude="../$(app_name)/js/node_modules" \
-		--exclude="../$(app_name)/js/tests" \
-		--exclude="../$(app_name)/js/test" \
-		--exclude="../$(app_name)/js/*.log" \
-		--exclude="../$(app_name)/js/package.json" \
-		--exclude="../$(app_name)/js/bower.json" \
-		--exclude="../$(app_name)/js/karma.*" \
-		--exclude="../$(app_name)/js/protractor.*" \
-		--exclude="../$(app_name)/package.json" \
-		--exclude="../$(app_name)/bower.json" \
-		--exclude="../$(app_name)/karma.*" \
-		--exclude="../$(app_name)/protractor\.*" \
-		--exclude="../$(app_name)/.*" \
-		--exclude="../$(app_name)/js/.*" \
-		--exclude="../$(app_name)/src" \
+		--exclude="../$(dir_name)/build" \
+		--exclude="../$(dir_name)/tests" \
+		--exclude="../$(dir_name)/Makefile" \
+		--exclude="../$(dir_name)/*.log" \
+		--exclude="../$(dir_name)/phpunit*xml" \
+		--exclude="../$(dir_name)/composer.*" \
+		--exclude="../$(dir_name)/js/node_modules" \
+		--exclude="../$(dir_name)/js/tests" \
+		--exclude="../$(dir_name)/js/test" \
+		--exclude="../$(dir_name)/js/*.log" \
+		--exclude="../$(dir_name)/js/package.json" \
+		--exclude="../$(dir_name)/js/bower.json" \
+		--exclude="../$(dir_name)/js/karma.*" \
+		--exclude="../$(dir_name)/js/protractor.*" \
+		--exclude="../$(dir_name)/package.json" \
+		--exclude="../$(dir_name)/bower.json" \
+		--exclude="../$(dir_name)/karma.*" \
+		--exclude="../$(dir_name)/protractor\.*" \
+		--exclude="../$(dir_name)/.*" \
+		--exclude="../$(dir_name)/js/.*" \
+		--exclude="../$(dir_name)/src" \
 		--exclude="../$(source_build_directory)" \
 		--exclude="../$(appstore_build_directory)" \
-		../$(app_name)
+		../$(dir_name)
 
 .PHONY: test
 test: composer
@@ -177,6 +200,6 @@ format:
 sign:
 	VERSION="$$(cat version.txt)"; \
 	TMPF="$$(mktemp)"; \
-	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency.tar.gz -o $${TMPF}; \
-	echo; \
+	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency.tar.gz -o $${TMPF} &&
+	echo &&
 	openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(appname).key $${TMPF} | openssl base64

@@ -64,12 +64,7 @@ jobs:
       - name: Build App
         run: |
           npm i -g pnpm
-          cd ..
-          mv nextcloud-autocurrency autocurrency
-          cd autocurrency
           make && make appstore
-          cd ..
-          mv autocurrency nextcloud-autocurrency
 
       - name: Upload Release Artifacts
         env:
