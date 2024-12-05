@@ -171,4 +171,4 @@ lint:
 .PHONY: format
 format:
 	pnpm format
-	build/tools/composer.phar run format
+	PHP_CS_FIXER_IGNORE_ENV=true build/tools/composer.phar run cs:fix
