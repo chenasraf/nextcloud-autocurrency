@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.4.0...v0.5.0) (2024-12-05)
+
+
+### Features
+
+* update admin page ([ab029a3](https://github.com/chenasraf/nextcloud-autocurrency/commit/ab029a3ecdec763dbe79ef38d8e0bf1676ef00b4))
+* update admin page ui ([32c2c94](https://github.com/chenasraf/nextcloud-autocurrency/commit/32c2c94526148efe767584c79ef8a380f26c0252))
+* update app+settings icons ([b85256f](https://github.com/chenasraf/nextcloud-autocurrency/commit/b85256f5a236b5701013878b18e03e1c8baabd07))
+
 ## [0.4.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.3.0...v0.4.0) (2024-12-05)
 
 
