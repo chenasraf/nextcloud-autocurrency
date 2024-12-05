@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  release-please:
+  release:
     name: Release
     runs-on: ubuntu-latest
 
@@ -38,11 +38,9 @@ jobs:
         with:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
 
-  artifacts:
+  build:
+    name: App Store Build
     runs-on: ubuntu-latest
-    name: Upload Release Artifacts
-    needs: [release-please]
-    if: ${{ needs.release-please.outputs.release_created }}
 
     steps:
       - name: Checkout
@@ -72,8 +70,32 @@ jobs:
           cd ..
           mv autocurrency nextcloud-autocurrency
 
-      - name: Upload Release Artifacts
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: autocurrency.tar.gz
+          path: build/artifacts/appstore/autocurrency.tar.gz
+
+  upload:
+    runs-on: ubuntu-latest
+    name: Upload Release Artifacts
+    needs: [build, release]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: autocurrency.tar.gz
+
+      - name: Verify File Existence
+        run: ls -l autocurrency.tar.gz
+
+      - name: Upload to Release
+        if: ${{ needs.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ needs.release-please.outputs.tag_name }} build/artifacts/appstore/autocurrency.tar.gz
+          gh release upload ${{ needs.release.outputs.tag_name }} autocurrency.tar.gz/autocurrency.tar.gz
