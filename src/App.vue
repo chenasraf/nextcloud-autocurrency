@@ -3,21 +3,22 @@
     <h2>Auto Currency for Cospend</h2>
     <NcAppSettingsSection name="Information">
       <p>
-        To make sure your currencies are found for the rates to be updated, please ensure your currencies are named
-        appropriately.
+        To make sure your currencies are found for the rates to be updated, please ensure your
+        currencies are named appropriately.
       </p>
 
       <p>Currency names must contain at least <b>one of</b>:</p>
 
       <ol class="ol">
         <li>The currency symbol - e.g. <code>$</code>, <code>€</code>, <code>£</code></li>
-        <li>The currency code - e.g. <code>USD</code>, <code>EUR</code>, <code>GBP</code> (case-insensitive)</li>
+        <li>
+          The currency code - e.g. <code>USD</code>, <code>EUR</code>,
+          <code>GBP</code> (case-insensitive)
+        </li>
       </ol>
 
       <NcNoteCard type="info">
-        <p>
-          The naming rules apply for both main &amp; additional currencies.
-        </p>
+        <p>The naming rules apply for both main &amp; additional currencies.</p>
 
         <p>Example names:</p>
 
@@ -34,8 +35,13 @@
       <section>
         <form @submit.prevent @submit="save">
           <div class="cron-flex">
-            <NcSelect v-model="interval" :options="intervals" input-label="Currency conversion rate update interval"
-              required :disabled="loading" />
+            <NcSelect
+              v-model="interval"
+              :options="intervals"
+              input-label="Currency conversion rate update interval"
+              required
+              :disabled="loading"
+            />
 
             <div class="cron-last-update-container">
               <NcButton @click="doCron" :disabled="loading">Fetch Rates Now</NcButton>
