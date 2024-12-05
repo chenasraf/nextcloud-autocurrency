@@ -37,7 +37,7 @@
 #        "build": "node node_modules/gulp-cli/bin/gulp.js"
 #    },
 
-app_name=$(notdir $(CURDIR))
+app_name=autocurrency
 build_tools_directory=$(CURDIR)/build/tools
 source_build_directory=$(CURDIR)/build/artifacts/source
 source_package_name=$(source_build_directory)/$(app_name)
@@ -172,3 +172,11 @@ lint:
 format:
 	pnpm format
 	PHP_CS_FIXER_IGNORE_ENV=true build/tools/composer.phar run cs:fix
+
+.PHONY: sign
+sign:
+	VERSION="$$(cat version.txt)"; \
+	TMPF="$$(mktemp)"; \
+	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency.tar.gz -o $${TMPF}; \
+	echo; \
+	openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(appname).key $${TMPF} | openssl base64
