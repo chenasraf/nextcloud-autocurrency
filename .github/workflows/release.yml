@@ -8,6 +8,8 @@ name: Release
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
 
 permissions:
   contents: write
@@ -21,6 +23,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
 
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
