@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.5.0...v0.5.1) (2024-12-06)
+
+
+### Bug Fixes
+
+* settings section priority ([da05142](https://github.com/chenasraf/nextcloud-autocurrency/commit/da0514250882472b7b3ef0f9f293e0cf6f5568a5))
+
 ## [0.5.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.4.0...v0.5.0) (2024-12-05)
 
 
