@@ -2,6 +2,7 @@
 
 namespace OCA\AutoCurrency\Cron;
 
+use OCA\AutoCurrency\AppInfo;
 use OCA\AutoCurrency\Service\FetchCurrenciesService;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\TimedJob;
@@ -20,7 +21,7 @@ class FetchCurrenciesJob extends TimedJob {
 		$this->config = $config;
 
 		// Run once a day
-		$interval = $this->config->getValueInt('autocurrency', 'cron_interval', 24);
+		$interval = $this->config->getValueInt(AppInfo\Application::APP_ID, 'cron_interval', 24);
 		$this->setInterval(3600 * $interval);
 		$this->setTimeSensitivity(\OCP\BackgroundJob\IJob::TIME_INSENSITIVE);
 		$this->logger->info('FetchCurrenciesJob initialized');

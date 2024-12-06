@@ -24,11 +24,11 @@ class CurrencyAdmin implements ISettings {
 	public function getForm(): TemplateResponse {
 		Util::addScript(AppInfo\Application::APP_ID, 'autocurrency-main');
 		Util::addStyle(AppInfo\Application::APP_ID, 'autocurrency-style');
-		return new TemplateResponse('autocurrency', 'settings', [], '');
+		return new TemplateResponse(AppInfo\Application::APP_ID, 'settings', [], '');
 	}
 
 	public function getSection(): string {
-		return 'autocurrency'; // Name of the previously created section.
+		return AppInfo\Application::APP_ID;
 	}
 
 	/**

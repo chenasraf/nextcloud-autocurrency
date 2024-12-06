@@ -8,13 +8,14 @@ namespace OCA\AutoCurrency\Service;
 
 use Exception;
 
+use OCA\AutoCurrency\AppInfo;
 use OCA\AutoCurrency\Db\CospendProjectMapper;
 use OCA\AutoCurrency\Db\Currency;
 use OCA\AutoCurrency\Db\CurrencyMapper;
-
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
 use OCP\IAppConfig;
+
 use Psr\Log\LoggerInterface;
 
 class FetchCurrenciesService {
@@ -101,7 +102,7 @@ class FetchCurrenciesService {
 		}
 
 		$lastUpdate = date('c');
-		$this->config->setValueString('autocurrency', 'last_update', $lastUpdate);
+		$this->config->setValueString(AppInfo\Application::APP_ID, 'last_update', $lastUpdate);
 	}
 
 	/** Match the currency name from the known currencies. **/

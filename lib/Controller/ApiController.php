@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OCA\AutoCurrency\Controller;
 
+use OCA\AutoCurrency\AppInfo;
 use OCA\AutoCurrency\Service\FetchCurrenciesService;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\ApiRoute;
@@ -74,12 +75,12 @@ class ApiController extends OCSController {
 	// #[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/api/cron')]
 	public function getCronInfo(): DataResponse {
-		$lastUpdate = $this->config->getValueString('autocurrency', 'last_update', '');
+		$lastUpdate = $this->config->getValueString(AppInfo\Application::APP_ID, 'last_update', '');
 		if ($lastUpdate === '') {
 			$lastUpdate = null;
 		}
 
-		$interval = $this->config->getValueInt('autocurrency', 'cron_interval', 24);
+		$interval = $this->config->getValueInt(AppInfo\Application::APP_ID, 'cron_interval', 24);
 
 		return new DataResponse(
 			['last_update' => $lastUpdate, 'interval' => $interval]
@@ -114,7 +115,7 @@ class ApiController extends OCSController {
 	#[ApiRoute(verb: 'PUT', url: '/api/cron')]
 	public function updateSettings(): DataResponse {
 		$interval = $this->request->getParam('data')['interval'];
-		$this->config->setValueInt('autocurrency', 'cron_interval', $interval);
+		$this->config->setValueInt(AppInfo\Application::APP_ID, 'cron_interval', $interval);
 		return new DataResponse(
 			['status' => 'OK']
 		);
