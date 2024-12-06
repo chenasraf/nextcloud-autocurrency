@@ -37,18 +37,11 @@ Here is a quick installation script you can use as base. Modify the first variab
 your setup:
 
 ```bash
-NCDIR="/path/to/root/of/nextcloud" # Root directory of your Nextcloud instance
-APPDIR="/custom_apps" # App install directory
+pushd "/path/to/root/of/nextcloud/custom_apps"
 
-# navigate into app dir
-cd "$NCDIR/$APPDIR"
-
-# get latest version
-APPVER=$(curl https://api.github.com/repos/chenasraf/nextcloud-autocurrency/releases/latest | grep tag_name | grep -Eo 'v[^"]+')
-
-# download & extract app
-curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/${APPVER}/autocurrency-${APPVER}.tar.gz -o autocurrency.tar.gz
-tar xfv autocurrency.tar.gz
+APPVER=$(curl -s https://api.github.com/repos/chenasraf/nextcloud-autocurrency/releases/latest | grep tag_name | grep -Eo 'v[^"]+') && \
+curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/${APPVER}/autocurrency-${APPVER}.tar.gz -o autocurrency.tar.gz && \
+tar xfv autocurrency.tar.gz && \
 rm -rf autocurrency.tar.gz
 ```
 
