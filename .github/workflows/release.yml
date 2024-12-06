@@ -93,7 +93,7 @@ jobs:
         with:
           name: autocurrency.tar.gz
 
-      - name: Verify Artifact
+      - name: Prepare Artifact Upload
         run: test -f "$PWD/autocurrency.tar.gz"
 
       - name: Upload to Release
@@ -101,4 +101,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ needs.release.outputs.tag_name }} autocurrency.tar.gz
+          mv autocurrency.tar.gz "autocurrency-${{ needs.release.outputs.tag_name }}.tar.gz"
+          gh release upload ${{ needs.release.outputs.tag_name }} autocurrency-${{ needs.release.outputs.tag_name }}.tar.gz
