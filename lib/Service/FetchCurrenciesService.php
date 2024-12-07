@@ -41,7 +41,7 @@ class FetchCurrenciesService {
 	 *     name_plural: string
 	 * }>
 	 */
-	private array $symbols;
+	public array $symbols;
 
 	public function __construct(
 		IAppConfig $config,

@@ -51,28 +51,19 @@ class ApiController extends OCSController {
 	}
 
 	/**
-	 * An example API endpoint
-	 *
-	 * @return DataResponse<Http::STATUS_OK, array{message: string}, array{}>
-	 *
-	 * 200: Data returned
-	 */
-	// #[NoAdminRequired]
-	// #[ApiRoute(verb: 'GET', url: '/api')]
-	// public function index(): DataResponse {
-	// 	return new DataResponse(
-	// 		['message' => 'Hello world!']
-	// 	);
-	// }
-
-	/**
 	 * Get current cron information
 	 *
-	 * @return DataResponse<Http::STATUS_OK, array{last_update:non-empty-string|null,interval:int}, array{}>
+	 * @return DataResponse<Http::STATUS_OK, array{
+	 *	 last_update: non-empty-string|null,
+	 *	 interval: int,
+	 *	 supported_currencies:array{
+	 *		 code: string,
+	 *		 symbol: string,
+	 *		 name: string
+	 *	 }, array{}>
 	 *
 	 * 200: Data returned
 	 */
-	// #[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/api/cron')]
 	public function getCronInfo(): DataResponse {
 		$lastUpdate = $this->config->getValueString(AppInfo\Application::APP_ID, 'last_update', '');
@@ -82,8 +73,14 @@ class ApiController extends OCSController {
 
 		$interval = $this->config->getValueInt(AppInfo\Application::APP_ID, 'cron_interval', 24);
 
+		$supported = array_map(
+			fn ($sym): array =>
+				['name' => $sym['name'], 'code' => $sym['code'], 'symbol' => $sym['symbol']],
+			array_values($this->service->symbols)
+		);
+
 		return new DataResponse(
-			['last_update' => $lastUpdate, 'interval' => $interval]
+			['last_update' => $lastUpdate, 'interval' => $interval, 'supported_currencies' => $supported]
 		);
 	}
 
@@ -94,7 +91,6 @@ class ApiController extends OCSController {
 	 *
 	 * 200: Data returned
 	 */
-	// #[NoAdminRequired]
 	#[ApiRoute(verb: 'POST', url: '/api/cron/run')]
 	public function runCron(): DataResponse {
 		$this->service->fetchCurrencyRates();

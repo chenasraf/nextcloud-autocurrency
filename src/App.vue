@@ -33,6 +33,38 @@
         <li>❌ <code>US Dollar</code></li>
         <li>❌ <code>United States Dollar</code></li>
       </ul>
+
+      <div class="currency-list">
+        <p>Supported currencies:</p>
+
+        <div style="max-width: 300px">
+          <NcTextField
+            v-model="currencySearch"
+            label="Search"
+            trailing-button-icon="close"
+            placeholder="e.g. $, USD, US Dollar"
+            :show-trailing-button="currencySearch !== ''"
+            @trailing-button-click="clearCurrencySearch"
+          />
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Code</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="currency in currencies" :key="currency.code">
+              <td>{{ currency.symbol }}</td>
+              <td>{{ currency.code }}</td>
+              <td>{{ currency.name }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </NcAppSettingsSection>
 
     <NcAppSettingsSection name="Cron Settings">
@@ -73,6 +105,7 @@ import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
 import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
+import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 
 import axios from '@nextcloud/axios'
 import { parseISO as parseDate } from 'date-fns/parseISO'
@@ -86,6 +119,7 @@ export default {
     NcDateTime,
     NcNoteCard,
     NcSelect,
+    NcTextField,
   },
   data() {
     return {
@@ -100,6 +134,8 @@ export default {
         { label: 'Every 12 hours', value: 12 },
         { label: 'Every 24 hours (default)', value: 24 },
       ],
+      supportedCurrencies: [],
+      currencySearch: '',
     }
   },
   created() {
@@ -126,6 +162,8 @@ export default {
           const lastUpdate = parseDate(data.last_update, new Date())
           this.lastUpdate = lastUpdate
         }
+
+        this.supportedCurrencies = data.supported_currencies
       } catch (e) {
         console.error('Failed to fetch Auto Currency settings', e)
       }
@@ -146,6 +184,9 @@ export default {
         console.error('Failed to run cron', e)
       }
     },
+    clearCurrencySearch() {
+      this.currencySearch = ''
+    },
     async save() {
       try {
         this.loading = true
@@ -163,6 +204,22 @@ export default {
   computed: {
     intervals() {
       return this.intervalOptions.map((x) => x.label)
+    },
+    currencies() {
+      if (!this.supportedCurrencies) {
+        return []
+      }
+      if (!this.currencySearch) {
+        return this.supportedCurrencies
+      }
+
+      return this.supportedCurrencies.filter((currency) => {
+        return [
+          currency.symbol.toLowerCase().includes(this.currencySearch.toLowerCase()),
+          currency.code.toLowerCase().includes(this.currencySearch.toLowerCase()),
+          currency.name.toLowerCase().includes(this.currencySearch.toLowerCase()),
+        ].some(Boolean)
+      })
     },
   },
 }
@@ -200,6 +257,42 @@ export default {
 
   ul {
     padding-left: 1em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--color-border);
+
+    tr:not(:last-child),
+    thead tr {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    tbody {
+      display: block;
+      max-height: 300px;
+      overflow-y: scroll;
+    }
+
+    thead,
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    td,
+    th {
+      padding: 4px 8px;
+    }
+  }
+
+  .currency-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 2em;
   }
 }
 </style>
