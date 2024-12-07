@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.5.1...v0.5.2) (2024-12-07)
+
+
+### Bug Fixes
+
+* add missing eur currency info ([7948fd9](https://github.com/chenasraf/nextcloud-autocurrency/commit/7948fd9a456654c0d81ab73501d0a87056ea49cb))
+
 ## [0.5.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.5.0...v0.5.1) (2024-12-06)
 
 
