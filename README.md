@@ -29,23 +29,27 @@ For a full list of available currencies, see [symbols.json](lib/Service/symbols.
 
 ## Installation
 
-> App Store link coming once app has been a bit more matured.
+Download the app from [Nextcloud's App Store](https://apps.nextcloud.com/apps/autocurrency) through
+your Nextcloud instance.
 
-Place this app in **nextcloud/apps/** or **nextcloud/custom_apps/**
+If you prefer to download manually, you can download the latest version from GitHub and install
+directly:
 
-Here is a quick installation script you can use as base. Modify the first variable lines to match
-your setup:
+1. Place this app in **nextcloud/apps/** or **nextcloud/custom_apps/**
 
-```bash
-pushd "/path/to/root/of/nextcloud/custom_apps"
+2. Here is a quick installation script you can use as base. Modify the first variable lines to match
+   your setup:
 
-APPVER=$(curl -s https://api.github.com/repos/chenasraf/nextcloud-autocurrency/releases/latest | grep tag_name | grep -Eo 'v[^"]+') && \
-curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/${APPVER}/autocurrency-${APPVER}.tar.gz -o autocurrency.tar.gz && \
-tar xfv autocurrency.tar.gz && \
-rm -rf autocurrency.tar.gz
-```
+   ```bash
+   pushd "/path/to/root/of/nextcloud/custom_apps"
 
-Then enable the app as you normally would from Nextcloud's Apps page.
+   APPVER=$(curl -s https://api.github.com/repos/chenasraf/nextcloud-autocurrency/releases/latest | grep tag_name | grep -Eo 'v[^"]+') && \
+   curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/${APPVER}/autocurrency-${APPVER}.tar.gz -o autocurrency.tar.gz && \
+   tar xfv autocurrency.tar.gz && \
+   rm -rf autocurrency.tar.gz
+   ```
+
+3. Then enable the app as you normally would from Nextcloud's Apps page.
 
 ## Contributing
 
