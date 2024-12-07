@@ -178,7 +178,10 @@ format:
 sign:
 	VERSION="$$(cat version.txt)"; \
 	TMPF="$$(mktemp)"; \
-	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency.tar.gz -o $${TMPF}; \
+	echo "Signing version $${VERSION}"; \
+	echo "Downloading archive..."; \
+	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency-v$${VERSION}.tar.gz -o $${TMPF}; \
+	echo "Signing with key $$(appname).key"; \
 	echo; \
-	openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(appname).key $${TMPF} | openssl base64; \
+	openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(app_name).key $${TMPF} | openssl base64; \
 	rm -rf $${TMPF}
