@@ -163,7 +163,9 @@ export default {
           this.lastUpdate = lastUpdate
         }
 
-        this.supportedCurrencies = data.supported_currencies
+        this.supportedCurrencies = data.supported_currencies.sort((a, b) =>
+          a.code.localeCompare(b.code),
+        )
       } catch (e) {
         console.error('Failed to fetch Auto Currency settings', e)
       }
