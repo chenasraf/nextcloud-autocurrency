@@ -23,7 +23,6 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' }}
 
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
@@ -66,12 +65,7 @@ jobs:
       - name: Build App
         run: |
           npm i -g pnpm
-          cd ..
-          mv nextcloud-autocurrency autocurrency
-          cd autocurrency
           make && make appstore
-          cd ..
-          mv autocurrency nextcloud-autocurrency
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
