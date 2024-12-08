@@ -21,6 +21,8 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 	<author mail="contact@casraf.dev" homepage="https://casraf.dev">Chen Asraf</author>
 	<namespace>AutoCurrency</namespace>
 	<category>organization</category>
+	<category>tools</category>
+	<website>https://github.com/chenasraf/nextcloud-autocurrency</website>
 	<bugs>https://github.com/chenasraf/nextcloud-autocurrency/issues</bugs>
 	<dependencies>
 		<nextcloud min-version="29" max-version="31"/>
