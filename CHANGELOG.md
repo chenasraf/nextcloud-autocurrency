@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.0...v0.6.1) (2024-12-08)
+
+
+### Bug Fixes
+
+* appstore script path resolution ([1c02b79](https://github.com/chenasraf/nextcloud-autocurrency/commit/1c02b796c55074a6afd1fec3c5aaf815f0947f75))
+
 ## [0.6.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.5.2...v0.6.0) (2024-12-08)
 
 
