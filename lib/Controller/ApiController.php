@@ -56,11 +56,12 @@ class ApiController extends OCSController {
 	 * @return DataResponse<Http::STATUS_OK, array{
 	 *	 last_update: non-empty-string|null,
 	 *	 interval: int,
-	 *	 supported_currencies:array{
+	 *	 supported_currencies: array{
 	 *		 code: string,
 	 *		 symbol: string,
 	 *		 name: string
-	 *	 }, array{}>
+	 *	 }
+	 * }, array{}>
 	 *
 	 * 200: Data returned
 	 */

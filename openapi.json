@@ -100,7 +100,8 @@
                                                     "type": "object",
                                                     "required": [
                                                         "last_update",
-                                                        "interval"
+                                                        "interval",
+                                                        "supported_currencies"
                                                     ],
                                                     "properties": {
                                                         "last_update": {
@@ -111,6 +112,25 @@
                                                         "interval": {
                                                             "type": "integer",
                                                             "format": "int64"
+                                                        },
+                                                        "supported_currencies": {
+                                                            "type": "object",
+                                                            "required": [
+                                                                "code",
+                                                                "symbol",
+                                                                "name"
+                                                            ],
+                                                            "properties": {
+                                                                "code": {
+                                                                    "type": "string"
+                                                                },
+                                                                "symbol": {
+                                                                    "type": "string"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
