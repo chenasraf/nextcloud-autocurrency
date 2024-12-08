@@ -9,6 +9,7 @@
 
 /node_modules/
 /js/
+/css/
 .DS_Store
 composer.lock
 build/
