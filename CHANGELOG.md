@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.5.2...v0.6.0) (2024-12-08)
+
+
+### Features
+
+* add supported currencies table ([b05290b](https://github.com/chenasraf/nextcloud-autocurrency/commit/b05290beab361e44354df489074d40b93c4ea2e5))
+
+
+### Bug Fixes
+
+* sort currencies table ([56e160f](https://github.com/chenasraf/nextcloud-autocurrency/commit/56e160f3a19bd6e0a399c0236c14899edc25a4b2))
+
 ## [0.5.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.5.1...v0.5.2) (2024-12-07)
 
 
