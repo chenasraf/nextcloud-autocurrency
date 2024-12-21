@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.1...v0.6.2) (2024-12-21)
+
+
+### Bug Fixes
+
+* log level + methods docstring for currency ([dff6d94](https://github.com/chenasraf/nextcloud-autocurrency/commit/dff6d947d3fe857d95ae028eb9383a7600ad27f4))
+
 ## [0.6.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.0...v0.6.1) (2024-12-08)
 
 
