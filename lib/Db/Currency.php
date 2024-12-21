@@ -11,13 +11,13 @@ use JsonSerializable;
 use OCP\AppFramework\Db\Entity;
 
 /**
- * @method getId(): int
- * @method getName(): string
- * @method setName(string $name): void
- * @method getExchangeRate(): string
- * @method setExchangeRate(string $exchangeRate): void
- * @method getProjectId(): string
- * @method setProjectId(string $exchangeRate): void
+ * @method int getId()
+ * @method string getName()
+ * @method void setName(string $name)
+ * @method string getExchangeRate()
+ * @method void setExchangeRate(string $exchangeRate)
+ * @method string getProjectId()
+ * @method void setProjectId(string $exchangeRate)
  */
 class Currency extends Entity implements JsonSerializable {
 	protected string $name = '';

@@ -134,7 +134,7 @@ class FetchCurrenciesService {
 	/** Load symbols from the symbols.json file */
 	private function loadSymbols(): void {
 		$this->symbols = json_decode(file_get_contents(FetchCurrenciesService::$SYMBOLS_FILE), true);
-		$this->logger->info('Loaded symbols: ' . json_encode($this->symbols));
+		$this->logger->debug('Loaded symbols: ' . json_encode($this->symbols));
 	}
 
 	/**
