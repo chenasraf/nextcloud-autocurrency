@@ -40,6 +40,7 @@
 app_name=autocurrency
 build_tools_directory=$(CURDIR)/build/tools
 source_build_directory=$(CURDIR)/build/artifacts/source
+source_intermediate_directory=$(CURDIR)/build/artifacts/intermediate-source
 source_package_name=$(source_build_directory)/$(app_name)
 app_intermediate_directory=$(CURDIR)/build/artifacts/intermediate/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts/appstore
@@ -114,17 +115,18 @@ source:
 	rm -rf $(source_build_directory)
 	mkdir -p $(source_build_directory)
 	rm -rf $(appstore_package_name).tar.gz
-	tar czf $(source_package_name).tar.gz \
+	rsync -vtr \
 		--exclude="**/.git/**/*" \
-		--exclude="../$(app_name)/build" \
-		--exclude="../$(app_name)/tests" \
-		--exclude="../$(app_name)/src" \
-		--exclude="../$(app_name)/js/node_modules" \
-		--exclude="../$(app_name)/node_modules" \
-		--exclude="../$(app_name)/*.log" \
-		--exclude="../$(app_name)/js/*.log" \
-		--exclude="../$(source_build_directory)" \
-		../$(app_name)
+		--exclude="build" \
+		--exclude="tests" \
+		--exclude="src" \
+		--exclude="js/node_modules" \
+		--exclude="node_modules" \
+		--exclude="*.log" \
+		--exclude="js/*.log" \
+		$(CURDIR)/ $(source_intermediate_directory)
+	cd $(source_intermediate_directory) && \
+	tar czf $(source_package_name).tar.gz ../$(app_name)
 
 # Builds the source package for the app store, ignores php and js tests
 .PHONY: appstore
