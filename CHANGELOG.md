@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.3](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.2...v0.6.3) (2024-12-25)
+
+
+### Bug Fixes
+
+* support cospend v3.0.7 ([39f1a9e](https://github.com/chenasraf/nextcloud-autocurrency/commit/39f1a9efc0af68ae6a2f3cf5b3c769957da75405)), closes [#33](https://github.com/chenasraf/nextcloud-autocurrency/issues/33)
+
 ## [0.6.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.1...v0.6.2) (2024-12-21)
 
 
