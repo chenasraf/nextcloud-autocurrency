@@ -14,6 +14,7 @@ use OCP\IDBConnection;
 
 /**
  * @template-extends QBMapper<Project>
+ * @method string getCurrencyName()
  */
 class CospendProjectMapper extends QBMapper {
 	public function __construct(IDBConnection $db) {

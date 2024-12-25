@@ -22,14 +22,14 @@ use OCP\AppFramework\Db\Entity;
 class Currency extends Entity implements JsonSerializable {
 	protected string $name = '';
 	protected string $exchangeRate = '';
-	protected string $projectid = '';
+	protected string $projectId = '';
 
 	public function jsonSerialize(): array {
 		return [
 			'id' => $this->id,
 			'name' => $this->name,
 			'exchange_rate' => $this->exchangeRate,
-			'projectid' => $this->projectid,
+			'projectid' => $this->projectId,
 		];
 	}
 }

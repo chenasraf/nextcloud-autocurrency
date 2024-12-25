@@ -29,7 +29,7 @@ class CurrencyMapper extends QBMapper {
 		$qb->select('*')
 			->from('cospend_currencies')
 			->where($qb->expr()->eq('id', $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT)))
-			->andWhere($qb->expr()->eq('projectid', $qb->createNamedParameter($projectId)));
+			->andWhere($qb->expr()->eq('project_id', $qb->createNamedParameter($projectId)));
 		return $this->findEntity($qb);
 	}
 
@@ -42,7 +42,7 @@ class CurrencyMapper extends QBMapper {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
 			->from('cospend_currencies')
-			->where($qb->expr()->eq('projectid', $qb->createNamedParameter($projectId)));
+			->where($qb->expr()->eq('project_id', $qb->createNamedParameter($projectId)));
 		return $this->findEntities($qb);
 	}
 }
