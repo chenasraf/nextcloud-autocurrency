@@ -181,12 +181,12 @@ format:
 
 .PHONY: sign
 sign:
-	VERSION="$$(cat version.txt)"; \
+	@VERSION="$$(cat version.txt)"; \
 	TMPF="$$(mktemp)"; \
 	echo "\x1b[33mSigning version $${VERSION}\x1b[0m"; \
 	echo "\x1b[33mDownloading archive...\x1b[0m"; \
 	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency-v$${VERSION}.tar.gz -o $${TMPF}; \
-	echo "\x1b[33mSigning with key $$(app_name).key\x1b[0m"; \
+	echo "\x1b[33mSigning with key $(app_name).key\x1b[0m"; \
 	echo; \
 	echo "\x1b[32mDownload URL:\x1b[0m https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency-v$${VERSION}.tar.gz"; \
 	echo "\x1b[32mSignature:\x1b[0m"; \
