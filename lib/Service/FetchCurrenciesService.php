@@ -66,7 +66,7 @@ class FetchCurrenciesService {
 		foreach ($projects as $project) {
 			$currencyName = $project->getCurrencyName();
 			if (!$currencyName) {
-				$this->logger->error('Currency name not found for project ' . $project->id);
+				$this->logger->warning('Currency name not found for project ' . $project->id);
 				continue;
 			}
 			$base = $this->getCurrencyName($currencyName);
