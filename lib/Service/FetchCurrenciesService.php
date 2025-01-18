@@ -31,15 +31,7 @@ class FetchCurrenciesService {
 	private LoggerInterface $logger;
 
 	/**
-	 * @var array<string, array{
-	 *     symbol: string,
-	 *     name: string,
-	 *     symbol_native: string,
-	 *     decimal_digits: int,
-	 *     rounding: int,
-	 *     code: string,
-	 *     name_plural: string
-	 * }>
+	 * @var array<string, mixed>
 	 */
 	public array $symbols;
 
@@ -99,7 +91,7 @@ class FetchCurrenciesService {
 				}
 				$lcur = strtolower($cur);
 				$baseRate = $json[$lbase][$lcur];
-				$newRate = floatval(number_format(1 / $baseRate, 2));
+				$newRate = 1.0 / $baseRate;
 				$currency->setExchangeRate($newRate);
 				$this->logger->info('Setting exchange rate for currency ' . $cur . ' to ' . $newRate);
 				$this->currencyMapper->update($currency);
