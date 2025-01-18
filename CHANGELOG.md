@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.5](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.4...v0.6.5) (2025-01-18)
+
+
+### Bug Fixes
+
+* rounding ([ff02782](https://github.com/chenasraf/nextcloud-autocurrency/commit/ff027827de1ac3d70cf7eeb818dbebdaf5b2e4a2))
+
 ## [0.6.4](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.3...v0.6.4) (2025-01-18)
 
 
