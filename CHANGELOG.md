@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.4](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.3...v0.6.4) (2025-01-18)
+
+
+### Bug Fixes
+
+* skip projects with missing default currency ([d015f26](https://github.com/chenasraf/nextcloud-autocurrency/commit/d015f26bc2a953367cdcb4c365f2633b486f1b4d))
+
 ## [0.6.3](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.2...v0.6.3) (2024-12-25)
 
 
