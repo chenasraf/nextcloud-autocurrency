@@ -64,7 +64,12 @@ class FetchCurrenciesService {
 		$this->logger->info('Found ' . count($projects) . ' projects');
 
 		foreach ($projects as $project) {
-			$base = $this->getCurrencyName($project->getCurrencyName());
+			$currencyName = $project->getCurrencyName();
+			if (!$currencyName) {
+				$this->logger->error('Currency name not found for project ' . $project->id);
+				continue;
+			}
+			$base = $this->getCurrencyName($currencyName);
 			$lbase = strtolower($base);
 
 			if (isset($currencyMap[$base])) {
