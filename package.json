@@ -33,7 +33,7 @@
     "@nextcloud/eslint-config": "^8.4.1",
     "@nextcloud/stylelint-config": "^2.4.0",
     "@vue/tsconfig": "^0.7.0",
-    "eslint": "^9.17.0",
+    "eslint": "^9.20.1",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
     "prettier-plugin-vue": "^1.1.6",
