@@ -3,28 +3,20 @@
     <h2>Auto Currency for Cospend</h2>
     <NcAppSettingsSection name="Information">
       <p>
-        To make sure your currencies are found for the rates to be updated, please ensure your
-        currencies are named appropriately.
+        {{ strings.info }}
       </p>
 
-      <p>Currency names must contain at least <b>one of</b>:</p>
+      <p v-html="strings.requirements"></p>
 
       <ol class="ol">
-        <li>
-          The currency symbol - e.g. <code>$</code>, <code>€</code>,
-          <code>£</code>
-        </li>
-        <li>
-          The currency code - e.g. <code>USD</code>, <code>EUR</code>,
-          <code>GBP</code> (case-insensitive)
-        </li>
+        <li v-for="li in strings.requirementsList" v-html="li"></li>
       </ol>
 
       <NcNoteCard type="info">
-        <p>The naming rules apply for both main &amp; additional currencies.</p>
+        <p v-html="strings.infoNote"></p>
       </NcNoteCard>
 
-      <p>Example names:</p>
+      <p>{{ strings.exampleHeader }}</p>
 
       <ul>
         <li>✅ <code>$</code></li>
@@ -35,14 +27,14 @@
       </ul>
 
       <div class="currency-list">
-        <p>Supported currencies:</p>
+        <p>{{ strings.supportedCurrencies }}</p>
 
         <div style="max-width: 300px">
           <NcTextField
             v-model="currencySearch"
-            label="Search"
+            :label="strings.currencySearchLabel"
             trailing-button-icon="close"
-            placeholder="e.g. $, USD, US Dollar"
+            :placeholder="strings.currencySearchPlaceholder"
             :show-trailing-button="currencySearch !== ''"
             @trailing-button-click="clearCurrencySearch"
           />
@@ -51,9 +43,9 @@
         <table>
           <thead>
             <tr>
-              <th>Symbol</th>
-              <th>Code</th>
-              <th>Name</th>
+              <th>{{ strings.tableSymbol }}</th>
+              <th>{{ strings.tableCode }}</th>
+              <th>{{ strings.tableName }}</th>
             </tr>
           </thead>
           <tbody>
@@ -67,31 +59,31 @@
       </div>
     </NcAppSettingsSection>
 
-    <NcAppSettingsSection name="Cron Settings">
+    <NcAppSettingsSection :name="strings.cronSettingsHeader">
       <section>
         <form @submit.prevent @submit="save">
           <div class="cron-flex">
             <NcSelect
               v-model="interval"
               :options="intervals"
-              input-label="Currency conversion rate update interval"
+              :input-label="strings.intervalLabel"
               required
               :disabled="loading"
             />
 
             <div class="cron-last-update-container">
-              <NcButton @click="doCron" :disabled="loading">Fetch Rates Now</NcButton>
+              <NcButton @click="doCron" :disabled="loading">{{ strings.fetchNow }}</NcButton>
 
               <div>
-                Rates last fetched:
-                <span v-if="loading">Loading...</span>
-                <span v-if="!loading && !lastUpdate">Never</span>
+                {{ strings.lastFetched }}
+                <span v-if="loading">{{ strings.loading }}</span>
+                <span v-if="!loading && !lastUpdate">{{ strings.never }}</span>
                 <NcDateTime v-if="!loading && lastUpdate" :timestamp="lastUpdate.valueOf()" />
               </div>
             </div>
           </div>
           <div class="submit-buttons">
-            <NcButton native-type="submit">Save</NcButton>
+            <NcButton native-type="submit">{{ strings.save }}</NcButton>
           </div>
         </form>
       </section>
@@ -108,6 +100,7 @@ import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
 import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 
 import axios from '@nextcloud/axios'
+import { t, n } from '@nextcloud/l10n'
 import { parseISO as parseDate } from 'date-fns/parseISO'
 import { format as formatDate } from 'date-fns/format'
 
@@ -127,15 +120,69 @@ export default {
       interval: null,
       lastUpdate: null,
       intervalOptions: [
-        { label: 'Every hour', value: 1 },
-        { label: 'Every 3 hours', value: 3 },
-        { label: 'Every 6 hours', value: 6 },
-        { label: 'Every 9 hours', value: 9 },
-        { label: 'Every 12 hours', value: 12 },
-        { label: 'Every 24 hours (default)', value: 24 },
+        { label: t('autocurrency', 'Every hour'), value: 1 },
+        { label: n('autocurrency', 'Every %n hour', 'Every %n hours', 3), value: 3 },
+        { label: n('autocurrency', 'Every %n hour', 'Every %n hours', 6), value: 6 },
+        { label: n('autocurrency', 'Every %n hour', 'Every %n hours', 9), value: 9 },
+        { label: n('autocurrency', 'Every %n hour', 'Every %n hours', 12), value: 12 },
+        {
+          label: n('autocurrency', 'Every %n hour (default)', 'Every %n hours (default)', 24),
+          value: 24,
+        },
       ],
       supportedCurrencies: [],
       currencySearch: '',
+      strings: {
+        info: t(
+          'autocurrency',
+          'To make sure your currencies are found for the rates to be updated, please ensure your ' +
+            'currencies are named appropriately.',
+        ),
+        requirements: t(
+          'autocurrency',
+          'Currency names must contain {bStart}at least one of{bEnd}:',
+          { bStart: '<b>', bEnd: '</b>' },
+          undefined,
+          { escape: false },
+        ),
+        requirementsList: [
+          t(
+            'autocurrency',
+            'The currency symbol - e.g. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}',
+            { cStart: '<code>', cEnd: '</code>' },
+            undefined,
+            { escape: false },
+          ),
+          t(
+            'autocurrency',
+            'The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)',
+            { cStart: '<code>', cEnd: '</code>' },
+            undefined,
+            { escape: false },
+          ),
+        ],
+        infoNote: t(
+          'autocurrency',
+          'The naming rules apply for both main &amp; additional currencies.',
+          undefined,
+          undefined,
+          { escape: false },
+        ),
+        cronSettingsHeader: t('autocurrency', 'Cron Settings'),
+        exampleHeader: t('autocurrency', 'Example names:'),
+        supportedCurrencies: t('autocurrency', 'Supported currencies:'),
+        currencySearchLabel: t('autocurrency', 'Search'),
+        currencySearchPlaceholder: t('autocurrency', 'e.g. $, USD, US Dollar'),
+        intervalLabel: t('autocurrency', 'Currency conversion rate update interval'),
+        tableSymbol: t('autocurrency', 'Symbol'),
+        tableCode: t('autocurrency', 'Code'),
+        tableName: t('autocurrency', 'Name'),
+        fetchNow: t('autocurrency', 'Fetch Rates Now'),
+        lastFetched: t('autocurrency', 'Rates last fetched:'),
+        loading: t('autocurrency', 'Loading…'),
+        never: t('autocurrency', 'Never'),
+        save: t('autocurrency', 'Save'),
+      },
     }
   },
   created() {
