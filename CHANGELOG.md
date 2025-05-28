@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.7.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.4...v0.7.0) (2025-05-28)
+
+
+### Features
+
+* add localizations ([5910320](https://github.com/chenasraf/nextcloud-autocurrency/commit/5910320b90507cc65a89d2bffb2d24f39d2a15ca))
+
+
+### Bug Fixes
+
+* **ApiController:** use argument param in updateSettings ([aba72a1](https://github.com/chenasraf/nextcloud-autocurrency/commit/aba72a13f2a6379ee128ee5ffb21a3fe1ea8ccdc))
+* rounding ([ff02782](https://github.com/chenasraf/nextcloud-autocurrency/commit/ff027827de1ac3d70cf7eeb818dbebdaf5b2e4a2))
+
 ## [0.6.4](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.6.3...v0.6.4) (2025-01-18)
 
 
