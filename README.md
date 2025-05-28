@@ -68,14 +68,70 @@ don't hesitate to open an appropriate issue and I will do my best to reply promp
 
 ## Development
 
-### Building the app
+### Automation
 
-The app can be built by using the provided Makefile by running:
+Most development processes are automated:
 
-    make
+- **GitHub Actions** run tests, builds, and validations on each push or pull request.
+- **Pre-commit formatting** is handled by [lint-staged](https://github.com/okonet/lint-staged),
+  which automatically formats code before committing:
 
-### Running tests
+> 🛠️ The NPM package [husky](https://www.npmjs.com/package/husky) takes care of installing the
+> pre-commit hook automatically after `pnpm install`.
 
-You can use the provided Makefile to run all tests by using:
+---
 
-    make test
+### Manual Commands
+
+While automation handles most workflows, the following commands are available for local development
+and debugging:
+
+#### Build the App
+
+```bash
+make
+```
+
+Installs dependencies and compiles frontend/backend assets.
+
+#### Run Tests
+
+```bash
+make test
+```
+
+Runs unit and integration tests (if available).
+
+#### Format & Lint
+
+```bash
+make format   # Auto-fix code style
+make lint     # Check code quality
+```
+
+#### Generate OpenAPI Docs
+
+```bash
+make openapi
+```
+
+Output is saved to `build/openapi/openapi.json`.
+
+#### Packaging for Release
+
+```bash
+make appstore    # Production build for Nextcloud app store
+make source      # Full source package
+make distclean   # Clean build artifacts and dependencies
+```
+
+#### Sign Releases
+
+After uploading the archive to GitHub:
+
+```bash
+make sign
+```
+
+Downloads the `.tar.gz` release, verifies it, and prints a SHA-512 signature using your key at
+`~/.nextcloud/certificates/autocurrency.key`.
