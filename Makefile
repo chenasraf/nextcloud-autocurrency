@@ -179,6 +179,12 @@ format:
 	pnpm format
 	PHP_CS_FIXER_IGNORE_ENV=true build/tools/composer.phar run cs:fix
 
+.PHONY: openapi
+openapi: composer
+	@echo "\x1b[33mGenerating OpenAPI documentation...\x1b[0m"
+	build/tools/composer.phar run openapi
+	@echo "\x1b[32mOpenAPI documentation generated at build/openapi/openapi.json\x1b[0m"
+
 .PHONY: sign
 sign:
 	@VERSION="$$(cat version.txt)"; \
