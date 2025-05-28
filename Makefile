@@ -192,8 +192,9 @@ sign:
 	echo "\x1b[33mSigning version $${VERSION}\x1b[0m"; \
 	echo "\x1b[33mDownloading archive...\x1b[0m"; \
 	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency-v$${VERSION}.tar.gz -o $${TMPF}; \
-	if [ ! -s $${TMPF} ]; then \
-		echo "\x1b[31mError: Downloaded file is empty\x1b[0m"; \
+	FILESIZE=$$(stat -f%z "$${TMPF}" 2>/dev/null || stat -c%s "$${TMPF}"); \
+	if [ "$${FILESIZE}" -lt 10240 ]; then \
+		echo "\x1b[31mError: Downloaded file is too small (<10KB, actual: $${FILESIZE} bytes)\x1b[0m"; \
 		rm -rf $${TMPF}; \
 		exit 1; \
 	fi; \
