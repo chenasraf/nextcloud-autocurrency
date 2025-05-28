@@ -24,6 +24,7 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 	<category>tools</category>
 	<website>https://github.com/chenasraf/nextcloud-autocurrency</website>
 	<bugs>https://github.com/chenasraf/nextcloud-autocurrency/issues</bugs>
+	<donation>https://ko-fi.com/casraf</donation>
 	<dependencies>
 		<nextcloud min-version="29" max-version="31"/>
 	</dependencies>
