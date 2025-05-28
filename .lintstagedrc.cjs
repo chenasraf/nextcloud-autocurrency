@@ -4,5 +4,5 @@ module.exports = {
   '*.php': [
     'php vendor-bin/cs-fixer/vendor/php-cs-fixer/shim/php-cs-fixer.phar --config=.php-cs-fixer.dist.php fix',
   ],
-  'ApiController.php': [() => 'php build/tools/composer.phar run openapi'],
+  'ApiController.php': [() => 'make openapi'],
 }
