@@ -158,6 +158,34 @@
                         "basic_auth": []
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "description": "Data to update",
+                                        "required": [
+                                            "interval"
+                                        ],
+                                        "properties": {
+                                            "interval": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "parameters": [
                     {
                         "name": "OCS-APIRequest",

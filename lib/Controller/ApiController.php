@@ -104,14 +104,15 @@ class ApiController extends OCSController {
 	/**
 	 * Update auto currency settings
 	 *
+	 * @param array{interval: int} $data Data to update
 	 * @return DataResponse<Http::STATUS_OK, array{status:non-empty-string}, array{}>
 	 *
 	 * 200: Data returned
 	 */
 	// #[NoAdminRequired]
 	#[ApiRoute(verb: 'PUT', url: '/api/cron')]
-	public function updateSettings(): DataResponse {
-		$interval = $this->request->getParam('data')['interval'];
+	public function updateSettings(mixed $data): DataResponse {
+		$interval = $data['interval'];
 		$this->config->setValueInt(AppInfo\Application::APP_ID, 'cron_interval', $interval);
 		return new DataResponse(
 			['status' => 'OK']
