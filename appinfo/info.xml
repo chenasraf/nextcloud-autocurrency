@@ -20,6 +20,11 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 	<licence>agpl</licence>
 	<author mail="contact@casraf.dev" homepage="https://casraf.dev">Chen Asraf</author>
 	<namespace>AutoCurrency</namespace>
+  <documentation>
+		<user>https://github.com/chenasraf/nextcloud-autocurrency/blob/master/README.md</user>
+		<admin>https://github.com/chenasraf/nextcloud-autocurrency#installation</admin>
+		<developer>https://github.com/chenasraf/nextcloud-autocurrency#development</developer>
+  </documentation>
 	<category>organization</category>
 	<category>tools</category>
 	<website>https://github.com/chenasraf/nextcloud-autocurrency</website>
