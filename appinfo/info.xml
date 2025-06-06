@@ -1,30 +1,30 @@
 <?xml version="1.0"?>
 <info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
-  <!--
-    SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
-    SPDX-License-Identifier: CC0-1.0
-  -->
-  <id>autocurrency</id>
+	<!--
+		SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
+		SPDX-License-Identifier: CC0-1.0
+	-->
+	<id>autocurrency</id>
 	<name>Auto Currency for Cospend</name>
 	<summary>Automatically fills the currency rates for your Cospend projects daily.</summary>
-  <description><![CDATA[This NextCloud app automatically fetches currency information for your Cospend projects, and fills
-them up using the main currency as base. No more manually updating exchange rates!
+	<description><![CDATA[This NextCloud app automatically fetches currency information for your Cospend projects, and fills
+		them up using the main currency as base. No more manually updating exchange rates!
 
-It will automatically run once a day by default and use your currency names to fetch the correct
-rate.
+		It will automatically run once a day by default and use your currency names to fetch the correct
+		rate.
 
-Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
+		Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
 
-**Note**: This is a companion app to Cospend. Without Cospend, this app will not work.]]></description>
+		**Note**: This is a companion app to Cospend. Without Cospend, this app will not work.]]></description>
 	<version>0.7.0</version>
 	<licence>agpl</licence>
 	<author mail="contact@casraf.dev" homepage="https://casraf.dev">Chen Asraf</author>
 	<namespace>AutoCurrency</namespace>
-  <documentation>
+	<documentation>
 		<user>https://github.com/chenasraf/nextcloud-autocurrency/blob/master/README.md</user>
 		<admin>https://github.com/chenasraf/nextcloud-autocurrency#installation</admin>
 		<developer>https://github.com/chenasraf/nextcloud-autocurrency#development</developer>
-  </documentation>
+	</documentation>
 	<category>organization</category>
 	<category>tools</category>
 	<website>https://github.com/chenasraf/nextcloud-autocurrency</website>
@@ -33,11 +33,11 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 	<dependencies>
 		<nextcloud min-version="29" max-version="31"/>
 	</dependencies>
-  <background-jobs>
-    <job>OCA\AutoCurrency\Cron\FetchCurrenciesJob</job>
-  </background-jobs>
-  <settings>
-    <admin>OCA\AutoCurrency\Settings\CurrencyAdmin</admin>
-    <admin-section>OCA\AutoCurrency\Sections\CurrencyAdmin</admin-section>
-  </settings>
+	<background-jobs>
+		<job>OCA\AutoCurrency\Cron\FetchCurrenciesJob</job>
+	</background-jobs>
+	<settings>
+		<admin>OCA\AutoCurrency\Settings\CurrencyAdmin</admin>
+		<admin-section>OCA\AutoCurrency\Sections\CurrencyAdmin</admin-section>
+	</settings>
 </info>
