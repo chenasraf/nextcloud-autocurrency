@@ -8,8 +8,9 @@
 /tests/.phpunit.cache
 
 /node_modules/
-/js/
-/css/
+/dist
+/js
+/css
 .DS_Store
 composer.lock
 build/
