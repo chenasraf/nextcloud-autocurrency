@@ -13,7 +13,9 @@ rate.
 
 Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
 
-**Note**: This is a companion app to Cospend. Without Cospend, this app will not work.
+> **Note**: This is a companion app to [Cospend](https://apps.nextcloud.com/apps/cospend).
+>
+> Without Cospend, this app will not work.
 
 ## Preparing currency data
 
