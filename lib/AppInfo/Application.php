@@ -11,6 +11,9 @@ use OCP\AppFramework\Bootstrap\IRegistrationContext;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'autocurrency';
+	public const DIST_DIR = '../dist';
+	public const JS_DIR = self::DIST_DIR . '/js';
+	public const CSS_DIR = self::DIST_DIR . '/css';
 
 	/** @psalm-suppress PossiblyUnusedMethod */
 	public function __construct() {

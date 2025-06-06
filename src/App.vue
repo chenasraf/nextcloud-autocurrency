@@ -92,12 +92,12 @@
 </template>
 
 <script>
-import NcAppSettingsSection from '@nextcloud/vue/dist/Components/NcAppSettingsSection.js'
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
-import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
-import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
+import NcAppSettingsSection from '@nextcloud/vue/components/NcAppSettingsSection'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcDateTime from '@nextcloud/vue/components/NcDateTime'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
 
 import axios from '@nextcloud/axios'
 import { t, n } from '@nextcloud/l10n'

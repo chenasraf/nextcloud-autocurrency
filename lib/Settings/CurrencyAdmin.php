@@ -2,7 +2,7 @@
 
 namespace OCA\AutoCurrency\Settings;
 
-use OCA\AutoCurrency\AppInfo;
+use OCA\AutoCurrency\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IAppConfig;
 use OCP\IL10N;
@@ -22,13 +22,13 @@ class CurrencyAdmin implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		Util::addScript(AppInfo\Application::APP_ID, 'autocurrency-main');
-		Util::addStyle(AppInfo\Application::APP_ID, 'autocurrency-style');
-		return new TemplateResponse(AppInfo\Application::APP_ID, 'settings', [], '');
+		Util::addScript(Application::APP_ID, Application::JS_DIR . '/autocurrency-main');
+		Util::addStyle(Application::APP_ID, Application::CSS_DIR . '/autocurrency-style');
+		return new TemplateResponse(Application::APP_ID, 'settings', [], '');
 	}
 
 	public function getSection(): string {
-		return AppInfo\Application::APP_ID;
+		return Application::APP_ID;
 	}
 
 	/**

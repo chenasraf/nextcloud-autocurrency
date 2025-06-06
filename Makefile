@@ -123,7 +123,7 @@ source:
 		--exclude="js/node_modules" \
 		--exclude="node_modules" \
 		--exclude="*.log" \
-		--exclude="js/*.log" \
+		--exclude="dist/js/*.log" \
 		$(CURDIR)/ $(source_intermediate_directory)
 	cd $(source_intermediate_directory) && \
 	tar czf $(source_package_name).tar.gz ../$(app_name)
@@ -145,20 +145,20 @@ appstore:
 		--exclude="phpunit*xml" \
 		--exclude="composer.*" \
 		--exclude="node_modules" \
-		--exclude="js/node_modules" \
-		--exclude="js/tests" \
-		--exclude="js/test" \
-		--exclude="js/*.log" \
-		--exclude="js/package.json" \
-		--exclude="js/bower.json" \
-		--exclude="js/karma.*" \
-		--exclude="js/protractor.*" \
+		--exclude="dist/js/node_modules" \
+		--exclude="dist/js/tests" \
+		--exclude="dist/js/test" \
+		--exclude="dist/js/*.log" \
+		--exclude="dist/js/package.json" \
+		--exclude="dist/js/bower.json" \
+		--exclude="dist/js/karma.*" \
+		--exclude="dist/js/protractor.*" \
 		--exclude="package.json" \
 		--exclude="bower.json" \
 		--exclude="karma.*" \
 		--exclude="protractor\.*" \
 		--exclude=".*" \
-		--exclude="js/.*" \
+		--exclude="dist/js/.*" \
 		--exclude="src" \
 		$(CURDIR)/ $(app_intermediate_directory)
 	cd $(app_intermediate_directory) && \

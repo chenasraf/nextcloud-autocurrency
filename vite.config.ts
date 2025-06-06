@@ -10,7 +10,7 @@ export default createAppConfig(
     config: {
       root: 'src',
       build: {
-        outDir: process.cwd(),
+        outDir: '../dist',
         cssCodeSplit: false,
         rollupOptions: {
           output: {
