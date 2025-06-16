@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "検索",
+    "Code" : "コード",
+    "Name" : "名前",
+    "Loading…" : "読み込み中…",
+    "Never" : "なし",
+    "Save" : "保存する"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

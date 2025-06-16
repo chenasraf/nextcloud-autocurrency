@@ -1,0 +1,7 @@
+{ "translations": {
+    "Search" : "Etsi",
+    "Code" : "Koodi",
+    "Name" : "Nimi",
+    "Loading…" : "Ladataan…"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

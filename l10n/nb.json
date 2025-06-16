@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "Søk",
+    "Code" : "Kode",
+    "Name" : "Navn",
+    "Loading…" : "Laster...",
+    "Never" : "Aldri",
+    "Save" : "Lagre"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

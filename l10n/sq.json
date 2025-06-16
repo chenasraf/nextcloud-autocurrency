@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "Kërko",
+    "Code" : "Kod",
+    "Name" : "Emër",
+    "Loading…" : "Duke u ngarkuar…",
+    "Never" : "Kurrë",
+    "Save" : "Ruaje"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

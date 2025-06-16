@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "Keresés",
+    "Code" : "Kód",
+    "Name" : "Név",
+    "Loading…" : "Betöltés…",
+    "Never" : "Soha",
+    "Save" : "Mentés"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
