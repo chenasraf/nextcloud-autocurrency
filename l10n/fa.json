@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "جستجو",
+    "Code" : "کد",
+    "Name" : "نام",
+    "Loading…" : "درحال بارگیری…",
+    "Never" : "هرگز",
+    "Save" : "ذخیره"
+},"pluralForm" :"nplurals=2; plural=(n > 1);"
+}

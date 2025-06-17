@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "Търсене",
+    "Code" : "Код",
+    "Name" : "Име",
+    "Loading…" : "Зареждане…",
+    "Never" : "Никога",
+    "Save" : "Запиши"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

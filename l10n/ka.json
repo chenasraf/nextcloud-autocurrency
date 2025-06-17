@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "ძიება",
+    "Code" : "Code",
+    "Name" : "სახელი",
+    "Loading…" : "Loading…",
+    "Never" : "Never",
+    "Save" : "დამახსოვრება"
+},"pluralForm" :"nplurals=2; plural=(n!=1);"
+}

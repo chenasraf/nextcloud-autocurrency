@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "Sök",
+    "Code" : "Kod",
+    "Name" : "Namn",
+    "Loading…" : "Laddar...",
+    "Never" : "Aldrig",
+    "Save" : "Spara"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

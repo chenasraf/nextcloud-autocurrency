@@ -1,0 +1,14 @@
+OC.L10N.register(
+    "autocurrency",
+    {
+    "Auto Currency" : "מטבע אוטומטי",
+    "Auto Currency for Cospend" : "מטבע אוטומטי עבור Cospend",
+    "Automatically fills the currency rates for your Cospend projects daily." : "ממלא באופן אוטומטי את שערי החליפין עבור פרוייקטי ה-Cospend שלך כל יום.",
+    "Search" : "חיפוש",
+    "Code" : "קוד",
+    "Name" : "שם",
+    "Loading…" : "בטעינה…",
+    "Never" : "מעולם לא",
+    "Save" : "שמירה"
+},
+"nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

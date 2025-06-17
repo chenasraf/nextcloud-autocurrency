@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "Bilatu",
+    "Code" : "Kodea",
+    "Name" : "Izena",
+    "Loading…" : "Kargatzen…",
+    "Never" : "Inoiz ez",
+    "Save" : "Gorde"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

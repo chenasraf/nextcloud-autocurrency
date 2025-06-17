@@ -1,0 +1,9 @@
+{ "translations": {
+    "Search" : "Buscar",
+    "Code" : "Códigu",
+    "Name" : "Nome",
+    "Loading…" : "Cargando…",
+    "Never" : "Enxamás",
+    "Save" : "Guardar"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
