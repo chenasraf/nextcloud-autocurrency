@@ -7,17 +7,19 @@
 	<id>autocurrency</id>
 	<name>Auto Currency for Cospend</name>
 	<summary>Automatically fills the currency rates for your Cospend projects daily.</summary>
-	<description><![CDATA[This NextCloud app automatically fetches currency information for your Cospend projects, and fills
-		them up using the main currency as base. No more manually updating exchange rates!
+	<description><![CDATA[
+This NextCloud app automatically fetches currency information for your Cospend projects, and fills
+them up using the main currency as base. No more manually updating exchange rates!
 
-		It will automatically run once a day by default and use your currency names to fetch the correct
-		rate.
+It will automatically run once a day by default and use your currency names to fetch the correct
+rate.
 
-		Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
+Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
 
-		> **Note**: This is a companion app to [Cospend](https://apps.nextcloud.com/apps/cospend).
-		>
-		> Without Cospend, this app will not work.]]></description>
+> **Note**: This is a companion app to [Cospend](https://apps.nextcloud.com/apps/cospend).
+>
+> Without Cospend, this app will not work.
+]]></description>
 	<version>0.7.0</version>
 	<licence>agpl</licence>
 	<author mail="contact@casraf.dev" homepage="https://casraf.dev">Chen Asraf</author>
@@ -31,6 +33,8 @@
 	<category>tools</category>
 	<website>https://github.com/chenasraf/nextcloud-autocurrency</website>
 	<bugs>https://github.com/chenasraf/nextcloud-autocurrency/issues</bugs>
+	<repository>https://github.com/chenasraf/nextcloud-autocurrency</repository>
+	<screenshot>https://raw.githubusercontent.com/chenasraf/nextcloud-autocurrency/refs/heads/master/promo.png</screenshot>
 	<donation>https://ko-fi.com/casraf</donation>
 	<dependencies>
 		<nextcloud min-version="29" max-version="31"/>

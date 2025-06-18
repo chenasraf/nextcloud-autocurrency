@@ -8,6 +8,8 @@ SPDX-License-Identifier: CC0-1.0
 This NextCloud app automatically fetches currency information for your Cospend projects, and fills
 them up using the main currency as base. No more manually updating exchange rates!
 
+![Nextcloud Auto Currency](/promo.png)
+
 It will automatically run once a day by default and use your currency names to fetch the correct
 rate.
 
