@@ -12,7 +12,8 @@
     "build": "vue-tsc -b && vite build",
     "lint": "eslint src",
     "format": "eslint --fix src && prettier --write src",
-    "prepare": "husky"
+    "prepare": "husky",
+    "gen": "simple-scaffold -c . -k"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
