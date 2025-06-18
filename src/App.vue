@@ -1,7 +1,7 @@
 <template>
   <div id="autocurrency-content" class="section">
-    <h2>Auto Currency for Cospend</h2>
-    <NcAppSettingsSection name="Information">
+    <h2>{{ strings.title }}</h2>
+    <NcAppSettingsSection :name="strings.infoTitle">
       <p>
         {{ strings.info }}
       </p>
@@ -133,6 +133,8 @@ export default {
       supportedCurrencies: [],
       currencySearch: '',
       strings: {
+        title: t('autocurrency', 'Auto Currency for Cospend'),
+        infoTitle: t('autocurrency', 'Information'),
         info: t(
           'autocurrency',
           'To make sure your currencies are found for the rates to be updated, please ensure your ' +
