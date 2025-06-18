@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.7.1...v0.7.2) (2025-06-18)
+
+
+### Bug Fixes
+
+* translate title & section title ([8cd55b0](https://github.com/chenasraf/nextcloud-autocurrency/commit/8cd55b0e99a896faf3140fc6f2d5414ad3fbf545))
+
 ## [0.7.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.7.0...v0.7.1) (2025-06-18)
 
 
