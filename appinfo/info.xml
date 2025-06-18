@@ -11,10 +11,13 @@
 This NextCloud app automatically fetches currency information for your Cospend projects, and fills
 them up using the main currency as base. No more manually updating exchange rates!
 
+
 It will automatically run once a day by default and use your currency names to fetch the correct
 rate.
 
+
 Interval for fetch may be adjusted in the admin settings "Auto Currency" section.
+
 
 > **Note**: This is a companion app to [Cospend](https://apps.nextcloud.com/apps/cospend).
 >
@@ -36,8 +39,9 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 	<repository>https://github.com/chenasraf/nextcloud-autocurrency</repository>
 	<screenshot>https://raw.githubusercontent.com/chenasraf/nextcloud-autocurrency/refs/heads/master/promo.png</screenshot>
 	<donation>https://ko-fi.com/casraf</donation>
+	<donation type="paypal"><![CDATA[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TSH3C3ABGQM22&currency_code=ILS&source=url]]></donation>
 	<dependencies>
-		<nextcloud min-version="29" max-version="31"/>
+		<nextcloud min-version="29" max-version="32"/>
 	</dependencies>
 	<background-jobs>
 		<job>OCA\AutoCurrency\Cron\FetchCurrenciesJob</job>
