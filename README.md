@@ -21,15 +21,26 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 
 ## Preparing currency data
 
-For both main and additional currencies, you must include in the currency name, one of the
-following:
+To make sure your currencies are found for the rates to be updated, please ensure your currencies
+are named appropriately.
+
+For both main and additional currencies, Currency names must contain **at least one of**:
 
 - Currency symbol (`$`, `€`, `£`, etc.)
 - Currency code (USD, EUR, GBP, etc.) - case insensitive
 
 Using one of these will be enough to fetch the correct rate.
 
-For a full list of available currencies, see [symbols.json](lib/Service/symbols.json).
+Example working names:
+
+- ✅ `$`
+- ✅ `USD`
+- ✅ `$ USD`
+- ❌ `US Dollar`
+- ❌ `United States Dollar`
+
+For a full list of available currencies, see [symbols.json](lib/Service/symbols.json), or refer to
+the table in the app's settings screen.
 
 ## Installation
 
