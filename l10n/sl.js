@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Podrobnosti",
     "Search" : "Poišči",
     "Code" : "Šifra",
     "Name" : "Ime podpisnika",

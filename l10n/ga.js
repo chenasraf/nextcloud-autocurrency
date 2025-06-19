@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Eolas",
     "Search" : "Cuardach",
     "Code" : "Cód",
     "Name" : "Ainm",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Teave",
     "Search" : "Otsi",
     "e.g. $, USD, US Dollar" : "nt, $, USD, EUR, euro",
     "Symbol" : "Sümbol",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Bilgiler",
     "Search" : "Ara",
     "Code" : "Kod",
     "Name" : "Ad",

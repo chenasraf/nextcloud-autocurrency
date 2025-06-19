@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Сведения",
     "Search" : "Поиск",
     "Code" : "Код",
     "Name" : "Имя",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "ئۇچۇر",
     "Search" : "ئىزدەش",
     "Code" : "كود",
     "Name" : "ئاتى",

@@ -4,6 +4,8 @@ OC.L10N.register(
     "Search" : "Etsi",
     "Code" : "Koodi",
     "Name" : "Nimi",
-    "Loading…" : "Ladataan…"
+    "Loading…" : "Ladataan…",
+    "Never" : "Ei koskaan",
+    "Save" : "Tallenna"
 },
 "nplurals=2; plural=(n != 1);");

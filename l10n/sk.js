@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Informácie",
     "Search" : "Hľadať",
     "Code" : "Kód",
     "Name" : "Názov",

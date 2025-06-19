@@ -4,7 +4,6 @@ OC.L10N.register(
     "Auto Currency" : "מטבע חוץ אוטומטי",
     "Auto Currency for Cospend" : "מטבע חוץ אוטומטי עבור Cospend",
     "Automatically fills the currency rates for your Cospend projects daily." : "ממלא באופן אוטומטי את שערי החליפין עבור פרוייקטי ה-Cospend שלך כל יום.",
-    "This NextCloud app automatically fetches currency information for your Cospend projects, and fills\n\t\tthem up using the main currency as base. No more manually updating exchange rates!\n\n\t\tIt will automatically run once a day by default and use your currency names to fetch the correct\n\t\trate.\n\n\t\tInterval for fetch may be adjusted in the admin settings \"Auto Currency\" section.\n\n\t\t> **Note**: This is a companion app to [Cospend](https://apps.nextcloud.com/apps/cospend).\n\t\t>\n\t\t> Without Cospend, this app will not work." : "יישומון ה-Nextcloud הזה מייבא באופן אוטומטי מידע על מטבעות חוץ עבור פרוייקטי ה-Cospend שלך, ומתייק אותם תוך שימוש במטבע הראשי כבסיס. אין יותר צורך לעדכן שערי חליפין!\n\nהיישומון ירוץ פעם ביום כברירת מחדל וישתמש בשמות המטבעות בפרוייקט כדי לייבא את השער חליפין הנכון.\n\nתכיפות העדכון ניתנת לשינוי בהגדרות הניהול תחת \"מטבע חוץ אוטומטי\".\n\n> **שימו לב**: זהו יישומון מלווה עבור [Cospend](https://apps.nextcloud.com/apps/cospend).\n>\n> ללא Cospend, היישומון הזה לא יעבוד.",
     "Every hour" : "כל שעה",
     "_Every %n hour_::_Every %n hours_" : ["כל שעה","כל שעתיים","כל %n שעות"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["כל שעה (ברירת מחדל)","כל שעתיים (ברירת מחדל)","כל %n שעות (ברירת מחדל)"],

@@ -7,6 +7,7 @@ OC.L10N.register(
     "Every hour" : "Každou hodinu",
     "_Every %n hour_::_Every %n hours_" : ["Každou %n hodinu","Každé %n hodiny","Každých %n hodin","Každé %n hodiny"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Každou %n hodinu (výchozí)","Každé %n hodiny (výchozí)","Každých %n hodin (výchozí)","Každé %n hodiny (výchozí)"],
+    "Information" : "Informace",
     "To make sure your currencies are found for the rates to be updated, please ensure your currencies are named appropriately." : "Aby bylo zajištěno, že vámi uvedené měny budou při aktualizaci kurzů nalezeny, zajistěte, aby (měny) byly příslušně nazvané.",
     "Currency names must contain {bStart}at least one of{bEnd}:" : "Je třeba, aby názvy měn obsahovaly {bStart}přinejmenším jedno z{bEnd}:",
     "The currency symbol - e.g. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}" : "Symbol měny – např. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}",
