@@ -207,7 +207,7 @@ sign:
 	TMPF="$$(mktemp)"; \
 	echo "\x1b[33mSigning version $${VERSION}\x1b[0m"; \
 	echo "\x1b[33mDownloading archive...\x1b[0m"; \
-	curl -L https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency-v$${VERSION}.tar.gz -o $${TMPF}; \
+	curl -L https://github.com/chenasraf/nextcloud-$(app_name)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz -o $${TMPF}; \
 	FILESIZE=$$(stat -f%z "$${TMPF}" 2>/dev/null || stat -c%s "$${TMPF}"); \
 	if [ "$${FILESIZE}" -lt 10240 ]; then \
 		echo "\x1b[31mError: Downloaded file is too small (<10KB, actual: $${FILESIZE} bytes)\x1b[0m"; \
@@ -216,7 +216,35 @@ sign:
 	fi; \
 	echo "\x1b[33mSigning with key $(app_name).key\x1b[0m"; \
 	echo; \
-	echo "\x1b[32mDownload URL:\x1b[0m https://github.com/chenasraf/nextcloud-autocurrency/releases/download/v$${VERSION}/autocurrency-v$${VERSION}.tar.gz"; \
+	echo "\x1b[32mDownload URL:\x1b[0m https://github.com/chenasraf/nextcloud-$(app_name)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz"; \
 	echo "\x1b[32mSignature:\x1b[0m"; \
 	openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(app_name).key $${TMPF} | openssl base64; \
 	rm -rf $${TMPF}
+
+.PHONY: release
+release:
+	@VERSION="$$(cat version.txt)"; \
+	if [ -z "$$NEXTCLOUD_API_TOKEN" ]; then \
+		printf "\x1b[33mNEXTCLOUD_API_TOKEN not set. Enter token: \x1b[0m"; \
+		read -r NEXTCLOUD_API_TOKEN; \
+	fi; \
+	TMPF="$$(mktemp)"; \
+	DOWNLOAD_URL="https://github.com/chenasraf/nextcloud-$(app_name)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz"; \
+	echo "\x1b[33mDownloading archive for version $${VERSION}...\x1b[0m"; \
+	curl -L "$${DOWNLOAD_URL}" -o "$${TMPF}"; \
+	FILESIZE=$$(stat -f%z "$${TMPF}" 2>/dev/null || stat -c%s "$${TMPF}"); \
+	if [ "$${FILESIZE}" -lt 10240 ]; then \
+		echo "\x1b[31mError: Downloaded file is too small (<10KB, actual: $${FILESIZE} bytes)\x1b[0m"; \
+		rm -f "$${TMPF}"; \
+		exit 1; \
+	fi; \
+	SIGNATURE="$$(openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(app_name).key "$${TMPF}" | openssl base64 | tr -d '\n')"; \
+	rm -f "$${TMPF}"; \
+	echo "\x1b[32mReleasing to Nextcloud App Store...\x1b[0m"; \
+	curl -X POST \
+	  -H "Authorization: Bearer $$NEXTCLOUD_API_TOKEN" \
+	  -H "Content-Type: application/json" \
+	  -d "{\"download\":\"$${DOWNLOAD_URL}\", \"signature\":\"$${SIGNATURE}\"}" \
+	  https://apps.nextcloud.com/api/v1/apps/releases; \
+	echo
+
