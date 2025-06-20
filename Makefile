@@ -208,7 +208,7 @@ sign:
 	TMPF="$$(mktemp)"; \
 	echo "\x1b[33mSigning version $${VERSION}\x1b[0m"; \
 	echo "\x1b[33mDownloading archive...\x1b[0m"; \
-	curl -L https://github.com/chenasraf/nextcloud-$(app_name)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz -o $${TMPF}; \
+	curl -L https://github.com/$(repo_path)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz -o $${TMPF}; \
 	FILESIZE=$$(stat -f%z "$${TMPF}" 2>/dev/null || stat -c%s "$${TMPF}"); \
 	if [ "$${FILESIZE}" -lt 10240 ]; then \
 		echo "\x1b[31mError: Downloaded file is too small (<10KB, actual: $${FILESIZE} bytes)\x1b[0m"; \
@@ -217,7 +217,7 @@ sign:
 	fi; \
 	echo "\x1b[33mSigning with key $(app_name).key\x1b[0m"; \
 	echo; \
-	echo "\x1b[32mDownload URL:\x1b[0m https://github.com/chenasraf/nextcloud-$(app_name)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz"; \
+	echo "\x1b[32mDownload URL:\x1b[0m https://github.com/$(repo_path)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz"; \
 	echo "\x1b[32mSignature:\x1b[0m"; \
 	openssl dgst -sha512 -sign ~/.nextcloud/certificates/$(app_name).key $${TMPF} | openssl base64; \
 	rm -rf $${TMPF}
@@ -235,7 +235,7 @@ release:
 		echo "\x1b[31m❌ Error: NEXTCLOUD_API_TOKEN is missing"; \
 	fi; \
 	TMPF="$$(mktemp)"; \
-	DOWNLOAD_URL="https://github.com/chenasraf/nextcloud-$(app_name)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz"; \
+	DOWNLOAD_URL="https://github.com/$(repo_path)/releases/download/v$${VERSION}/$(app_name)-v$${VERSION}.tar.gz"; \
 	echo "\x1b[33mDownloading archive for version $${VERSION}...\x1b[0m"; \
 	curl -L "$${DOWNLOAD_URL}" -o "$${TMPF}"; \
 	FILESIZE=$$(stat -f%z "$${TMPF}" 2>/dev/null || stat -c%s "$${TMPF}"); \
