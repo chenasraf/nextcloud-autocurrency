@@ -75,8 +75,8 @@ class ApiController extends OCSController {
 		$interval = $this->config->getValueInt(AppInfo\Application::APP_ID, 'cron_interval', 24);
 
 		$supported = array_map(
-			fn ($sym): array =>
-				['name' => $sym['name'], 'code' => $sym['code'], 'symbol' => $sym['symbol']],
+			fn ($sym): array
+				=> ['name' => $sym['name'], 'code' => $sym['code'], 'symbol' => $sym['symbol']],
 			array_values($this->service->symbols)
 		);
 
