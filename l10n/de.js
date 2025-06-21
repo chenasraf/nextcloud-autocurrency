@@ -22,10 +22,10 @@ OC.L10N.register(
     "Currency conversion rate update interval" : "Aktualisierungsintervall des Währungsumrechnungskurses",
     "Symbol" : "Symbol",
     "Code" : "Quelltext",
-    "Name" : "Benötigt keine Übersetzung. Hier wird nur die formelle Übersetzung verwendet (de_DE).",
+    "Name" : "Name",
     "Fetch Rates Now" : "Kurse jetzt abrufen",
     "Rates last fetched:" : "Kurse zuletzt abgerufen am:",
-    "Loading…" : "Benötigt keine Übersetzung. Hier wird nur die formelle Übersetzung verwendet (de_DE).",
+    "Loading…" : "Lade …",
     "Never" : "Niemals",
     "Save" : "Speichern"
 },
