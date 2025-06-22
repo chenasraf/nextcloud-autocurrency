@@ -1,8 +1,15 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Auto Currency" : "Devise automatique",
+    "Every hour" : "Toutes les heures",
+    "_Every %n hour_::_Every %n hours_" : ["Chaque %n heure","Toutes les %n heures","Toutes les %n heures"],
     "Information" : "Information",
+    "Cron Settings" : "Paramètres Cron",
+    "Example names:" : "Exemples de noms :",
+    "Supported currencies:" : "Devises prises en charge :",
     "Search" : "Rechercher",
+    "Symbol" : "Symbole",
     "Code" : "Code",
     "Name" : "Nom",
     "Loading…" : "Chargement…",
