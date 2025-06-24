@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
 
 concurrency:
@@ -106,6 +107,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Write Private Key to File
+        run: |
+          mkdir -p ~/.nextcloud/certificates
+          if [ -z "${{  secrets.NEXTCLOUD_APP_PRIVATE_KEY }}" ]; then
+            echo "Private key not provided"
+            exit 1
+          fi
+          echo -n "${{ secrets.NEXTCLOUD_APP_PRIVATE_KEY }}" > ~/.nextcloud/certificates/autocurrency.key
 
       - name: Release to Nextcloud Apps
         if: ${{ needs.release.outputs.release_created }}
