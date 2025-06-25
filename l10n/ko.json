@@ -1,6 +1,11 @@
 { "translations": {
+    "Every hour" : "매 시간",
+    "_Every %n hour_::_Every %n hours_" : ["%n 시간 마다"],
+    "_Every %n hour (default)_::_Every %n hours (default)_" : ["%n 시간 마다 (기본)"],
     "Information" : "정보",
+    "Cron Settings" : "Cron 설정",
     "Search" : "검색",
+    "Symbol" : "기호",
     "Code" : "코드",
     "Name" : "이름",
     "Loading…" : "불러오는 중…",
