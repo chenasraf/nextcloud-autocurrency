@@ -21,8 +21,8 @@ importers:
         specifier: ^2.3.5
         version: 2.3.5(@types/node@20.17.10)(browserslist@4.25.1)(picomatch@4.0.2)(rollup@4.44.1)(sass@1.89.2)(typescript@5.8.3)(vite@6.3.5(@types/node@20.17.10)(sass-embedded@1.89.2)(sass@1.89.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
       '@nextcloud/vue':
-        specifier: 9.0.0-rc.2
-        version: 9.0.0-rc.2(typescript@5.8.3)
+        specifier: 9.0.0-rc.3
+        version: 9.0.0-rc.3(typescript@5.8.3)
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -551,8 +551,8 @@ packages:
       sass: '>=1.60'
       vite: ^5 || ^6
 
-  '@nextcloud/vue@9.0.0-rc.2':
-    resolution: {integrity: sha512-/YDkNt81zwAixP7H52LrqXGMwa0goPtH4jPlUqPiNaco65avQDdn125W3w/Tk6bznhVQpN3y8y3Y5gpVGNrIGQ==}
+  '@nextcloud/vue@9.0.0-rc.3':
+    resolution: {integrity: sha512-80eW36oUZIYwcwCQX58Aubao8ZXZS2ms0+tyYmkTCpVait9/eT9BmbwmvVxqD8y966572CSyyZf0DCsScLxqVQ==}
     engines: {node: ^20.11.0 || ^22, npm: ^10 || ^11}
 
   '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
@@ -4200,7 +4200,7 @@ snapshots:
       - typescript
       - vue
 
-  '@nextcloud/vue@9.0.0-rc.2(typescript@5.8.3)':
+  '@nextcloud/vue@9.0.0-rc.3(typescript@5.8.3)':
     dependencies:
       '@ckpack/vue-color': 1.6.0(vue@3.5.17(typescript@5.8.3))
       '@floating-ui/dom': 1.7.2
