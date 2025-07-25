@@ -1,7 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
-    "Search" : "Qidiruv",
+    "Search" : "Qidirish",
     "Code" : "Code",
     "Name" : "Nomi",
     "Loading…" : "Yuklanmoqda...",
