@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Information" : "Information",
     "Search" : "Sök",
+    "Symbol" : "Symbol",
     "Code" : "Kod",
     "Name" : "Namn",
     "Loading…" : "Laddar...",
