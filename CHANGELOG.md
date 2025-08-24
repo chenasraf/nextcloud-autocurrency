@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.0.0...v1.0.1) (2025-08-24)
+
+
+### Bug Fixes
+
+* **deps:** fix faulty dependencies + update others ([9880276](https://github.com/chenasraf/nextcloud-autocurrency/commit/98802769f87a1f7b2b24585a7ab84aef897e8531))
+
 ## [1.0.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v0.7.7...v1.0.0) (2025-08-06)
 
 
