@@ -46,8 +46,8 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0(stylelint-config-recommended-scss@13.1.0(postcss@8.5.6)(stylelint@16.11.0(typescript@5.8.3)))(stylelint-config-recommended-vue@1.5.0(postcss-html@1.7.0)(stylelint@16.11.0(typescript@5.8.3)))(stylelint@16.11.0(typescript@5.8.3))
       '@vue/tsconfig':
-        specifier: ^0.7.0
-        version: 0.7.0(typescript@5.8.3)(vue@3.5.19(typescript@5.8.3))
+        specifier: ^0.8.1
+        version: 0.8.1(typescript@5.8.3)(vue@3.5.19(typescript@5.8.3))
       eslint:
         specifier: ^9.34.0
         version: 9.34.0
@@ -1087,8 +1087,8 @@ packages:
   '@vue/shared@3.5.19':
     resolution: {integrity: sha512-IhXCOn08wgKrLQxRFKKlSacWg4Goi1BolrdEeLYn6tgHjJNXVrWJ5nzoxZqNwl5p88aLlQ8LOaoMa3AYvaKJ/Q==}
 
-  '@vue/tsconfig@0.7.0':
-    resolution: {integrity: sha512-ku2uNz5MaZ9IerPPUyOHzyjhXoX2kVJaVf7hL315DC17vS6IiZRmmCPfggNbU16QTvM80+uYYy3eYJB59WCtvg==}
+  '@vue/tsconfig@0.8.1':
+    resolution: {integrity: sha512-aK7feIWPXFSUhsCP9PFqPyFOcz4ENkb8hZ2pneL6m2UjCkccvaOhC/5KCKluuBufvp2KzkbdA2W2pk20vLzu3g==}
     peerDependencies:
       typescript: 5.x
       vue: ^3.4.0
@@ -4846,7 +4846,7 @@ snapshots:
 
   '@vue/shared@3.5.19': {}
 
-  '@vue/tsconfig@0.7.0(typescript@5.8.3)(vue@3.5.19(typescript@5.8.3))':
+  '@vue/tsconfig@0.8.1(typescript@5.8.3)(vue@3.5.19(typescript@5.8.3))':
     optionalDependencies:
       typescript: 5.8.3
       vue: 3.5.19(typescript@5.8.3)
