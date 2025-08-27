@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.0.1...v1.0.2) (2025-08-27)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([1d5cd61](https://github.com/chenasraf/nextcloud-autocurrency/commit/1d5cd61eb563710e5f069f44e3b46513b6c55271))
+
 ## [1.0.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.0.0...v1.0.1) (2025-08-24)
 
 
