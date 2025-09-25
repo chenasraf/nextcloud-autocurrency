@@ -180,24 +180,58 @@ class FetchCurrenciesService {
 
 	/** Match the currency name from the known currencies. **/
 	private function getCurrencyName(string $name): ?string {
-		$name = strtolower($name);
-		foreach ($this->symbols as $cur => $currency) {
-			// e.g. usd
-			$id = strtolower($cur);
-			if (($name) === $id) {
+		$original = trim($name);
+		$lower = mb_strtolower($original, 'UTF-8');
+
+		// Prefer explicit 3-letter code tokens (e.g., "US Dollar (USD)")
+		foreach ($this->symbols as $code => $currency) {
+			$id = mb_strtolower((string)$code, 'UTF-8');
+			if (preg_match('/\b' . preg_quote($id, '/') . '\b/u', $lower)) {
 				return $id;
 			}
+		}
 
-			// e.g. $, $ USD
-			$symbol = $currency['symbol'];
-			if (str_contains($name, $symbol)) {
-				return $id;
+		// Symbol-based detection (avoid matching symbols attached to letters unless
+		// those letters are part of the *symbol itself*, e.g., "R$")
+		// Collect all codes hit by symbols, then resolve with preference.
+		$hitsBySymbol = [];
+
+		foreach ($this->symbols as $code => $currency) {
+			if (empty($currency['symbol'])) {
+				continue;
 			}
 
-			// e.g. US Dollar (USD)
-			preg_match('/\b' . $id . '\b/', $name, $matches);
-			if (count($matches) > 0) {
-				return $id;
+			$sym = (string)$currency['symbol'];
+			$symQuoted = preg_quote($sym, '/');
+			$hasLetters = preg_match('/\p{L}/u', $sym) === 1;
+
+			if ($hasLetters) {
+				// Multi-char symbol that includes letters (e.g., "R$", "C$", "zł")
+				$pattern = '/' . $symQuoted . '/u';
+			} else {
+				// Pure symbol (e.g., "$", "€", "₪") — require no letters adjacent
+				// so "MN$" or "$U" won't match.
+				$pattern = '/(?<!\p{L})' . $symQuoted . '(?!\p{L})/u';
+			}
+
+			if (preg_match($pattern, $original)) {
+				$hitsBySymbol[$sym] ??= [];
+				$hitsBySymbol[$sym][] = mb_strtolower((string)$code, 'UTF-8');
+			}
+		}
+
+		if (!empty($hitsBySymbol)) {
+			// Resolve ambiguity by symbol preference, else first hit
+			foreach ($hitsBySymbol as $sym => $codes) {
+				$preferred = $this->symbolPreference[$sym] ?? null;
+				if ($preferred) {
+					$preferredLower = mb_strtolower($preferred, 'UTF-8');
+					if (in_array($preferredLower, $codes, true)) {
+						return $preferredLower;
+					}
+				}
+				// Fall back to first detected code for that symbol
+				return $codes[0];
 			}
 		}
 
