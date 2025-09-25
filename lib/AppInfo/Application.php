@@ -25,4 +25,8 @@ class Application extends App implements IBootstrap {
 
 	public function boot(IBootContext $context): void {
 	}
+
+	public static function tableName(string $table): string {
+		return 'autocurrency_' . $table;
+	}
 }

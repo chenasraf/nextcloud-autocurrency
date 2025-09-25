@@ -26,6 +26,50 @@
         <li>❌ <code>United States Dollar</code></li>
       </ul>
 
+      <div class="history-block">
+        <h3>{{ strings.historyHeader }}</h3>
+
+        <div class="history-controls">
+          <!-- Project -->
+          <NcSelect
+            v-model="selectedProjectId"
+            :options="projectOptions"
+            :option-value="'id'"
+            :option-label="'label'"
+            :input-label="strings.projectLabel"
+            :disabled="loading || projectsLoading"
+            required
+          />
+
+          <!-- Currency -->
+          <NcSelect
+            v-model="selectedCurrencyCode"
+            :options="currencyOptions"
+            :option-value="'id'"
+            :return-object="true"
+            :option-label="'label'"
+            :input-label="strings.currencyLabel"
+            :disabled="loading || projectsLoading || !currencyOptions.length"
+            required
+          />
+
+          <!-- Date range -->
+
+          <label>
+            {{ strings.from }}
+            <NcDateTimePicker v-model="dateFrom" type="date" :max="dateTo || todayISO" />
+          </label>
+          <label>
+            {{ strings.to }}
+            <NcDateTimePicker v-model="dateTo" type="date" :max="todayISO" />
+          </label>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas ref="historyCanvas" height="120"></canvas>
+        </div>
+      </div>
+
       <div class="currency-list">
         <p>{{ strings.supportedCurrencies }}</p>
 
@@ -98,11 +142,13 @@ import NcButton from '@nextcloud/vue/components/NcButton'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import NcDateTime from '@nextcloud/vue/components/NcDateTime'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
+import NcDateTimePicker from '@nextcloud/vue/components/NcDateTimePicker'
 
 import axios from '@nextcloud/axios'
 import { t, n } from '@nextcloud/l10n'
 import { parseISO as parseDate } from 'date-fns/parseISO'
 import { format as formatDate } from 'date-fns/format'
+import { Chart } from 'chart.js/auto'
 
 export default {
   name: 'App',
@@ -113,8 +159,14 @@ export default {
     NcNoteCard,
     NcSelect,
     NcTextField,
+    NcDateTimePicker,
   },
   data() {
+    const today = new Date()
+    const oneMonthAgo = new Date(today)
+    oneMonthAgo.setMonth(today.getMonth() - 1)
+
+    const toISODate = (d) => formatDate(d, 'yyyy-MM-dd')
     return {
       loading: true,
       interval: null,
@@ -132,6 +184,17 @@ export default {
       ],
       supportedCurrencies: [],
       currencySearch: '',
+      projectsLoading: true,
+      projects: [],
+      selectedProjectId: null,
+      selectedCurrencyCode: null,
+      dateFrom: toISODate(oneMonthAgo),
+      dateTo: toISODate(today),
+      todayISO: toISODate(today),
+      loadingHistory: false,
+      chart: null,
+      historyPoints: [],
+      historyReqId: 0,
       strings: {
         title: t('autocurrency', 'Auto Currency for Cospend'),
         infoTitle: t('autocurrency', 'Information'),
@@ -179,6 +242,12 @@ export default {
         tableSymbol: t('autocurrency', 'Symbol'),
         tableCode: t('autocurrency', 'Code'),
         tableName: t('autocurrency', 'Name'),
+        historyHeader: t('autocurrency', 'Exchange rate history'),
+        projectLabel: t('autocurrency', 'Project'),
+        currencyLabel: t('autocurrency', 'Currency'),
+        from: t('autocurrency', 'From'),
+        to: t('autocurrency', 'To'),
+        apply: t('autocurrency', 'Apply'),
         fetchNow: t('autocurrency', 'Fetch Rates Now'),
         lastFetched: t('autocurrency', 'Rates last fetched:'),
         loading: t('autocurrency', 'Loading…'),
@@ -189,6 +258,27 @@ export default {
   },
   created() {
     this.fetchSettings()
+    this.fetchProjects()
+  },
+  watch: {
+    selectedProjectId() {
+      this.resetCurrencyForProject()
+    },
+    selectedCurrencyCode() {
+      if (this.selectedProjectId && this.selectedCurrencyCode) {
+        this.fetchHistory()
+      }
+    },
+    dateFrom() {
+      if (this.selectedProjectId && this.selectedCurrencyCode) {
+        this.fetchHistory()
+      }
+    },
+    dateTo() {
+      if (this.selectedProjectId && this.selectedCurrencyCode) {
+        this.fetchHistory()
+      }
+    },
   },
   methods: {
     async fetchSettings() {
@@ -251,6 +341,122 @@ export default {
         console.error('Failed to update Auto Currency settings', e)
       }
     },
+
+    async fetchProjects() {
+      try {
+        this.projectsLoading = true
+        const resp = await axios.get('/projects')
+        const data = resp.data.ocs?.data ?? {}
+        this.projects = data.projects ?? []
+
+        // If nothing selected yet, pick the first project
+        if (!this.selectedProjectId && this.projects.length) {
+          this.selectedProjectId = String(this.projects[0].id)
+        }
+
+        // Ensure a currency is selected for the (new) project
+        this.resetCurrencyForProject()
+      } catch (e) {
+        console.error('Failed to fetch projects', e)
+      } finally {
+        this.projectsLoading = false
+      }
+    },
+
+    async fetchHistory() {
+      if (!this.selectedProjectId || !this.selectedCurrencyCode) return
+      const myReq = ++this.historyReqId
+      try {
+        this.loadingHistory = true
+
+        const params = {
+          projectId: this.selectedProjectId,
+          currency: this.selectedCurrencyCode.id.toLowerCase(),
+          from: this.dateFrom,
+          to: this.dateTo,
+        }
+        const resp = await axios.get('/history', { params })
+
+        if (myReq !== this.historyReqId) return
+
+        const payload = resp.data.ocs?.data ?? resp.data
+        const points = (payload.points ?? [])
+          .filter((p) => p.fetchedAt && p.rate)
+          .map((p) => ({ x: p.fetchedAt, y: Number(p.rate) }))
+
+        this.historyPoints = points
+        await this.$nextTick()
+        this.renderChart()
+      } catch (e) {
+        console.error('Failed to fetch history', e)
+      } finally {
+        if (myReq === this.historyReqId) this.loadingHistory = false
+      }
+    },
+
+    renderChart() {
+      const canvas = this.$refs.historyCanvas
+      if (!canvas) return
+
+      const labels = this.historyPoints.map((p) => formatDate(parseDate(p.x), 'yyyy-MM-dd HH:mm'))
+      const data = this.historyPoints.map((p) => p.y)
+      const label = `${this.selectedCurrencyCode?.label ?? ''} rate`
+
+      if (this.chart) {
+        this.chart.destroy()
+        this.chart = null
+      }
+
+      const ctx = canvas.getContext('2d')
+      this.chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label,
+              data,
+              tension: 0.25,
+              pointRadius: 2,
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          plugins: { legend: { display: true }, tooltip: { mode: 'index', intersect: false } },
+          scales: {
+            x: { title: { display: true, text: 'Time' } },
+            y: { title: { display: true, text: 'Rate' }, beginAtZero: false },
+          },
+        },
+      })
+    },
+
+    // Pick the first allowed currency for the selected project
+    resetCurrencyForProject() {
+      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProjectId))
+      if (!p) {
+        this.selectedCurrencyCode = null
+        return
+      }
+
+      const options = this.currencyOptions
+      if (!options.length) {
+        this.selectedCurrencyCode = null
+        return
+      }
+
+      // If current selection is missing/invalid for this project, pick first
+      if (
+        !this.selectedCurrencyCode ||
+        !options.some((opt) => opt.id === this.selectedCurrencyCode.id)
+      ) {
+        this.selectedCurrencyCode = options[0]
+      }
+    },
   },
   computed: {
     intervals() {
@@ -270,6 +476,24 @@ export default {
           currency.code.toLowerCase().includes(this.currencySearch.toLowerCase()),
           currency.name.toLowerCase().includes(this.currencySearch.toLowerCase()),
         ].some(Boolean)
+      })
+    },
+    projectOptions() {
+      return this.projects.map((p) => ({ id: p.id, label: p.name }))
+    },
+    currencyOptions() {
+      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProjectId))
+      if (!p || !Array.isArray(p.currencies)) return []
+      return p.currencies.map((code) => {
+        const sc = this.supportedCurrencies.find(
+          (s) => s.code.toLowerCase() === String(code).toLowerCase(),
+        )
+        if (sc) {
+          return { id: sc.code.toLowerCase(), label: `${sc.code} (${sc.symbol})` }
+        }
+        // Fallback if not in supported list
+        const c = String(code).toUpperCase()
+        return { id: c.toLowerCase(), label: c }
       })
     },
   },
@@ -344,6 +568,38 @@ export default {
     flex-direction: column;
     gap: 8px;
     margin-top: 2em;
+  }
+
+  .history-block {
+    margin: 1.5em 0;
+
+    .history-controls {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 12px;
+      align-items: end;
+
+      .date-range {
+        display: flex;
+        gap: 8px;
+        align-items: end;
+
+        label {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+      }
+    }
+
+    .chart-wrap {
+      position: relative;
+      height: 280px;
+      margin-top: 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 8px;
+    }
   }
 }
 </style>

@@ -6,9 +6,13 @@ declare(strict_types=1);
 
 namespace OCA\AutoCurrency\Service;
 
-use Exception;
+use DateTimeImmutable;
 
+use DateTimeZone;
+use Exception;
 use OCA\AutoCurrency\AppInfo;
+use OCA\AutoCurrency\Db\AutocurrencyRateHistory;
+use OCA\AutoCurrency\Db\AutocurrencyRateHistoryMapper;
 use OCA\AutoCurrency\Db\CospendProjectMapper;
 use OCA\AutoCurrency\Db\Currency;
 use OCA\AutoCurrency\Db\CurrencyMapper;
@@ -22,28 +26,22 @@ class FetchCurrenciesService {
 	private static $EXCHANGE_URL = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{base}.json';
 	private static $SYMBOLS_FILE = __DIR__ . '/symbols.json';
 
-	private IAppConfig $config;
-
-	private CurrencyMapper $currencyMapper;
-
-	private CospendProjectMapper $projectMapper;
-
-	private LoggerInterface $logger;
-
 	/**
 	 * @var array<string, mixed>
 	 */
 	public array $symbols;
 
 	public function __construct(
-		IAppConfig $config,
-		CurrencyMapper $currencyMapper,
-		CospendProjectMapper $projectMapper,
-		LoggerInterface $logger,
+		private IAppConfig $config,
+		private CurrencyMapper $currencyMapper,
+		private CospendProjectMapper $projectMapper,
+		private AutocurrencyRateHistoryMapper $historyMapper,
+		private LoggerInterface $logger,
 	) {
 		$this->config = $config;
 		$this->currencyMapper = $currencyMapper;
 		$this->projectMapper = $projectMapper;
+		$this->historyMapper = $historyMapper; // ⬅️ NEW
 		$this->logger = $logger;
 		$this->loadSymbols();
 	}
@@ -81,7 +79,7 @@ class FetchCurrenciesService {
 				$currencyMap[$lbase] = $json;
 			}
 
-			$currencies = $this->findAll($project->id);
+			$currencies = $this->findAllCurrencies($project->id);
 
 			foreach ($currencies as $currency) {
 				$cur = $this->getCurrencyName($currency->getName());
@@ -92,14 +90,92 @@ class FetchCurrenciesService {
 				$lcur = strtolower($cur);
 				$baseRate = $json[$lbase][$lcur];
 				$newRate = 1.0 / $baseRate;
+
 				$currency->setExchangeRate($newRate);
 				$this->logger->info('Setting exchange rate for currency ' . $cur . ' to ' . $newRate);
 				$this->currencyMapper->update($currency);
+
+				$this->writeHistory(
+					projectId: (string)$project->id,
+					projectName: $this->safeProjectName($project),
+					baseCurrency: $lbase,
+					currencyName: $lcur,
+					rate: $newRate,
+					currencyId: (int)$currency->getId()
+				);
 			}
 		}
 
 		$lastUpdate = date('c');
 		$this->config->setValueString(AppInfo\Application::APP_ID, 'last_update', $lastUpdate);
+	}
+
+	/**
+	 * Insert a rate history row. If a duplicate occurs due to the UNIQUE constraint
+	 * (project_id, currency_name, fetched_at), we quietly ignore it.
+	 */
+	private function writeHistory(
+		string $projectId,
+		string $projectName,
+		string $baseCurrency,
+		string $currencyName,
+		float $rate,
+		int $currencyId,
+	): void {
+		$now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
+
+		// 1) Check for an existing sample at the same timestamp
+		$existing = $this->historyMapper->findByProjectAndBase(
+			projectId: $projectId,
+			baseCurrency: $baseCurrency,
+			currencyName: $currencyName,
+			from: $now,
+			to: $now,
+			limit: 1,
+			offset: 0,
+			order: 'ASC'
+		);
+
+		if (!empty($existing)) {
+			$this->logger->debug(sprintf(
+				'History sample already exists (duplicate): project=%s base=%s cur=%s at=%s',
+				$projectId,
+				$baseCurrency,
+				$currencyName,
+				$now->format(DATE_ATOM)
+			));
+			return;
+		}
+
+		// 2) Insert new history row
+		try {
+			$entity = new AutocurrencyRateHistory();
+
+			// Keep rate as string to avoid float precision issues with DECIMAL in DB
+			$rateStr = sprintf('%.10F', $rate);
+
+			$entity->setProjectId($projectId);
+			$entity->setProjectName($projectName);
+			$entity->setBaseCurrency($baseCurrency);
+			$entity->setCurrencyName($currencyName);
+			$entity->setRate($rateStr);
+			$entity->setFetchedAt($now->format(DATE_ATOM));
+			$entity->setSource(str_replace('{base}', $baseCurrency, self::$EXCHANGE_URL));
+			$entity->setCurrencyId($currencyId);
+
+			$this->historyMapper->insert($entity);
+			$this->logger->debug('Inserted rate history row: ' . json_encode($entity->jsonSerialize()));
+		} catch (\Throwable $e) {
+			$this->logger->warning('Failed to insert rate history row: ' . $e->getMessage());
+		}
+	}
+
+
+	/**
+	 * Try to derive a nice project display name safely without hard-coding Cospend internals.
+	 */
+	private function safeProjectName(object $project): string {
+		return (string)($project->getName() ?? $project->id); // last resort
 	}
 
 	/** Match the currency name from the known currencies. **/
@@ -137,7 +213,7 @@ class FetchCurrenciesService {
 	/**
 	 * @return list<Currency>
 	 */
-	public function findAll(string $projectId): array {
+	public function findAllCurrencies(string $projectId): array {
 		return $this->currencyMapper->findAll($projectId);
 	}
 
