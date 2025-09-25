@@ -105,7 +105,7 @@
 
     <NcAppSettingsSection :name="strings.cronSettingsHeader">
       <section>
-        <form @submit.prevent @submit="save">
+        <form @submit.prevent="save">
           <div class="cron-flex">
             <NcSelect
               v-model="interval"
@@ -127,7 +127,7 @@
             </div>
           </div>
           <div class="submit-buttons">
-            <NcButton native-type="submit">{{ strings.save }}</NcButton>
+            <NcButton type="submit">{{ strings.save }}</NcButton>
           </div>
         </form>
       </section>
