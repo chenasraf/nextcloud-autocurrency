@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-/**
- * SPDX-FileCopyrightText: Chen Asraf <casraf@pm.me>
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
+// SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
+// SPDX-License-Identifier: AGPL-3.0-or-later
 
 namespace OCA\AutoCurrency\Command;
 
@@ -26,7 +24,7 @@ class {{pascalCase name}} extends Command {
 	 */
 	protected function configure(): void {
 		parent::configure();
-		$this->setName('autocurrency:{{kebabCase name}}');
+		$this->setName('jukebox:{{kebabCase name}}');
 	}
 
 	/**

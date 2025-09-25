@@ -1,5 +1,7 @@
 <template>
-  <div class="autocurrency-{{ kebabCase name }}">{{ startCase name }} Page</div>
+
+  <div class="jukebox-{{ kebabCase name }}">{{ startCase name }} Page</div>
+
 </template>
 
 <script>
@@ -18,7 +20,8 @@ export default {
 
 <style scoped lang="scss">
 /*
-#autocurrency-{{ kebabCase name }} {
+#jukebox-{{ kebabCase name }} {
 }
 */
 </style>
+
