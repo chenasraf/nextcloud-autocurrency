@@ -426,7 +426,24 @@ export default {
           responsive: true,
           maintainAspectRatio: false,
           animation: false,
-          plugins: { legend: { display: true }, tooltip: { mode: 'index', intersect: false } },
+          plugins: {
+            legend: { display: true },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: (ctx) => {
+                  const dsLabel = ctx.dataset.label ?? ''
+                  const y = typeof ctx.raw === 'number' ? ctx.raw : ctx.parsed.y
+                  const precise = new Intl.NumberFormat(undefined, {
+                    useGrouping: false,
+                    maximumFractionDigits: 12,
+                  }).format(y)
+                  return `${dsLabel}: ${precise}`
+                },
+              },
+            },
+          },
           scales: {
             x: { title: { display: true, text: 'Time' } },
             y: { title: { display: true, text: 'Rate' }, beginAtZero: false },
