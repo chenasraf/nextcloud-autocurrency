@@ -4,6 +4,9 @@ OC.L10N.register(
     "Search" : "Căutare",
     "Code" : "Cod",
     "Name" : "Nume",
+    "From" : "De la",
+    "To" : "Către",
+    "Apply" : "Aplică",
     "Loading…" : "Se încarcă...",
     "Never" : "Niciodată",
     "Save" : "Salvează"

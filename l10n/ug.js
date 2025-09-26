@@ -5,6 +5,10 @@ OC.L10N.register(
     "Search" : "ئىزدەش",
     "Code" : "كود",
     "Name" : "ئاتى",
+    "Currency" : "پۇل",
+    "From" : "From",
+    "To" : "To",
+    "Apply" : "ئىلتىماس قىلىڭ",
     "Loading…" : "Loading…",
     "Never" : "Never",
     "Save" : "ساقلاش"

@@ -5,6 +5,10 @@ OC.L10N.register(
     "Search" : "Søg",
     "Code" : "Kode",
     "Name" : "Navn",
+    "Project" : "Projekt",
+    "From" : "Fra",
+    "To" : "Til",
+    "Apply" : "Anvend",
     "Loading…" : "Indlæser…",
     "Never" : "Aldrig",
     "Save" : "Gem"

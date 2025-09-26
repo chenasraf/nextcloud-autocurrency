@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Search" : "Sichen",
     "Name" : "Numm",
+    "Apply" : "Uwenden",
     "Loading…" : "Et gëtt gelueden",
     "Save" : "Späicheren"
 },

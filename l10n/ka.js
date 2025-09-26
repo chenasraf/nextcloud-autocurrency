@@ -4,6 +4,8 @@ OC.L10N.register(
     "Search" : "ძიება",
     "Code" : "Code",
     "Name" : "სახელი",
+    "From" : "From",
+    "To" : "To",
     "Loading…" : "Loading…",
     "Never" : "Never",
     "Save" : "დამახსოვრება"

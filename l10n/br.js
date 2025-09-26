@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Search" : "Klask",
     "Name" : "Anv",
+    "Apply" : "Lakaat",
     "Loading…" : "O kargañ...",
     "Never" : "James",
     "Save" : "Enrollañ"

@@ -4,6 +4,10 @@ OC.L10N.register(
     "Search" : "Chirca",
     "Code" : "Còdighe",
     "Name" : "Nùmene",
+    "Currency" : "Divisa",
+    "From" : "Dae",
+    "To" : "A",
+    "Apply" : "Àplica",
     "Loading…" : "Carrighende…",
     "Never" : "Mai",
     "Save" : "Sarva"

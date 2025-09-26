@@ -1,6 +1,7 @@
 { "translations": {
     "Search" : "Søk",
     "Name" : "Namn",
+    "Apply" : "Anvend",
     "Loading…" : "Lastar...",
     "Save" : "Lagre"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

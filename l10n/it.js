@@ -5,6 +5,10 @@ OC.L10N.register(
     "Search" : "Cerca",
     "Code" : "Codice",
     "Name" : "Nome",
+    "Currency" : "Valuta",
+    "From" : "Da",
+    "To" : "A",
+    "Apply" : "Applica",
     "Loading…" : "Caricamento…",
     "Never" : "Mai",
     "Save" : "Salva"

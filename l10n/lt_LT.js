@@ -4,6 +4,9 @@ OC.L10N.register(
     "Search" : "Paieška",
     "Code" : "Kodas",
     "Name" : "Pavadinimas",
+    "From" : "Nuo",
+    "To" : "Kam",
+    "Apply" : "Taikyti",
     "Loading…" : "Įkeliama…",
     "Never" : "Niekada",
     "Save" : "Įrašyti"

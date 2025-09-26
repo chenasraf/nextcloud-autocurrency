@@ -3,6 +3,9 @@ OC.L10N.register(
     {
     "Search" : "Барај",
     "Name" : "Име",
+    "From" : "Од",
+    "To" : "До",
+    "Apply" : "Примени",
     "Loading…" : "Се вчитува…",
     "Never" : "Никогаш",
     "Save" : "Сними"

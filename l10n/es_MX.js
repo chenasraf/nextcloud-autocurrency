@@ -3,6 +3,10 @@ OC.L10N.register(
     {
     "Search" : "Buscar",
     "Name" : "Nombre",
+    "Currency" : "Divisa",
+    "From" : "De",
+    "To" : "Para",
+    "Apply" : "Aplicar",
     "Loading…" : "Cargando...",
     "Save" : "Guardar"
 },

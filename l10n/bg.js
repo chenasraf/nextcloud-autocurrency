@@ -4,6 +4,7 @@ OC.L10N.register(
     "Search" : "Търсене",
     "Code" : "Код",
     "Name" : "Име",
+    "Apply" : "Приложи",
     "Loading…" : "Зареждане…",
     "Never" : "Никога",
     "Save" : "Запиши"

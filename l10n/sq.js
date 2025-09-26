@@ -4,6 +4,7 @@ OC.L10N.register(
     "Search" : "Kërko",
     "Code" : "Kod",
     "Name" : "Emër",
+    "Apply" : "Apliko",
     "Loading…" : "Duke u ngarkuar…",
     "Never" : "Kurrë",
     "Save" : "Ruaje"

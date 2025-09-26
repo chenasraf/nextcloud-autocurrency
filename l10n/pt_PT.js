@@ -3,6 +3,10 @@ OC.L10N.register(
     {
     "Search" : "Pesquisa sobre",
     "Name" : "Nome",
+    "Currency" : "Moeda",
+    "From" : "De",
+    "To" : "Para",
+    "Apply" : "Aplicar",
     "Loading…" : "A carregar…",
     "Never" : "Nunca",
     "Save" : "Guardar"

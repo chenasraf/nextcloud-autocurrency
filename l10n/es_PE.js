@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Search" : "Buscar",
     "Name" : "Nombre",
+    "Apply" : "Aplicar",
     "Never" : "Nunca",
     "Save" : "Guardar"
 },

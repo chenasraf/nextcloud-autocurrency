@@ -5,6 +5,10 @@ OC.L10N.register(
     "Search" : "Поиск",
     "Code" : "Код",
     "Name" : "Имя",
+    "Currency" : "Валюта",
+    "From" : "От",
+    "To" : "По",
+    "Apply" : "Применить",
     "Loading…" : "Загрузка…",
     "Never" : "Никогда",
     "Save" : "Сохранить"

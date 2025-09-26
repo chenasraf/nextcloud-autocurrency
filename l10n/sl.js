@@ -5,6 +5,10 @@ OC.L10N.register(
     "Search" : "Poišči",
     "Code" : "Šifra",
     "Name" : "Ime podpisnika",
+    "Currency" : "Denarna enota",
+    "From" : "Od",
+    "To" : "Za",
+    "Apply" : "Uveljavi",
     "Loading…" : "Poteka nalaganje …",
     "Never" : "nikoli",
     "Save" : "Shrani"

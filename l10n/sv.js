@@ -6,6 +6,9 @@ OC.L10N.register(
     "Symbol" : "Symbol",
     "Code" : "Kod",
     "Name" : "Namn",
+    "From" : "Från",
+    "To" : "Till",
+    "Apply" : "Tillämpa",
     "Loading…" : "Laddar...",
     "Never" : "Aldrig",
     "Save" : "Spara"

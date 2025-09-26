@@ -4,6 +4,7 @@ OC.L10N.register(
     "Search" : "Cari",
     "Code" : "Kode",
     "Name" : "Nama",
+    "Apply" : "Terapkan",
     "Loading…" : "Memuat…",
     "Never" : "Tidak pernah",
     "Save" : "Simpan"

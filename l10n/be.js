@@ -7,6 +7,7 @@ OC.L10N.register(
     "Search" : "Пошук",
     "Code" : "Код",
     "Name" : "Назва",
+    "Apply" : "Ужыць",
     "Loading…" : "Загрузка…",
     "Never" : "Ніколі",
     "Save" : "Захаваць"

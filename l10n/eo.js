@@ -3,6 +3,9 @@ OC.L10N.register(
     {
     "Search" : "Serĉi",
     "Name" : "Nomo",
+    "From" : "De",
+    "To" : "Al",
+    "Apply" : "Validigi",
     "Loading…" : "Ŝargado...",
     "Never" : "Neniam",
     "Save" : "Konservi"

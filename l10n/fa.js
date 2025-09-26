@@ -5,6 +5,10 @@ OC.L10N.register(
     "Search" : "جستجو",
     "Code" : "کد",
     "Name" : "نام",
+    "Currency" : "Currency",
+    "From" : "از",
+    "To" : "به",
+    "Apply" : "اعمال",
     "Loading…" : "درحال بارگیری…",
     "Never" : "هرگز",
     "Save" : "ذخیره"

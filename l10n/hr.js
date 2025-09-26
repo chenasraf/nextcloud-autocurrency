@@ -4,6 +4,10 @@ OC.L10N.register(
     "Search" : "Traži",
     "Code" : "Kod",
     "Name" : "Naziv",
+    "Currency" : "Valuta",
+    "From" : "Od",
+    "To" : "Do",
+    "Apply" : "Potvrdi",
     "Loading…" : "Učitavanje…",
     "Never" : "Nikad",
     "Save" : "Spremi"

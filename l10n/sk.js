@@ -5,6 +5,10 @@ OC.L10N.register(
     "Search" : "Hľadať",
     "Code" : "Kód",
     "Name" : "Názov",
+    "Currency" : "Mena",
+    "From" : "Od",
+    "To" : "Pre",
+    "Apply" : "Použiť",
     "Loading…" : "Nahrávam...",
     "Never" : "Nikdy",
     "Save" : "Uložiť"

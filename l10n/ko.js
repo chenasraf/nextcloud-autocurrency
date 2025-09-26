@@ -10,6 +10,9 @@ OC.L10N.register(
     "Symbol" : "기호",
     "Code" : "코드",
     "Name" : "이름",
+    "From" : "시작",
+    "To" : "종료",
+    "Apply" : "적용",
     "Loading…" : "불러오는 중…",
     "Never" : "하지 않음",
     "Save" : "저장"

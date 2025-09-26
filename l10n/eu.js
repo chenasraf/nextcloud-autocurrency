@@ -5,6 +5,10 @@ OC.L10N.register(
     "Search" : "Bilatu",
     "Code" : "Kodea",
     "Name" : "Izena",
+    "Currency" : "Moneta",
+    "From" : "Nork",
+    "To" : "Nori",
+    "Apply" : "Aplikatu",
     "Loading…" : "Kargatzen…",
     "Never" : "Inoiz ez",
     "Save" : "Gorde"

@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Search" : "Хайх",
     "Name" : "Нэр",
+    "Apply" : "хэрэглэх",
     "Loading…" : "уншиж байна",
     "Never" : "хэзээч",
     "Save" : "Хадгалах"

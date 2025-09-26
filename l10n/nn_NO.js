@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Search" : "Søk",
     "Name" : "Namn",
+    "Apply" : "Anvend",
     "Loading…" : "Lastar...",
     "Save" : "Lagre"
 },
