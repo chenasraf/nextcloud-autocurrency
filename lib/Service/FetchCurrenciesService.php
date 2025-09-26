@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 // SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -29,7 +30,7 @@ class FetchCurrenciesService {
 	/**
 	 * @var array<string, mixed>
 	 */
-	public array $symbols;
+	public array $symbols = [];
 
 	public function __construct(
 		private IAppConfig $config,
