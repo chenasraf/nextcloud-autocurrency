@@ -7,7 +7,7 @@ use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\Settings\IIconSection;
 
-class CurrencyAdmin implements IIconSection {
+class UserSection implements IIconSection {
 	private IL10N $l;
 	private IURLGenerator $urlGenerator;
 

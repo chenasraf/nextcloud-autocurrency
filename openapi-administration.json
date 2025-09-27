@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.3",
     "info": {
-        "title": "autocurrency",
+        "title": "autocurrency-administration",
         "version": "0.0.1",
         "description": "Automatically fills the currency rates for your Cospend projects daily.",
         "license": {
@@ -47,10 +47,11 @@
         }
     },
     "paths": {
-        "/ocs/v2.php/apps/autocurrency/api/user-settings": {
+        "/ocs/v2.php/apps/autocurrency/api/settings": {
             "get": {
-                "operationId": "api-get-user-settings",
-                "summary": "Get current user settings",
+                "operationId": "api-get-settings",
+                "summary": "Get current settings",
+                "description": "This endpoint requires admin access",
                 "tags": [
                     "api"
                 ],
@@ -98,27 +99,18 @@
                                                 "data": {
                                                     "type": "object",
                                                     "required": [
-                                                        "supported_currencies"
+                                                        "last_update",
+                                                        "interval"
                                                     ],
                                                     "properties": {
-                                                        "supported_currencies": {
-                                                            "type": "object",
-                                                            "required": [
-                                                                "code",
-                                                                "symbol",
-                                                                "name"
-                                                            ],
-                                                            "properties": {
-                                                                "code": {
-                                                                    "type": "string"
-                                                                },
-                                                                "symbol": {
-                                                                    "type": "string"
-                                                                },
-                                                                "name": {
-                                                                    "type": "string"
-                                                                }
-                                                            }
+                                                        "last_update": {
+                                                            "type": "string",
+                                                            "nullable": true,
+                                                            "minLength": 1
+                                                        },
+                                                        "interval": {
+                                                            "type": "integer",
+                                                            "format": "int64"
                                                         }
                                                     }
                                                 }
@@ -156,14 +148,43 @@
                                 }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "Logged in account must be an admin",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": [
+                                        "ocs"
+                                    ],
+                                    "properties": {
+                                        "ocs": {
+                                            "type": "object",
+                                            "required": [
+                                                "meta",
+                                                "data"
+                                            ],
+                                            "properties": {
+                                                "meta": {
+                                                    "$ref": "#/components/schemas/OCSMeta"
+                                                },
+                                                "data": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/ocs/v2.php/apps/autocurrency/api/projects": {
-            "get": {
-                "operationId": "api-get-projects",
-                "summary": "List Cospend projects owned by calling user",
+        "/ocs/v2.php/apps/autocurrency/api/cron/run": {
+            "post": {
+                "operationId": "api-run-cron",
+                "summary": "Run cron immediately",
+                "description": "This endpoint requires admin access",
                 "tags": [
                     "api"
                 ],
@@ -211,31 +232,12 @@
                                                 "data": {
                                                     "type": "object",
                                                     "required": [
-                                                        "projects"
+                                                        "status"
                                                     ],
                                                     "properties": {
-                                                        "projects": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "required": [
-                                                                    "id",
-                                                                    "name",
-                                                                    "currencyName"
-                                                                ],
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "name": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "currencyName": {
-                                                                        "type": "string",
-                                                                        "nullable": true
-                                                                    }
-                                                                }
-                                                            }
+                                                        "status": {
+                                                            "type": "string",
+                                                            "minLength": 1
                                                         }
                                                     }
                                                 }
@@ -273,14 +275,43 @@
                                 }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "Logged in account must be an admin",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": [
+                                        "ocs"
+                                    ],
+                                    "properties": {
+                                        "ocs": {
+                                            "type": "object",
+                                            "required": [
+                                                "meta",
+                                                "data"
+                                            ],
+                                            "properties": {
+                                                "meta": {
+                                                    "$ref": "#/components/schemas/OCSMeta"
+                                                },
+                                                "data": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/ocs/v2.php/apps/autocurrency/api/history": {
-            "get": {
-                "operationId": "api-get-history",
-                "summary": "Get rate history for a project (uses the project's base currency)",
+        "/ocs/v2.php/apps/autocurrency/api/cron": {
+            "put": {
+                "operationId": "api-update-settings",
+                "summary": "Update auto currency settings",
+                "description": "This endpoint requires admin access",
                 "tags": [
                     "api"
                 ],
@@ -292,68 +323,35 @@
                         "basic_auth": []
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "description": "Data to update",
+                                        "required": [
+                                            "interval"
+                                        ],
+                                        "properties": {
+                                            "interval": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "Project ID (required)",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "currency",
-                        "in": "query",
-                        "description": "Quoted currency code to filter (e.g. \"eur\")",
-                        "schema": {
-                            "type": "string",
-                            "nullable": true,
-                            "default": null
-                        }
-                    },
-                    {
-                        "name": "from",
-                        "in": "query",
-                        "description": "ISO-8601 datetime (inclusive)",
-                        "schema": {
-                            "type": "string",
-                            "nullable": true,
-                            "default": null
-                        }
-                    },
-                    {
-                        "name": "to",
-                        "in": "query",
-                        "description": "ISO-8601 datetime (inclusive)",
-                        "schema": {
-                            "type": "string",
-                            "nullable": true,
-                            "default": null
-                        }
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Max rows to return (optional)",
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64",
-                            "nullable": true,
-                            "default": null
-                        }
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "description": "Offset for pagination (optional)",
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64",
-                            "nullable": true,
-                            "default": null
-                        }
-                    },
                     {
                         "name": "OCS-APIRequest",
                         "in": "header",
@@ -389,43 +387,12 @@
                                                 "data": {
                                                     "type": "object",
                                                     "required": [
-                                                        "projectId",
-                                                        "baseCurrency",
-                                                        "points"
+                                                        "status"
                                                     ],
                                                     "properties": {
-                                                        "projectId": {
-                                                            "type": "string"
-                                                        },
-                                                        "baseCurrency": {
-                                                            "type": "string"
-                                                        },
-                                                        "points": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "required": [
-                                                                    "fetchedAt",
-                                                                    "rate",
-                                                                    "currencyName",
-                                                                    "source"
-                                                                ],
-                                                                "properties": {
-                                                                    "fetchedAt": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "rate": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "currencyName": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "source": {
-                                                                        "type": "string",
-                                                                        "nullable": true
-                                                                    }
-                                                                }
-                                                            }
+                                                        "status": {
+                                                            "type": "string",
+                                                            "minLength": 1
                                                         }
                                                     }
                                                 }
@@ -438,6 +405,34 @@
                     },
                     "401": {
                         "description": "Current user is not logged in",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": [
+                                        "ocs"
+                                    ],
+                                    "properties": {
+                                        "ocs": {
+                                            "type": "object",
+                                            "required": [
+                                                "meta",
+                                                "data"
+                                            ],
+                                            "properties": {
+                                                "meta": {
+                                                    "$ref": "#/components/schemas/OCSMeta"
+                                                },
+                                                "data": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Logged in account must be an admin",
                         "content": {
                             "application/json": {
                                 "schema": {

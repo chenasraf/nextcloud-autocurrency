@@ -4,11 +4,17 @@ import path from 'path'
 // https://vite.dev/config/
 export default createAppConfig(
   {
-    main: path.resolve(path.join('src', 'main.ts')),
+    admin: path.resolve(path.join('src', 'admin.ts')),
+    user: path.resolve(path.join('src', 'user.ts')),
   },
   {
     config: {
       root: 'src',
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, 'src'),
+        },
+      },
       build: {
         outDir: '../dist',
         cssCodeSplit: false,

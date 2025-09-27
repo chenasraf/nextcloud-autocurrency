@@ -41,20 +41,21 @@ use OCA\Cospend\Db\Project;
 use OCP\IAppConfig;
 use OCP\IL10N;
 use OCP\IRequest;
+use OCP\IUserSession;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
 final class ApiControllerTest extends TestCase {
-	/** @var IRequest&MockObject */                 private $request;
-	/** @var IAppConfig&MockObject */               private $config;
-	/** @var IL10N&MockObject */                    private $l10n;
-	/** @var CurrencyMapper&MockObject */           private $currencyMapper;
-	/** @var CospendProjectMapper&MockObject */     private $projectMapper;
+	/** @var IRequest&MockObject */                      private $request;
+	/** @var IAppConfig&MockObject */                    private $config;
+	/** @var IL10N&MockObject */                         private $l10n;
+	/** @var IUserSession&MockObject */                  private $userSession;
+	/** @var CurrencyMapper&MockObject */                private $currencyMapper;
+	/** @var CospendProjectMapper&MockObject */          private $projectMapper;
 	/** @var AutocurrencyRateHistoryMapper&MockObject */ private $historyMapper;
-	/** @var LoggerInterface&MockObject */          private $logger;
-
-	/** @var FetchCurrenciesService */              private $service;
+	/** @var LoggerInterface&MockObject */               private $logger;
+	/** @var FetchCurrenciesService */                   private $service;
 
 	/** Helper: set a private property via reflection. */
 	private function setPrivate(object $obj, string $prop, mixed $value): void {
@@ -74,6 +75,7 @@ final class ApiControllerTest extends TestCase {
 		$this->request = $opts['request'] ?? $this->createMock(IRequest::class);
 		$this->config = $opts['config'] ?? $this->createMock(IAppConfig::class);
 		$this->l10n = $opts['l10n'] ?? $this->createMock(IL10N::class);
+		$this->userSession = $opts['userSession'] ?? $this->createMock(IUserSession::class);
 		$this->currencyMapper = $opts['currencyMapper'] ?? $this->createMock(CurrencyMapper::class);
 		$this->projectMapper = $opts['projectMapper'] ?? $this->createMock(CospendProjectMapper::class);
 		$this->historyMapper = $opts['historyMapper'] ?? $this->createMock(AutocurrencyRateHistoryMapper::class);
@@ -104,6 +106,7 @@ final class ApiControllerTest extends TestCase {
 			$this->request,
 			$this->config,
 			$this->l10n,
+			$this->userSession,
 			$this->service,
 			$this->currencyMapper,
 			$this->projectMapper,
@@ -124,7 +127,7 @@ final class ApiControllerTest extends TestCase {
 		return $p;
 	}
 
-	public function testGetCronInfo_EmptyLastUpdate_IntervalFromConfig_AndSupportedList(): void {
+	public function testGetSettings_EmptyLastUpdate_IntervalFromConfig(): void {
 		$config = $this->createMock(IAppConfig::class);
 		$config->expects($this->once())
 			->method('getValueString')
@@ -144,10 +147,23 @@ final class ApiControllerTest extends TestCase {
 			],
 		]);
 
-		$data = $controller->getCronInfo()->getData();
+		$data = $controller->getSettings()->getData();
 
 		$this->assertNull($data['last_update']);
 		$this->assertSame(12, $data['interval']);
+	}
+
+	public function testGetUserSettings_SupportedList(): void {
+		$controller = $this->buildController([
+			'symbols' => [
+				['code' => 'usd', 'symbol' => '$',  'name' => 'US Dollar'],
+				['code' => 'eur', 'symbol' => '€',  'name' => 'Euro'],
+				['code' => 'ils', 'symbol' => '₪',  'name' => 'Israeli New Shekel'],
+			],
+		]);
+
+		$data = $controller->getUserSettings()->getData();
+
 		$this->assertSame(
 			[
 				['name' => 'US Dollar', 'code' => 'usd', 'symbol' => '$'],
@@ -179,7 +195,8 @@ final class ApiControllerTest extends TestCase {
 
 	public function testGetProjects_MapsEntities(): void {
 		$controller = $this->buildController();
-
+		$user = $this->createConfiguredMock(\OCP\IUser::class, ['getUID' => 'u1']);
+		$this->userSession->method('getUser')->willReturn($user);
 		$p1 = $this->getMockBuilder(\OCA\Cospend\Db\Project::class)
 			->disableOriginalConstructor()
 			->addMethods(['getId', 'getName', 'getCurrencyName'])
@@ -196,7 +213,7 @@ final class ApiControllerTest extends TestCase {
 		$p2->method('getName')->willReturn('');      // triggers fallback to id
 		$p2->method('getCurrencyName')->willReturn('eur');
 
-		$this->projectMapper->method('findAll')->willReturn([$p1, $p2]);
+		$this->projectMapper->method('findAllByUser')->willReturn([$p1, $p2]);
 
 		$cUSD = new Currency();
 		$cILS = new Currency();

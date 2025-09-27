@@ -14,6 +14,7 @@ use OCP\IDBConnection;
 
 /**
  * @template-extends QBMapper<Project>
+ * @extends QBMapper<Project>
  * @method string getCurrencyName()
  */
 class CospendProjectMapper extends QBMapper {
@@ -22,6 +23,7 @@ class CospendProjectMapper extends QBMapper {
 	}
 
 	/**
+	 * @param string $id
 	 * @throws \OCP\AppFramework\Db\MultipleObjectsReturnedException
 	 * @throws DoesNotExistException
 	 */
@@ -34,9 +36,7 @@ class CospendProjectMapper extends QBMapper {
 		return $this->findEntity($qb);
 	}
 
-
 	/**
-	 * @param string $projectId
 	 * @return array
 	 */
 	public function findAll(): array {
@@ -44,6 +44,19 @@ class CospendProjectMapper extends QBMapper {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
 			->from('cospend_projects');
+		return $this->findEntities($qb);
+	}
+
+	/**
+	 * @param string $userId
+	 * @return array
+	 */
+	public function findAllByUser(string $userId): array {
+		/* @var $qb IQueryBuilder */
+		$qb = $this->db->getQueryBuilder();
+		$qb->select('*')
+			->from('cospend_projects')
+			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId, IQueryBuilder::PARAM_STR)));
 		return $this->findEntities($qb);
 	}
 }

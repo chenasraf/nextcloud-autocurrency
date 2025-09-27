@@ -15,12 +15,14 @@ use OCA\AutoCurrency\Db\CurrencyMapper;
 use OCA\AutoCurrency\Service\FetchCurrenciesService;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\ApiRoute;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\IAppConfig;
 use OCP\IDateTimeFormatter;
 use OCP\IL10N;
 use OCP\IRequest;
+use OCP\IUserSession;
 
 /**
  * @psalm-suppress UnusedClass
@@ -40,6 +42,7 @@ class ApiController extends OCSController {
 		IRequest $request,
 		private IAppConfig $config,
 		private IL10N $l,
+		private IUserSession $userSession,
 		private FetchCurrenciesService $service,
 		private CurrencyMapper $currencyMapper,
 		private CospendProjectMapper $projectMapper,
@@ -52,11 +55,33 @@ class ApiController extends OCSController {
 	}
 
 	/**
-	 * Get current cron information
+	 * Get current settings
 	 *
 	 * @return DataResponse<Http::STATUS_OK, array{
 	 *	 last_update: non-empty-string|null,
 	 *	 interval: int,
+	 * }, array{}>
+	 *
+	 * 200: Data returned
+	 */
+	#[ApiRoute(verb: 'GET', url: '/api/settings')]
+	public function getSettings(): DataResponse {
+		$lastUpdate = $this->config->getValueString(AppInfo\Application::APP_ID, 'last_update', '');
+		if ($lastUpdate === '') {
+			$lastUpdate = null;
+		}
+
+		$interval = $this->config->getValueInt(AppInfo\Application::APP_ID, 'cron_interval', 24);
+
+		return new DataResponse(
+			['last_update' => $lastUpdate, 'interval' => $interval]
+		);
+	}
+
+	/**
+	 * Get current user settings
+	 *
+	 * @return DataResponse<Http::STATUS_OK, array{
 	 *	 supported_currencies: array{
 	 *		 code: string,
 	 *		 symbol: string,
@@ -66,15 +91,9 @@ class ApiController extends OCSController {
 	 *
 	 * 200: Data returned
 	 */
-	#[ApiRoute(verb: 'GET', url: '/api/cron')]
-	public function getCronInfo(): DataResponse {
-		$lastUpdate = $this->config->getValueString(AppInfo\Application::APP_ID, 'last_update', '');
-		if ($lastUpdate === '') {
-			$lastUpdate = null;
-		}
-
-		$interval = $this->config->getValueInt(AppInfo\Application::APP_ID, 'cron_interval', 24);
-
+	#[NoAdminRequired]
+	#[ApiRoute(verb: 'GET', url: '/api/user-settings')]
+	public function getUserSettings(): DataResponse {
 		$supported = array_map(
 			fn ($sym): array
 				=> ['name' => $sym['name'], 'code' => $sym['code'], 'symbol' => $sym['symbol']],
@@ -82,7 +101,7 @@ class ApiController extends OCSController {
 		);
 
 		return new DataResponse(
-			['last_update' => $lastUpdate, 'interval' => $interval, 'supported_currencies' => $supported]
+			['supported_currencies' => $supported]
 		);
 	}
 
@@ -110,7 +129,6 @@ class ApiController extends OCSController {
 	 *
 	 * 200: Data returned
 	 */
-	// #[NoAdminRequired]
 	#[ApiRoute(verb: 'PUT', url: '/api/cron')]
 	public function updateSettings(mixed $data): DataResponse {
 		$interval = $data['interval'];
@@ -121,7 +139,7 @@ class ApiController extends OCSController {
 	}
 
 	/**
-	 * List Cospend projects
+	 * List Cospend projects owned by calling user
 	 *
 	 * @return DataResponse<Http::STATUS_OK, array{
 	 *   projects: list<array{id:string,name:string,currencyName:string|null}>
@@ -129,9 +147,11 @@ class ApiController extends OCSController {
 	 *
 	 * 200: Data returned
 	 */
+	#[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/api/projects')]
 	public function getProjects(): DataResponse {
-		$projects = $this->projectMapper->findAll();
+		$userId = $this->userSession->getUser()->getUID();
+		$projects = $this->projectMapper->findAllByUser($userId);
 
 		$list = [];
 		foreach ($projects as $p) {
@@ -175,6 +195,7 @@ class ApiController extends OCSController {
 	 *
 	 * 200: Data returned
 	 */
+	#[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/api/history')]
 	public function getHistory(
 		string $projectId,

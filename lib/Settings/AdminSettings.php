@@ -9,7 +9,7 @@ use OCP\IL10N;
 use OCP\Settings\ISettings;
 use OCP\Util;
 
-class CurrencyAdmin implements ISettings {
+class AdminSettings implements ISettings {
 	private IL10N $l;
 	private IAppConfig $config;
 
@@ -22,7 +22,7 @@ class CurrencyAdmin implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		Util::addScript(Application::APP_ID, Application::JS_DIR . '/autocurrency-main');
+		Util::addScript(Application::APP_ID, Application::JS_DIR . '/autocurrency-admin');
 		Util::addStyle(Application::APP_ID, Application::CSS_DIR . '/autocurrency-style');
 		return new TemplateResponse(Application::APP_ID, 'settings', [], '');
 	}
