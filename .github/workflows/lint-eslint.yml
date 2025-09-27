@@ -27,6 +27,9 @@ jobs:
       src: ${{ steps.changes.outputs.src}}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - uses: dorny/paths-filter@v3
         id: changes
         continue-on-error: true
