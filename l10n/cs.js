@@ -22,6 +22,7 @@ OC.L10N.register(
     "Symbol" : "Symbol",
     "Code" : "Kód",
     "Name" : "Název",
+    "Exchange rate history" : "Historie kurzu",
     "Project" : "Projekt",
     "Currency" : "Měna",
     "From" : "Od",

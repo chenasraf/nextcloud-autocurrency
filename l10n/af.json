@@ -1,5 +1,7 @@
 { "translations": {
     "Search" : "Soek",
+    "From" : "Van",
+    "To" : "Aan",
     "Loading…" : "Laai…",
     "Save" : "Stoor"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

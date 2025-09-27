@@ -5,6 +5,9 @@ OC.L10N.register(
     "Search" : "Buscar",
     "Code" : "Códigu",
     "Name" : "Nome",
+    "From" : "De",
+    "To" : "Pa",
+    "Apply" : "Aplicar",
     "Loading…" : "Cargando…",
     "Never" : "Enxamás",
     "Save" : "Guardar"
