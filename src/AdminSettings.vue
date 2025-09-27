@@ -127,7 +127,7 @@ export default {
       try {
         this.loading = true
         const interval = this.getIntervalByLabel(this.interval)?.value ?? 24
-        const resp = await ocs.put('/cron', { data: { interval } })
+        const resp = await ocs.put('/settings', { data: { interval } })
         const data = resp.data
         this.loading = false
         console.debug('[DEBUG] Auto Currency settings saved', data)

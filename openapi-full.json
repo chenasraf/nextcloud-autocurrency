@@ -178,12 +178,10 @@
                         }
                     }
                 }
-            }
-        },
-        "/ocs/v2.php/apps/autocurrency/api/cron/run": {
-            "post": {
-                "operationId": "api-run-cron",
-                "summary": "Run cron immediately",
+            },
+            "put": {
+                "operationId": "api-update-settings",
+                "summary": "Update auto currency settings",
                 "description": "This endpoint requires admin access",
                 "tags": [
                     "api"
@@ -196,6 +194,34 @@
                         "basic_auth": []
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "description": "Data to update",
+                                        "required": [
+                                            "interval"
+                                        ],
+                                        "properties": {
+                                            "interval": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "parameters": [
                     {
                         "name": "OCS-APIRequest",
@@ -307,10 +333,10 @@
                 }
             }
         },
-        "/ocs/v2.php/apps/autocurrency/api/cron": {
-            "put": {
-                "operationId": "api-update-settings",
-                "summary": "Update auto currency settings",
+        "/ocs/v2.php/apps/autocurrency/api/cron/run": {
+            "post": {
+                "operationId": "api-run-cron",
+                "summary": "Run cron immediately",
                 "description": "This endpoint requires admin access",
                 "tags": [
                     "api"
@@ -323,34 +349,6 @@
                         "basic_auth": []
                     }
                 ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "required": [
-                                    "data"
-                                ],
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "description": "Data to update",
-                                        "required": [
-                                            "interval"
-                                        ],
-                                        "properties": {
-                                            "interval": {
-                                                "type": "integer",
-                                                "format": "int64"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
                 "parameters": [
                     {
                         "name": "OCS-APIRequest",

@@ -129,7 +129,7 @@ class ApiController extends OCSController {
 	 *
 	 * 200: Data returned
 	 */
-	#[ApiRoute(verb: 'PUT', url: '/api/cron')]
+	#[ApiRoute(verb: 'PUT', url: '/api/settings')]
 	public function updateSettings(mixed $data): DataResponse {
 		$interval = $data['interval'];
 		$this->config->setValueInt(AppInfo\Application::APP_ID, 'cron_interval', $interval);
