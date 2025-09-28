@@ -2,6 +2,10 @@
   <div id="autocurrency-content" class="section">
     <h2>{{ strings.title }}</h2>
 
+    <NcNoteCard type="info">
+      <p v-html="strings.instructionsHelp" />
+    </NcNoteCard>
+
     <NcAppSettingsSection :name="strings.cronSettingsHeader">
       <section>
         <form @submit.prevent="save">
@@ -39,7 +43,9 @@ import NcAppSettingsSection from '@nextcloud/vue/components/NcAppSettingsSection
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcDateTime from '@nextcloud/vue/components/NcDateTime'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 
+import { generateUrl } from '@nextcloud/router'
 import { ocs } from '@/axios'
 import { t, n } from '@nextcloud/l10n'
 import { parseISO as parseDate } from 'date-fns/parseISO'
@@ -51,6 +57,7 @@ export default {
     NcButton,
     NcDateTime,
     NcSelect,
+    NcNoteCard,
   },
   data() {
     return {
@@ -71,6 +78,18 @@ export default {
       strings: {
         title: t('autocurrency', 'Auto Currency for Cospend'),
         cronSettingsHeader: t('autocurrency', 'Cron Settings'),
+        instructionsHelp: t(
+          'autocurrency',
+          'See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies.',
+          {
+            aStart: `<a style="text-decoration:underline;" href="${generateUrl(
+              '/settings/user/autocurrency',
+            )}">`,
+            aEnd: '</a>',
+          },
+          undefined,
+          { escape: false },
+        ),
         fetchNow: t('autocurrency', 'Fetch Rates Now'),
         lastFetched: t('autocurrency', 'Rates last fetched:'),
         loading: t('autocurrency', 'Loading…'),
