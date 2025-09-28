@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.1.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.0.3...v1.1.0) (2025-09-28)
+
+
+### Features
+
+* add exchange rate history chart in settings ([573e37f](https://github.com/chenasraf/nextcloud-autocurrency/commit/573e37f9b099e915b9c4082737b3df9085299bba))
+* add link from admin to user settings ([586116f](https://github.com/chenasraf/nextcloud-autocurrency/commit/586116f0fe2d5d0cb8567aed4a954ec16749d00c))
+* improve symbol matching ([634f52d](https://github.com/chenasraf/nextcloud-autocurrency/commit/634f52df9118d66552fe35b395b3707be2449b30))
+* split into user+admin settings sections ([16b9ee9](https://github.com/chenasraf/nextcloud-autocurrency/commit/16b9ee9ffe45f220d747631689dde171aca07e40))
+
+
+### Bug Fixes
+
+* cron settings save ([b8e3b56](https://github.com/chenasraf/nextcloud-autocurrency/commit/b8e3b56acf6414aab0ea9d588f46f2bdde0e90e1))
+* **l10n:** Update translations from Transifex ([71b63d2](https://github.com/chenasraf/nextcloud-autocurrency/commit/71b63d23981cbf77122640550ace40a7a332d0b0))
+* **l10n:** Update translations from Transifex ([e17f3db](https://github.com/chenasraf/nextcloud-autocurrency/commit/e17f3db1271db4e76a123f2f69c3e5a4ec2dffef))
+* **l10n:** Update translations from Transifex ([aaf71cf](https://github.com/chenasraf/nextcloud-autocurrency/commit/aaf71cf23aea3ccc903d097e414324a849c96671))
+* show more precise rate in chart tooltip ([b48a3e7](https://github.com/chenasraf/nextcloud-autocurrency/commit/b48a3e7453833982f9603acef7d04ffcfc2d3cb0))
+* update settings PUT endpoint path ([1ccf443](https://github.com/chenasraf/nextcloud-autocurrency/commit/1ccf443691da1982654dca195b2cfcb0dfb80c18))
+
 ## [1.0.3](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.0.2...v1.0.3) (2025-09-24)
 
 
