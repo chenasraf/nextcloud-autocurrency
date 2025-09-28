@@ -1,8 +1,7 @@
 { "translations": {
-    "Search" : "ძიება",
-    "Name" : "სახელი",
-    "Apply" : "გამოყენება",
     "Never" : "არასდროს",
-    "Save" : "შენახვა"
+    "Save" : "შენახვა",
+    "Search" : "ძიება",
+    "Name" : "სახელი"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

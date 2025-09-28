@@ -1,11 +1,11 @@
 { "translations": {
+    "Loading…" : "Yuklanmoqda...",
+    "Never" : "Hech qachon",
+    "Save" : "Saqlash",
     "Search" : "Qidirish",
     "Code" : "Code",
     "Name" : "Nomi",
     "From" : "Dan",
-    "To" : "Gacha",
-    "Loading…" : "Yuklanmoqda...",
-    "Never" : "Hech qachon",
-    "Save" : "Saqlash"
+    "To" : "Gacha"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

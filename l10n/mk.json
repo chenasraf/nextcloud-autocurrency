@@ -1,11 +1,10 @@
 { "translations": {
+    "Loading…" : "Се вчитува…",
+    "Never" : "Никогаш",
+    "Save" : "Сними",
     "Search" : "Барај",
     "Name" : "Име",
     "From" : "Од",
-    "To" : "До",
-    "Apply" : "Примени",
-    "Loading…" : "Се вчитува…",
-    "Never" : "Никогаш",
-    "Save" : "Сними"
+    "To" : "До"
 },"pluralForm" :"nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;"
 }

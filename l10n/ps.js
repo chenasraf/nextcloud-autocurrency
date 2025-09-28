@@ -1,7 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
-    "Name" : "نوم",
-    "Save" : "ساتل"
+    "Save" : "ساتل",
+    "Name" : "نوم"
 },
 "nplurals=2; plural=(n != 1);");

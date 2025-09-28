@@ -1,9 +1,8 @@
 { "translations": {
-    "Search" : "Хайх",
-    "Name" : "Нэр",
-    "Apply" : "хэрэглэх",
     "Loading…" : "уншиж байна",
     "Never" : "хэзээч",
-    "Save" : "Хадгалах"
+    "Save" : "Хадгалах",
+    "Search" : "Хайх",
+    "Name" : "Нэр"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

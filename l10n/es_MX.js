@@ -1,13 +1,12 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Loading…" : "Cargando...",
+    "Save" : "Guardar",
     "Search" : "Buscar",
     "Name" : "Nombre",
     "Currency" : "Divisa",
     "From" : "De",
-    "To" : "Para",
-    "Apply" : "Aplicar",
-    "Loading…" : "Cargando...",
-    "Save" : "Guardar"
+    "To" : "Para"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

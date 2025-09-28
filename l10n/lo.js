@@ -1,9 +1,9 @@
 OC.L10N.register(
     "autocurrency",
     {
-    "Search" : "ຄົ້ນຫາ",
-    "Name" : "ຊື່",
     "Loading…" : "ກຳລັງໂຫຼດ",
-    "Save" : "ບັນທຶກ"
+    "Save" : "ບັນທຶກ",
+    "Search" : "ຄົ້ນຫາ",
+    "Name" : "ຊື່"
 },
 "nplurals=1; plural=0;");

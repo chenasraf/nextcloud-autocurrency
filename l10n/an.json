@@ -1,7 +1,7 @@
 { "translations": {
-    "Search" : "Buscar",
-    "Name" : "Nombre",
     "Loading…" : "Cargando...",
-    "Never" : "Nunca"
+    "Never" : "Nunca",
+    "Search" : "Buscar",
+    "Name" : "Nombre"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

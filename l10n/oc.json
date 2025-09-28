@@ -1,12 +1,11 @@
 { "translations": {
+    "Loading…" : "Telecargament…",
+    "Never" : "Jamai",
+    "Save" : "Enregistrar",
     "Information" : "Informacions",
     "Search" : "Recercar",
     "Code" : "Còdi",
     "Name" : "Nom",
-    "From" : "De",
-    "Apply" : "Aplicar",
-    "Loading…" : "Telecargament…",
-    "Never" : "Jamai",
-    "Save" : "Enregistrar"
+    "From" : "De"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

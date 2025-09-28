@@ -1,16 +1,15 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Loading…" : "Laster...",
+    "Never" : "Aldri",
+    "Save" : "Lagre",
     "Information" : "Informasjon",
     "Search" : "Søk",
     "Code" : "Kode",
     "Name" : "Navn",
     "Currency" : "Valuta",
     "From" : "Fra",
-    "To" : "Til",
-    "Apply" : "Bruk",
-    "Loading…" : "Laster...",
-    "Never" : "Aldri",
-    "Save" : "Lagre"
+    "To" : "Til"
 },
 "nplurals=2; plural=(n != 1);");

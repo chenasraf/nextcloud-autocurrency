@@ -1,9 +1,9 @@
 OC.L10N.register(
     "autocurrency",
     {
-    "Search" : "Gözlemek",
-    "Name" : "Ady",
     "Loading…" : "Ýüklenýär…",
-    "Save" : "Saklamak"
+    "Save" : "Saklamak",
+    "Search" : "Gözlemek",
+    "Name" : "Ady"
 },
 "nplurals=2; plural=(n != 1);");

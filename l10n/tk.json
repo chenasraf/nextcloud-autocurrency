@@ -1,7 +1,7 @@
 { "translations": {
-    "Search" : "Gözlemek",
-    "Name" : "Ady",
     "Loading…" : "Ýüklenýär…",
-    "Save" : "Saklamak"
+    "Save" : "Saklamak",
+    "Search" : "Gözlemek",
+    "Name" : "Ady"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

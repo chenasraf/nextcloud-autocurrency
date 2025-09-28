@@ -1,6 +1,6 @@
 { "translations": {
+    "Save" : "حفظ",
     "Search" : "Search",
-    "Name" : "اسم",
-    "Save" : "حفظ"
+    "Name" : "اسم"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

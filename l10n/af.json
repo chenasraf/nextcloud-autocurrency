@@ -1,8 +1,8 @@
 { "translations": {
+    "Loading…" : "Laai…",
+    "Save" : "Stoor",
     "Search" : "Soek",
     "From" : "Van",
-    "To" : "Aan",
-    "Loading…" : "Laai…",
-    "Save" : "Stoor"
+    "To" : "Aan"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

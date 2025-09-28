@@ -1,8 +1,7 @@
 { "translations": {
-    "Search" : "Søk",
-    "Name" : "Namn",
-    "Apply" : "Anvend",
     "Loading…" : "Lastar...",
-    "Save" : "Lagre"
+    "Save" : "Lagre",
+    "Search" : "Søk",
+    "Name" : "Namn"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

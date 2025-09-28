@@ -1,15 +1,14 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Loading…" : "Зареждане…",
+    "Never" : "Никога",
+    "Save" : "Запиши",
     "Search" : "Търсене",
     "Code" : "Код",
     "Name" : "Име",
     "Currency" : "Валута",
     "From" : "От",
-    "To" : "До",
-    "Apply" : "Приложи",
-    "Loading…" : "Зареждане…",
-    "Never" : "Никога",
-    "Save" : "Запиши"
+    "To" : "До"
 },
 "nplurals=2; plural=(n != 1);");

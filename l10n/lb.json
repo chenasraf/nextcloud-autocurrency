@@ -1,8 +1,7 @@
 { "translations": {
-    "Search" : "Sichen",
-    "Name" : "Numm",
-    "Apply" : "Uwenden",
     "Loading…" : "Et gëtt gelueden",
-    "Save" : "Späicheren"
+    "Save" : "Späicheren",
+    "Search" : "Sichen",
+    "Name" : "Numm"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -1,7 +1,7 @@
 { "translations": {
-    "Search" : "Axtarış",
-    "Name" : "Ad",
     "Never" : "Heç vaxt",
-    "Save" : "Saxla"
+    "Save" : "Saxla",
+    "Search" : "Axtarış",
+    "Name" : "Ad"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

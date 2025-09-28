@@ -1,9 +1,8 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Save" : "រក្សាទុក",
     "Search" : "ស្វែងរក",
-    "Name" : "ឈ្មោះ",
-    "Apply" : "អនុវត្ត",
-    "Save" : "រក្សាទុក"
+    "Name" : "ឈ្មោះ"
 },
 "nplurals=1; plural=0;");

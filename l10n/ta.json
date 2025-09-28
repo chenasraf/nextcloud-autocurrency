@@ -1,6 +1,6 @@
 { "translations": {
+    "Save" : "சேமிக்க ",
     "Search" : "தேடுதல்",
-    "Name" : "பெயர்",
-    "Save" : "சேமிக்க "
+    "Name" : "பெயர்"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -1,9 +1,9 @@
 OC.L10N.register(
     "autocurrency",
     {
-    "Search" : "Nadi",
-    "Name" : "Nom",
     "Loading…" : "Asali...",
-    "Save" : "Sekles"
+    "Save" : "Sekles",
+    "Search" : "Nadi",
+    "Name" : "Nom"
 },
 "nplurals=2; plural=(n != 1);");

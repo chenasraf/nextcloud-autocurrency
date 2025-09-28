@@ -1,8 +1,7 @@
 { "translations": {
-    "Search" : "Cercar",
-    "Apply" : "Applicar",
     "Loading…" : "Cargante...",
     "Never" : "Nunquam",
-    "Save" : "Salveguardar"
+    "Save" : "Salveguardar",
+    "Search" : "Cercar"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
