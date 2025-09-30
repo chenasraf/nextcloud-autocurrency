@@ -180,7 +180,7 @@ class FetchCurrenciesService {
 	}
 
 	/** Match the currency name from the known currencies. **/
-	private function getCurrencyName(string $name): ?string {
+	public function getCurrencyName(string $name): ?string {
 		$original = trim($name);
 		$lower = mb_strtolower($original, 'UTF-8');
 

@@ -62,10 +62,11 @@
         <div class="history-controls">
           <!-- Project -->
           <NcSelect
-            v-model="selectedProjectId"
-            :options="projectOptions"
+            v-model="selectedProject"
+            :options="projects"
             :option-value="'id'"
-            :option-label="'label'"
+            :option-label="'name'"
+            :return-object="true"
             :input-label="strings.projectLabel"
             :disabled="loading || projectsLoading"
             required
@@ -73,11 +74,11 @@
 
           <!-- Currency -->
           <NcSelect
-            v-model="selectedCurrencyCode"
+            v-model="selectedCurrency"
             :options="currencyOptions"
             :option-value="'id'"
-            :return-object="true"
             :option-label="'label'"
+            :return-object="true"
             :input-label="strings.currencyLabel"
             :disabled="loading || projectsLoading || !currencyOptions.length"
             required
@@ -102,7 +103,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import NcAppSettingsSection from '@nextcloud/vue/components/NcAppSettingsSection'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
@@ -111,6 +112,7 @@ import NcDateTimePicker from '@nextcloud/vue/components/NcDateTimePicker'
 
 import { ocs } from '@/axios'
 import { t } from '@nextcloud/l10n'
+import { isValid } from 'date-fns'
 import { parseISO as parseDate } from 'date-fns/parseISO'
 import { format as formatDate } from 'date-fns/format'
 import { Chart } from 'chart.js/auto'
@@ -129,18 +131,17 @@ export default {
     const oneMonthAgo = new Date(today)
     oneMonthAgo.setMonth(today.getMonth() - 1)
 
-    const toISODate = (d) => formatDate(d, 'yyyy-MM-dd')
     return {
       loading: true,
       supportedCurrencies: [],
       currencySearch: '',
       projectsLoading: true,
       projects: [],
-      selectedProjectId: null,
-      selectedCurrencyCode: null,
-      dateFrom: toISODate(oneMonthAgo),
-      dateTo: toISODate(today),
-      todayISO: toISODate(today),
+      selectedProject: null,
+      selectedCurrency: null,
+      dateFrom: this.formatDate(oneMonthAgo),
+      dateTo: this.formatDate(today),
+      todayISO: this.formatDate(today),
       chart: null,
       historyPoints: [],
       historyReqId: 0,
@@ -202,26 +203,42 @@ export default {
     this.fetchProjects()
   },
   watch: {
-    selectedProjectId() {
-      this.resetCurrencyForProject()
+    selectedProject() {
+      const currencyChanged = this.resetCurrencyForProject()
+      if (this.selectedProject && this.selectedCurrency && !currencyChanged) {
+        this.fetchHistory() // project changed, currency remained same -> refetch
+      }
     },
-    selectedCurrencyCode() {
-      if (this.selectedProjectId && this.selectedCurrencyCode) {
+    selectedCurrency() {
+      if (this.selectedProject && this.selectedCurrency) {
         this.fetchHistory()
       }
     },
-    dateFrom() {
-      if (this.selectedProjectId && this.selectedCurrencyCode) {
-        this.fetchHistory()
-      }
+    dateFrom(val) {
+      this.dateFrom = this.formatDate(val)
+      if (this.selectedProject && this.selectedCurrency) this.fetchHistory()
     },
-    dateTo() {
-      if (this.selectedProjectId && this.selectedCurrencyCode) {
-        this.fetchHistory()
-      }
+    dateTo(val) {
+      this.dateTo = this.formatDate(val)
+      if (this.selectedProject && this.selectedCurrency) this.fetchHistory()
     },
   },
   methods: {
+    formatDate(value: Date | string | null | undefined): string {
+      if (!value) return ''
+      const d =
+        value instanceof Date
+          ? value
+          : typeof value === 'string'
+          ? parseDate(value)
+          : new Date(value as any)
+
+      if (!isValid(d)) {
+        console.warn('[DEBUG] Invalid date received:', value)
+        return ''
+      }
+      return formatDate(d, 'yyyy-MM-dd')
+    },
     async fetchSettings() {
       try {
         this.loading = true
@@ -247,11 +264,15 @@ export default {
         this.projectsLoading = true
         const resp = await ocs.get('/projects')
         const data = resp.data ?? {}
-        this.projects = data.projects ?? []
+        this.projects = (data.projects ?? []).map((p: any) => ({
+          ...p,
+          label: p?.name && String(p.name).trim() !== '' ? p.name : p.id,
+        }))
 
         // If nothing selected yet, pick the first project
-        if (!this.selectedProjectId && this.projects.length) {
-          this.selectedProjectId = String(this.projects[0].id)
+        console.debug('[DEBUG] Projects fetched', this.projects, 'selected:', this.selectedProject)
+        if (!this.selectedProject && this.projects.length) {
+          this.selectedProject = this.projects[0]
         }
 
         // Ensure a currency is selected for the (new) project
@@ -264,14 +285,20 @@ export default {
     },
 
     async fetchHistory() {
-      if (!this.selectedProjectId || !this.selectedCurrencyCode) return
+      if (!this.selectedProject || !this.selectedCurrency) return
       const myReq = ++this.historyReqId
       try {
-        const params = {
-          projectId: this.selectedProjectId,
-          currency: this.selectedCurrencyCode.id.toLowerCase(),
+        console.log('[DEBUG] Fetching history', {
+          projectId: this.selectedProject.id,
+          currency: this.selectedCurrency.id.toLowerCase(),
           from: this.dateFrom,
           to: this.dateTo,
+        })
+        const params = {
+          projectId: this.selectedProject.id,
+          currency: this.selectedCurrency.id.toLowerCase(),
+          from: this.formatDate(this.dateFrom),
+          to: this.formatDate(this.dateTo),
         }
         const resp = await ocs.get('/history', { params })
 
@@ -296,7 +323,7 @@ export default {
 
       const labels = this.historyPoints.map((p) => formatDate(parseDate(p.x), 'yyyy-MM-dd HH:mm'))
       const data = this.historyPoints.map((p) => p.y)
-      const label = `${this.selectedCurrencyCode?.label ?? ''} rate`
+      const label = `${this.selectedCurrency?.label ?? ''} rate`
 
       if (this.chart) {
         this.chart.destroy()
@@ -349,26 +376,28 @@ export default {
     },
 
     // Pick the first allowed currency for the selected project
-    resetCurrencyForProject() {
-      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProjectId))
+    resetCurrencyForProject(): boolean {
+      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProject.id))
       if (!p) {
-        this.selectedCurrencyCode = null
-        return
+        this.selectedCurrency = null
+        return true
       }
 
       const options = this.currencyOptions
       if (!options.length) {
-        this.selectedCurrencyCode = null
-        return
+        this.selectedCurrency = null
+        return true
       }
 
-      // If current selection is missing/invalid for this project, pick first
-      if (
-        !this.selectedCurrencyCode ||
-        !options.some((opt) => opt.id === this.selectedCurrencyCode.id)
-      ) {
-        this.selectedCurrencyCode = options[0]
+      const currentId = this.selectedCurrency?.id
+      const stillValid = currentId && options.some((opt) => opt.id === currentId)
+
+      if (stillValid) {
+        return false
       }
+
+      this.selectedCurrency = options[0]
+      return true
     },
   },
   computed: {
@@ -388,19 +417,20 @@ export default {
         ].some(Boolean)
       })
     },
-    projectOptions() {
-      return this.projects.map((p) => ({ id: p.id, label: p.name }))
-    },
     currencyOptions() {
-      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProjectId))
+      console.log('[DEBUG] Computing currency options for project', this.selectedProject)
+      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProject.id))
       if (!p || !Array.isArray(p.currencies)) return []
       return p.currencies.map((code) => {
         const sc = this.supportedCurrencies.find(
           (s) => s.code.toLowerCase() === String(code).toLowerCase(),
         )
+        console.log('[DEBUG] Mapping currency option', code, '->', sc)
         if (sc) {
+          console.log('[DEBUG] Found supported currency', sc)
           return { id: sc.code.toLowerCase(), label: `${sc.code} (${sc.symbol})` }
         }
+        console.log('[DEBUG] Currency not supported:', code)
         // Fallback if not in supported list
         const c = String(code).toUpperCase()
         return { id: c.toLowerCase(), label: c }

@@ -23,6 +23,7 @@ use OCP\IDateTimeFormatter;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IUserSession;
+use Psr\Log\LoggerInterface;
 
 /**
  * @psalm-suppress UnusedClass
@@ -40,6 +41,7 @@ class ApiController extends OCSController {
 	public function __construct(
 		string $appName,
 		IRequest $request,
+		private LoggerInterface $logger,
 		private IAppConfig $config,
 		private IL10N $l,
 		private IUserSession $userSession,
@@ -159,7 +161,10 @@ class ApiController extends OCSController {
 			$id = (string)$p->getId();
 			$currencyName = (string)$p->getCurrencyName();
 			$currencies = $this->currencyMapper->findAll($id);
-			$currencyNames = array_map(fn ($c) => strtolower((string)$c->getName()), $currencies);
+			$currencyNames = array_map(function ($c) {
+				$resolved = $this->service->getCurrencyName((string)$c->getName());
+				return $resolved ?? strtolower((string)$c->getName());
+			}, $currencies);
 
 			$list[] = [
 				'id' => $id,
@@ -230,8 +235,9 @@ class ApiController extends OCSController {
 		}
 
 		// Resolve project and its base currency
+		$this->logger->debug('Fetching history for project ' . $projectId . ' from ' . ($fromDt?->format(DATE_ATOM) ?? 'null') . ' to ' . ($toDt?->format(DATE_ATOM) ?? 'null'));
 		$project = $this->projectMapper->find($projectId);
-		$projectBase = $project->getCurrencyName();
+		$projectBase = $this->service->getCurrencyName($project->getCurrencyName());
 		$lbase = strtolower((string)$projectBase);
 
 		$rows = $this->historyMapper->findByProjectAndBase(

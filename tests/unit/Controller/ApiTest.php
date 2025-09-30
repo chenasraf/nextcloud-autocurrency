@@ -75,6 +75,7 @@ final class ApiControllerTest extends TestCase {
 		$this->request = $opts['request'] ?? $this->createMock(IRequest::class);
 		$this->config = $opts['config'] ?? $this->createMock(IAppConfig::class);
 		$this->l10n = $opts['l10n'] ?? $this->createMock(IL10N::class);
+		$this->logger = $opts['logger'] ?? $this->createMock(LoggerInterface::class);
 		$this->userSession = $opts['userSession'] ?? $this->createMock(IUserSession::class);
 		$this->currencyMapper = $opts['currencyMapper'] ?? $this->createMock(CurrencyMapper::class);
 		$this->projectMapper = $opts['projectMapper'] ?? $this->createMock(CospendProjectMapper::class);
@@ -104,6 +105,7 @@ final class ApiControllerTest extends TestCase {
 		return new ApiController(
 			App::APP_ID,
 			$this->request,
+			$this->logger,
 			$this->config,
 			$this->l10n,
 			$this->userSession,
