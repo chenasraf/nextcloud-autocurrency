@@ -1,7 +1,7 @@
 <template>
   <div id="autocurrency-content" class="section">
     <h2>{{ strings.title }}</h2>
-    <NcAppSettingsSection :name="strings.infoTitle">
+    <NcAppSettingsSection id="autocurrency-info" :name="strings.infoTitle">
       <p>{{ strings.info }}</p>
 
       <p v-html="strings.requirements"></p>
@@ -87,12 +87,17 @@
           <!-- Date range -->
           <label>
             {{ strings.from }}
-            <NcDateTimePicker v-model="dateFrom" type="date" :max="dateTo || todayISO" />
+            <NcDateTimePicker v-model="dateFrom" type="date" :max="dateTo || todayDate" />
           </label>
           <label>
             {{ strings.to }}
-            <NcDateTimePicker v-model="dateTo" type="date" :max="todayISO" />
+            <NcDateTimePicker v-model="dateTo" type="date" :max="todayDate" />
           </label>
+
+          <!-- Reverse toggle -->
+          <NcCheckboxRadioSwitch v-model="showReversed">
+            {{ strings.showReversed }}
+          </NcCheckboxRadioSwitch>
         </div>
 
         <div class="chart-wrap">
@@ -109,13 +114,25 @@ import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
 import NcDateTimePicker from '@nextcloud/vue/components/NcDateTimePicker'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 
 import { ocs } from '@/axios'
 import { t } from '@nextcloud/l10n'
 import { isValid } from 'date-fns'
 import { parseISO as parseDate } from 'date-fns/parseISO'
-import { format as formatDate } from 'date-fns/format'
+import { format as formatDateFns } from 'date-fns/format'
 import { Chart } from 'chart.js/auto'
+
+type SupportedCurrency = { code: string; symbol: string; name: string }
+type Project = {
+  id: string
+  name: string
+  baseCurrency: string
+  currencies: string[]
+  label?: string
+}
+type CurrencyOption = { id: string; label: string }
+type HistoryPoint = { x: string; y: number }
 
 export default {
   name: 'App',
@@ -125,6 +142,7 @@ export default {
     NcSelect,
     NcTextField,
     NcDateTimePicker,
+    NcCheckboxRadioSwitch,
   },
   data() {
     const today = new Date()
@@ -132,19 +150,20 @@ export default {
     oneMonthAgo.setMonth(today.getMonth() - 1)
 
     return {
-      loading: true,
-      supportedCurrencies: [],
-      currencySearch: '',
-      projectsLoading: true,
-      projects: [],
-      selectedProject: null,
-      selectedCurrency: null,
-      dateFrom: this.formatDate(oneMonthAgo),
-      dateTo: this.formatDate(today),
-      todayISO: this.formatDate(today),
-      chart: null,
-      historyPoints: [],
-      historyReqId: 0,
+      loading: true as boolean,
+      supportedCurrencies: [] as SupportedCurrency[],
+      currencySearch: '' as string,
+      projectsLoading: true as boolean,
+      projects: [] as Project[],
+      selectedProject: null as Project | null,
+      selectedCurrency: null as CurrencyOption | null,
+      dateFrom: oneMonthAgo as Date,
+      dateTo: today as Date,
+      todayDate: today as Date,
+      chart: null as Chart<'line', number[], string> | null,
+      historyPoints: [] as HistoryPoint[],
+      historyReqId: 0 as number,
+      showReversed: false as boolean,
       strings: {
         title: t('autocurrency', 'Auto Currency for Cospend'),
         infoTitle: t('autocurrency', 'Information'),
@@ -195,7 +214,10 @@ export default {
         currencyLabel: t('autocurrency', 'Currency'),
         from: t('autocurrency', 'From'),
         to: t('autocurrency', 'To'),
-      },
+        showReversed: t('autocurrency', 'Flip conversion'),
+        chartTime: t('autocurrency', 'Time'),
+        chartDash: t('autocurrency', '-'),
+      } as const,
     }
   },
   created() {
@@ -215,12 +237,13 @@ export default {
       }
     },
     dateFrom(val) {
-      this.dateFrom = this.formatDate(val)
       if (this.selectedProject && this.selectedCurrency) this.fetchHistory()
     },
     dateTo(val) {
-      this.dateTo = this.formatDate(val)
       if (this.selectedProject && this.selectedCurrency) this.fetchHistory()
+    },
+    showReversed() {
+      this.$nextTick(() => this.renderChart())
     },
   },
   methods: {
@@ -234,10 +257,16 @@ export default {
           : new Date(value as any)
 
       if (!isValid(d)) {
-        console.warn('[DEBUG] Invalid date received:', value)
+        console.warn('Invalid date received:', value)
         return ''
       }
-      return formatDate(d, 'yyyy-MM-dd')
+      return formatDateFns(d, 'yyyy-MM-dd')
+    },
+    findCurrency(query: string | null | undefined) {
+      const raw = String(query ?? '').trim()
+      if (!raw) return undefined
+      const uc = raw.toUpperCase()
+      return this.supportedCurrencies.find((c) => c.code.toUpperCase() === uc || c.symbol === raw)
     },
     async fetchSettings() {
       try {
@@ -245,10 +274,9 @@ export default {
         const resp = await ocs.get('/user-settings')
         const data = resp.data
         this.loading = false
-        console.debug('[DEBUG] Auto Currency settings fetched', data)
 
-        this.supportedCurrencies = (data.supported_currencies ?? []).sort((a, b) =>
-          a.code.localeCompare(b.code),
+        this.supportedCurrencies = (data.supported_currencies ?? []).sort(
+          (a: SupportedCurrency, b: SupportedCurrency) => a.code.localeCompare(b.code),
         )
       } catch (e) {
         console.error('Failed to fetch Auto Currency settings', e)
@@ -270,9 +298,8 @@ export default {
         }))
 
         // If nothing selected yet, pick the first project
-        console.debug('[DEBUG] Projects fetched', this.projects, 'selected:', this.selectedProject)
         if (!this.selectedProject && this.projects.length) {
-          this.selectedProject = this.projects[0]
+          this.selectedProject = this.projects[0]!
         }
 
         // Ensure a currency is selected for the (new) project
@@ -288,19 +315,15 @@ export default {
       if (!this.selectedProject || !this.selectedCurrency) return
       const myReq = ++this.historyReqId
       try {
-        console.log('[DEBUG] Fetching history', {
-          projectId: this.selectedProject.id,
-          currency: this.selectedCurrency.id.toLowerCase(),
-          from: this.dateFrom,
-          to: this.dateTo,
-        })
         const params = {
           projectId: this.selectedProject.id,
           currency: this.selectedCurrency.id.toLowerCase(),
           from: this.formatDate(this.dateFrom),
           to: this.formatDate(this.dateTo),
         }
-        const resp = await ocs.get('/history', { params })
+        const resp = await ocs.get<{
+          points: { fetchedAt: string; rate: number }[]
+        }>('/history', { params })
 
         if (myReq !== this.historyReqId) return
 
@@ -318,27 +341,43 @@ export default {
     },
 
     renderChart() {
-      const canvas = this.$refs.historyCanvas
+      const canvas = this.$refs.historyCanvas as HTMLCanvasElement | undefined
       if (!canvas) return
 
-      const labels = this.historyPoints.map((p) => formatDate(parseDate(p.x), 'yyyy-MM-dd HH:mm'))
-      const data = this.historyPoints.map((p) => p.y)
-      const label = `${this.selectedCurrency?.label ?? ''} rate`
+      const labels = this.historyPoints.map((p) =>
+        formatDateFns(parseDate(p.x), 'yyyy-MM-dd HH:mm'),
+      )
+
+      const yData = this.historyPoints.map((p) => {
+        const r = Number(p.y)
+        if (!isFinite(r) || r <= 0) return NaN
+        return this.showReversed ? 1 / r : r
+      })
+
+      const dir = this.showReversed
+        ? `${this.selectedCode}→${this.baseCode}`
+        : `${this.baseCode}→${this.selectedCode}`
+      const dsLabel = t('autocurrency', 'Rate ({dir})', { dir })
 
       if (this.chart) {
         this.chart.destroy()
         this.chart = null
       }
 
-      const ctx = canvas.getContext('2d')
-      this.chart = new Chart(ctx, {
+      const fmt = (n: number) =>
+        new Intl.NumberFormat(undefined, { useGrouping: false, maximumFractionDigits: 12 }).format(
+          n,
+        )
+
+      const ctx = (canvas as HTMLCanvasElement).getContext('2d')
+      this.chart = new Chart(ctx!, {
         type: 'line',
         data: {
           labels,
           datasets: [
             {
-              label,
-              data,
+              label: dsLabel,
+              data: yData,
               tension: 0.25,
               pointRadius: 2,
               borderWidth: 2,
@@ -355,29 +394,74 @@ export default {
               mode: 'index',
               intersect: false,
               callbacks: {
-                label: (ctx) => {
-                  const dsLabel = ctx.dataset.label ?? ''
-                  const y = typeof ctx.raw === 'number' ? ctx.raw : ctx.parsed.y
-                  const precise = new Intl.NumberFormat(undefined, {
-                    useGrouping: false,
-                    maximumFractionDigits: 12,
-                  }).format(y)
-                  return `${dsLabel}: ${precise}`
+                label: (tt) => {
+                  const primary = typeof tt.raw === 'number' ? tt.raw : tt.parsed.y
+                  if (!isFinite(primary) || primary <= 0) {
+                    return t('autocurrency', '{label}: {value}', {
+                      label: tt.dataset.label ?? '',
+                      value: this.strings.chartDash,
+                    })
+                  }
+                  const secondary = 1 / primary
+
+                  const linePrimary = this.showReversed
+                    ? t('autocurrency', '1 {from} = {value} {to}', {
+                        from: this.selectedCode,
+                        value: fmt(primary),
+                        to: this.baseCode,
+                      })
+                    : t('autocurrency', '1 {from} = {value} {to}', {
+                        from: this.baseCode,
+                        value: fmt(primary),
+                        to: this.selectedCode,
+                      })
+
+                  const lineSecondary = this.showReversed
+                    ? t('autocurrency', '1 {from} = {value} {to}', {
+                        from: this.baseCode,
+                        value: fmt(secondary),
+                        to: this.selectedCode,
+                      })
+                    : t('autocurrency', '1 {from} = {value} {to}', {
+                        from: this.selectedCode,
+                        value: fmt(secondary),
+                        to: this.baseCode,
+                      })
+
+                  const header = t('autocurrency', '{label}: {value}', {
+                    label: tt.dataset.label ?? '',
+                    value: fmt(primary),
+                  })
+
+                  return [header, linePrimary, lineSecondary]
                 },
               },
             },
           },
           scales: {
-            x: { title: { display: true, text: 'Time' } },
-            y: { title: { display: true, text: 'Rate' }, beginAtZero: false },
+            x: { title: { display: true, text: this.strings.chartTime } },
+            y: {
+              title: {
+                display: true,
+                text: this.showReversed
+                  ? t('autocurrency', '{from} per {to}', {
+                      from: this.selectedCode,
+                      to: this.baseCode,
+                    })
+                  : t('autocurrency', '{from} per {to}', {
+                      from: this.baseCode,
+                      to: this.selectedCode,
+                    }),
+              },
+              beginAtZero: false,
+            },
           },
         },
       })
     },
-
     // Pick the first allowed currency for the selected project
     resetCurrencyForProject(): boolean {
-      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProject.id))
+      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProject?.id))
       if (!p) {
         this.selectedCurrency = null
         return true
@@ -396,7 +480,7 @@ export default {
         return false
       }
 
-      this.selectedCurrency = options[0]
+      this.selectedCurrency = options[0]!
       return true
     },
   },
@@ -418,23 +502,36 @@ export default {
       })
     },
     currencyOptions() {
-      console.log('[DEBUG] Computing currency options for project', this.selectedProject)
-      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProject.id))
+      const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProject?.id))
       if (!p || !Array.isArray(p.currencies)) return []
       return p.currencies.map((code) => {
-        const sc = this.supportedCurrencies.find(
-          (s) => s.code.toLowerCase() === String(code).toLowerCase(),
-        )
-        console.log('[DEBUG] Mapping currency option', code, '->', sc)
-        if (sc) {
-          console.log('[DEBUG] Found supported currency', sc)
-          return { id: sc.code.toLowerCase(), label: `${sc.code} (${sc.symbol})` }
-        }
-        console.log('[DEBUG] Currency not supported:', code)
-        // Fallback if not in supported list
+        const sc = this.findCurrency(code)
+        if (sc) return { id: sc.code.toLowerCase(), label: `${sc.code} (${sc.symbol})` }
         const c = String(code).toUpperCase()
         return { id: c.toLowerCase(), label: c }
       })
+    },
+    baseCode(): string {
+      const s = this.findCurrency(this.selectedProject?.baseCurrency)
+      const raw = String(this.selectedProject?.baseCurrency ?? '')
+        .trim()
+        .toUpperCase()
+      return s?.code ?? raw
+    },
+    selectedCode(): string {
+      const s = this.findCurrency(this.selectedCurrency?.id)
+      const raw = String(this.selectedCurrency?.id ?? '')
+        .trim()
+        .toUpperCase()
+      return s?.code ?? raw
+    },
+    baseSymbol(): string {
+      const s = this.findCurrency(this.baseCode)
+      return s?.symbol ?? this.baseCode
+    },
+    selectedSymbol(): string {
+      const s = this.findCurrency(this.selectedCode)
+      return s?.symbol ?? this.selectedCode
     },
   },
 }
