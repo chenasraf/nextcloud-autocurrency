@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.1.0...v1.2.0) (2025-09-30)
+
+
+### Features
+
+* added option to flip exchange rates in history chart ([9dd22e4](https://github.com/chenasraf/nextcloud-autocurrency/commit/9dd22e43a27cde0bd8bc11b3ab49733635a02d92))
+
+
+### Bug Fixes
+
+* improve currency matching for history endpoint ([1c05eff](https://github.com/chenasraf/nextcloud-autocurrency/commit/1c05eff9168c55e1006bb8ff8246e1635c57f8aa))
+* **l10n:** Update translations from Transifex ([3b71710](https://github.com/chenasraf/nextcloud-autocurrency/commit/3b71710c5d6ae2311ccfb2098f56cdf4ccd948bf))
+
 ## [1.1.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.0.3...v1.1.0) (2025-09-28)
 
 
