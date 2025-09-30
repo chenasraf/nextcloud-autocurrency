@@ -9,6 +9,7 @@ OC.L10N.register(
     "_Every %n hour_::_Every %n hours_" : ["Iga %n tunni järel","Iga %n tunni järel"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Iga %n tunni järel (vaikimisi)","Iga %n tunni järel (vaikimisi)"],
     "Cron Settings" : "Croni seadistused",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Valuutade seadistamiseks vajaliku juhendi leiad {aStart}Isiklikest seadistustest{aEnd}.",
     "Fetch Rates Now" : "Uuenda valuutakursid kohe",
     "Rates last fetched:" : "Viimane valuutakursside uuendus:",
     "Loading…" : "Andmed on laadimisel…",

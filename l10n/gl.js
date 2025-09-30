@@ -9,6 +9,7 @@ OC.L10N.register(
     "_Every %n hour_::_Every %n hours_" : ["Cada hora","Cada %n horas"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Cada hora (predeterminado)","Cada %n horas (predeterminado)"],
     "Cron Settings" : "Axustes de Cron",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Consulte os {aStart}Axustes persoais{aEnd} para ver instrucións sobre como definir as súas divisas.",
     "Fetch Rates Now" : "Recuperar agora os tipos de cambio",
     "Rates last fetched:" : "Últimos valores de cambio recuperados:",
     "Loading…" : "Cargando…",
