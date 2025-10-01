@@ -8,6 +8,8 @@
     "Name" : "نام",
     "Currency" : "Currency",
     "From" : "از",
-    "To" : "به"
+    "To" : "به",
+    "Time" : "زمان",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

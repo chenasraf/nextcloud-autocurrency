@@ -28,6 +28,8 @@ OC.L10N.register(
     "Name" : "Naam",
     "Currency" : "Valuta",
     "From" : "Van",
-    "To" : "Naar"
+    "To" : "Naar",
+    "Time" : "Tijd",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

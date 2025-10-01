@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Save" : "﻿ಉಳಿಸಿ",
     "Search" : "Search",
-    "Name" : "﻿ಹೆಸರು"
+    "Name" : "﻿ಹೆಸರು",
+    "Time" : "ಸಮಯ"
 },
 "nplurals=2; plural=(n > 1);");

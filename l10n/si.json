@@ -1,6 +1,7 @@
 { "translations": {
     "Loading…" : "පූරණය වෙමින්…",
     "Search" : "සොයන්න",
-    "Name" : "නම"
+    "Name" : "නම",
+    "Time" : "වේලාව"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

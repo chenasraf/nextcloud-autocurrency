@@ -10,6 +10,8 @@ OC.L10N.register(
     "Project" : "项目",
     "Currency" : "货币",
     "From" : "来自",
-    "To" : "给"
+    "To" : "给",
+    "Time" : "时间",
+    "-" : "-"
 },
 "nplurals=1; plural=0;");

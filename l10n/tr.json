@@ -27,6 +27,8 @@
     "Project" : "Proje",
     "Currency" : "Para birimi",
     "From" : "Nereden",
-    "To" : "Nereye"
+    "To" : "Nereye",
+    "Time" : "Süre",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

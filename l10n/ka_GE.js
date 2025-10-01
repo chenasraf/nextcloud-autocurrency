@@ -4,6 +4,7 @@ OC.L10N.register(
     "Never" : "არასდროს",
     "Save" : "შენახვა",
     "Search" : "ძიება",
-    "Name" : "სახელი"
+    "Name" : "სახელი",
+    "Time" : "დრო"
 },
 "nplurals=2; plural=(n!=1);");

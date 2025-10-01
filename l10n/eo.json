@@ -5,6 +5,8 @@
     "Search" : "Serĉi",
     "Name" : "Nomo",
     "From" : "De",
-    "To" : "Al"
+    "To" : "Al",
+    "Time" : "Dato",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

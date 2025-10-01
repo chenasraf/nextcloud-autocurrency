@@ -20,6 +20,8 @@
     "Project" : "Projet",
     "Currency" : "Device",
     "From" : "De",
-    "To" : "Pour"
+    "To" : "Pour",
+    "Time" : "Date et heure",
+    "-" : "-"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

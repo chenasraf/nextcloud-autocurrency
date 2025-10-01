@@ -8,6 +8,8 @@
     "Name" : "ئاتى",
     "Currency" : "پۇل",
     "From" : "From",
-    "To" : "To"
+    "To" : "To",
+    "Time" : "ۋاقىت",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

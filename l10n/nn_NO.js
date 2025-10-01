@@ -4,6 +4,7 @@ OC.L10N.register(
     "Loading…" : "Lastar...",
     "Save" : "Lagre",
     "Search" : "Søk",
-    "Name" : "Namn"
+    "Name" : "Namn",
+    "Time" : "Tid"
 },
 "nplurals=2; plural=(n != 1);");

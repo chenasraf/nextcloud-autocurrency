@@ -27,6 +27,8 @@
     "Project" : "Project",
     "Currency" : "Currency",
     "From" : "From",
-    "To" : "To"
+    "To" : "To",
+    "Time" : "Time",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

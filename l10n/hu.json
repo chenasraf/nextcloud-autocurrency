@@ -26,6 +26,8 @@
     "Name" : "Név",
     "Currency" : "Pénznem",
     "From" : "Ettől:",
-    "To" : "Eddig:"
+    "To" : "Eddig:",
+    "Time" : "Idő",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

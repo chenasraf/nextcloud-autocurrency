@@ -4,6 +4,7 @@ OC.L10N.register(
     "Loading…" : "Cargante...",
     "Never" : "Nunquam",
     "Save" : "Salveguardar",
-    "Search" : "Cercar"
+    "Search" : "Cercar",
+    "Time" : "Tempore"
 },
 "nplurals=2; plural=(n != 1);");

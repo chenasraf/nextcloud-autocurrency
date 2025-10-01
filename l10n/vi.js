@@ -8,6 +8,7 @@ OC.L10N.register(
     "Code" : "Mã",
     "Name" : "Tên",
     "From" : "Từ",
-    "To" : "Tới"
+    "To" : "Tới",
+    "Time" : "Thời gian"
 },
 "nplurals=1; plural=0;");

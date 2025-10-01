@@ -26,6 +26,8 @@
     "Name" : "Naam",
     "Currency" : "Valuta",
     "From" : "Van",
-    "To" : "Naar"
+    "To" : "Naar",
+    "Time" : "Tijd",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

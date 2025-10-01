@@ -10,6 +10,8 @@ OC.L10N.register(
     "Name" : "ئاتى",
     "Currency" : "پۇل",
     "From" : "From",
-    "To" : "To"
+    "To" : "To",
+    "Time" : "ۋاقىت",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

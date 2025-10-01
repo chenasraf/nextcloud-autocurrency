@@ -7,6 +7,8 @@ OC.L10N.register(
     "Search" : "Serĉi",
     "Name" : "Nomo",
     "From" : "De",
-    "To" : "Al"
+    "To" : "Al",
+    "Time" : "Dato",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

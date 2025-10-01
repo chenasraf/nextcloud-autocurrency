@@ -32,6 +32,8 @@ OC.L10N.register(
     "Project" : "Proxecto",
     "Currency" : "Divisa",
     "From" : "Desde",
-    "To" : "Ata"
+    "To" : "Ata",
+    "Time" : "Momento",
+    "-" : "—"
 },
 "nplurals=2; plural=(n != 1);");

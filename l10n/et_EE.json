@@ -30,6 +30,8 @@
     "Project" : "Projekt",
     "Currency" : "Valuuta",
     "From" : "Saatja",
-    "To" : "Saaja"
+    "To" : "Saaja",
+    "Time" : "Aeg",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

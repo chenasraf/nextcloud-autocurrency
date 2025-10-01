@@ -6,6 +6,7 @@ OC.L10N.register(
     "Save" : "Ruaje",
     "Search" : "Kërko",
     "Code" : "Kod",
-    "Name" : "Emër"
+    "Name" : "Emër",
+    "Time" : "Kohë"
 },
 "nplurals=2; plural=(n != 1);");

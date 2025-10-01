@@ -10,6 +10,8 @@ OC.L10N.register(
     "Code" : "Kod",
     "Name" : "Namn",
     "From" : "Från",
-    "To" : "Till"
+    "To" : "Till",
+    "Time" : "Tid",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

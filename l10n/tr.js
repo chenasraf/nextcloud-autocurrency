@@ -29,6 +29,8 @@ OC.L10N.register(
     "Project" : "Proje",
     "Currency" : "Para birimi",
     "From" : "Nereden",
-    "To" : "Nereye"
+    "To" : "Nereye",
+    "Time" : "Süre",
+    "-" : "-"
 },
 "nplurals=2; plural=(n > 1);");

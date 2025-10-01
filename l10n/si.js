@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Loading…" : "පූරණය වෙමින්…",
     "Search" : "සොයන්න",
-    "Name" : "නම"
+    "Name" : "නම",
+    "Time" : "වේලාව"
 },
 "nplurals=2; plural=(n != 1);");

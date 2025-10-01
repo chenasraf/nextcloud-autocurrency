@@ -31,6 +31,8 @@ OC.L10N.register(
     "Project" : "Mradi",
     "Currency" : "Sarafu",
     "From" : "Tangu/ kutoka",
-    "To" : "Mpaka/ hadi"
+    "To" : "Mpaka/ hadi",
+    "Time" : "Muda",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

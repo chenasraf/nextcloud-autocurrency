@@ -4,10 +4,12 @@ OC.L10N.register(
     "Auto Currency" : "自動貨幣",
     "Auto Currency for Cospend" : "Cospend 自動貨幣",
     "Automatically fills the currency rates for your Cospend projects daily." : "每日自動填入 Cospend 專案的貨幣匯率。",
+    "This NextCloud app automatically fetches currency information for your Cospend projects, and fills\nthem up using the main currency as base. No more manually updating exchange rates!\n\n\nYou can also view the history of currency rates fetched in the past, and see how they changed over time.\n\n\nIt will automatically run once a day by default and use your currency names to fetch the correct\nrate.\n\n\nInterval for fetch may be adjusted in the admin settings \"Auto Currency\" section.\n\n\n> **Note**: This is a companion app to [Cospend](https://apps.nextcloud.com/apps/cospend).\n>\n> Without Cospend, this app will not work." : "這個 Nextcloud 應用程式會自動為您的 Cospend 專案取得貨幣資訊，並以主要貨幣為基準填入。不再需要手動更新匯率！\n\n\n您也可以檢視過去擷取的匯率歷史紀錄，並看看隨時間變化的匯率。\n\n\n預設每天自動執行一次，並使用您的貨幣名稱取得正確匯率。\n\n\n擷取間隔可在管理設定中的「自動貨幣」區塊中調整。\n\n\n> **注意**：這是 [Cospend](https://apps.nextcloud.com/apps/cospend) 的配套應用程式。\n>\n> 若沒有 Cospend，此應用程式將無法運作。",
     "Every hour" : "每小時",
     "_Every %n hour_::_Every %n hours_" : ["每%n小時"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["每%n小時（預設值）"],
     "Cron Settings" : "Cron 設定",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "前往{aStart}個人設定{aEnd}以檢視如何設定您的貨幣的說明。",
     "Fetch Rates Now" : "立刻擷取匯率",
     "Rates last fetched:" : "上次擷取的匯率：",
     "Loading…" : "正在載入……",
@@ -26,7 +28,12 @@ OC.L10N.register(
     "Symbol" : "符號",
     "Code" : "代碼",
     "Name" : "名稱",
+    "Exchange rate history" : "匯率歷史紀錄",
+    "Project" : "專案",
+    "Currency" : "貨幣",
     "From" : "從",
-    "To" : "至"
+    "To" : "至",
+    "Time" : "時間",
+    "-" : "－"
 },
 "nplurals=1; plural=0;");

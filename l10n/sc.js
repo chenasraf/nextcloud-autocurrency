@@ -9,6 +9,8 @@ OC.L10N.register(
     "Name" : "Nùmene",
     "Currency" : "Divisa",
     "From" : "Dae",
-    "To" : "A"
+    "To" : "A",
+    "Time" : "Ora",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

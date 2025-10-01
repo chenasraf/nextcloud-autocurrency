@@ -5,6 +5,7 @@ OC.L10N.register(
     "Never" : "ไม่เคย",
     "Save" : "บันทึก",
     "Search" : "ค้นหา",
-    "Name" : "ชื่อ"
+    "Name" : "ชื่อ",
+    "Time" : "เวลา"
 },
 "nplurals=1; plural=0;");

@@ -10,6 +10,8 @@ OC.L10N.register(
     "Name" : "نام",
     "Currency" : "Currency",
     "From" : "از",
-    "To" : "به"
+    "To" : "به",
+    "Time" : "زمان",
+    "-" : "-"
 },
 "nplurals=2; plural=(n > 1);");

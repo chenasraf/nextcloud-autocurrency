@@ -6,6 +6,8 @@ OC.L10N.register(
     "Save" : "Simpan",
     "Search" : "Cari",
     "Code" : "Kode",
-    "Name" : "Nama"
+    "Name" : "Nama",
+    "Time" : "Waktu",
+    "-" : "-"
 },
 "nplurals=1; plural=0;");

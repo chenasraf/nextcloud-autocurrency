@@ -26,6 +26,7 @@ OC.L10N.register(
     "Code" : "Kods",
     "Name" : "Nosaukums",
     "From" : "No",
-    "To" : "Līdz"
+    "To" : "Līdz",
+    "Time" : "Laiks"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

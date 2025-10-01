@@ -4,6 +4,7 @@ OC.L10N.register(
     "Never" : "Երբեք",
     "Save" : "Պահպանել",
     "Search" : "Search",
-    "Name" : "Անուն"
+    "Name" : "Անուն",
+    "Time" : "Ժամ"
 },
 "nplurals=2; plural=(n != 1);");

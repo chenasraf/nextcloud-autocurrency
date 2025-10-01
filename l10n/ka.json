@@ -6,6 +6,7 @@
     "Code" : "Code",
     "Name" : "სახელი",
     "From" : "From",
-    "To" : "To"
+    "To" : "To",
+    "Time" : "Time"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

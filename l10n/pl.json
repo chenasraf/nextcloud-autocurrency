@@ -2,10 +2,12 @@
     "Auto Currency" : "Automatyczna waluta",
     "Auto Currency for Cospend" : "Automatyczna waluta dla Cospend",
     "Automatically fills the currency rates for your Cospend projects daily." : "Codziennie automatycznie uzupełnia kursy walut dla Twoich projektów Cospend.",
+    "This NextCloud app automatically fetches currency information for your Cospend projects, and fills\nthem up using the main currency as base. No more manually updating exchange rates!\n\n\nYou can also view the history of currency rates fetched in the past, and see how they changed over time.\n\n\nIt will automatically run once a day by default and use your currency names to fetch the correct\nrate.\n\n\nInterval for fetch may be adjusted in the admin settings \"Auto Currency\" section.\n\n\n> **Note**: This is a companion app to [Cospend](https://apps.nextcloud.com/apps/cospend).\n>\n> Without Cospend, this app will not work." : "Ta aplikacja Nextcloud automatycznie pobiera informacje o walutach dla twoich projektów Cospend i uzupełnia je, używając głównej waluty jako podstawy. Koniec z ręcznym aktualizowaniem kursów wymiany!\n\n\nDomyślnie działa automatycznie raz dziennie i używa nazw walut, aby pobrać właściwy kurs.\n\n\nInterwał pobierania można dostosować w ustawieniach administracyjnych w sekcji „Auto Waluta”.\n\n\n**Uwaga**: To jest aplikacja towarzysząca dla Cospend(https://apps.nextcloud.com/apps/cospend)..\n\n\nBez Cospend ta aplikacja nie będzie działać.",
     "Every hour" : "Co godzinę",
     "_Every %n hour_::_Every %n hours_" : ["Co godzinę","Co %n godziny","Co %n godzin","Co %ngodzin"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Co godzinę (domyślnie)","Co %n godziny (domyślnie)","Co %n godzin (domyślnie)","Co %n godzin (domyślnie)"],
     "Cron Settings" : "Ustawienia harmonogramu",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Zobacz {aStart}ustawienia osobiste{aEnd}, aby wyświetlić instrukcje dotyczące konfiguracji swoich walut.",
     "Fetch Rates Now" : "Pobierz kursy teraz",
     "Rates last fetched:" : "Ostatnie pobranie kursów:",
     "Loading…" : "Wczytywanie…",
@@ -24,8 +26,12 @@
     "Symbol" : "Symbol",
     "Code" : "Kod",
     "Name" : "Nazwa",
+    "Exchange rate history" : "Historia kursów walut",
+    "Project" : "Projekt",
     "Currency" : "Waluta",
     "From" : "Od",
-    "To" : "Do"
+    "To" : "Do",
+    "Time" : "Czas",
+    "-" : "-"
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"
 }

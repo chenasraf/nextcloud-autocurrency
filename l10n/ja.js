@@ -9,6 +9,8 @@ OC.L10N.register(
     "Code" : "コード",
     "Name" : "名前",
     "From" : "開始",
-    "To" : "宛先"
+    "To" : "宛先",
+    "Time" : "時間",
+    "-" : "-"
 },
 "nplurals=1; plural=0;");

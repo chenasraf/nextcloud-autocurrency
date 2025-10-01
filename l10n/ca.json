@@ -6,6 +6,7 @@
     "Code" : "Codi",
     "Name" : "Nom",
     "From" : "De",
-    "To" : "A"
+    "To" : "A",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -9,6 +9,8 @@ OC.L10N.register(
     "Name" : "Heiti",
     "Currency" : "Gjaldmiðill",
     "From" : "Frá",
-    "To" : "Til"
+    "To" : "Til",
+    "Time" : "Tími",
+    "-" : "-"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

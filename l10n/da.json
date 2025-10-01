@@ -24,6 +24,7 @@
     "Project" : "Projekt",
     "Currency" : "Valuta",
     "From" : "Fra",
-    "To" : "Til"
+    "To" : "Til",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

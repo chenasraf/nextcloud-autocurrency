@@ -29,6 +29,8 @@
     "Project" : "Mradi",
     "Currency" : "Sarafu",
     "From" : "Tangu/ kutoka",
-    "To" : "Mpaka/ hadi"
+    "To" : "Mpaka/ hadi",
+    "Time" : "Muda",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

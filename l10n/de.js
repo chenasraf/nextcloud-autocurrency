@@ -31,6 +31,8 @@ OC.L10N.register(
     "Project" : "Projekt",
     "Currency" : "Währung",
     "From" : "Von",
-    "To" : "Bis"
+    "To" : "Bis",
+    "Time" : "Zeit",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

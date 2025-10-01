@@ -4,6 +4,7 @@ OC.L10N.register(
     "Loading…" : "Et gëtt gelueden",
     "Save" : "Späicheren",
     "Search" : "Sichen",
-    "Name" : "Numm"
+    "Name" : "Numm",
+    "Time" : "Zäit"
 },
 "nplurals=2; plural=(n != 1);");

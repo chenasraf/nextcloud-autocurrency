@@ -8,6 +8,8 @@
     "Name" : "Izena",
     "Currency" : "Moneta",
     "From" : "Nork",
-    "To" : "Nori"
+    "To" : "Nori",
+    "Time" : "Noiz",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

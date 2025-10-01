@@ -30,6 +30,8 @@
     "Project" : "Proxecto",
     "Currency" : "Divisa",
     "From" : "Desde",
-    "To" : "Ata"
+    "To" : "Ata",
+    "Time" : "Momento",
+    "-" : "—"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

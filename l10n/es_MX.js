@@ -7,6 +7,8 @@ OC.L10N.register(
     "Name" : "Nombre",
     "Currency" : "Divisa",
     "From" : "De",
-    "To" : "Para"
+    "To" : "Para",
+    "Time" : "Hora",
+    "-" : "-"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

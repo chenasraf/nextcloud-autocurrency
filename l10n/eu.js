@@ -10,6 +10,8 @@ OC.L10N.register(
     "Name" : "Izena",
     "Currency" : "Moneta",
     "From" : "Nork",
-    "To" : "Nori"
+    "To" : "Nori",
+    "Time" : "Noiz",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

@@ -28,6 +28,8 @@ OC.L10N.register(
     "Name" : "Név",
     "Currency" : "Pénznem",
     "From" : "Ettől:",
-    "To" : "Eddig:"
+    "To" : "Eddig:",
+    "Time" : "Idő",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

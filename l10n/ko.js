@@ -14,6 +14,8 @@ OC.L10N.register(
     "Code" : "코드",
     "Name" : "이름",
     "From" : "시작",
-    "To" : "종료"
+    "To" : "종료",
+    "Time" : "시간",
+    "-" : "-"
 },
 "nplurals=1; plural=0;");

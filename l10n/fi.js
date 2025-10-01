@@ -21,6 +21,8 @@ OC.L10N.register(
     "Project" : "Projekti",
     "Currency" : "Valuutta",
     "From" : "Lähettäjä",
-    "To" : "Vastaanottaja"
+    "To" : "Vastaanottaja",
+    "Time" : "Aika",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

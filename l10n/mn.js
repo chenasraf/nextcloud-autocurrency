@@ -5,6 +5,7 @@ OC.L10N.register(
     "Never" : "хэзээч",
     "Save" : "Хадгалах",
     "Search" : "Хайх",
-    "Name" : "Нэр"
+    "Name" : "Нэр",
+    "Time" : "Цаг"
 },
 "nplurals=2; plural=(n != 1);");

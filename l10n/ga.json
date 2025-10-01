@@ -29,6 +29,8 @@
     "Project" : "Tionscadal",
     "Currency" : "Airgeadra",
     "From" : "Ó",
-    "To" : "Chun"
+    "To" : "Chun",
+    "Time" : "Am",
+    "-" : "-"
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"
 }

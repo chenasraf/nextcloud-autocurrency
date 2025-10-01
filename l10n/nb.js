@@ -10,6 +10,8 @@ OC.L10N.register(
     "Name" : "Navn",
     "Currency" : "Valuta",
     "From" : "Fra",
-    "To" : "Til"
+    "To" : "Til",
+    "Time" : "Tid",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

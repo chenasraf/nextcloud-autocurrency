@@ -32,6 +32,8 @@ OC.L10N.register(
     "Project" : "Projekt",
     "Currency" : "Valuuta",
     "From" : "Saatja",
-    "To" : "Saaja"
+    "To" : "Saaja",
+    "Time" : "Aeg",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

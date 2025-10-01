@@ -29,6 +29,8 @@ OC.L10N.register(
     "Project" : "項目",
     "Currency" : "貨幣",
     "From" : "從",
-    "To" : "至"
+    "To" : "至",
+    "Time" : "時間",
+    "-" : "－"
 },
 "nplurals=1; plural=0;");

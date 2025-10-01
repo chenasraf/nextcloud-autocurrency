@@ -8,6 +8,8 @@
     "Code" : "Kod",
     "Name" : "Namn",
     "From" : "Från",
-    "To" : "Till"
+    "To" : "Till",
+    "Time" : "Tid",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
