@@ -116,6 +116,7 @@ import NcTextField from '@nextcloud/vue/components/NcTextField'
 import NcDateTimePicker from '@nextcloud/vue/components/NcDateTimePicker'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 
+import { APP_ID } from '@/consts'
 import { ocs } from '@/axios'
 import { t } from '@nextcloud/l10n'
 import { isValid } from 'date-fns'
@@ -165,8 +166,8 @@ export default {
       historyReqId: 0 as number,
       showReversed: false as boolean,
       strings: {
-        title: t('autocurrency', 'Auto Currency for Cospend'),
-        infoTitle: t('autocurrency', 'Information'),
+        title: t(APP_ID, 'Auto Currency for Cospend'),
+        infoTitle: t(APP_ID, 'Information'),
         info: t(
           'autocurrency',
           'To make sure your currencies are found for the rates to be updated, please ensure your ' +
@@ -202,21 +203,21 @@ export default {
           undefined,
           { escape: false },
         ),
-        exampleHeader: t('autocurrency', 'Example names:'),
-        supportedCurrencies: t('autocurrency', 'Supported currencies:'),
-        currencySearchLabel: t('autocurrency', 'Search'),
-        currencySearchPlaceholder: t('autocurrency', 'e.g. $, USD, US Dollar'),
-        tableSymbol: t('autocurrency', 'Symbol'),
-        tableCode: t('autocurrency', 'Code'),
-        tableName: t('autocurrency', 'Name'),
-        historyHeader: t('autocurrency', 'Exchange rate history'),
-        projectLabel: t('autocurrency', 'Project'),
-        currencyLabel: t('autocurrency', 'Currency'),
-        from: t('autocurrency', 'From'),
-        to: t('autocurrency', 'To'),
-        showReversed: t('autocurrency', 'Flip conversion'),
-        chartTime: t('autocurrency', 'Time'),
-        chartDash: t('autocurrency', '-'),
+        exampleHeader: t(APP_ID, 'Example names:'),
+        supportedCurrencies: t(APP_ID, 'Supported currencies:'),
+        currencySearchLabel: t(APP_ID, 'Search'),
+        currencySearchPlaceholder: t(APP_ID, 'e.g. $, USD, US Dollar'),
+        tableSymbol: t(APP_ID, 'Symbol'),
+        tableCode: t(APP_ID, 'Code'),
+        tableName: t(APP_ID, 'Name'),
+        historyHeader: t(APP_ID, 'Exchange rate history'),
+        projectLabel: t(APP_ID, 'Project'),
+        currencyLabel: t(APP_ID, 'Currency'),
+        from: t(APP_ID, 'From'),
+        to: t(APP_ID, 'To'),
+        showReversed: t(APP_ID, 'Flip conversion'),
+        chartTime: t(APP_ID, 'Time'),
+        chartDash: t(APP_ID, '-'),
       } as const,
     }
   },
@@ -348,16 +349,16 @@ export default {
         formatDateFns(parseDate(p.x), 'yyyy-MM-dd HH:mm'),
       )
 
-      const yData = this.historyPoints.map((p) => {
+      const rValues = this.historyPoints.map((p) => {
         const r = Number(p.y)
-        if (!isFinite(r) || r <= 0) return NaN
-        return this.showReversed ? 1 / r : r
+        return isFinite(r) && r > 0 ? r : NaN
       })
 
-      const dir = this.showReversed
-        ? `${this.selectedCode}→${this.baseCode}`
-        : `${this.baseCode}→${this.selectedCode}`
-      const dsLabel = t('autocurrency', 'Rate ({dir})', { dir })
+      const primaryData = this.showReversed ? rValues.map((r) => 1 / r) : rValues
+      const fromCode = this.showReversed ? this.baseCode : this.selectedCode
+      const toCode = this.showReversed ? this.selectedCode : this.baseCode
+
+      const dsLabel = t(APP_ID, 'Rate ({dir})', { dir: `${fromCode}→${toCode}` })
 
       if (this.chart) {
         this.chart.destroy()
@@ -369,15 +370,15 @@ export default {
           n,
         )
 
-      const ctx = (canvas as HTMLCanvasElement).getContext('2d')
-      this.chart = new Chart(ctx!, {
+      const ctx = canvas.getContext('2d')!
+      this.chart = new Chart(ctx, {
         type: 'line',
         data: {
           labels,
           datasets: [
             {
               label: dsLabel,
-              data: yData,
+              data: primaryData,
               tension: 0.25,
               pointRadius: 2,
               borderWidth: 2,
@@ -397,40 +398,26 @@ export default {
                 label: (tt) => {
                   const primary = typeof tt.raw === 'number' ? tt.raw : tt.parsed.y
                   if (!isFinite(primary) || primary <= 0) {
-                    return t('autocurrency', '{label}: {value}', {
+                    return t(APP_ID, '{label}: {value}', {
                       label: tt.dataset.label ?? '',
                       value: this.strings.chartDash,
                     })
                   }
-                  const secondary = 1 / primary
+                  const inverse = 1 / primary
 
-                  const linePrimary = this.showReversed
-                    ? t('autocurrency', '1 {from} = {value} {to}', {
-                        from: this.selectedCode,
-                        value: fmt(primary),
-                        to: this.baseCode,
-                      })
-                    : t('autocurrency', '1 {from} = {value} {to}', {
-                        from: this.baseCode,
-                        value: fmt(primary),
-                        to: this.selectedCode,
-                      })
-
-                  const lineSecondary = this.showReversed
-                    ? t('autocurrency', '1 {from} = {value} {to}', {
-                        from: this.baseCode,
-                        value: fmt(secondary),
-                        to: this.selectedCode,
-                      })
-                    : t('autocurrency', '1 {from} = {value} {to}', {
-                        from: this.selectedCode,
-                        value: fmt(secondary),
-                        to: this.baseCode,
-                      })
-
-                  const header = t('autocurrency', '{label}: {value}', {
+                  const header = t(APP_ID, '{label}: {value}', {
                     label: tt.dataset.label ?? '',
                     value: fmt(primary),
+                  })
+                  const linePrimary = t(APP_ID, '1 {from} = {value} {to}', {
+                    value: fmt(primary),
+                    from: fromCode,
+                    to: toCode,
+                  })
+                  const lineSecondary = t(APP_ID, '1 {from} = {value} {to}', {
+                    value: fmt(inverse),
+                    from: toCode,
+                    to: fromCode,
                   })
 
                   return [header, linePrimary, lineSecondary]
@@ -443,15 +430,10 @@ export default {
             y: {
               title: {
                 display: true,
-                text: this.showReversed
-                  ? t('autocurrency', '{from} per {to}', {
-                      from: this.selectedCode,
-                      to: this.baseCode,
-                    })
-                  : t('autocurrency', '{from} per {to}', {
-                      from: this.baseCode,
-                      to: this.selectedCode,
-                    }),
+                text: t(APP_ID, '{from} per {to}', {
+                  from: toCode,
+                  to: fromCode,
+                }),
               },
               beginAtZero: false,
             },
@@ -459,6 +441,7 @@ export default {
         },
       })
     },
+
     // Pick the first allowed currency for the selected project
     resetCurrencyForProject(): boolean {
       const p = this.projects.find((pr) => String(pr.id) === String(this.selectedProject?.id))
