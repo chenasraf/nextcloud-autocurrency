@@ -33,7 +33,12 @@ OC.L10N.register(
     "Currency" : "Valuuta",
     "From" : "Saatja",
     "To" : "Saaja",
+    "Flip conversion" : "Pööra konverteerimist",
     "Time" : "Aeg",
-    "-" : "-"
+    "-" : "-",
+    "Rate ({dir})" : "Kurss ({dir})",
+    "{label}: {value}" : "{label}: {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "Lähtevääring{from}  - sihtvääring {to}"
 },
 "nplurals=2; plural=(n != 1);");

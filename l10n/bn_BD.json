@@ -1,6 +1,7 @@
 { "translations": {
     "Save" : "সংরক্ষণ",
     "Search" : "Search",
-    "Name" : "নাম"
+    "Name" : "নাম",
+    "Time" : "সময়"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

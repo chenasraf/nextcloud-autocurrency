@@ -7,6 +7,8 @@
     "Code" : "Códigu",
     "Name" : "Nome",
     "From" : "De",
-    "To" : "Pa"
+    "To" : "Pa",
+    "Time" : "Data",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

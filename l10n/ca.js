@@ -9,6 +9,7 @@ OC.L10N.register(
     "Name" : "Nom",
     "From" : "De",
     "To" : "A",
+    "Time" : "Hora",
     "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

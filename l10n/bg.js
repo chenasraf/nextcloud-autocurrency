@@ -9,6 +9,8 @@ OC.L10N.register(
     "Name" : "Име",
     "Currency" : "Валута",
     "From" : "От",
-    "To" : "До"
+    "To" : "До",
+    "Time" : "Час",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

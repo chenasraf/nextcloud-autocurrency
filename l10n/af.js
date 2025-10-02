@@ -5,6 +5,8 @@ OC.L10N.register(
     "Save" : "Stoor",
     "Search" : "Soek",
     "From" : "Van",
-    "To" : "Aan"
+    "To" : "Aan",
+    "Time" : "Tyd",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

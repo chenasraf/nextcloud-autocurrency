@@ -7,6 +7,7 @@
     "_Every %n hour_::_Every %n hours_" : ["Сваки %n сат","Свака %n сата","Сваких %n сати"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Сваки %n сат (подразумевано)","Свака %n сата (подразумевано)","Сваких %n сати (подразумевано)"],
     "Cron Settings" : "Cron подешавања",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Погледајте {aStart}Лична подешавања{aEnd} да прочитате упутство за подешавање ваших валута.",
     "Fetch Rates Now" : "Преузми курсеве одмах",
     "Rates last fetched:" : "Курсеви преузети последњи пут:",
     "Loading…" : "Учитавам…",
@@ -30,7 +31,12 @@
     "Currency" : "Валута",
     "From" : "Од",
     "To" : "За",
+    "Flip conversion" : "Обрни смер конверзије",
     "Time" : "Време",
-    "-" : "-"
+    "-" : "-",
+    "Rate ({dir})" : "Курс ({dir})",
+    "{label}: {value}" : "{label}: {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} за {to}"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

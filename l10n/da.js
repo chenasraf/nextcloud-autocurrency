@@ -27,6 +27,7 @@ OC.L10N.register(
     "Currency" : "Valuta",
     "From" : "Fra",
     "To" : "Til",
+    "Time" : "Tid",
     "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

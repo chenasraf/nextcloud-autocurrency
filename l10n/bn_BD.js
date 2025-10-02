@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Save" : "সংরক্ষণ",
     "Search" : "Search",
-    "Name" : "নাম"
+    "Name" : "নাম",
+    "Time" : "সময়"
 },
 "nplurals=2; plural=(n != 1);");

@@ -9,6 +9,7 @@ OC.L10N.register(
     "_Every %n hour_::_Every %n hours_" : ["Every %n hour","Kila %n masaa"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Every %n hour (default)","Kila %n masaa (chaguo msingi)"],
     "Cron Settings" : "Mipangilio ya Cron",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Angalia {aStart}Mipangilio ya Kibinafsi{aEnd} ili kuona maagizo ya jinsi ya kusanidi sarafu zako.",
     "Fetch Rates Now" : " Leta Viwango Sasa",
     "Rates last fetched:" : "Viwango vilivyoletwa mwisho:",
     "Loading…" : "Inapakia",
@@ -32,7 +33,12 @@ OC.L10N.register(
     "Currency" : "Sarafu",
     "From" : "Tangu/ kutoka",
     "To" : "Mpaka/ hadi",
+    "Flip conversion" : "Geuza uongofu",
     "Time" : "Muda",
-    "-" : "-"
+    "-" : "-",
+    "Rate ({dir})" : "Kiwango ({dir})",
+    "{label}: {value}" : "{label}: {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} kwa {to}"
 },
 "nplurals=2; plural=(n != 1);");

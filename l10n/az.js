@@ -4,6 +4,7 @@ OC.L10N.register(
     "Never" : "Heç vaxt",
     "Save" : "Saxla",
     "Search" : "Axtarış",
-    "Name" : "Ad"
+    "Name" : "Ad",
+    "Time" : "Vaxt"
 },
 "nplurals=2; plural=(n != 1);");

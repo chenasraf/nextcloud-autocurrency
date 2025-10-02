@@ -25,6 +25,7 @@
     "Currency" : "Valuta",
     "From" : "Fra",
     "To" : "Til",
+    "Time" : "Tid",
     "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

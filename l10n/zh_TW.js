@@ -33,7 +33,12 @@ OC.L10N.register(
     "Currency" : "貨幣",
     "From" : "從",
     "To" : "至",
+    "Flip conversion" : "Flip 轉換",
     "Time" : "時間",
-    "-" : "－"
+    "-" : "－",
+    "Rate ({dir})" : "匯率 ({dir})",
+    "{label}: {value}" : "{label}：{value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} 根據 {to}"
 },
 "nplurals=1; plural=0;");

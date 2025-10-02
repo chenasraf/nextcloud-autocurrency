@@ -9,6 +9,7 @@ OC.L10N.register(
     "_Every %n hour_::_Every %n hours_" : ["Jede %n Stunde","Alle %n Stunden"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Jede %n Stunde (Standard)","Alle %n Stunden (Standard)"],
     "Cron Settings" : "Cron-Einstellungen",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Anweisungen zum Einrichten deiner Währungen findest du in den {aStart}persönlichen Einstellungen{aEnd}.",
     "Fetch Rates Now" : "Kurse jetzt abrufen",
     "Rates last fetched:" : "Kurse zuletzt abgerufen am:",
     "Loading…" : "Lade …",
@@ -32,7 +33,12 @@ OC.L10N.register(
     "Currency" : "Währung",
     "From" : "Von",
     "To" : "Bis",
+    "Flip conversion" : "Umrechnen",
     "Time" : "Zeit",
-    "-" : "-"
+    "-" : "-",
+    "Rate ({dir})" : "Rate ({dir})",
+    "{label}: {value}" : "{label}: {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} pro {to}"
 },
 "nplurals=2; plural=(n != 1);");

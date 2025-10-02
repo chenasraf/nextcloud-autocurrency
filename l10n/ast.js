@@ -9,6 +9,8 @@ OC.L10N.register(
     "Code" : "Códigu",
     "Name" : "Nome",
     "From" : "De",
-    "To" : "Pa"
+    "To" : "Pa",
+    "Time" : "Data",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

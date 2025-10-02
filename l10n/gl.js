@@ -11,7 +11,7 @@ OC.L10N.register(
     "Cron Settings" : "Axustes de Cron",
     "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Consulte os {aStart}Axustes persoais{aEnd} para ver instrucións sobre como definir as súas divisas.",
     "Fetch Rates Now" : "Recuperar agora os tipos de cambio",
-    "Rates last fetched:" : "Últimos valores de cambio recuperados:",
+    "Rates last fetched:" : "Últimos tipos de cambio recuperados:",
     "Loading…" : "Cargando…",
     "Never" : "Nunca",
     "Save" : "Gardar",
@@ -33,7 +33,12 @@ OC.L10N.register(
     "Currency" : "Divisa",
     "From" : "Desde",
     "To" : "Ata",
+    "Flip conversion" : "Inverter a conversión",
     "Time" : "Momento",
-    "-" : "—"
+    "-" : "—",
+    "Rate ({dir})" : "Tipos de cambio ({dir})",
+    "{label}: {value}" : "{label}: {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} por {to}"
 },
 "nplurals=2; plural=(n != 1);");

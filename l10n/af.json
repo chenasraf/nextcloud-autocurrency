@@ -3,6 +3,8 @@
     "Save" : "Stoor",
     "Search" : "Soek",
     "From" : "Van",
-    "To" : "Aan"
+    "To" : "Aan",
+    "Time" : "Tyd",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
