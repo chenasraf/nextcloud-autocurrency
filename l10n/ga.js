@@ -9,6 +9,7 @@ OC.L10N.register(
     "_Every %n hour_::_Every %n hours_" : ["Gach %n uair an chloig","Gach %n uair an chloig","Gach %n uair an chloig","Gach %n uair an chloig","Gach %n uair an chloig"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Gach %n uair an chloig (réamhshocrú)","Gach %n uair an chloig (réamhshocrú)","Gach %n uair an chloig (réamhshocrú)","Gach %n uair an chloig (réamhshocrú)","Gach %n uair an chloig (réamhshocrú)"],
     "Cron Settings" : "Socruithe Cron",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Féach ar na {aStart}Socruithe Pearsanta{aEnd} chun treoracha a fheiceáil maidir le conas d’airgeadraí a shocrú.",
     "Fetch Rates Now" : "Faigh Rátaí Anois",
     "Rates last fetched:" : "Rátaí a fuarthas go deireanach:",
     "Loading…" : "Á lódáil…",
@@ -32,7 +33,12 @@ OC.L10N.register(
     "Currency" : "Airgeadra",
     "From" : "Ó",
     "To" : "Chun",
+    "Flip conversion" : "Comhshó smeach",
     "Time" : "Am",
-    "-" : "-"
+    "-" : "-",
+    "Rate ({dir})" : "Ráta ({dir})",
+    "{label}: {value}" : "{label}: {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} in aghaidh {to}"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");
