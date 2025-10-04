@@ -169,12 +169,12 @@ export default {
         title: t(APP_ID, 'Auto Currency for Cospend'),
         infoTitle: t(APP_ID, 'Information'),
         info: t(
-          'autocurrency',
+          APP_ID,
           'To make sure your currencies are found for the rates to be updated, please ensure your ' +
             'currencies are named appropriately.',
         ),
         requirements: t(
-          'autocurrency',
+          APP_ID,
           'Currency names must contain {bStart}at least one of{bEnd}:',
           { bStart: '<b>', bEnd: '</b>' },
           undefined,
@@ -182,14 +182,14 @@ export default {
         ),
         requirementsList: [
           t(
-            'autocurrency',
+            APP_ID,
             'The currency symbol - e.g. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}',
             { cStart: '<code>', cEnd: '</code>' },
             undefined,
             { escape: false },
           ),
           t(
-            'autocurrency',
+            APP_ID,
             'The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)',
             { cStart: '<code>', cEnd: '</code>' },
             undefined,
@@ -197,7 +197,7 @@ export default {
           ),
         ],
         infoNote: t(
-          'autocurrency',
+          APP_ID,
           'The naming rules apply for both main &amp; additional currencies.',
           undefined,
           undefined,

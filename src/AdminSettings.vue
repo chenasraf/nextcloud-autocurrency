@@ -45,6 +45,7 @@ import NcButton from '@nextcloud/vue/components/NcButton'
 import NcDateTime from '@nextcloud/vue/components/NcDateTime'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 
+import { APP_ID } from '@/consts'
 import { generateUrl } from '@nextcloud/router'
 import { ocs } from '@/axios'
 import { t, n } from '@nextcloud/l10n'
@@ -65,21 +66,21 @@ export default {
       interval: null,
       lastUpdate: null,
       intervalOptions: [
-        { label: t('autocurrency', 'Every hour'), value: 1 },
-        { label: n('autocurrency', 'Every %n hour', 'Every %n hours', 3), value: 3 },
-        { label: n('autocurrency', 'Every %n hour', 'Every %n hours', 6), value: 6 },
-        { label: n('autocurrency', 'Every %n hour', 'Every %n hours', 9), value: 9 },
-        { label: n('autocurrency', 'Every %n hour', 'Every %n hours', 12), value: 12 },
+        { label: t(APP_ID, 'Every hour'), value: 1 },
+        { label: n(APP_ID, 'Every %n hour', 'Every %n hours', 3), value: 3 },
+        { label: n(APP_ID, 'Every %n hour', 'Every %n hours', 6), value: 6 },
+        { label: n(APP_ID, 'Every %n hour', 'Every %n hours', 9), value: 9 },
+        { label: n(APP_ID, 'Every %n hour', 'Every %n hours', 12), value: 12 },
         {
-          label: n('autocurrency', 'Every %n hour (default)', 'Every %n hours (default)', 24),
+          label: n(APP_ID, 'Every %n hour (default)', 'Every %n hours (default)', 24),
           value: 24,
         },
       ],
       strings: {
-        title: t('autocurrency', 'Auto Currency for Cospend'),
-        cronSettingsHeader: t('autocurrency', 'Cron Settings'),
+        title: t(APP_ID, 'Auto Currency for Cospend'),
+        cronSettingsHeader: t(APP_ID, 'Cron Settings'),
         instructionsHelp: t(
-          'autocurrency',
+          APP_ID,
           'See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies.',
           {
             aStart: `<a style="text-decoration:underline;" href="${generateUrl(
@@ -90,11 +91,11 @@ export default {
           undefined,
           { escape: false },
         ),
-        fetchNow: t('autocurrency', 'Fetch Rates Now'),
-        lastFetched: t('autocurrency', 'Rates last fetched:'),
-        loading: t('autocurrency', 'Loading…'),
-        never: t('autocurrency', 'Never'),
-        save: t('autocurrency', 'Save'),
+        fetchNow: t(APP_ID, 'Fetch Rates Now'),
+        lastFetched: t(APP_ID, 'Rates last fetched:'),
+        loading: t(APP_ID, 'Loading…'),
+        never: t(APP_ID, 'Never'),
+        save: t(APP_ID, 'Save'),
       },
     }
   },
