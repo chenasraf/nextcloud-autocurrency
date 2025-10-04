@@ -14,13 +14,13 @@ use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
 
 /**
- * @template-extends QBMapper<{{pascalCase name}}>
+ * @template-extends QBMapper<CustomCurrency>
  */
-class {{pascalCase name}}Mapper extends QBMapper {
+class CustomCurrencyMapper extends QBMapper {
 	public function __construct(
 		IDBConnection $db,
 	) {
-		parent::__construct($db, Application::tableName('{{snakeCase name}}s'), {{pascalCase name}}::class);
+		parent::__construct($db, Application::tableName('custom'), CustomCurrency::class);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class {{pascalCase name}}Mapper extends QBMapper {
 	 * @throws \OCP\AppFramework\Db\MultipleObjectsReturnedException
 	 * @throws DoesNotExistException
 	 */
-	public function find(string $id): {{pascalCase name}} {
+	public function find(string $id): CustomCurrency {
 		/* @var $qb IQueryBuilder */
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
@@ -41,7 +41,7 @@ class {{pascalCase name}}Mapper extends QBMapper {
 	}
 
 	/**
-	 * @return array<{{pascalCase name}}>
+	 * @return array<CustomCurrency>
 	 */
 	public function findAll(): array {
 		/* @var $qb IQueryBuilder */
