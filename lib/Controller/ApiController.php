@@ -290,7 +290,8 @@ class ApiController extends OCSController {
 	#[ApiRoute(verb: 'GET', url: '/api/custom-currencies')]
 	public function getCustomCurrencies(): DataResponse {
 		$currencies = $this->customCurrencyMapper->findAll();
-		return new DataResponse(['currencies' => $currencies]);
+		$serialized = array_map(fn ($c) => $c->jsonSerialize(), $currencies);
+		return new DataResponse(['currencies' => $serialized]);
 	}
 
 	/**

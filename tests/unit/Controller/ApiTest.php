@@ -86,9 +86,11 @@ final class ApiControllerTest extends TestCase {
 		$this->customCurrencyMapper = $opts['customCurrencyMapper'] ?? $this->createMock(CustomCurrencyMapper::class);
 		$this->logger = $opts['logger'] ?? $this->createMock(LoggerInterface::class);
 
+		$this->customCurrencyMapper->method('findAll')->willReturn([]);
+
 		if (!empty($opts['serviceMethods'])) {
 			$this->service = $this->getMockBuilder(FetchCurrenciesService::class)
-				->setConstructorArgs([$this->config, $this->currencyMapper, $this->projectMapper, $this->historyMapper, $this->logger])
+				->setConstructorArgs([$this->config, $this->currencyMapper, $this->projectMapper, $this->historyMapper, $this->customCurrencyMapper, $this->logger])
 				->onlyMethods($opts['serviceMethods'])
 				->getMock();
 		} else {
@@ -97,6 +99,7 @@ final class ApiControllerTest extends TestCase {
 				$this->currencyMapper,
 				$this->projectMapper,
 				$this->historyMapper,
+				$this->customCurrencyMapper,
 				$this->logger
 			);
 		}
@@ -367,8 +370,6 @@ final class ApiControllerTest extends TestCase {
 	}
 
 	public function testGetCustomCurrencies_ReturnsAllCurrencies(): void {
-		$controller = $this->buildController();
-
 		$c1 = new CustomCurrency();
 		$c1->setCode('BTC');
 		$c1->setSymbol('₿');
@@ -383,15 +384,24 @@ final class ApiControllerTest extends TestCase {
 		$c2->setApiKey('');
 		$c2->setJsonPath('$.price');
 
-		$this->customCurrencyMapper->expects($this->once())
+		$customCurrencyMapper = $this->createMock(CustomCurrencyMapper::class);
+		$customCurrencyMapper->expects($this->once())
 			->method('findAll')
 			->willReturn([$c1, $c2]);
+
+		$controller = $this->buildController(['customCurrencyMapper' => $customCurrencyMapper]);
 
 		$resp = $controller->getCustomCurrencies();
 		$data = $resp->getData();
 
 		$this->assertArrayHasKey('currencies', $data);
-		$this->assertCount(2, $data['currencies']);
+		$currencies = $data['currencies'];
+		$this->assertCount(2, $currencies);
+
+		// Verify the entities are serialized
+		$this->assertSame('BTC', $currencies[0]['code']);
+		$this->assertSame('₿', $currencies[0]['symbol']);
+		$this->assertSame('ETH', $currencies[1]['code']);
 	}
 
 	public function testCreateCustomCurrency_Success_WithAllFields(): void {
