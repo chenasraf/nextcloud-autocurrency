@@ -13,6 +13,7 @@ export default createAppConfig(
       resolve: {
         alias: {
           '@': path.resolve(__dirname, 'src'),
+          '@icons': path.resolve(__dirname, 'node_modules/vue-material-design-icons'),
         },
       },
       build: {

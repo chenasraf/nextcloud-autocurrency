@@ -6,6 +6,103 @@
       <p v-html="strings.instructionsHelp" />
     </NcNoteCard>
 
+    <NcAppSettingsSection :name="strings.customCurrenciesHeader">
+      <NcNoteCard type="info">
+        <p>{{ strings.customCurrenciesHelp }}</p>
+      </NcNoteCard>
+
+      <div class="custom-currencies-list">
+        <div
+          v-for="(currency, index) in customCurrencies"
+          :key="currency.tempId || currency.id"
+          class="currency-item"
+        >
+          <div class="currency-fields">
+            <div class="field-row">
+              <label>
+                <span>{{ strings.currencyCode }}</span>
+                <input
+                  v-model="currency.code"
+                  type="text"
+                  :placeholder="strings.currencyCodePlaceholder"
+                  required
+                  :disabled="loading"
+                />
+              </label>
+              <label>
+                <span>{{ strings.currencySymbol }}</span>
+                <input
+                  v-model="currency.symbol"
+                  type="text"
+                  :placeholder="strings.currencySymbolPlaceholder"
+                  :disabled="loading"
+                />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label>
+                <span>{{ strings.apiEndpoint }}</span>
+                <input
+                  v-model="currency.api_endpoint"
+                  type="url"
+                  :placeholder="strings.apiEndpointPlaceholder"
+                  required
+                  :disabled="loading"
+                />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label>
+                <span>{{ strings.apiKey }}</span>
+                <input
+                  v-model="currency.api_key"
+                  type="password"
+                  :placeholder="strings.apiKeyPlaceholder"
+                  :disabled="loading"
+                />
+              </label>
+              <label>
+                <span>{{ strings.jsonPath }}</span>
+                <input
+                  v-model="currency.json_path"
+                  type="text"
+                  :placeholder="strings.jsonPathPlaceholder"
+                  required
+                  :disabled="loading"
+                />
+              </label>
+            </div>
+          </div>
+
+          <NcButton
+            type="error"
+            @click="removeCurrency(index)"
+            :disabled="loading"
+            :aria-label="strings.deleteCurrency"
+          >
+            <template #icon>
+              <Delete :size="20" />
+            </template>
+          </NcButton>
+        </div>
+
+        <NcButton @click="addCurrency" :disabled="loading">
+          <template #icon>
+            <Plus :size="20" />
+          </template>
+          {{ strings.addCurrency }}
+        </NcButton>
+      </div>
+
+      <div class="submit-buttons">
+        <NcButton type="primary" @click="saveCustomCurrencies" :disabled="loading">
+          {{ strings.save }}
+        </NcButton>
+      </div>
+    </NcAppSettingsSection>
+
     <NcAppSettingsSection :name="strings.cronSettingsHeader">
       <section>
         <form @submit.prevent="save">
@@ -44,6 +141,8 @@ import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcDateTime from '@nextcloud/vue/components/NcDateTime'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import Plus from '@icons/Plus.vue'
+import Delete from '@icons/Delete.vue'
 
 import { APP_ID } from '@/consts'
 import { generateUrl } from '@nextcloud/router'
@@ -59,12 +158,17 @@ export default {
     NcDateTime,
     NcSelect,
     NcNoteCard,
+    Plus,
+    Delete,
   },
   data() {
     return {
       loading: true,
       interval: null,
       lastUpdate: null,
+      customCurrencies: [],
+      originalCustomCurrencies: [],
+      tempIdCounter: 0,
       intervalOptions: [
         { label: t(APP_ID, 'Every hour'), value: 1 },
         { label: n(APP_ID, 'Every %n hour', 'Every %n hours', 3), value: 3 },
@@ -78,6 +182,23 @@ export default {
       ],
       strings: {
         title: t(APP_ID, 'Auto Currency for Cospend'),
+        customCurrenciesHeader: t(APP_ID, 'Custom Currencies'),
+        customCurrenciesHelp: t(
+          APP_ID,
+          "Define custom currencies with their own API endpoints. Use {base} in the endpoint URL or JSON path to substitute the project's base currency. The API should return a rate in the base currency (or USD if {base} is not used).",
+        ),
+        currencyCode: t(APP_ID, 'Currency Code'),
+        currencyCodePlaceholder: t(APP_ID, 'e.g., BTC'),
+        currencySymbol: t(APP_ID, 'Symbol (optional)'),
+        currencySymbolPlaceholder: t(APP_ID, 'e.g., ₿'),
+        apiEndpoint: t(APP_ID, 'API Endpoint'),
+        apiEndpointPlaceholder: t(APP_ID, 'e.g., https://api.example.com/rates/{base}'),
+        apiKey: t(APP_ID, 'API Key (optional)'),
+        apiKeyPlaceholder: t(APP_ID, 'Leave empty if not required'),
+        jsonPath: t(APP_ID, 'JSON Path'),
+        jsonPathPlaceholder: t(APP_ID, 'e.g., $.rates.{base} or data[0].rate'),
+        addCurrency: t(APP_ID, 'Add Currency'),
+        deleteCurrency: t(APP_ID, 'Delete Currency'),
         cronSettingsHeader: t(APP_ID, 'Cron Settings'),
         instructionsHelp: t(
           APP_ID,
@@ -101,6 +222,7 @@ export default {
   },
   created() {
     this.fetchSettings()
+    this.fetchCustomCurrencies()
   },
   methods: {
     async fetchSettings() {
@@ -156,6 +278,70 @@ export default {
         console.error('Failed to update Auto Currency settings', e)
       }
     },
+    async fetchCustomCurrencies() {
+      try {
+        this.loading = true
+        const resp = await ocs.get('/custom-currencies')
+        this.customCurrencies = resp.data.currencies.map((c) => ({ ...c }))
+        this.originalCustomCurrencies = JSON.parse(JSON.stringify(resp.data.currencies))
+        this.loading = false
+        console.debug('[DEBUG] Custom currencies fetched', this.customCurrencies)
+      } catch (e) {
+        console.error('Failed to fetch custom currencies', e)
+        this.loading = false
+      }
+    },
+    addCurrency() {
+      this.customCurrencies.push({
+        tempId: `temp-${this.tempIdCounter++}`,
+        code: '',
+        symbol: '',
+        api_endpoint: '',
+        api_key: '',
+        json_path: '',
+      })
+    },
+    removeCurrency(index) {
+      this.customCurrencies.splice(index, 1)
+    },
+    async saveCustomCurrencies() {
+      try {
+        this.loading = true
+
+        // Determine what needs to be created, updated, or deleted
+        const toCreate = this.customCurrencies.filter((c) => c.tempId)
+        const toUpdate = this.customCurrencies.filter((c) => c.id && !c.tempId)
+        const toDelete = this.originalCustomCurrencies.filter(
+          (orig) => !this.customCurrencies.some((curr) => curr.id === orig.id),
+        )
+
+        // Delete removed currencies
+        for (const currency of toDelete) {
+          await ocs.delete(`/custom-currencies/${currency.id}`)
+          console.debug('[DEBUG] Deleted currency', currency.id)
+        }
+
+        // Create new currencies
+        for (const currency of toCreate) {
+          const { tempId, ...data } = currency
+          await ocs.post('/custom-currencies', { data })
+          console.debug('[DEBUG] Created currency', data.code)
+        }
+
+        // Update existing currencies
+        for (const currency of toUpdate) {
+          const { id, ...data } = currency
+          await ocs.put(`/custom-currencies/${id}`, { data })
+          console.debug('[DEBUG] Updated currency', id)
+        }
+
+        // Refresh the list
+        await this.fetchCustomCurrencies()
+      } catch (e) {
+        console.error('Failed to save custom currencies', e)
+        this.loading = false
+      }
+    },
   },
   computed: {
     intervals() {
@@ -185,6 +371,67 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 8px;
+  }
+
+  .custom-currencies-list {
+    margin-top: 16px;
+
+    .currency-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 16px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-large);
+      margin-bottom: 12px;
+      background-color: var(--color-background-hover);
+
+      .currency-fields {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .field-row {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+
+          label {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            span {
+              font-weight: 600;
+              font-size: 0.9em;
+              color: var(--color-text-maxcontrast);
+            }
+
+            input {
+              width: 100%;
+              padding: 8px;
+              border: 1px solid var(--color-border-dark);
+              border-radius: var(--border-radius);
+              background-color: var(--color-main-background);
+              color: var(--color-main-text);
+
+              &:focus {
+                outline: 2px solid var(--color-primary-element);
+                border-color: var(--color-primary-element);
+              }
+
+              &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>
