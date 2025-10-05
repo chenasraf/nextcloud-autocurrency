@@ -8,7 +8,7 @@
 
     <NcAppSettingsSection :name="strings.customCurrenciesHeader">
       <NcNoteCard type="info">
-        <p>{{ strings.customCurrenciesHelp }}</p>
+        <p v-html="strings.customCurrenciesHelp" />
       </NcNoteCard>
 
       <div class="custom-currencies-list">
@@ -185,7 +185,10 @@ export default {
         customCurrenciesHeader: t(APP_ID, 'Custom Currencies'),
         customCurrenciesHelp: t(
           APP_ID,
-          "Define custom currencies with their own API endpoints. Use {base} in the endpoint URL or JSON path to substitute the project's base currency. The API should return a rate in the base currency (or USD if {base} is not used).",
+          `Define custom currencies with their own API endpoints.{br}Use {cStart}{base}{cEnd} in the endpoint URL or JSON path to substitute the project's base currency.{br}The API should return a rate in the base currency (or USD if {cStart}{base}{cEnd} is not used).{br}The API key will be passed in the {cStart}Authorization{cEnd} header as {cStart}Bearer{cEnd} if provided.`,
+          { br: '<br />', cStart: '<code>', cEnd: '</code>' },
+          undefined,
+          { escape: false },
         ),
         currencyCode: t(APP_ID, 'Currency Code'),
         currencyCodePlaceholder: t(APP_ID, 'e.g., BTC'),
