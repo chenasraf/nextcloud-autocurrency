@@ -1339,21 +1339,24 @@
                                                     ],
                                                     "properties": {
                                                         "supported_currencies": {
-                                                            "type": "object",
-                                                            "required": [
-                                                                "code",
-                                                                "symbol",
-                                                                "name"
-                                                            ],
-                                                            "properties": {
-                                                                "code": {
-                                                                    "type": "string"
-                                                                },
-                                                                "symbol": {
-                                                                    "type": "string"
-                                                                },
-                                                                "name": {
-                                                                    "type": "string"
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object",
+                                                                "required": [
+                                                                    "code",
+                                                                    "symbol",
+                                                                    "name"
+                                                                ],
+                                                                "properties": {
+                                                                    "code": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "symbol": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string"
+                                                                    }
                                                                 }
                                                             }
                                                         }

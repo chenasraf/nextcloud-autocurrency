@@ -87,11 +87,11 @@ class ApiController extends OCSController {
 	 * Get current user settings
 	 *
 	 * @return DataResponse<Http::STATUS_OK, array{
-	 *	 supported_currencies: array{
+	 *	 supported_currencies: list<array{
 	 *		 code: string,
 	 *		 symbol: string,
 	 *		 name: string
-	 *	 }
+	 *	 }>
 	 * }, array{}>
 	 *
 	 * 200: Data returned
@@ -99,11 +99,22 @@ class ApiController extends OCSController {
 	#[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/api/user-settings')]
 	public function getUserSettings(): DataResponse {
+		// Get standard currencies
 		$supported = array_map(
 			fn ($sym): array
 				=> ['name' => $sym['name'], 'code' => $sym['code'], 'symbol' => $sym['symbol']],
 			array_values($this->service->symbols)
 		);
+
+		// Add custom currencies
+		$customCurrencies = $this->customCurrencyMapper->findAll();
+		foreach ($customCurrencies as $custom) {
+			$supported[] = [
+				'name' => $custom->getCode(),
+				'code' => $custom->getCode(),
+				'symbol' => $custom->getSymbol() ?: $custom->getCode(),
+			];
+		}
 
 		return new DataResponse(
 			['supported_currencies' => $supported]
@@ -158,15 +169,29 @@ class ApiController extends OCSController {
 		$userId = $this->userSession->getUser()->getUID();
 		$projects = $this->projectMapper->findAllByUser($userId);
 
+		// Build a map of custom currency codes for quick lookup
+		$customCurrenciesMap = [];
+		foreach ($this->customCurrencyMapper->findAll() as $cc) {
+			$customCurrenciesMap[strtolower($cc->getCode())] = true;
+		}
+
 		$list = [];
 		foreach ($projects as $p) {
 			$name = (string)$p->getName();
 			$id = (string)$p->getId();
 			$currencyName = (string)$p->getCurrencyName();
 			$currencies = $this->currencyMapper->findAll($id);
-			$currencyNames = array_map(function ($c) {
+			$currencyNames = array_map(function ($c) use ($customCurrenciesMap) {
+				$currencyCode = strtolower((string)$c->getName());
+
+				// Check if it's a custom currency first
+				if (isset($customCurrenciesMap[$currencyCode])) {
+					return $currencyCode;
+				}
+
+				// Otherwise try to resolve as standard currency
 				$resolved = $this->service->getCurrencyName((string)$c->getName());
-				return $resolved ?? strtolower((string)$c->getName());
+				return $resolved ?? $currencyCode;
 			}, $currencies);
 
 			$list[] = [
