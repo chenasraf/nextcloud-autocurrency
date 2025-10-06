@@ -584,6 +584,19 @@ export default {
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 12px;
       align-items: end;
+
+      @media (max-width: 1180px) {
+        grid-template-columns: 1fr 1fr;
+
+        >* {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 800px) {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
     }
 
     .chart-wrap {
