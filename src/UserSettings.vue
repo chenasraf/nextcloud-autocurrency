@@ -366,9 +366,11 @@ export default {
       }
 
       const fmt = (n: number) =>
-        new Intl.NumberFormat(undefined, { useGrouping: false, maximumFractionDigits: 12 }).format(
-          n,
-        )
+        new Intl.NumberFormat(undefined, {
+          useGrouping: true,
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 12,
+        }).format(n)
 
       const ctx = canvas.getContext('2d')!
       this.chart = new Chart(ctx, {
