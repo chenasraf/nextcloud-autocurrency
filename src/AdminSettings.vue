@@ -19,60 +19,47 @@
         >
           <div class="currency-fields">
             <div class="field-row">
-              <label>
-                <span>{{ strings.currencyCode }}</span>
-                <input
-                  v-model="currency.code"
-                  type="text"
-                  :placeholder="strings.currencyCodePlaceholder"
-                  required
-                  :disabled="loading"
-                />
-              </label>
-              <label>
-                <span>{{ strings.currencySymbol }}</span>
-                <input
-                  v-model="currency.symbol"
-                  type="text"
-                  :placeholder="strings.currencySymbolPlaceholder"
-                  :disabled="loading"
-                />
-              </label>
+              <NcTextField
+                v-model="currency.code"
+                :label="strings.currencyCode"
+                :placeholder="strings.currencyCodePlaceholder"
+                required
+                :disabled="loading"
+              />
+              <NcTextField
+                v-model="currency.symbol"
+                :label="strings.currencySymbol"
+                :placeholder="strings.currencySymbolPlaceholder"
+                :disabled="loading"
+              />
             </div>
 
             <div class="field-row">
-              <label>
-                <span>{{ strings.apiEndpoint }}</span>
-                <input
-                  v-model="currency.api_endpoint"
-                  type="url"
-                  :placeholder="strings.apiEndpointPlaceholder"
-                  required
-                  :disabled="loading"
-                />
-              </label>
+              <NcTextField
+                v-model="currency.api_endpoint"
+                :label="strings.apiEndpoint"
+                type="url"
+                :placeholder="strings.apiEndpointPlaceholder"
+                required
+                :disabled="loading"
+              />
             </div>
 
             <div class="field-row">
-              <label>
-                <span>{{ strings.apiKey }}</span>
-                <input
-                  v-model="currency.api_key"
-                  type="password"
-                  :placeholder="strings.apiKeyPlaceholder"
-                  :disabled="loading"
-                />
-              </label>
-              <label>
-                <span>{{ strings.jsonPath }}</span>
-                <input
-                  v-model="currency.json_path"
-                  type="text"
-                  :placeholder="strings.jsonPathPlaceholder"
-                  required
-                  :disabled="loading"
-                />
-              </label>
+              <NcTextField
+                v-model="currency.api_key"
+                :label="strings.apiKey"
+                type="password"
+                :placeholder="strings.apiKeyPlaceholder"
+                :disabled="loading"
+              />
+              <NcTextField
+                v-model="currency.json_path"
+                :label="strings.jsonPath"
+                :placeholder="strings.jsonPathPlaceholder"
+                required
+                :disabled="loading"
+              />
             </div>
           </div>
 
@@ -141,6 +128,7 @@ import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcDateTime from '@nextcloud/vue/components/NcDateTime'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
 import Plus from '@icons/Plus.vue'
 import Delete from '@icons/Delete.vue'
 
@@ -158,6 +146,7 @@ export default {
     NcDateTime,
     NcSelect,
     NcNoteCard,
+    NcTextField,
     Plus,
     Delete,
   },
@@ -400,37 +389,9 @@ export default {
           gap: 12px;
           flex-wrap: wrap;
 
-          label {
+          > * {
             flex: 1;
             min-width: 200px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-
-            span {
-              font-weight: 600;
-              font-size: 0.9em;
-              color: var(--color-text-maxcontrast);
-            }
-
-            input {
-              width: 100%;
-              padding: 8px;
-              border: 1px solid var(--color-border-dark);
-              border-radius: var(--border-radius);
-              background-color: var(--color-main-background);
-              color: var(--color-main-text);
-
-              &:focus {
-                outline: 2px solid var(--color-primary-element);
-                border-color: var(--color-primary-element);
-              }
-
-              &:disabled {
-                opacity: 0.6;
-                cursor: not-allowed;
-              }
-            }
           }
         }
       }
