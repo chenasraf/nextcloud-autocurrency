@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.3.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.2.1...v1.3.0) (2025-10-07)
+
+
+### Features
+
+* add custom currencies ([#182](https://github.com/chenasraf/nextcloud-autocurrency/issues/182)) ([71577ff](https://github.com/chenasraf/nextcloud-autocurrency/commit/71577ffb35c0334059ba9ff748f24a7a51e9826b))
+
+
+### Bug Fixes
+
+* history filters responsiveness ([33be5cd](https://github.com/chenasraf/nextcloud-autocurrency/commit/33be5cd1fa6fb60ff2fb0c7add0563509a3e876d))
+* **l10n:** Update translations from Transifex ([4402ec0](https://github.com/chenasraf/nextcloud-autocurrency/commit/4402ec05c9ae3ecb1409376846eb96ec00a500da))
+* **l10n:** Update translations from Transifex ([2b5ee42](https://github.com/chenasraf/nextcloud-autocurrency/commit/2b5ee42eaf02c8596baa86698efe224498936d6e))
+* **l10n:** Update translations from Transifex ([5e90e96](https://github.com/chenasraf/nextcloud-autocurrency/commit/5e90e96936a7134348475469ec32216914656ddb))
+* use grouping in number formats in history tooltip ([cf48c1d](https://github.com/chenasraf/nextcloud-autocurrency/commit/cf48c1d869c0761f0f8e3eb9137c539dd2314343))
+
 ## [1.2.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.2.0...v1.2.1) (2025-10-01)
 
 
