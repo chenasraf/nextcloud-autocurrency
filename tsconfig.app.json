@@ -13,6 +13,9 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
+      "@icons/*": [
+        "node_modules/vue-material-design-icons/*"
+      ],
       "@/*": [
         "src/*"
       ]

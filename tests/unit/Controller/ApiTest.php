@@ -36,6 +36,8 @@ use OCA\AutoCurrency\Db\AutocurrencyRateHistoryMapper;
 use OCA\AutoCurrency\Db\CospendProjectMapper;
 use OCA\AutoCurrency\Db\Currency;
 use OCA\AutoCurrency\Db\CurrencyMapper;
+use OCA\AutoCurrency\Db\CustomCurrency;
+use OCA\AutoCurrency\Db\CustomCurrencyMapper;
 use OCA\AutoCurrency\Service\FetchCurrenciesService;
 use OCA\Cospend\Db\Project;
 use OCP\IAppConfig;
@@ -54,6 +56,7 @@ final class ApiControllerTest extends TestCase {
 	/** @var CurrencyMapper&MockObject */                private $currencyMapper;
 	/** @var CospendProjectMapper&MockObject */          private $projectMapper;
 	/** @var AutocurrencyRateHistoryMapper&MockObject */ private $historyMapper;
+	/** @var CustomCurrencyMapper&MockObject */          private $customCurrencyMapper;
 	/** @var LoggerInterface&MockObject */               private $logger;
 	/** @var FetchCurrenciesService */                   private $service;
 
@@ -66,7 +69,7 @@ final class ApiControllerTest extends TestCase {
 
 	/**
 	 * Build controller with optional overrides:
-	 *  - 'config', 'request', 'l10n', 'currencyMapper', 'projectMapper', 'historyMapper', 'logger'
+	 *  - 'config', 'request', 'l10n', 'currencyMapper', 'projectMapper', 'historyMapper', 'customCurrencyMapper', 'logger'
 	 *  - 'serviceMethods' => methods to partial-mock on FetchCurrenciesService
 	 *  - 'symbols'        => fixture array for $service->symbols
 	 * @param array<string,mixed> $opts
@@ -80,11 +83,14 @@ final class ApiControllerTest extends TestCase {
 		$this->currencyMapper = $opts['currencyMapper'] ?? $this->createMock(CurrencyMapper::class);
 		$this->projectMapper = $opts['projectMapper'] ?? $this->createMock(CospendProjectMapper::class);
 		$this->historyMapper = $opts['historyMapper'] ?? $this->createMock(AutocurrencyRateHistoryMapper::class);
+		$this->customCurrencyMapper = $opts['customCurrencyMapper'] ?? $this->createMock(CustomCurrencyMapper::class);
 		$this->logger = $opts['logger'] ?? $this->createMock(LoggerInterface::class);
+
+		$this->customCurrencyMapper->method('findAll')->willReturn([]);
 
 		if (!empty($opts['serviceMethods'])) {
 			$this->service = $this->getMockBuilder(FetchCurrenciesService::class)
-				->setConstructorArgs([$this->config, $this->currencyMapper, $this->projectMapper, $this->historyMapper, $this->logger])
+				->setConstructorArgs([$this->config, $this->currencyMapper, $this->projectMapper, $this->historyMapper, $this->customCurrencyMapper, $this->logger])
 				->onlyMethods($opts['serviceMethods'])
 				->getMock();
 		} else {
@@ -93,6 +99,7 @@ final class ApiControllerTest extends TestCase {
 				$this->currencyMapper,
 				$this->projectMapper,
 				$this->historyMapper,
+				$this->customCurrencyMapper,
 				$this->logger
 			);
 		}
@@ -112,7 +119,8 @@ final class ApiControllerTest extends TestCase {
 			$this->service,
 			$this->currencyMapper,
 			$this->projectMapper,
-			$this->historyMapper
+			$this->historyMapper,
+			$this->customCurrencyMapper
 		);
 	}
 
@@ -171,6 +179,46 @@ final class ApiControllerTest extends TestCase {
 				['name' => 'US Dollar', 'code' => 'usd', 'symbol' => '$'],
 				['name' => 'Euro', 'code' => 'eur', 'symbol' => '€'],
 				['name' => 'Israeli New Shekel', 'code' => 'ils', 'symbol' => '₪'],
+			],
+			$data['supported_currencies']
+		);
+	}
+
+	public function testGetUserSettings_IncludesCustomCurrencies(): void {
+		$c1 = new CustomCurrency();
+		$c1->setCode('BTC');
+		$c1->setSymbol('₿');
+		$c1->setApiEndpoint('https://api.example.com/btc');
+		$c1->setApiKey('key123');
+		$c1->setJsonPath('$.rate');
+
+		$c2 = new CustomCurrency();
+		$c2->setCode('ETH');
+		$c2->setSymbol('');
+		$c2->setApiEndpoint('https://api.example.com/eth');
+		$c2->setApiKey('');
+		$c2->setJsonPath('$.price');
+
+		$customCurrencyMapper = $this->createMock(CustomCurrencyMapper::class);
+		$customCurrencyMapper->expects($this->once())
+			->method('findAll')
+			->willReturn([$c1, $c2]);
+
+		$controller = $this->buildController([
+			'symbols' => [
+				['code' => 'usd', 'symbol' => '$',  'name' => 'US Dollar'],
+			],
+			'customCurrencyMapper' => $customCurrencyMapper,
+		]);
+
+		$data = $controller->getUserSettings()->getData();
+
+		$this->assertCount(3, $data['supported_currencies']);
+		$this->assertSame(
+			[
+				['name' => 'US Dollar', 'code' => 'usd', 'symbol' => '$'],
+				['name' => 'BTC', 'code' => 'BTC', 'symbol' => '₿'],
+				['name' => 'ETH', 'code' => 'ETH', 'symbol' => 'ETH'],
 			],
 			$data['supported_currencies']
 		);
@@ -272,6 +320,69 @@ final class ApiControllerTest extends TestCase {
 		);
 	}
 
+	public function testGetProjects_IncludesCustomCurrencies(): void {
+		$btcCustom = new CustomCurrency();
+		$btcCustom->setCode('BTC');
+		$btcCustom->setSymbol('₿');
+		$btcCustom->setApiEndpoint('https://api.example.com/btc');
+		$btcCustom->setApiKey('key123');
+		$btcCustom->setJsonPath('$.rate');
+
+		$customCurrencyMapper = $this->createMock(CustomCurrencyMapper::class);
+		$customCurrencyMapper->method('findAll')
+			->willReturn([$btcCustom]);
+
+		$controller = $this->buildController(['customCurrencyMapper' => $customCurrencyMapper]);
+		$user = $this->createConfiguredMock(\OCP\IUser::class, ['getUID' => 'u1']);
+		$this->userSession->method('getUser')->willReturn($user);
+
+		$p1 = $this->getMockBuilder(\OCA\Cospend\Db\Project::class)
+			->disableOriginalConstructor()
+			->addMethods(['getId', 'getName', 'getCurrencyName'])
+			->getMock();
+		$p1->method('getId')->willReturn('p1');
+		$p1->method('getName')->willReturn('Crypto Trip');
+		$p1->method('getCurrencyName')->willReturn('usd');
+
+		$this->projectMapper->method('findAllByUser')->willReturn([$p1]);
+
+		$cUSD = new Currency();
+		$cBTC = new Currency();
+
+		// Set up currencies
+		if (method_exists($cUSD, 'setName')) {
+			$cUSD->setName('USD');
+			$cBTC->setName('BTC');
+		} else {
+			$rp = new \ReflectionProperty($cUSD, 'name');
+			$rp->setAccessible(true);
+			$rp->setValue($cUSD, 'USD');
+
+			$rp = new \ReflectionProperty($cBTC, 'name');
+			$rp->setAccessible(true);
+			$rp->setValue($cBTC, 'BTC');
+		}
+
+		$this->currencyMapper->method('findAll')
+			->willReturn([$cUSD, $cBTC]);
+
+		$data = $controller->getProjects()->getData();
+
+		$this->assertSame(
+			[
+				'projects' => [
+					[
+						'id' => 'p1',
+						'name' => 'Crypto Trip',
+						'baseCurrency' => 'usd',
+						'currencies' => ['usd', 'btc'],
+					],
+				],
+			],
+			$data
+		);
+	}
+
 	public function testGetHistory_EndOfDayTo_AndMapping(): void {
 		$controller = $this->buildController();
 
@@ -359,5 +470,302 @@ final class ApiControllerTest extends TestCase {
 		$resp = $controller->getHistory(projectId: '');
 		$this->assertSame(400, $resp->getStatus());
 		$this->assertSame(['error' => 'projectId is required'], $resp->getData());
+	}
+
+	public function testGetCustomCurrencies_ReturnsAllCurrencies(): void {
+		$c1 = new CustomCurrency();
+		$c1->setCode('BTC');
+		$c1->setSymbol('₿');
+		$c1->setApiEndpoint('https://api.example.com/btc');
+		$c1->setApiKey('key123');
+		$c1->setJsonPath('$.rate');
+
+		$c2 = new CustomCurrency();
+		$c2->setCode('ETH');
+		$c2->setSymbol('Ξ');
+		$c2->setApiEndpoint('https://api.example.com/eth');
+		$c2->setApiKey('');
+		$c2->setJsonPath('$.price');
+
+		$customCurrencyMapper = $this->createMock(CustomCurrencyMapper::class);
+		$customCurrencyMapper->expects($this->once())
+			->method('findAll')
+			->willReturn([$c1, $c2]);
+
+		$controller = $this->buildController(['customCurrencyMapper' => $customCurrencyMapper]);
+
+		$resp = $controller->getCustomCurrencies();
+		$data = $resp->getData();
+
+		$this->assertArrayHasKey('currencies', $data);
+		$currencies = $data['currencies'];
+		$this->assertCount(2, $currencies);
+
+		// Verify the entities are serialized
+		$this->assertSame('BTC', $currencies[0]['code']);
+		$this->assertSame('₿', $currencies[0]['symbol']);
+		$this->assertSame('ETH', $currencies[1]['code']);
+	}
+
+	public function testCreateCustomCurrency_Success_WithAllFields(): void {
+		$controller = $this->buildController();
+
+		$inputData = [
+			'code' => 'BTC',
+			'symbol' => '₿',
+			'api_endpoint' => 'https://api.example.com/btc',
+			'api_key' => 'secret123',
+			'json_path' => '$.rate',
+		];
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('insert')
+			->willReturnCallback(function ($currency) {
+				$this->assertInstanceOf(CustomCurrency::class, $currency);
+				$this->assertSame('BTC', $currency->getCode());
+				$this->assertSame('₿', $currency->getSymbol());
+				$this->assertSame('https://api.example.com/btc', $currency->getApiEndpoint());
+				$this->assertSame('secret123', $currency->getApiKey());
+				$this->assertSame('$.rate', $currency->getJsonPath());
+				return $currency;
+			});
+
+		$resp = $controller->createCustomCurrency($inputData);
+		$this->assertSame(201, $resp->getStatus());
+	}
+
+	public function testCreateCustomCurrency_Success_WithoutApiKey(): void {
+		$controller = $this->buildController();
+
+		$inputData = [
+			'code' => 'ETH',
+			'symbol' => 'Ξ',
+			'api_endpoint' => 'https://api.example.com/eth',
+			'json_path' => '$.price',
+		];
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('insert')
+			->willReturnCallback(function ($currency) {
+				$this->assertSame('', $currency->getApiKey());
+				return $currency;
+			});
+
+		$resp = $controller->createCustomCurrency($inputData);
+		$this->assertSame(201, $resp->getStatus());
+	}
+
+	public function testCreateCustomCurrency_BadRequest_MissingCode(): void {
+		$controller = $this->buildController();
+
+		$inputData = [
+			'symbol' => '₿',
+			'api_endpoint' => 'https://api.example.com/btc',
+			'json_path' => '$.rate',
+		];
+
+		$resp = $controller->createCustomCurrency($inputData);
+		$this->assertSame(400, $resp->getStatus());
+		$this->assertArrayHasKey('error', $resp->getData());
+		$this->assertStringContainsString('code', $resp->getData()['error']);
+	}
+
+	public function testCreateCustomCurrency_Success_WithoutSymbol(): void {
+		$controller = $this->buildController();
+
+		$inputData = [
+			'code' => 'BTC',
+			'api_endpoint' => 'https://api.example.com/btc',
+			'json_path' => '$.rate',
+		];
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('insert')
+			->willReturnCallback(function ($currency) {
+				$this->assertSame('', $currency->getSymbol());
+				return $currency;
+			});
+
+		$resp = $controller->createCustomCurrency($inputData);
+		$this->assertSame(201, $resp->getStatus());
+	}
+
+	public function testCreateCustomCurrency_InternalError_OnException(): void {
+		$controller = $this->buildController();
+
+		$inputData = [
+			'code' => 'BTC',
+			'symbol' => '₿',
+			'api_endpoint' => 'https://api.example.com/btc',
+			'json_path' => '$.rate',
+		];
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('insert')
+			->willThrowException(new \Exception('Database error'));
+
+		$this->logger->expects($this->once())
+			->method('error')
+			->with($this->stringContains('Failed to create custom currency'));
+
+		$resp = $controller->createCustomCurrency($inputData);
+		$this->assertSame(500, $resp->getStatus());
+		$this->assertArrayHasKey('error', $resp->getData());
+	}
+
+	public function testDeleteCustomCurrency_Success(): void {
+		$controller = $this->buildController();
+
+		$currency = new CustomCurrency();
+		$currency->setCode('BTC');
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('find')
+			->with('1')
+			->willReturn($currency);
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('delete')
+			->with($currency);
+
+		$resp = $controller->deleteCustomCurrency(1);
+		$this->assertSame(200, $resp->getStatus());
+		$this->assertSame(['status' => 'OK'], $resp->getData());
+	}
+
+	public function testDeleteCustomCurrency_InternalError_OnException(): void {
+		$controller = $this->buildController();
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('find')
+			->with('1')
+			->willThrowException(new \Exception('Not found'));
+
+		$this->logger->expects($this->once())
+			->method('error')
+			->with($this->stringContains('Failed to delete custom currency'));
+
+		$resp = $controller->deleteCustomCurrency(1);
+		$this->assertSame(500, $resp->getStatus());
+		$this->assertArrayHasKey('error', $resp->getData());
+	}
+
+	public function testUpdateCustomCurrency_Success_AllFields(): void {
+		$controller = $this->buildController();
+
+		$currency = new CustomCurrency();
+		$currency->setCode('BTC');
+		$currency->setSymbol('₿');
+		$currency->setApiEndpoint('https://api.example.com/btc');
+		$currency->setApiKey('oldkey');
+		$currency->setJsonPath('$.old');
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('find')
+			->with('1')
+			->willReturn($currency);
+
+		$inputData = [
+			'code' => 'ETH',
+			'symbol' => 'Ξ',
+			'api_endpoint' => 'https://api.example.com/eth',
+			'api_key' => 'newkey',
+			'json_path' => '$.new',
+		];
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('update')
+			->willReturnCallback(function ($c) {
+				$this->assertSame('ETH', $c->getCode());
+				$this->assertSame('Ξ', $c->getSymbol());
+				$this->assertSame('https://api.example.com/eth', $c->getApiEndpoint());
+				$this->assertSame('newkey', $c->getApiKey());
+				$this->assertSame('$.new', $c->getJsonPath());
+				return $c;
+			});
+
+		$resp = $controller->updateCustomCurrency(1, $inputData);
+		$this->assertSame(200, $resp->getStatus());
+	}
+
+	public function testUpdateCustomCurrency_Success_PartialUpdate(): void {
+		$controller = $this->buildController();
+
+		$currency = new CustomCurrency();
+		$currency->setCode('BTC');
+		$currency->setSymbol('₿');
+		$currency->setApiEndpoint('https://api.example.com/btc');
+		$currency->setApiKey('key123');
+		$currency->setJsonPath('$.rate');
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('find')
+			->with('1')
+			->willReturn($currency);
+
+		$inputData = [
+			'code' => 'BTCUSD',
+		];
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('update')
+			->willReturnCallback(function ($c) {
+				$this->assertSame('BTCUSD', $c->getCode());
+				$this->assertSame('₿', $c->getSymbol()); // unchanged
+				$this->assertSame('https://api.example.com/btc', $c->getApiEndpoint()); // unchanged
+				$this->assertSame('key123', $c->getApiKey()); // unchanged
+				$this->assertSame('$.rate', $c->getJsonPath()); // unchanged
+				return $c;
+			});
+
+		$resp = $controller->updateCustomCurrency(1, $inputData);
+		$this->assertSame(200, $resp->getStatus());
+	}
+
+	public function testUpdateCustomCurrency_Success_ClearApiKey(): void {
+		$controller = $this->buildController();
+
+		$currency = new CustomCurrency();
+		$currency->setCode('BTC');
+		$currency->setSymbol('₿');
+		$currency->setApiEndpoint('https://api.example.com/btc');
+		$currency->setApiKey('oldkey');
+		$currency->setJsonPath('$.rate');
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('find')
+			->with('1')
+			->willReturn($currency);
+
+		$inputData = [
+			'api_key' => null,
+		];
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('update')
+			->willReturnCallback(function ($c) {
+				$this->assertSame('', $c->getApiKey());
+				return $c;
+			});
+
+		$resp = $controller->updateCustomCurrency(1, $inputData);
+		$this->assertSame(200, $resp->getStatus());
+	}
+
+	public function testUpdateCustomCurrency_InternalError_OnException(): void {
+		$controller = $this->buildController();
+
+		$this->customCurrencyMapper->expects($this->once())
+			->method('find')
+			->with('1')
+			->willThrowException(new \Exception('Not found'));
+
+		$this->logger->expects($this->once())
+			->method('error')
+			->with($this->stringContains('Failed to update custom currency'));
+
+		$resp = $controller->updateCustomCurrency(1, ['code' => 'ETH']);
+		$this->assertSame(500, $resp->getStatus());
+		$this->assertArrayHasKey('error', $resp->getData());
 	}
 }

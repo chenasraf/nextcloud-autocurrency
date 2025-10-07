@@ -35,6 +35,9 @@ importers:
       vue:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.3)
+      vue-material-design-icons:
+        specifier: ^5.3.1
+        version: 5.3.1
     devDependencies:
       '@eslint/js':
         specifier: ^9.37.0
@@ -3841,6 +3844,9 @@ packages:
     resolution: {integrity: sha512-pQZj03f/j9LRhzz9vKaXTCXUHVYHuAXicshFv76VFqwz4MG3bcb+sPZMAbd0wmw7THjkrTPuoM0EG9TbG8CgMQ==}
     peerDependencies:
       vue: ^2.6.0
+
+  vue-material-design-icons@5.3.1:
+    resolution: {integrity: sha512-6UNEyhlTzlCeT8ZeX5WbpUGFTTPSbOoTQeoASTv7X4Ylh0pe8vltj+36VMK56KM0gG8EQVoMK/Qw/6evalg8lA==}
 
   vue-resize@2.0.0-alpha.1:
     resolution: {integrity: sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==}
@@ -8274,6 +8280,8 @@ snapshots:
   vue-frag@1.4.3(vue@3.5.22(typescript@5.9.3)):
     dependencies:
       vue: 3.5.22(typescript@5.9.3)
+
+  vue-material-design-icons@5.3.1: {}
 
   vue-resize@2.0.0-alpha.1(vue@3.5.22(typescript@5.9.3)):
     dependencies:

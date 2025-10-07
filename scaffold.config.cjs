@@ -11,7 +11,7 @@ function getLatestMigration() {
   const migrationFiles = files.sort((a, b) => a.localeCompare(b))
   const latestMigration = migrationFiles[migrationFiles.length - 1]
   const matches = /Version(\d+)/.exec(latestMigration)
-  const version = matches ? Number(matches[1]) + 1 : 0
+  const version = (matches ? Number(matches[1]) : 0) + 1
   return version
 }
 

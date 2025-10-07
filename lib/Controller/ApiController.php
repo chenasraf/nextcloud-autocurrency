@@ -12,6 +12,8 @@ use OCA\AutoCurrency\AppInfo;
 use OCA\AutoCurrency\Db\AutocurrencyRateHistoryMapper;
 use OCA\AutoCurrency\Db\CospendProjectMapper;
 use OCA\AutoCurrency\Db\CurrencyMapper;
+use OCA\AutoCurrency\Db\CustomCurrency;
+use OCA\AutoCurrency\Db\CustomCurrencyMapper;
 use OCA\AutoCurrency\Service\FetchCurrenciesService;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\ApiRoute;
@@ -49,6 +51,7 @@ class ApiController extends OCSController {
 		private CurrencyMapper $currencyMapper,
 		private CospendProjectMapper $projectMapper,
 		private AutocurrencyRateHistoryMapper $historyMapper,
+		private CustomCurrencyMapper $customCurrencyMapper,
 	) {
 		parent::__construct($appName, $request);
 		$this->config = $config;
@@ -84,11 +87,11 @@ class ApiController extends OCSController {
 	 * Get current user settings
 	 *
 	 * @return DataResponse<Http::STATUS_OK, array{
-	 *	 supported_currencies: array{
+	 *	 supported_currencies: list<array{
 	 *		 code: string,
 	 *		 symbol: string,
 	 *		 name: string
-	 *	 }
+	 *	 }>
 	 * }, array{}>
 	 *
 	 * 200: Data returned
@@ -96,11 +99,22 @@ class ApiController extends OCSController {
 	#[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/api/user-settings')]
 	public function getUserSettings(): DataResponse {
+		// Get standard currencies
 		$supported = array_map(
 			fn ($sym): array
 				=> ['name' => $sym['name'], 'code' => $sym['code'], 'symbol' => $sym['symbol']],
 			array_values($this->service->symbols)
 		);
+
+		// Add custom currencies
+		$customCurrencies = $this->customCurrencyMapper->findAll();
+		foreach ($customCurrencies as $custom) {
+			$supported[] = [
+				'name' => $custom->getCode(),
+				'code' => $custom->getCode(),
+				'symbol' => $custom->getSymbol() ?: $custom->getCode(),
+			];
+		}
 
 		return new DataResponse(
 			['supported_currencies' => $supported]
@@ -155,15 +169,29 @@ class ApiController extends OCSController {
 		$userId = $this->userSession->getUser()->getUID();
 		$projects = $this->projectMapper->findAllByUser($userId);
 
+		// Build a map of custom currency codes for quick lookup
+		$customCurrenciesMap = [];
+		foreach ($this->customCurrencyMapper->findAll() as $cc) {
+			$customCurrenciesMap[strtolower($cc->getCode())] = true;
+		}
+
 		$list = [];
 		foreach ($projects as $p) {
 			$name = (string)$p->getName();
 			$id = (string)$p->getId();
 			$currencyName = (string)$p->getCurrencyName();
 			$currencies = $this->currencyMapper->findAll($id);
-			$currencyNames = array_map(function ($c) {
+			$currencyNames = array_map(function ($c) use ($customCurrenciesMap) {
+				$currencyCode = strtolower((string)$c->getName());
+
+				// Check if it's a custom currency first
+				if (isset($customCurrenciesMap[$currencyCode])) {
+					return $currencyCode;
+				}
+
+				// Otherwise try to resolve as standard currency
 				$resolved = $this->service->getCurrencyName((string)$c->getName());
-				return $resolved ?? strtolower((string)$c->getName());
+				return $resolved ?? $currencyCode;
 			}, $currencies);
 
 			$list[] = [
@@ -266,5 +294,157 @@ class ApiController extends OCSController {
 			'baseCurrency' => $lbase,
 			'points' => $points,
 		]);
+	}
+
+	/**
+	 * Get all custom currencies
+	 *
+	 * @return DataResponse<Http::STATUS_OK, array{
+	 *   currencies: list<array{
+	 *     id: int,
+	 *     code: string,
+	 *     symbol: string,
+	 *     api_endpoint: string,
+	 *     api_key: string,
+	 *     json_path: string
+	 *   }>
+	 * }, array{}>
+	 *
+	 * 200: Data returned
+	 */
+	#[ApiRoute(verb: 'GET', url: '/api/custom-currencies')]
+	public function getCustomCurrencies(): DataResponse {
+		$currencies = $this->customCurrencyMapper->findAll();
+		$serialized = array_map(fn ($c) => $c->jsonSerialize(), $currencies);
+		return new DataResponse(['currencies' => $serialized]);
+	}
+
+	/**
+	 * Create a new custom currency
+	 *
+	 * @param array{
+	 *		code: string,
+	 *		symbol?: string,
+	 *		api_endpoint: string,
+	 *		json_path: string,
+	 *		api_key?: string
+	 * } $data Data to create
+	 * @return DataResponse<Http::STATUS_CREATED, array{
+	 *		id: int,
+	 *		code: string,
+	 *		symbol: string,
+	 *		api_endpoint: string,
+	 *		api_key: string,
+	 *		json_path: string
+	 * }, array{}>|DataResponse<Http::STATUS_BAD_REQUEST|Http::STATUS_INTERNAL_SERVER_ERROR, array{error: string}, array{}>
+	 *
+	 * 201: Currency created
+	 * 400: Bad request
+	 * 500: Internal server error
+	 */
+	#[ApiRoute(verb: 'POST', url: '/api/custom-currencies')]
+	public function createCustomCurrency(mixed $data): DataResponse {
+		$requiredFields = ['code', 'api_endpoint', 'json_path'];
+		foreach ($requiredFields as $field) {
+			if (!isset($data[$field]) || !is_string($data[$field]) || trim($data[$field]) === '') {
+				return new DataResponse(['error' => "Field '$field' is required"], Http::STATUS_BAD_REQUEST);
+			}
+		}
+		$currency = new CustomCurrency();
+		$currency->setCode(trim((string)$data['code']));
+		if (isset($data['symbol']) && is_string($data['symbol'])) {
+			$currency->setSymbol(trim((string)$data['symbol']));
+		} else {
+			$currency->setSymbol('');
+		}
+		$currency->setApiEndpoint(trim((string)$data['api_endpoint']));
+		$currency->setJsonPath(trim((string)$data['json_path']));
+		if (isset($data['api_key']) && is_string($data['api_key'])) {
+			$currency->setApiKey(trim((string)$data['api_key']));
+		} else {
+			$currency->setApiKey('');
+		}
+		try {
+			$this->customCurrencyMapper->insert($currency);
+			return new DataResponse($currency, Http::STATUS_CREATED);
+		} catch (\Exception $e) {
+			$this->logger->error('Failed to create custom currency: ' . $e->getMessage());
+			return new DataResponse(['error' => 'Failed to create custom currency'], Http::STATUS_INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 * Delete a custom currency
+	 *
+	 * @param int $id Currency ID
+	 * @return DataResponse<Http::STATUS_OK, array{status: non-empty-string}, array{}>|DataResponse<Http::STATUS_INTERNAL_SERVER_ERROR, array{error: string}, array{}>
+	 *
+	 * 200: Currency deleted
+	 * 500: Internal server error
+	 */
+	#[ApiRoute(verb: 'DELETE', url: '/api/custom-currencies/{id}')]
+	public function deleteCustomCurrency(int $id): DataResponse {
+		try {
+			$currency = $this->customCurrencyMapper->find((string)$id);
+			$this->customCurrencyMapper->delete($currency);
+			return new DataResponse(['status' => 'OK']);
+		} catch (\Exception $e) {
+			$this->logger->error('Failed to delete custom currency: ' . $e->getMessage());
+			return new DataResponse(['error' => 'Failed to delete custom currency'], Http::STATUS_INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 * Update a custom currency
+	 *
+	 * @param int $id Currency ID
+	 * @param array{
+	 *		code?: string,
+	 *		symbol?: string,
+	 *		api_endpoint?: string,
+	 *		json_path?: string,
+	 *		api_key?: string
+	 * } $data Data to update
+	 * @return DataResponse<Http::STATUS_OK, array{
+	 *		id: int,
+	 *		code: string,
+	 *		symbol: string,
+	 *		api_endpoint: string,
+	 *		api_key: string,
+	 *		json_path: string
+	 * }, array{}>|DataResponse<Http::STATUS_INTERNAL_SERVER_ERROR, array{error: string}, array{}>
+	 *
+	 * 200: Currency updated
+	 * 500: Internal server error
+	 */
+	#[ApiRoute(verb: 'PUT', url: '/api/custom-currencies/{id}')]
+	public function updateCustomCurrency(int $id, mixed $data): DataResponse {
+		try {
+			$currency = $this->customCurrencyMapper->find((string)$id);
+			if (isset($data['code']) && is_string($data['code']) && trim((string)$data['code']) !== '') {
+				$currency->setCode(trim((string)$data['code']));
+			}
+			if (isset($data['symbol']) && is_string($data['symbol']) && trim((string)$data['symbol']) !== '') {
+				$currency->setSymbol(trim((string)$data['symbol']));
+			}
+			if (isset($data['api_endpoint']) && is_string($data['api_endpoint']) && trim((string)$data['api_endpoint']) !== '') {
+				$currency->setApiEndpoint(trim((string)$data['api_endpoint']));
+			}
+			if (isset($data['json_path']) && is_string($data['json_path']) && trim((string)$data['json_path']) !== '') {
+				$currency->setJsonPath(trim((string)$data['json_path']));
+			}
+			if (array_key_exists('api_key', $data)) {
+				if (is_string($data['api_key'])) {
+					$currency->setApiKey(trim((string)$data['api_key']));
+				} else {
+					$currency->setApiKey('');
+				}
+			}
+			$this->customCurrencyMapper->update($currency);
+			return new DataResponse($currency);
+		} catch (\Exception $e) {
+			$this->logger->error('Failed to update custom currency: ' . $e->getMessage());
+			return new DataResponse(['error' => 'Failed to update custom currency'], Http::STATUS_INTERNAL_SERVER_ERROR);
+		}
 	}
 }
