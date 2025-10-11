@@ -13,7 +13,7 @@ importers:
         version: 2.5.2
       '@nextcloud/dialogs':
         specifier: ^6.3.2
-        version: 6.3.2(@nextcloud/vue@9.0.0(typescript@5.9.3))(vue@3.5.22(typescript@5.9.3))
+        version: 6.3.2(@nextcloud/vue@9.0.1(typescript@5.9.3))(vue@3.5.22(typescript@5.9.3))
       '@nextcloud/l10n':
         specifier: ^3.4.0
         version: 3.4.0
@@ -21,8 +21,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       '@nextcloud/vue':
-        specifier: ^9.0.0
-        version: 9.0.0(typescript@5.9.3)
+        specifier: ^9.0.1
+        version: 9.0.1(typescript@5.9.3)
       chart.js:
         specifier: ^4.5.0
         version: 4.5.0
@@ -493,6 +493,10 @@ packages:
     resolution: {integrity: sha512-1dr+Xhvg2QtsFC23KFXJSkU524EVgI/+WFBGTZ8tFa+9hmcZ3CqZIHjtXm3KxUvezwAY5023Ml0n2vpdYkpBXQ==}
     engines: {node: ^20.0.0 || ^22.0.0 || ^24.0.0}
 
+  '@nextcloud/auth@2.5.3':
+    resolution: {integrity: sha512-KIhWLk0BKcP4hvypE4o11YqKOPeFMfEFjRrhUUF+h7Fry+dhTBIEIxuQPVCKXMIpjTDd8791y8V6UdRZ2feKAQ==}
+    engines: {node: ^20.0.0 || ^22.0.0 || ^24.0.0}
+
   '@nextcloud/axios@2.5.2':
     resolution: {integrity: sha512-8frJb77jNMbz00TjsSqs1PymY0nIEbNM4mVmwen2tXY7wNgRai6uXilIlXKOYB9jR/F/HKRj6B4vUwVwZbhdbw==}
     engines: {node: ^20.0.0 || ^22.0.0 || ^24.0.0}
@@ -500,6 +504,10 @@ packages:
   '@nextcloud/browser-storage@0.4.0':
     resolution: {integrity: sha512-D6XxznxCYmJ3oBCC3p0JB6GZJ2RZ9dgbB1UqtTePXrIvHUMBAeF/YkiGKYxLAVZCZb+NSNZXgAYHm/3LnIUbDg==}
     engines: {node: ^20.0.0, npm: ^10.0.0}
+
+  '@nextcloud/browser-storage@0.5.0':
+    resolution: {integrity: sha512-usYr4GlJQlK3hgZURvklqWb9ivi7sgsSuFqXrs7s4hl1LTS4enzPrnkQumm6nRsQruf0ITS+OBsK+oELEbvYPA==}
+    engines: {node: ^24 || ^22 || ^20}
 
   '@nextcloud/browserslist-config@3.0.1':
     resolution: {integrity: sha512-GZTxL5fsDgmFoot/qnRurjHCuHjSfOg+A6t4+P2TySXua2Q1Ex0lecZYlSnRuOR/W5BGOZ06ITTA/hbkSh1Ypg==}
@@ -601,8 +609,8 @@ packages:
       sass: '>=1.60'
       vite: ^5 || ^6
 
-  '@nextcloud/vue@9.0.0':
-    resolution: {integrity: sha512-zEz1NObKuMuWBCSbDxGtfkM6ZYKpYyFGCStuBF+/N4Wh4LBp2Z6QY14A311nuMOwSM2W2i16MMpYvIYGguUTkA==}
+  '@nextcloud/vue@9.0.1':
+    resolution: {integrity: sha512-EvNd97GUXYr4uRn/XgDfHfPB5lqn144stgj065qoQ9ERk98W1/YSQQtLJ++dhCzGpJ+kINU6FMiXy4ly2kDgfw==}
     engines: {node: ^20.11.0 || ^22 || ^24}
 
   '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
@@ -1550,8 +1558,8 @@ packages:
   core-js@3.37.0:
     resolution: {integrity: sha512-fu5vHevQ8ZG4og+LXug8ulUtVxjOcEYvifJr7L5Bfq9GOztVqsKd9/59hUk2ZSbCrS3BqUr3EpaYGIYzq7g3Ug==}
 
-  core-js@3.45.1:
-    resolution: {integrity: sha512-L4NPsJlCfZsPeXukyzHFlg/i7IIVwHSItR0wg0FLNqYClJ4MQYTYLbC7EkjKYRLZF2iof2MUgN0EGy7MdQFChg==}
+  core-js@3.46.0:
+    resolution: {integrity: sha512-vDMm9B0xnqqZ8uSBpZ8sNtRtOdmfShrvT6h2TuQGLs0Is+cR0DYbj/KWP6ALVNbWPpqA/qPLoOuppJN07humpA==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -2131,8 +2139,8 @@ packages:
     resolution: {integrity: sha512-w9UMqWwJxHNOvoNzSJ2oPF5wvYcvP7jUvYzhp67yEhTi17ZDBBC1z9pTdGuzjD+EFIqLSYRweZjqfiPzQ06Ebg==}
     engines: {node: '>= 0.4'}
 
-  get-tsconfig@4.10.1:
-    resolution: {integrity: sha512-auHyJ4AgMz7vgS8Hp3N6HXSmlMdUyhSUrfBF16w153rxtLIEOE+HGqaBppczZvnHLqQJfiHotCYpNhl0lUROFQ==}
+  get-tsconfig@4.12.0:
+    resolution: {integrity: sha512-LScr2aNr2FbjAjZh2C6X6BxRx1/x+aTDExct/xyq2XKbYOiG5c0aK7pMsSuyc0brz3ibr/lbQiHD9jzt4lccJw==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -2866,9 +2874,17 @@ packages:
     resolution: {integrity: sha512-aNZ+VfjobsWryoiPnEApGGmf5WmNsCo9xu8dfaYamG5qaLP7ClhLN6NgsFe6SwJ2UbLEBK5dv9x8Mn5+RVhMWQ==}
     engines: {node: '>=18'}
 
+  p-queue@9.0.0:
+    resolution: {integrity: sha512-KO1RyxstL9g1mK76530TExamZC/S2Glm080Nx8PE5sTd7nlduDQsAfEl4uXX+qZjLiwvDauvzXavufy3+rJ9zQ==}
+    engines: {node: '>=20'}
+
   p-timeout@6.1.4:
     resolution: {integrity: sha512-MyIV3ZA/PmyBN/ud8vV9XzwTrNtR4jFrObymZYnZqMmW0zA8Z17vnT0rBgFE/TlohB+YCHqXMgZzb3Csp49vqg==}
     engines: {node: '>=14.16'}
+
+  p-timeout@7.0.1:
+    resolution: {integrity: sha512-AxTM2wDGORHGEkPCt8yqxOTMgpfbEHqF51f/5fJCmwFC3C/zNcGT63SymH2ttOAaiIws2zVg4+izQCjrakcwHg==}
+    engines: {node: '>=20'}
 
   package-name-regex@2.0.6:
     resolution: {integrity: sha512-gFL35q7kbE/zBaPA3UKhp2vSzcPYx2ecbYuwv1ucE9Il6IIgBDweBlH8D68UFGZic2MkllKa2KHCfC1IQBQUYA==}
@@ -3316,8 +3332,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  semver@7.7.2:
-    resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
+  semver@7.7.3:
+    resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -3497,11 +3513,11 @@ packages:
     resolution: {integrity: sha512-KIy5nylvC5le1OdaaoCJ07L+8iQzJHGH6pWDuzS+d07Cu7n1MZ2x26P8ZKIWfbK02+XIL8Mp4RkWeqdUCrDMfg==}
     engines: {node: '>=18'}
 
-  style-to-js@1.1.17:
-    resolution: {integrity: sha512-xQcBGDxJb6jjFCTzvQtfiPn6YvvP2O8U1MDIPNfJQlWMYfktPy+iGsHE7cssjs7y84d9fQaK4UF3RIJaAHSoYA==}
+  style-to-js@1.1.18:
+    resolution: {integrity: sha512-JFPn62D4kJaPTnhFUI244MThx+FEGbi+9dw1b9yBBQ+1CZpV7QAT8kUtJ7b7EUNdHajjF/0x8fT+16oLJoojLg==}
 
-  style-to-object@1.0.9:
-    resolution: {integrity: sha512-G4qppLgKu/k6FwRpHiGiKPaPTFcG3g4wNVX/Qsfu+RqQM30E7Tyu/TEgxcL9PNLF5pdRLwQdE3YKKf+KF2Dzlw==}
+  style-to-object@1.0.11:
+    resolution: {integrity: sha512-5A560JmXr7wDyGLK12Nq/EYS38VkGlglVzkis1JEdbGWSnbQIEhZzTJhzURXN5/8WwwFCs/f/VVcmkTppbXLow==}
 
   stylelint-config-html@1.1.0:
     resolution: {integrity: sha512-IZv4IVESjKLumUGi+HWeb7skgO6/g4VMuAYrJdlqQFndgbj6WJAXPhaysvBiXefX79upBdQVumgYcdd17gCpjQ==}
@@ -4321,6 +4337,11 @@ snapshots:
       '@nextcloud/browser-storage': 0.4.0
       '@nextcloud/event-bus': 3.3.2
 
+  '@nextcloud/auth@2.5.3':
+    dependencies:
+      '@nextcloud/browser-storage': 0.5.0
+      '@nextcloud/event-bus': 3.3.2
+
   '@nextcloud/axios@2.5.2':
     dependencies:
       '@nextcloud/auth': 2.5.2
@@ -4333,13 +4354,15 @@ snapshots:
     dependencies:
       core-js: 3.37.0
 
+  '@nextcloud/browser-storage@0.5.0': {}
+
   '@nextcloud/browserslist-config@3.0.1': {}
 
   '@nextcloud/capabilities@1.2.0':
     dependencies:
       '@nextcloud/initial-state': 2.2.0
 
-  '@nextcloud/dialogs@6.3.2(@nextcloud/vue@9.0.0(typescript@5.9.3))(vue@3.5.22(typescript@5.9.3))':
+  '@nextcloud/dialogs@6.3.2(@nextcloud/vue@9.0.1(typescript@5.9.3))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
       '@mdi/js': 7.4.47
       '@nextcloud/auth': 2.5.2
@@ -4352,7 +4375,7 @@ snapshots:
       '@nextcloud/router': 3.0.1
       '@nextcloud/sharing': 0.2.5
       '@nextcloud/typings': 1.9.1
-      '@nextcloud/vue': 9.0.0(typescript@5.9.3)
+      '@nextcloud/vue': 9.0.1(typescript@5.9.3)
       '@types/toastify-js': 1.12.4
       '@vueuse/core': 11.3.0(vue@3.5.22(typescript@5.9.3))
       cancelable-promise: 4.3.1
@@ -4387,12 +4410,12 @@ snapshots:
       eslint: 9.37.0
       fast-xml-parser: 4.5.3
       requireindex: 1.2.0
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@nextcloud/event-bus@3.3.2':
     dependencies:
       '@types/semver': 7.7.1
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@nextcloud/files@3.12.0':
     dependencies:
@@ -4422,7 +4445,7 @@ snapshots:
 
   '@nextcloud/logger@3.0.2':
     dependencies:
-      '@nextcloud/auth': 2.5.2
+      '@nextcloud/auth': 2.5.3
 
   '@nextcloud/paths@2.2.1': {}
 
@@ -4477,11 +4500,11 @@ snapshots:
       - typescript
       - vue
 
-  '@nextcloud/vue@9.0.0(typescript@5.9.3)':
+  '@nextcloud/vue@9.0.1(typescript@5.9.3)':
     dependencies:
       '@ckpack/vue-color': 1.6.0(vue@3.5.22(typescript@5.9.3))
       '@floating-ui/dom': 1.7.4
-      '@nextcloud/auth': 2.5.2
+      '@nextcloud/auth': 2.5.3
       '@nextcloud/axios': 2.5.2
       '@nextcloud/browser-storage': 0.4.0
       '@nextcloud/capabilities': 1.2.0
@@ -4504,7 +4527,7 @@ snapshots:
       floating-vue: 5.2.2(vue@3.5.22(typescript@5.9.3))
       focus-trap: 7.6.5
       linkifyjs: 4.3.2
-      p-queue: 8.1.1
+      p-queue: 9.0.0
       rehype-external-links: 3.0.0
       rehype-highlight: 7.0.2
       rehype-react: 8.0.0
@@ -4912,7 +4935,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 1.4.3(typescript@5.9.3)
     optionalDependencies:
       typescript: 5.9.3
@@ -4929,7 +4952,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -5410,7 +5433,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   byte-length@1.0.2: {}
 
@@ -5523,7 +5546,7 @@ snapshots:
 
   core-js@3.37.0: {}
 
-  core-js@3.45.1: {}
+  core-js@3.46.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -5721,7 +5744,7 @@ snapshots:
   emoji-mart-vue-fast@15.0.5(vue@3.5.22(typescript@5.9.3)):
     dependencies:
       '@babel/runtime': 7.28.4
-      core-js: 3.45.1
+      core-js: 3.46.0
       vue: 3.5.22(typescript@5.9.3)
 
   emoji-regex@10.5.0: {}
@@ -5867,7 +5890,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@9.37.0):
     dependencies:
       eslint: 9.37.0
-      semver: 7.7.2
+      semver: 7.7.3
 
   eslint-config-standard@17.1.0(eslint-plugin-import@2.31.0)(eslint-plugin-n@16.6.2(eslint@9.37.0))(eslint-plugin-promise@6.6.0(eslint@9.37.0))(eslint@9.37.0):
     dependencies:
@@ -5898,7 +5921,7 @@ snapshots:
       eslint: 9.37.0
       eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.45.0(eslint@9.37.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@9.37.0)
       fast-glob: 3.3.3
-      get-tsconfig: 4.10.1
+      get-tsconfig: 4.12.0
       is-bun-module: 1.3.0
       is-glob: 4.0.3
     optionalDependencies:
@@ -5966,7 +5989,7 @@ snapshots:
       eslint: 9.37.0
       esquery: 1.6.0
       is-builtin-module: 3.2.1
-      semver: 7.7.2
+      semver: 7.7.3
       spdx-expression-parse: 4.0.0
     transitivePeerDependencies:
       - supports-color
@@ -5977,14 +6000,14 @@ snapshots:
       builtins: 5.1.0
       eslint: 9.37.0
       eslint-plugin-es-x: 7.8.0(eslint@9.37.0)
-      get-tsconfig: 4.10.1
+      get-tsconfig: 4.12.0
       globals: 13.24.0
       ignore: 5.3.2
       is-builtin-module: 3.2.1
       is-core-module: 2.16.1
       minimatch: 3.1.2
       resolve: 1.22.10
-      semver: 7.7.2
+      semver: 7.7.3
 
   eslint-plugin-promise@6.6.0(eslint@9.37.0):
     dependencies:
@@ -5998,7 +6021,7 @@ snapshots:
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 6.1.2
-      semver: 7.7.2
+      semver: 7.7.3
       vue-eslint-parser: 9.4.3(eslint@9.37.0)
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
@@ -6257,7 +6280,7 @@ snapshots:
       es-errors: 1.3.0
       get-intrinsic: 1.3.0
 
-  get-tsconfig@4.10.1:
+  get-tsconfig@4.12.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
@@ -6364,7 +6387,7 @@ snapshots:
       mdast-util-mdxjs-esm: 2.0.1
       property-information: 7.1.0
       space-separated-tokens: 2.0.2
-      style-to-js: 1.1.17
+      style-to-js: 1.1.18
       unist-util-position: 5.0.0
       vfile-message: 4.0.3
     transitivePeerDependencies:
@@ -6484,7 +6507,7 @@ snapshots:
 
   is-bun-module@1.3.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   is-callable@1.2.7: {}
 
@@ -6732,7 +6755,7 @@ snapshots:
 
   md5.js@1.3.5:
     dependencies:
-      hash-base: 3.0.5
+      hash-base: 3.1.2
       inherits: 2.0.4
       safe-buffer: 5.2.1
 
@@ -7165,7 +7188,14 @@ snapshots:
       eventemitter3: 5.0.1
       p-timeout: 6.1.4
 
+  p-queue@9.0.0:
+    dependencies:
+      eventemitter3: 5.0.1
+      p-timeout: 7.0.1
+
   p-timeout@6.1.4: {}
+
+  p-timeout@7.0.1: {}
 
   package-name-regex@2.0.6: {}
 
@@ -7661,7 +7691,7 @@ snapshots:
     dependencies:
       lru-cache: 6.0.0
 
-  semver@7.7.2: {}
+  semver@7.7.3: {}
 
   set-function-length@1.2.2:
     dependencies:
@@ -7878,11 +7908,11 @@ snapshots:
     dependencies:
       '@tokenizer/token': 0.3.0
 
-  style-to-js@1.1.17:
+  style-to-js@1.1.18:
     dependencies:
-      style-to-object: 1.0.9
+      style-to-object: 1.0.11
 
-  style-to-object@1.0.9:
+  style-to-object@1.0.11:
     dependencies:
       inline-style-parser: 0.2.4
 
@@ -7903,7 +7933,7 @@ snapshots:
   stylelint-config-recommended-vue@1.5.0(postcss-html@1.7.0)(stylelint@16.11.0(typescript@5.9.3)):
     dependencies:
       postcss-html: 1.7.0
-      semver: 7.7.2
+      semver: 7.7.3
       stylelint: 16.11.0(typescript@5.9.3)
       stylelint-config-html: 1.1.0(postcss-html@1.7.0)(stylelint@16.11.0(typescript@5.9.3))
       stylelint-config-recommended: 17.0.0(stylelint@16.11.0(typescript@5.9.3))
@@ -8273,7 +8303,7 @@ snapshots:
       espree: 9.6.1
       esquery: 1.6.0
       lodash: 4.17.21
-      semver: 7.7.2
+      semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
 
