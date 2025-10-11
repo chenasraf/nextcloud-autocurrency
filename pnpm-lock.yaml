@@ -12,8 +12,8 @@ importers:
         specifier: ^2.5.2
         version: 2.5.2
       '@nextcloud/dialogs':
-        specifier: ^6.3.2
-        version: 6.3.2(@nextcloud/vue@9.0.0(typescript@5.9.3))(vue@3.5.22(typescript@5.9.3))
+        specifier: ^7.0.0
+        version: 7.0.0(rollup@4.52.4)(typescript@5.9.3)(vite@6.3.6(@types/node@20.17.10)(sass-embedded@1.93.2)(sass@1.93.2)(yaml@2.8.1))
       '@nextcloud/l10n':
         specifier: ^3.4.0
         version: 3.4.0
@@ -493,6 +493,10 @@ packages:
     resolution: {integrity: sha512-1dr+Xhvg2QtsFC23KFXJSkU524EVgI/+WFBGTZ8tFa+9hmcZ3CqZIHjtXm3KxUvezwAY5023Ml0n2vpdYkpBXQ==}
     engines: {node: ^20.0.0 || ^22.0.0 || ^24.0.0}
 
+  '@nextcloud/auth@2.5.3':
+    resolution: {integrity: sha512-KIhWLk0BKcP4hvypE4o11YqKOPeFMfEFjRrhUUF+h7Fry+dhTBIEIxuQPVCKXMIpjTDd8791y8V6UdRZ2feKAQ==}
+    engines: {node: ^20.0.0 || ^22.0.0 || ^24.0.0}
+
   '@nextcloud/axios@2.5.2':
     resolution: {integrity: sha512-8frJb77jNMbz00TjsSqs1PymY0nIEbNM4mVmwen2tXY7wNgRai6uXilIlXKOYB9jR/F/HKRj6B4vUwVwZbhdbw==}
     engines: {node: ^20.0.0 || ^22.0.0 || ^24.0.0}
@@ -500,6 +504,10 @@ packages:
   '@nextcloud/browser-storage@0.4.0':
     resolution: {integrity: sha512-D6XxznxCYmJ3oBCC3p0JB6GZJ2RZ9dgbB1UqtTePXrIvHUMBAeF/YkiGKYxLAVZCZb+NSNZXgAYHm/3LnIUbDg==}
     engines: {node: ^20.0.0, npm: ^10.0.0}
+
+  '@nextcloud/browser-storage@0.5.0':
+    resolution: {integrity: sha512-usYr4GlJQlK3hgZURvklqWb9ivi7sgsSuFqXrs7s4hl1LTS4enzPrnkQumm6nRsQruf0ITS+OBsK+oELEbvYPA==}
+    engines: {node: ^24 || ^22 || ^20}
 
   '@nextcloud/browserslist-config@3.0.1':
     resolution: {integrity: sha512-GZTxL5fsDgmFoot/qnRurjHCuHjSfOg+A6t4+P2TySXua2Q1Ex0lecZYlSnRuOR/W5BGOZ06ITTA/hbkSh1Ypg==}
@@ -509,12 +517,9 @@ packages:
     resolution: {integrity: sha512-L1NQtOfHWzkfj0Ple1MEJt6HmOHWAi3y4qs+OnwSWexqJT0DtXTVPyRxi7ADyITwRxS5H9R/HMl6USAj4Nr1nQ==}
     engines: {node: ^20.0.0, npm: ^10.0.0}
 
-  '@nextcloud/dialogs@6.3.2':
-    resolution: {integrity: sha512-ioZ483wmKdNX1HdSJ1EG7ewTSyQAqlmbBALkhT4guZdR9JG8VIdnijX15qwKgAWITG2y36PWoi9Rimb3dDf+7A==}
-    engines: {node: ^20.0.0 || ^22.0.0 || ^24.0.0, npm: ^10.5.1}
-    peerDependencies:
-      '@nextcloud/vue': ^8.24.0
-      vue: ^2.7.16
+  '@nextcloud/dialogs@7.0.0':
+    resolution: {integrity: sha512-kOLyjdYR9YNoO3dMlm0A/MRngqWtWlukviqJWr5vUIu5ACz5Z9F9Kr+ciZGZcOS/uxSFOglD08e+rJiLFDUXTQ==}
+    engines: {node: ^20 || ^22 || ^24}
 
   '@nextcloud/eslint-config@8.4.2':
     resolution: {integrity: sha512-zsDcBxvp2Vr/BgasK/vNYJ84LOXjl4RseJPrcp93zcnaB2WnygV50Sd0nQ5JN0ngTyPjiIlGd92MMzrMTofjRA==}
@@ -933,9 +938,6 @@ packages:
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
-  '@types/web-bluetooth@0.0.20':
-    resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
-
   '@types/web-bluetooth@0.0.21':
     resolution: {integrity: sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==}
 
@@ -1168,22 +1170,13 @@ packages:
     peerDependencies:
       vue: ^3.5.0
 
-  '@vueuse/core@11.3.0':
-    resolution: {integrity: sha512-7OC4Rl1f9G8IT6rUfi9JrKiXy4bfmHhZ5x2Ceojy0jnd3mHNEvV4JaRygH362ror6/NZ+Nl+n13LPzGiPN8cKA==}
-
   '@vueuse/core@13.9.0':
     resolution: {integrity: sha512-ts3regBQyURfCE2BcytLqzm8+MmLlo5Ln/KLoxDVcsZ2gzIwVNnQpQOL/UKV8alUqjSZOlpFZcRNsLRqj+OzyA==}
     peerDependencies:
       vue: ^3.5.0
 
-  '@vueuse/metadata@11.3.0':
-    resolution: {integrity: sha512-pwDnDspTqtTo2HwfLw4Rp6yywuuBdYnPYDq+mO38ZYKGebCUQC/nVj/PXSiK9HX5otxLz8Fn7ECPbjiRz2CC3g==}
-
   '@vueuse/metadata@13.9.0':
     resolution: {integrity: sha512-1AFRvuiGphfF7yWixZa0KwjYH8ulyjDCC0aFgrGRz8+P4kvDFSdXLVfTk5xAN9wEuD1J6z4/myMoYbnHoX07zg==}
-
-  '@vueuse/shared@11.3.0':
-    resolution: {integrity: sha512-P8gSSWQeucH5821ek2mn/ciCk+MS/zoRKqdQIM3bHq6p7GXDAJLmnRRKmF5F65sAVJIfzQlwR3aDzwCn10s8hA==}
 
   '@vueuse/shared@13.9.0':
     resolution: {integrity: sha512-e89uuTLMh0U5cZ9iDpEI2senqPGfbPRTHM/0AaQkcxnpqjkZqDYP8rpfm7edOz8s+pOCOROEy1PIveSW8+fL5g==}
@@ -2131,8 +2124,8 @@ packages:
     resolution: {integrity: sha512-w9UMqWwJxHNOvoNzSJ2oPF5wvYcvP7jUvYzhp67yEhTi17ZDBBC1z9pTdGuzjD+EFIqLSYRweZjqfiPzQ06Ebg==}
     engines: {node: '>= 0.4'}
 
-  get-tsconfig@4.10.1:
-    resolution: {integrity: sha512-auHyJ4AgMz7vgS8Hp3N6HXSmlMdUyhSUrfBF16w153rxtLIEOE+HGqaBppczZvnHLqQJfiHotCYpNhl0lUROFQ==}
+  get-tsconfig@4.12.0:
+    resolution: {integrity: sha512-LScr2aNr2FbjAjZh2C6X6BxRx1/x+aTDExct/xyq2XKbYOiG5c0aK7pMsSuyc0brz3ibr/lbQiHD9jzt4lccJw==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -2866,9 +2859,17 @@ packages:
     resolution: {integrity: sha512-aNZ+VfjobsWryoiPnEApGGmf5WmNsCo9xu8dfaYamG5qaLP7ClhLN6NgsFe6SwJ2UbLEBK5dv9x8Mn5+RVhMWQ==}
     engines: {node: '>=18'}
 
+  p-queue@9.0.0:
+    resolution: {integrity: sha512-KO1RyxstL9g1mK76530TExamZC/S2Glm080Nx8PE5sTd7nlduDQsAfEl4uXX+qZjLiwvDauvzXavufy3+rJ9zQ==}
+    engines: {node: '>=20'}
+
   p-timeout@6.1.4:
     resolution: {integrity: sha512-MyIV3ZA/PmyBN/ud8vV9XzwTrNtR4jFrObymZYnZqMmW0zA8Z17vnT0rBgFE/TlohB+YCHqXMgZzb3Csp49vqg==}
     engines: {node: '>=14.16'}
+
+  p-timeout@7.0.1:
+    resolution: {integrity: sha512-AxTM2wDGORHGEkPCt8yqxOTMgpfbEHqF51f/5fJCmwFC3C/zNcGT63SymH2ttOAaiIws2zVg4+izQCjrakcwHg==}
+    engines: {node: '>=20'}
 
   package-name-regex@2.0.6:
     resolution: {integrity: sha512-gFL35q7kbE/zBaPA3UKhp2vSzcPYx2ecbYuwv1ucE9Il6IIgBDweBlH8D68UFGZic2MkllKa2KHCfC1IQBQUYA==}
@@ -3318,6 +3319,11 @@ packages:
 
   semver@7.7.2:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.7.3:
+    resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -3777,6 +3783,11 @@ packages:
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
+  vite-plugin-node-polyfills@0.24.0:
+    resolution: {integrity: sha512-GA9QKLH+vIM8NPaGA+o2t8PDfFUl32J8rUp1zQfMKVJQiNkOX4unE51tR6ppl6iKw5yOrDAdSH7r/UIFLCVhLw==}
+    peerDependencies:
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+
   vite@6.3.6:
     resolution: {integrity: sha512-0msEVHJEScQbhkbVTb/4iHZdJ6SXp/AvxL2sjwYQFfBqleHtnCqv1J3sa9zbWz/6kW1m9Tfzn92vW+kZ1WV6QA==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -3823,27 +3834,11 @@ packages:
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
-  vue-demi@0.14.10:
-    resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
-    engines: {node: '>=12'}
-    hasBin: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-
   vue-eslint-parser@9.4.3:
     resolution: {integrity: sha512-2rYRLWlIpaiN8xbPiDyXZXRgLGOtWxERV7ND5fFAv5qo1D2N9Fu9MNajBNc6o13lZ+24DAWCkQCvj4klgmcITg==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
-
-  vue-frag@1.4.3:
-    resolution: {integrity: sha512-pQZj03f/j9LRhzz9vKaXTCXUHVYHuAXicshFv76VFqwz4MG3bcb+sPZMAbd0wmw7THjkrTPuoM0EG9TbG8CgMQ==}
-    peerDependencies:
-      vue: ^2.6.0
 
   vue-material-design-icons@5.3.1:
     resolution: {integrity: sha512-6UNEyhlTzlCeT8ZeX5WbpUGFTTPSbOoTQeoASTv7X4Ylh0pe8vltj+36VMK56KM0gG8EQVoMK/Qw/6evalg8lA==}
@@ -4321,6 +4316,11 @@ snapshots:
       '@nextcloud/browser-storage': 0.4.0
       '@nextcloud/event-bus': 3.3.2
 
+  '@nextcloud/auth@2.5.3':
+    dependencies:
+      '@nextcloud/browser-storage': 0.5.0
+      '@nextcloud/event-bus': 3.3.2
+
   '@nextcloud/axios@2.5.2':
     dependencies:
       '@nextcloud/auth': 2.5.2
@@ -4333,37 +4333,44 @@ snapshots:
     dependencies:
       core-js: 3.37.0
 
+  '@nextcloud/browser-storage@0.5.0': {}
+
   '@nextcloud/browserslist-config@3.0.1': {}
 
   '@nextcloud/capabilities@1.2.0':
     dependencies:
       '@nextcloud/initial-state': 2.2.0
 
-  '@nextcloud/dialogs@6.3.2(@nextcloud/vue@9.0.0(typescript@5.9.3))(vue@3.5.22(typescript@5.9.3))':
+  '@nextcloud/dialogs@7.0.0(rollup@4.52.4)(typescript@5.9.3)(vite@6.3.6(@types/node@20.17.10)(sass-embedded@1.93.2)(sass@1.93.2)(yaml@2.8.1))':
     dependencies:
       '@mdi/js': 7.4.47
-      '@nextcloud/auth': 2.5.2
+      '@nextcloud/auth': 2.5.3
       '@nextcloud/axios': 2.5.2
       '@nextcloud/browser-storage': 0.4.0
       '@nextcloud/event-bus': 3.3.2
       '@nextcloud/files': 3.12.0
-      '@nextcloud/initial-state': 2.2.0
+      '@nextcloud/initial-state': 3.0.0
       '@nextcloud/l10n': 3.4.0
+      '@nextcloud/paths': 2.2.1
       '@nextcloud/router': 3.0.1
-      '@nextcloud/sharing': 0.2.5
+      '@nextcloud/sharing': 0.3.0
       '@nextcloud/typings': 1.9.1
       '@nextcloud/vue': 9.0.0(typescript@5.9.3)
       '@types/toastify-js': 1.12.4
-      '@vueuse/core': 11.3.0(vue@3.5.22(typescript@5.9.3))
+      '@vueuse/core': 13.9.0(vue@3.5.22(typescript@5.9.3))
       cancelable-promise: 4.3.1
-      p-queue: 8.1.1
+      p-queue: 9.0.0
       toastify-js: 1.12.0
+      vite-plugin-node-polyfills: 0.24.0(rollup@4.52.4)(vite@6.3.6(@types/node@20.17.10)(sass-embedded@1.93.2)(sass@1.93.2)(yaml@2.8.1))
       vue: 3.5.22(typescript@5.9.3)
-      vue-frag: 1.4.3(vue@3.5.22(typescript@5.9.3))
       webdav: 5.8.0
     transitivePeerDependencies:
-      - '@vue/composition-api'
+      - '@nuxt/kit'
       - debug
+      - rollup
+      - supports-color
+      - typescript
+      - vite
 
   '@nextcloud/eslint-config@8.4.2(@babel/core@7.26.0)(@babel/eslint-parser@7.25.9(@babel/core@7.26.0)(eslint@9.37.0))(@nextcloud/eslint-plugin@2.2.1(eslint@9.37.0))(@vue/eslint-config-typescript@13.0.0(eslint-plugin-vue@9.32.0(eslint@9.37.0))(eslint@9.37.0)(typescript@5.9.3))(eslint-config-standard@17.1.0(eslint-plugin-import@2.31.0)(eslint-plugin-n@16.6.2(eslint@9.37.0))(eslint-plugin-promise@6.6.0(eslint@9.37.0))(eslint@9.37.0))(eslint-import-resolver-exports@1.0.0-beta.5(eslint-plugin-import@2.31.0)(eslint@9.37.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-jsdoc@46.10.1(eslint@9.37.0))(eslint-plugin-n@16.6.2(eslint@9.37.0))(eslint-plugin-promise@6.6.0(eslint@9.37.0))(eslint-plugin-vue@9.32.0(eslint@9.37.0))(eslint@9.37.0)(typescript@5.9.3)':
     dependencies:
@@ -4387,16 +4394,16 @@ snapshots:
       eslint: 9.37.0
       fast-xml-parser: 4.5.3
       requireindex: 1.2.0
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@nextcloud/event-bus@3.3.2':
     dependencies:
       '@types/semver': 7.7.1
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@nextcloud/files@3.12.0':
     dependencies:
-      '@nextcloud/auth': 2.5.2
+      '@nextcloud/auth': 2.5.3
       '@nextcloud/capabilities': 1.2.0
       '@nextcloud/l10n': 3.4.0
       '@nextcloud/logger': 3.0.2
@@ -4422,7 +4429,7 @@ snapshots:
 
   '@nextcloud/logger@3.0.2':
     dependencies:
-      '@nextcloud/auth': 2.5.2
+      '@nextcloud/auth': 2.5.3
 
   '@nextcloud/paths@2.2.1': {}
 
@@ -4789,8 +4796,6 @@ snapshots:
 
   '@types/unist@3.0.3': {}
 
-  '@types/web-bluetooth@0.0.20': {}
-
   '@types/web-bluetooth@0.0.21': {}
 
   '@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@9.37.0)(typescript@5.9.3))(eslint@9.37.0)(typescript@5.9.3)':
@@ -4912,7 +4917,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 1.4.3(typescript@5.9.3)
     optionalDependencies:
       typescript: 5.9.3
@@ -5113,16 +5118,6 @@ snapshots:
       '@vueuse/shared': 13.9.0(vue@3.5.22(typescript@5.9.3))
       vue: 3.5.22(typescript@5.9.3)
 
-  '@vueuse/core@11.3.0(vue@3.5.22(typescript@5.9.3))':
-    dependencies:
-      '@types/web-bluetooth': 0.0.20
-      '@vueuse/metadata': 11.3.0
-      '@vueuse/shared': 11.3.0(vue@3.5.22(typescript@5.9.3))
-      vue-demi: 0.14.10(vue@3.5.22(typescript@5.9.3))
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-
   '@vueuse/core@13.9.0(vue@3.5.22(typescript@5.9.3))':
     dependencies:
       '@types/web-bluetooth': 0.0.21
@@ -5130,16 +5125,7 @@ snapshots:
       '@vueuse/shared': 13.9.0(vue@3.5.22(typescript@5.9.3))
       vue: 3.5.22(typescript@5.9.3)
 
-  '@vueuse/metadata@11.3.0': {}
-
   '@vueuse/metadata@13.9.0': {}
-
-  '@vueuse/shared@11.3.0(vue@3.5.22(typescript@5.9.3))':
-    dependencies:
-      vue-demi: 0.14.10(vue@3.5.22(typescript@5.9.3))
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
 
   '@vueuse/shared@13.9.0(vue@3.5.22(typescript@5.9.3))':
     dependencies:
@@ -5410,7 +5396,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   byte-length@1.0.2: {}
 
@@ -5867,7 +5853,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@9.37.0):
     dependencies:
       eslint: 9.37.0
-      semver: 7.7.2
+      semver: 7.7.3
 
   eslint-config-standard@17.1.0(eslint-plugin-import@2.31.0)(eslint-plugin-n@16.6.2(eslint@9.37.0))(eslint-plugin-promise@6.6.0(eslint@9.37.0))(eslint@9.37.0):
     dependencies:
@@ -5898,7 +5884,7 @@ snapshots:
       eslint: 9.37.0
       eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.45.0(eslint@9.37.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@9.37.0)
       fast-glob: 3.3.3
-      get-tsconfig: 4.10.1
+      get-tsconfig: 4.12.0
       is-bun-module: 1.3.0
       is-glob: 4.0.3
     optionalDependencies:
@@ -5966,7 +5952,7 @@ snapshots:
       eslint: 9.37.0
       esquery: 1.6.0
       is-builtin-module: 3.2.1
-      semver: 7.7.2
+      semver: 7.7.3
       spdx-expression-parse: 4.0.0
     transitivePeerDependencies:
       - supports-color
@@ -5977,14 +5963,14 @@ snapshots:
       builtins: 5.1.0
       eslint: 9.37.0
       eslint-plugin-es-x: 7.8.0(eslint@9.37.0)
-      get-tsconfig: 4.10.1
+      get-tsconfig: 4.12.0
       globals: 13.24.0
       ignore: 5.3.2
       is-builtin-module: 3.2.1
       is-core-module: 2.16.1
       minimatch: 3.1.2
       resolve: 1.22.10
-      semver: 7.7.2
+      semver: 7.7.3
 
   eslint-plugin-promise@6.6.0(eslint@9.37.0):
     dependencies:
@@ -5998,7 +5984,7 @@ snapshots:
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 6.1.2
-      semver: 7.7.2
+      semver: 7.7.3
       vue-eslint-parser: 9.4.3(eslint@9.37.0)
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
@@ -6257,7 +6243,7 @@ snapshots:
       es-errors: 1.3.0
       get-intrinsic: 1.3.0
 
-  get-tsconfig@4.10.1:
+  get-tsconfig@4.12.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
@@ -6484,7 +6470,7 @@ snapshots:
 
   is-bun-module@1.3.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   is-callable@1.2.7: {}
 
@@ -7165,7 +7151,14 @@ snapshots:
       eventemitter3: 5.0.1
       p-timeout: 6.1.4
 
+  p-queue@9.0.0:
+    dependencies:
+      eventemitter3: 5.0.1
+      p-timeout: 7.0.1
+
   p-timeout@6.1.4: {}
+
+  p-timeout@7.0.1: {}
 
   package-name-regex@2.0.6: {}
 
@@ -7663,6 +7656,8 @@ snapshots:
 
   semver@7.7.2: {}
 
+  semver@7.7.3: {}
+
   set-function-length@1.2.2:
     dependencies:
       define-data-property: 1.1.4
@@ -7903,7 +7898,7 @@ snapshots:
   stylelint-config-recommended-vue@1.5.0(postcss-html@1.7.0)(stylelint@16.11.0(typescript@5.9.3)):
     dependencies:
       postcss-html: 1.7.0
-      semver: 7.7.2
+      semver: 7.7.3
       stylelint: 16.11.0(typescript@5.9.3)
       stylelint-config-html: 1.1.0(postcss-html@1.7.0)(stylelint@16.11.0(typescript@5.9.3))
       stylelint-config-recommended: 17.0.0(stylelint@16.11.0(typescript@5.9.3))
@@ -8241,6 +8236,14 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
+  vite-plugin-node-polyfills@0.24.0(rollup@4.52.4)(vite@6.3.6(@types/node@20.17.10)(sass-embedded@1.93.2)(sass@1.93.2)(yaml@2.8.1)):
+    dependencies:
+      '@rollup/plugin-inject': 5.0.5(rollup@4.52.4)
+      node-stdlib-browser: 1.3.1
+      vite: 6.3.6(@types/node@20.17.10)(sass-embedded@1.93.2)(sass@1.93.2)(yaml@2.8.1)
+    transitivePeerDependencies:
+      - rollup
+
   vite@6.3.6(@types/node@20.17.10)(sass-embedded@1.93.2)(sass@1.93.2)(yaml@2.8.1):
     dependencies:
       esbuild: 0.25.10
@@ -8260,10 +8263,6 @@ snapshots:
 
   vscode-uri@3.1.0: {}
 
-  vue-demi@0.14.10(vue@3.5.22(typescript@5.9.3)):
-    dependencies:
-      vue: 3.5.22(typescript@5.9.3)
-
   vue-eslint-parser@9.4.3(eslint@9.37.0):
     dependencies:
       debug: 4.4.3
@@ -8273,13 +8272,9 @@ snapshots:
       espree: 9.6.1
       esquery: 1.6.0
       lodash: 4.17.21
-      semver: 7.7.2
+      semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
-
-  vue-frag@1.4.3(vue@3.5.22(typescript@5.9.3)):
-    dependencies:
-      vue: 3.5.22(typescript@5.9.3)
 
   vue-material-design-icons@5.3.1: {}
 
