@@ -5,6 +5,16 @@
     "Every hour" : "Každou hodinu",
     "_Every %n hour_::_Every %n hours_" : ["Každou %n hodinu","Každé %n hodiny","Každých %n hodin","Každé %n hodiny"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Každou %n hodinu (výchozí)","Každé %n hodiny (výchozí)","Každých %n hodin (výchozí)","Každé %n hodiny (výchozí)"],
+    "Custom Currencies" : "Uživatelsky určené měny",
+    "Currency Code" : "Kód měny",
+    "e.g., BTC" : "např. BTC",
+    "Symbol (optional)" : "Symbol (volitelné)",
+    "e.g., ₿" : "např. ₿",
+    "API Endpoint" : "Koncový bod API",
+    "e.g., https://api.example.com/rates/{base}" : "např. https://api.example.com/rates/{base}",
+    "JSON Path" : "JSON popis umístění",
+    "Add Currency" : "Přidat měnu",
+    "Delete Currency" : "Smazat měnu",
     "Cron Settings" : "Nastavení plánovače (cron)",
     "Fetch Rates Now" : "Získat směnné kurzy nyní",
     "Rates last fetched:" : "Směnné kurzy naposledy zaktualizovány:",
@@ -29,7 +39,10 @@
     "Currency" : "Měna",
     "From" : "Od",
     "To" : "Do",
+    "Flip conversion" : "Prohodit převod",
     "Time" : "Time",
-    "-" : "–"
+    "-" : "–",
+    "Rate ({dir})" : "Kurz ({dir})",
+    "{label}: {value}" : "{label}: {value}"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
 }
