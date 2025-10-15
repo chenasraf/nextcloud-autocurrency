@@ -13,7 +13,7 @@ OC.L10N.register(
     "Currency Code" : "Währungscode",
     "e.g., BTC" : "z. B. BTC",
     "Symbol (optional)" : "Symbol (optional)",
-    "e.g., ₿" : "z.B. ₿",
+    "e.g., ₿" : "z. B. ₿",
     "API Endpoint" : "API-Endpunkt",
     "e.g., https://api.example.com/rates/{base}" : "z.B. http://api.example.tsum/rates/{base}",
     "API Key (optional)" : "API-Schlüssel (optional)",
