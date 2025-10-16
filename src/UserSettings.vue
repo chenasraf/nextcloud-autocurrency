@@ -221,9 +221,9 @@ export default {
       } as const,
     }
   },
-  created() {
-    this.fetchSettings()
-    this.fetchProjects()
+  async created() {
+    await this.fetchSettings()
+    await this.fetchProjects()
   },
   watch: {
     selectedProject() {
