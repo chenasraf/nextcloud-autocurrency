@@ -399,7 +399,7 @@ export default {
               callbacks: {
                 label: (tt) => {
                   const primary = typeof tt.raw === 'number' ? tt.raw : tt.parsed.y
-                  if (!isFinite(primary) || primary <= 0) {
+                  if (primary === null || !isFinite(primary) || primary <= 0) {
                     return t(APP_ID, '{label}: {value}', {
                       label: tt.dataset.label ?? '',
                       value: this.strings.chartDash,
