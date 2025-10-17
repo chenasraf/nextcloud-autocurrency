@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.3.0...v1.3.1) (2025-10-17)
+
+
+### Bug Fixes
+
+* currency dropdown initial label ([9832dae](https://github.com/chenasraf/nextcloud-autocurrency/commit/9832dae0437e3db914eee28a8598257dd7351408))
+* handle missing primary number ([5ebf90b](https://github.com/chenasraf/nextcloud-autocurrency/commit/5ebf90b795ce25ef7b6dffafe259bef7dda7c0fc))
+* **l10n:** Update translations from Transifex ([80f923b](https://github.com/chenasraf/nextcloud-autocurrency/commit/80f923b8d71b7aa1f8966ede9886c47546530785))
+* **l10n:** Update translations from Transifex ([6e43278](https://github.com/chenasraf/nextcloud-autocurrency/commit/6e43278fc7eb161c86b69b5c46563f6447f5a656))
+* **l10n:** Update translations from Transifex ([c57a33b](https://github.com/chenasraf/nextcloud-autocurrency/commit/c57a33bdef4a0f8a6482fabb88b0f3137eb43b46))
+* **l10n:** Update translations from Transifex ([9c6caec](https://github.com/chenasraf/nextcloud-autocurrency/commit/9c6caece09830128c775df83854444fd64069dd8))
+* **l10n:** Update translations from Transifex ([86da0b8](https://github.com/chenasraf/nextcloud-autocurrency/commit/86da0b87cd4b2458f35215ad4eb4b6d5b3f3a35d))
+* **l10n:** Update translations from Transifex ([22283a4](https://github.com/chenasraf/nextcloud-autocurrency/commit/22283a421d2047603f8bed23af30364c1864261a))
+* **l10n:** Update translations from Transifex ([c3c4f62](https://github.com/chenasraf/nextcloud-autocurrency/commit/c3c4f62c66d2b7171cd754a107dfb64f576947ac))
+
 ## [1.3.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.2.1...v1.3.0) (2025-10-07)
 
 
