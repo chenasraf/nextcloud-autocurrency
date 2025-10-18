@@ -40,8 +40,8 @@ importers:
         specifier: ^9.37.0
         version: 9.37.0
       '@nextcloud/browserslist-config':
-        specifier: ^3.0.1
-        version: 3.0.1
+        specifier: ^3.1.0
+        version: 3.1.0
       '@nextcloud/eslint-config':
         specifier: ^8.4.2
         version: 8.4.2(@babel/core@7.26.0)(@babel/eslint-parser@7.25.9(@babel/core@7.26.0)(eslint@9.37.0))(@nextcloud/eslint-plugin@2.2.1(eslint@9.37.0))(@vue/eslint-config-typescript@13.0.0(eslint-plugin-vue@9.32.0(eslint@9.37.0))(eslint@9.37.0)(typescript@5.9.3))(eslint-config-standard@17.1.0(eslint-plugin-import@2.31.0)(eslint-plugin-n@16.6.2(eslint@9.37.0))(eslint-plugin-promise@6.6.0(eslint@9.37.0))(eslint@9.37.0))(eslint-import-resolver-exports@1.0.0-beta.5(eslint-plugin-import@2.31.0)(eslint@9.37.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-jsdoc@46.10.1(eslint@9.37.0))(eslint-plugin-n@16.6.2(eslint@9.37.0))(eslint-plugin-promise@6.6.0(eslint@9.37.0))(eslint-plugin-vue@9.32.0(eslint@9.37.0))(eslint@9.37.0)(typescript@5.9.3)
@@ -499,8 +499,8 @@ packages:
     resolution: {integrity: sha512-usYr4GlJQlK3hgZURvklqWb9ivi7sgsSuFqXrs7s4hl1LTS4enzPrnkQumm6nRsQruf0ITS+OBsK+oELEbvYPA==}
     engines: {node: ^24 || ^22 || ^20}
 
-  '@nextcloud/browserslist-config@3.0.1':
-    resolution: {integrity: sha512-GZTxL5fsDgmFoot/qnRurjHCuHjSfOg+A6t4+P2TySXua2Q1Ex0lecZYlSnRuOR/W5BGOZ06ITTA/hbkSh1Ypg==}
+  '@nextcloud/browserslist-config@3.1.0':
+    resolution: {integrity: sha512-lpPUWZZjWjYLBkQ7OpJRby6CwiLGdXzmDxVmK7cXRV4tO2BFTI7IyLwvepCg+XQa7yLqap5HPVK1QJOGz2D/eQ==}
     engines: {node: ^20.0.0, npm: ^10.0.0}
 
   '@nextcloud/capabilities@1.2.0':
@@ -4291,7 +4291,7 @@ snapshots:
 
   '@nextcloud/browser-storage@0.5.0': {}
 
-  '@nextcloud/browserslist-config@3.0.1': {}
+  '@nextcloud/browserslist-config@3.1.0': {}
 
   '@nextcloud/capabilities@1.2.0':
     dependencies:
