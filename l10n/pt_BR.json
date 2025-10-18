@@ -2,10 +2,12 @@
     "Auto Currency" : "Moeda Automática",
     "Auto Currency for Cospend" : "Moeda Automática para Cospend",
     "Automatically fills the currency rates for your Cospend projects daily." : "Preenche automaticamente as taxas de câmbio de seus projetos Cospend diariamente.",
+    "This NextCloud app automatically fetches currency information for your Cospend projects, and fills\nthem up using the main currency as base. No more manually updating exchange rates!\n\n\nYou can also view the history of currency rates fetched in the past, and see how they changed over time.\n\n\nIt will automatically run once a day by default and use your currency names to fetch the correct\nrate.\n\n\nInterval for fetch may be adjusted in the admin settings \"Auto Currency\" section.\n\n\n> **Note**: This is a companion app to [Cospend](https://apps.nextcloud.com/apps/cospend).\n>\n> Without Cospend, this app will not work." : "Este aplicativo Nextcloud obtém automaticamente informações sobre moedas para seus projetos Cospend e as preenche\nusando a moeda principal como base. Não é mais necessário atualizar manualmente as taxas de câmbio!\n\n\nVocê também pode visualizar o histórico das taxas de câmbio obtidas no passado e ver como elas mudaram ao longo do tempo.\n\n\nEle será executado automaticamente uma vez por dia por padrão e usará os nomes das suas moedas para obter a taxa\ncorreta.\n\n\nO intervalo para a obtenção pode ser ajustado nas configurações de administração, na seção \"Moeda Automática\".\n\n\n> **Observação**: este é um aplicativo complementar ao [Cospend](https://apps.nextcloud.com/apps/cospend).\n> \n> Sem o Cospend, este aplicativo não funcionará.",
     "Every hour" : "Cada hora",
     "_Every %n hour_::_Every %n hours_" : ["Cada %n hora","Cada %n de horas","Cada %n horas"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Cada %n hora (padrão)","Cada %n de horas (padrão)","Cada %n horas (padrão)"],
     "Custom Currencies" : "Moedas Personalizadas",
+    "Define custom currencies with their own API endpoints.{br}Use {cStart}{base}{cEnd} in the endpoint URL or JSON path to substitute the project's base currency.{br}The API should return a rate in the base currency (or USD if {cStart}{base}{cEnd} is not used).{br}The API key will be passed in the {cStart}Authorization{cEnd} header as {cStart}Bearer{cEnd} if provided." : "Defina moedas personalizadas com seus próprios endpoints de API.{br} Use {cStart}{base}{cEnd} no URL do endpoint ou no caminho JSON para substituir a moeda base do projeto.{br} A API deve retornar uma taxa na moeda base (ou em dólares americanos, se {cStart}{base}{cEnd} não for usado).{br} A chave API será passada no cabeçalho {cStart}Authorization{cEnd} como {cStart}Bearer{cEnd}, se fornecida.",
     "Currency Code" : "Código da Moeda",
     "e.g., BTC" : "p. ex., BTC",
     "Symbol (optional)" : "Símbolo (opcional)",
@@ -48,6 +50,7 @@
     "-" : "-",
     "Rate ({dir})" : "Taxa ({dir})",
     "{label}: {value}" : "{label}: {value}",
-    "1 {from} = {value} {to}" : "1 {from} = {value} {to}"
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} por {to}"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
