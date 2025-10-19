@@ -133,7 +133,9 @@ type Project = {
   label?: string
 }
 type CurrencyOption = { id: string; label: string }
-type HistoryPoint = { x: string; y: number }
+type HistoryChartPoint = { x: string; y: number }
+type HistoryPoint = { fetchedAt: string; rate: number }
+type HistoryResponse = { points: HistoryPoint[] }
 
 export default {
   name: 'App',
@@ -162,7 +164,7 @@ export default {
       dateTo: today as Date,
       todayDate: today as Date,
       chart: null as Chart<'line', number[], string> | null,
-      historyPoints: [] as HistoryPoint[],
+      historyPoints: [] as HistoryChartPoint[],
       historyReqId: 0 as number,
       showReversed: false as boolean,
       strings: {
@@ -322,9 +324,7 @@ export default {
           from: this.formatDate(this.dateFrom),
           to: this.formatDate(this.dateTo),
         }
-        const resp = await ocs.get<{
-          points: { fetchedAt: string; rate: number }[]
-        }>('/history', { params })
+        const resp = await ocs.get<HistoryResponse>('/history', { params })
 
         if (myReq !== this.historyReqId) return
 
