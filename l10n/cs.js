@@ -8,13 +8,17 @@ OC.L10N.register(
     "_Every %n hour_::_Every %n hours_" : ["Každou %n hodinu","Každé %n hodiny","Každých %n hodin","Každé %n hodiny"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Každou %n hodinu (výchozí)","Každé %n hodiny (výchozí)","Každých %n hodin (výchozí)","Každé %n hodiny (výchozí)"],
     "Custom Currencies" : "Uživatelsky určené měny",
+    "Define custom currencies with their own API endpoints.{br}Use {cStart}{base}{cEnd} in the endpoint URL or JSON path to substitute the project's base currency.{br}The API should return a rate in the base currency (or USD if {cStart}{base}{cEnd} is not used).{br}The API key will be passed in the {cStart}Authorization{cEnd} header as {cStart}Bearer{cEnd} if provided." : "Definujte uživatelsky určené měny pomocí jejich vlastních koncových bodů API rozhraní.{br}Použijte {cStart}{base}{cEnd} v URL koncového bodu nebo JSON popisu umístění pro dosazování základní měny projektu.{br}API by mělo vracet kurz v základní měně (nebo amerických dolarech, pokud {cStart}{base}{cEnd} není použito).{br}Pokud zadán, bude klíč k API předán v záhlaví {cStart}Autorizace{cEnd} jako {cStart}Bearer{cEnd}.",
     "Currency Code" : "Kód měny",
     "e.g., BTC" : "např. BTC",
     "Symbol (optional)" : "Symbol (volitelné)",
     "e.g., ₿" : "např. ₿",
     "API Endpoint" : "Koncový bod API",
     "e.g., https://api.example.com/rates/{base}" : "např. https://api.example.com/rates/{base}",
+    "API Key (optional)" : "Klíč k API (volitelné)",
+    "Leave empty if not required" : "Pokud není potřebné, nevyplňujte",
     "JSON Path" : "JSON popis umístění",
+    "e.g., $.rates.{base} or data[0].rate" : "např., $.rates.{base} nebo data[0].rate",
     "Add Currency" : "Přidat měnu",
     "Delete Currency" : "Smazat měnu",
     "Cron Settings" : "Nastavení plánovače (cron)",
@@ -45,6 +49,8 @@ OC.L10N.register(
     "Time" : "Time",
     "-" : "–",
     "Rate ({dir})" : "Kurz ({dir})",
-    "{label}: {value}" : "{label}: {value}"
+    "{label}: {value}" : "{label}: {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} na {to}"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
