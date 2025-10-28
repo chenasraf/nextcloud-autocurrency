@@ -6,7 +6,7 @@
       <p v-html="strings.instructionsHelp" />
     </NcNoteCard>
 
-    <NcAppSettingsSection :name="strings.customCurrenciesHeader">
+    <NcAppSettingsSection id="custom-currencies" :name="strings.customCurrenciesHeader">
       <NcNoteCard type="info">
         <p v-html="strings.customCurrenciesHelp" />
       </NcNoteCard>
@@ -90,7 +90,7 @@
       </div>
     </NcAppSettingsSection>
 
-    <NcAppSettingsSection :name="strings.cronSettingsHeader">
+    <NcAppSettingsSection id="cron-settings" :name="strings.cronSettingsHeader">
       <section>
         <form @submit.prevent="save">
           <div class="cron-flex">
@@ -196,9 +196,7 @@ export default {
           APP_ID,
           'See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies.',
           {
-            aStart: `<a style="text-decoration:underline;" href="${generateUrl(
-              '/settings/user/autocurrency',
-            )}">`,
+            aStart: `<a href="${generateUrl('/settings/user/autocurrency')}">`,
             aEnd: '</a>',
           },
           undefined,
@@ -389,7 +387,7 @@ export default {
           gap: 12px;
           flex-wrap: wrap;
 
-          > * {
+          >* {
             flex: 1;
             min-width: 200px;
           }

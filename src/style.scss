@@ -1,1 +1,19 @@
-//
+#autocurrency-content {
+  .notecard--info > div {
+    color: white;
+
+    a {
+      text-decoration: underline;
+    }
+
+    & > p {
+      &:first-child {
+        margin-top: 0.2em;
+      }
+
+      &:last-child {
+        margin-bottom: 0.2em;
+      }
+    }
+  }
+}
