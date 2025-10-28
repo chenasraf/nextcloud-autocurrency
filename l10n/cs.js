@@ -22,6 +22,7 @@ OC.L10N.register(
     "Add Currency" : "Přidat měnu",
     "Delete Currency" : "Smazat měnu",
     "Cron Settings" : "Nastavení plánovače (cron)",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Ohledně pokynů, jak nastavit své měny, viz {aStart}Osobní nastavení{aEnd}.",
     "Fetch Rates Now" : "Získat směnné kurzy nyní",
     "Rates last fetched:" : "Směnné kurzy naposledy zaktualizovány:",
     "Loading…" : "Načítání…",
