@@ -143,10 +143,17 @@ final class ApiControllerTest extends TestCase {
 			->method('getValueString')
 			->with(App::APP_ID, 'last_update', '')
 			->willReturn('');
-		$config->expects($this->once())
+		$config->expects($this->exactly(2))
 			->method('getValueInt')
-			->with(App::APP_ID, 'cron_interval', 24)
-			->willReturn(12);
+			->willReturnCallback(function ($appId, $key, $default) {
+				if ($key === 'cron_interval') {
+					return 12;
+				}
+				if ($key === 'retention_days') {
+					return 30;
+				}
+				return $default;
+			});
 
 		$controller = $this->buildController([
 			'config' => $config,
@@ -161,6 +168,7 @@ final class ApiControllerTest extends TestCase {
 
 		$this->assertNull($data['last_update']);
 		$this->assertSame(12, $data['interval']);
+		$this->assertSame(30, $data['retention_days']);
 	}
 
 	public function testGetUserSettings_SupportedList(): void {
@@ -240,6 +248,64 @@ final class ApiControllerTest extends TestCase {
 			->with(App::APP_ID, 'cron_interval', 6);
 
 		$resp = $controller->updateSettings(['interval' => 6]);
+		$this->assertSame(['status' => 'OK'], $resp->getData());
+	}
+
+	public function testUpdateSettings_WritesIntervalAndRetentionDays(): void {
+		$controller = $this->buildController();
+
+		$this->config->expects($this->exactly(2))
+			->method('setValueInt')
+			->willReturnCallback(function ($appId, $key, $value) {
+				$this->assertSame(App::APP_ID, $appId);
+				if ($key === 'cron_interval') {
+					$this->assertSame(6, $value);
+				} elseif ($key === 'retention_days') {
+					$this->assertSame(60, $value);
+				} else {
+					$this->fail("Unexpected key: $key");
+				}
+				return true;
+			});
+
+		$resp = $controller->updateSettings(['interval' => 6, 'retention_days' => 60]);
+		$this->assertSame(['status' => 'OK'], $resp->getData());
+	}
+
+	public function testUpdateSettings_RetentionDaysZeroMeansNoLimit(): void {
+		$controller = $this->buildController();
+
+		$this->config->expects($this->exactly(2))
+			->method('setValueInt')
+			->willReturnCallback(function ($appId, $key, $value) {
+				if ($key === 'cron_interval') {
+					$this->assertSame(24, $value);
+				} elseif ($key === 'retention_days') {
+					$this->assertSame(0, $value);
+				}
+				return true;
+			});
+
+		$resp = $controller->updateSettings(['interval' => 24, 'retention_days' => 0]);
+		$this->assertSame(['status' => 'OK'], $resp->getData());
+	}
+
+	public function testUpdateSettings_NegativeRetentionDaysBecomesZero(): void {
+		$controller = $this->buildController();
+
+		$this->config->expects($this->exactly(2))
+			->method('setValueInt')
+			->willReturnCallback(function ($appId, $key, $value) {
+				if ($key === 'cron_interval') {
+					$this->assertSame(24, $value);
+				} elseif ($key === 'retention_days') {
+					// Negative values should be clamped to 0
+					$this->assertSame(0, $value);
+				}
+				return true;
+			});
+
+		$resp = $controller->updateSettings(['interval' => 24, 'retention_days' => -5]);
 		$this->assertSame(['status' => 'OK'], $resp->getData());
 	}
 
