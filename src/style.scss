@@ -1,12 +1,12 @@
 #autocurrency-content {
   .notecard--info > div {
-    color: white;
-
     a {
       text-decoration: underline;
     }
 
     & > p {
+      color: white;
+
       &:first-child {
         margin-top: 0.2em;
       }
