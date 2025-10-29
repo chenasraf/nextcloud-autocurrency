@@ -65,6 +65,7 @@ class ApiController extends OCSController {
 	 * @return DataResponse<Http::STATUS_OK, array{
 	 *	 last_update: non-empty-string|null,
 	 *	 interval: int,
+	 *	 retention_days: int,
 	 * }, array{}>
 	 *
 	 * 200: Data returned
@@ -77,9 +78,10 @@ class ApiController extends OCSController {
 		}
 
 		$interval = $this->config->getValueInt(AppInfo\Application::APP_ID, 'cron_interval', 24);
+		$retentionDays = $this->config->getValueInt(AppInfo\Application::APP_ID, 'retention_days', 30);
 
 		return new DataResponse(
-			['last_update' => $lastUpdate, 'interval' => $interval]
+			['last_update' => $lastUpdate, 'interval' => $interval, 'retention_days' => $retentionDays]
 		);
 	}
 
@@ -140,7 +142,7 @@ class ApiController extends OCSController {
 	/**
 	 * Update auto currency settings
 	 *
-	 * @param array{interval: int} $data Data to update
+	 * @param array{interval: int, retention_days?: int} $data Data to update
 	 * @return DataResponse<Http::STATUS_OK, array{status:non-empty-string}, array{}>
 	 *
 	 * 200: Data returned
@@ -149,6 +151,16 @@ class ApiController extends OCSController {
 	public function updateSettings(mixed $data): DataResponse {
 		$interval = $data['interval'];
 		$this->config->setValueInt(AppInfo\Application::APP_ID, 'cron_interval', $interval);
+
+		if (isset($data['retention_days'])) {
+			$retentionDays = (int)$data['retention_days'];
+			// Ensure it's not negative (0 = no limit, >0 = days to keep)
+			if ($retentionDays < 0) {
+				$retentionDays = 0;
+			}
+			$this->config->setValueInt(AppInfo\Application::APP_ID, 'retention_days', $retentionDays);
+		}
+
 		return new DataResponse(
 			['status' => 'OK']
 		);

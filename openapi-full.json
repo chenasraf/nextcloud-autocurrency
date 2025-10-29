@@ -100,7 +100,8 @@
                                                     "type": "object",
                                                     "required": [
                                                         "last_update",
-                                                        "interval"
+                                                        "interval",
+                                                        "retention_days"
                                                     ],
                                                     "properties": {
                                                         "last_update": {
@@ -109,6 +110,10 @@
                                                             "minLength": 1
                                                         },
                                                         "interval": {
+                                                            "type": "integer",
+                                                            "format": "int64"
+                                                        },
+                                                        "retention_days": {
                                                             "type": "integer",
                                                             "format": "int64"
                                                         }
@@ -212,6 +217,10 @@
                                         ],
                                         "properties": {
                                             "interval": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "retention_days": {
                                                 "type": "integer",
                                                 "format": "int64"
                                             }

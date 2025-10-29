@@ -20,7 +20,6 @@ class FetchCurrenciesJob extends TimedJob {
 		$this->logger = $logger;
 		$this->config = $config;
 
-		// Run once a day
 		$interval = $this->config->getValueInt(AppInfo\Application::APP_ID, 'cron_interval', 24);
 		$this->setInterval(3600 * $interval);
 		$this->setTimeSensitivity(\OCP\BackgroundJob\IJob::TIME_INSENSITIVE);

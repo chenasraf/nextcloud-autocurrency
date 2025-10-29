@@ -94,4 +94,20 @@ class AutocurrencyRateHistoryMapper extends QBMapper {
 
 		return $this->findEntities($qb);
 	}
+
+	/**
+	 * Delete all history records older than the specified date
+	 *
+	 * @param DateTimeInterface $cutoffDate Delete records with fetched_at before this date
+	 * @return int Number of rows deleted
+	 */
+	public function deleteOlderThan(DateTimeInterface $cutoffDate): int {
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete($this->getTableName())
+			->where(
+				$qb->expr()->lt('fetched_at', $qb->createNamedParameter($cutoffDate->format('Y-m-d H:i:s')))
+			);
+
+		return $qb->executeStatement();
+	}
 }

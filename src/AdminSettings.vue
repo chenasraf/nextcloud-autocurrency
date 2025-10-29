@@ -11,110 +11,125 @@
         <p v-html="strings.customCurrenciesHelp" />
       </NcNoteCard>
 
-      <div class="custom-currencies-list">
-        <div
-          v-for="(currency, index) in customCurrencies"
-          :key="currency.tempId || currency.id"
-          class="currency-item"
-        >
-          <div class="currency-fields">
-            <div class="field-row">
-              <NcTextField
-                v-model="currency.code"
-                :label="strings.currencyCode"
-                :placeholder="strings.currencyCodePlaceholder"
-                required
-                :disabled="loading"
-              />
-              <NcTextField
-                v-model="currency.symbol"
-                :label="strings.currencySymbol"
-                :placeholder="strings.currencySymbolPlaceholder"
-                :disabled="loading"
-              />
+      <div class="settings-section">
+        <div class="custom-currencies-list">
+          <div
+            v-for="(currency, index) in customCurrencies"
+            :key="currency.tempId || currency.id"
+            class="currency-item"
+          >
+            <div class="currency-fields">
+              <div class="field-row">
+                <NcTextField
+                  v-model="currency.code"
+                  :label="strings.currencyCode"
+                  :placeholder="strings.currencyCodePlaceholder"
+                  required
+                  :disabled="loading"
+                />
+                <NcTextField
+                  v-model="currency.symbol"
+                  :label="strings.currencySymbol"
+                  :placeholder="strings.currencySymbolPlaceholder"
+                  :disabled="loading"
+                />
+              </div>
+
+              <div class="field-row">
+                <NcTextField
+                  v-model="currency.api_endpoint"
+                  :label="strings.apiEndpoint"
+                  type="url"
+                  :placeholder="strings.apiEndpointPlaceholder"
+                  required
+                  :disabled="loading"
+                />
+              </div>
+
+              <div class="field-row">
+                <NcTextField
+                  v-model="currency.api_key"
+                  :label="strings.apiKey"
+                  type="password"
+                  :placeholder="strings.apiKeyPlaceholder"
+                  :disabled="loading"
+                />
+                <NcTextField
+                  v-model="currency.json_path"
+                  :label="strings.jsonPath"
+                  :placeholder="strings.jsonPathPlaceholder"
+                  required
+                  :disabled="loading"
+                />
+              </div>
             </div>
 
-            <div class="field-row">
-              <NcTextField
-                v-model="currency.api_endpoint"
-                :label="strings.apiEndpoint"
-                type="url"
-                :placeholder="strings.apiEndpointPlaceholder"
-                required
-                :disabled="loading"
-              />
-            </div>
-
-            <div class="field-row">
-              <NcTextField
-                v-model="currency.api_key"
-                :label="strings.apiKey"
-                type="password"
-                :placeholder="strings.apiKeyPlaceholder"
-                :disabled="loading"
-              />
-              <NcTextField
-                v-model="currency.json_path"
-                :label="strings.jsonPath"
-                :placeholder="strings.jsonPathPlaceholder"
-                required
-                :disabled="loading"
-              />
-            </div>
+            <NcButton
+              type="error"
+              @click="removeCurrency(index)"
+              :disabled="loading"
+              :aria-label="strings.deleteCurrency"
+            >
+              <template #icon>
+                <Delete :size="20" />
+              </template>
+            </NcButton>
           </div>
 
-          <NcButton
-            type="error"
-            @click="removeCurrency(index)"
-            :disabled="loading"
-            :aria-label="strings.deleteCurrency"
-          >
+          <NcButton @click="addCurrency" :disabled="loading">
             <template #icon>
-              <Delete :size="20" />
+              <Plus :size="20" />
             </template>
+            {{ strings.addCurrency }}
           </NcButton>
         </div>
 
-        <NcButton @click="addCurrency" :disabled="loading">
-          <template #icon>
-            <Plus :size="20" />
-          </template>
-          {{ strings.addCurrency }}
-        </NcButton>
-      </div>
-
-      <div class="submit-buttons">
-        <NcButton type="primary" @click="saveCustomCurrencies" :disabled="loading">
-          {{ strings.save }}
-        </NcButton>
+        <div class="submit-buttons">
+          <NcButton type="primary" @click="saveCustomCurrencies" :disabled="loading">
+            {{ strings.save }}
+          </NcButton>
+        </div>
       </div>
     </NcAppSettingsSection>
 
     <NcAppSettingsSection id="cron-settings" :name="strings.cronSettingsHeader">
       <section>
         <form @submit.prevent="save">
-          <div class="cron-flex">
-            <NcSelect
-              v-model="interval"
-              :options="intervals"
-              :input-label="strings.intervalLabel"
-              required
-              :disabled="loading"
-            />
+          <div class="settings-section">
+            <div class="cron-flex">
+              <NcSelect
+                v-model="interval"
+                :options="intervals"
+                :input-label="strings.intervalLabel"
+                required
+                :disabled="loading"
+              />
 
-            <div class="cron-last-update-container">
-              <NcButton @click="doCron" :disabled="loading">{{ strings.fetchNow }}</NcButton>
+              <div class="cron-last-update-container">
+                <NcButton @click="doCron" :disabled="loading">{{ strings.fetchNow }}</NcButton>
 
-              <div>
-                {{ strings.lastFetched }}
-                <span v-if="loading">{{ strings.loading }}</span>
-                <span v-if="!loading && !lastUpdate">{{ strings.never }}</span>
-                <NcDateTime v-if="!loading && lastUpdate" :timestamp="lastUpdate.valueOf()" />
+                <div>
+                  {{ strings.lastFetched }}
+                  <span v-if="loading">{{ strings.loading }}</span>
+                  <span v-if="!loading && !lastUpdate">{{ strings.never }}</span>
+                  <NcDateTime v-if="!loading && lastUpdate" :timestamp="lastUpdate.valueOf()" />
+                </div>
               </div>
             </div>
-          </div>
-          <div class="submit-buttons">
-            <NcButton type="submit">{{ strings.save }}</NcButton>
+            <div class="retention-field">
+              <NcTextField
+                v-model="retentionDays"
+                type="number"
+                :label="strings.retentionDaysLabel"
+                :helper-text="strings.retentionDaysHelp"
+                min="0"
+                required
+                :disabled="loading"
+              />
+            </div>
+            <div class="submit-buttons">
+              <NcButton type="submit">{{ strings.save }}</NcButton>
+            </div>
           </div>
         </form>
       </section>
@@ -154,6 +169,7 @@ export default {
     return {
       loading: true,
       interval: null,
+      retentionDays: 30,
       lastUpdate: null,
       customCurrencies: [],
       originalCustomCurrencies: [],
@@ -192,6 +208,7 @@ export default {
         addCurrency: t(APP_ID, 'Add Currency'),
         deleteCurrency: t(APP_ID, 'Delete Currency'),
         cronSettingsHeader: t(APP_ID, 'Cron Settings'),
+        intervalLabel: t(APP_ID, 'Update Interval'),
         instructionsHelp: t(
           APP_ID,
           'See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies.',
@@ -207,6 +224,11 @@ export default {
         loading: t(APP_ID, 'Loading…'),
         never: t(APP_ID, 'Never'),
         save: t(APP_ID, 'Save'),
+        retentionDaysLabel: t(APP_ID, 'History Retention (days)'),
+        retentionDaysHelp: t(
+          APP_ID,
+          'Number of days to keep currency history. Set to 0 for no limit (default: 30)',
+        ),
       },
     }
   },
@@ -229,6 +251,10 @@ export default {
           this.interval = interval.label
         } else {
           console.warn('Invalid interval value', data.interval)
+        }
+
+        if (data.retention_days !== undefined) {
+          this.retentionDays = data.retention_days
         }
 
         if (data.last_update) {
@@ -259,7 +285,13 @@ export default {
       try {
         this.loading = true
         const interval = this.getIntervalByLabel(this.interval)?.value ?? 24
-        const resp = await ocs.put('/settings', { data: { interval } })
+        const retentionDays = this.retentionDays ?? 30
+        const resp = await ocs.put('/settings', {
+          data: {
+            interval,
+            retention_days: retentionDays,
+          },
+        })
         const data = resp.data
         this.loading = false
         console.debug('[DEBUG] Auto Currency settings saved', data)
@@ -347,10 +379,6 @@ export default {
     margin-top: 0;
   }
 
-  .submit-buttons {
-    margin-top: 16px;
-  }
-
   .cron-flex {
     display: flex;
     align-items: start;
@@ -394,6 +422,17 @@ export default {
         }
       }
     }
+  }
+
+  .settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .retention-field {
+    max-width: 300px;
+    width: 100%;
   }
 }
 </style>
