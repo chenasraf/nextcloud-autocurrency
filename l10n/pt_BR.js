@@ -23,6 +23,7 @@ OC.L10N.register(
     "Add Currency" : "Adicionar Moeda",
     "Delete Currency" : "Excluir Moeda",
     "Cron Settings" : "Configurações do Cron",
+    "Update Interval" : "Intervalo de Atualização",
     "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Consulte as {aStart}Configurações pessoais{aEnd} para ver as instruções sobre como configurar suas moedas.",
     "Fetch Rates Now" : "Obter Taxas Agora",
     "Rates last fetched:" : "Taxas obtidas pela última vez:",

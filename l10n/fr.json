@@ -4,6 +4,7 @@
     "_Every %n hour_::_Every %n hours_" : ["Chaque %n heure","Toutes les %n heures","Toutes les %n heures"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Chaque %n heure (par défaut)","Toutes les %n heures (par défaut)","Toutes les %n heures (par défaut)"],
     "Cron Settings" : "Paramètres Cron",
+    "Update Interval" : "Intervalle de mise à jour",
     "Fetch Rates Now" : "Récupérer les cours maintenant",
     "Rates last fetched:" : "Derniers cours récupérés :",
     "Loading…" : "Chargement…",

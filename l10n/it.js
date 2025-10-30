@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Update Interval" : "Intervallo di aggiornamento",
     "Loading…" : "Caricamento…",
     "Never" : "Mai",
     "Save" : "Salva",

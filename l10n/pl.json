@@ -7,6 +7,7 @@
     "_Every %n hour_::_Every %n hours_" : ["Co godzinę","Co %n godziny","Co %n godzin","Co %ngodzin"],
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Co godzinę (domyślnie)","Co %n godziny (domyślnie)","Co %n godzin (domyślnie)","Co %n godzin (domyślnie)"],
     "Cron Settings" : "Ustawienia harmonogramu",
+    "Update Interval" : "Interwał aktualizacji",
     "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Zobacz {aStart}ustawienia osobiste{aEnd}, aby wyświetlić instrukcje dotyczące konfiguracji swoich walut.",
     "Fetch Rates Now" : "Pobierz kursy teraz",
     "Rates last fetched:" : "Ostatnie pobranie kursów:",
