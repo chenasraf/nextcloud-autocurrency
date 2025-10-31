@@ -30,6 +30,8 @@ OC.L10N.register(
     "Loading…" : "Carregando…",
     "Never" : "Nunca",
     "Save" : "Salvar",
+    "History Retention (days)" : "Retenção do histórico (dias)",
+    "Number of days to keep currency history. Set to 0 for no limit (default: 30)" : "Número de dias para manter o histórico de moedas. Defina como 0 para nenhum limite (padrão: 30).",
     "Information" : "Informações",
     "To make sure your currencies are found for the rates to be updated, please ensure your currencies are named appropriately." : "Para garantir que suas moedas sejam encontradas para que as taxas sejam atualizadas, certifique-se de que suas moedas tenham o nome adequado.",
     "Currency names must contain {bStart}at least one of{bEnd}:" : "Os nomes das moedas devem conter {bStart}pelo menos um dos seguintes{bEnd}:",

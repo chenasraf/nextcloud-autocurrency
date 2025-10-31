@@ -28,6 +28,8 @@
     "Loading…" : "Cargando…",
     "Never" : "Nunca",
     "Save" : "Gardar",
+    "History Retention (days)" : "Retención do historial (días)",
+    "Number of days to keep currency history. Set to 0 for no limit (default: 30)" : "Número de días para manter o historial das divisas. Definir a 0 equivale a sen límite (predeterminado: 30)",
     "Information" : "Información",
     "To make sure your currencies are found for the rates to be updated, please ensure your currencies are named appropriately." : "Para asegurarse de que se atopen as súas divisas para actualizar os tipos de cambio, asegúrese de que estean nomeadas adecuadamente.",
     "Currency names must contain {bStart}at least one of{bEnd}:" : "Os nomes de divisa deben conter {bStart}polo menos un de{bEnd}:",

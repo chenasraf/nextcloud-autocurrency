@@ -27,6 +27,8 @@
     "Loading…" : "Načítání…",
     "Never" : "Nikdy",
     "Save" : "Uložit",
+    "History Retention (days)" : "Udržování historie (dnů)",
+    "Number of days to keep currency history. Set to 0 for no limit (default: 30)" : "Počet dnů po který ponechávat historii měny. Pokud nechcete omezovat, nastavte na 0 (nula) – výchozí: 30",
     "Information" : "Informace",
     "To make sure your currencies are found for the rates to be updated, please ensure your currencies are named appropriately." : "Aby bylo zajištěno, že vámi uvedené měny budou při aktualizaci kurzů nalezeny, zajistěte, aby (měny) byly příslušně nazvané.",
     "Currency names must contain {bStart}at least one of{bEnd}:" : "Je třeba, aby názvy měn obsahovaly {bStart}přinejmenším jedno z{bEnd}:",

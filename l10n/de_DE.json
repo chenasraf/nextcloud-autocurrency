@@ -28,6 +28,8 @@
     "Loading…" : "Lade…",
     "Never" : "Niemals",
     "Save" : "Speichern",
+    "History Retention (days)" : "Verlauf behalten (Tage)",
+    "Number of days to keep currency history. Set to 0 for no limit (default: 30)" : "Anzahl der Tage, die der Währungsverlauf gespeichert wird. Für kein Limit auf 0 setzen (Standard: 30)",
     "Information" : "Informationen",
     "To make sure your currencies are found for the rates to be updated, please ensure your currencies are named appropriately." : "Um sicherzustellen, dass Ihre Währungen für die zu aktualisierenden Kurse gefunden werden, achten Sie bitte darauf, dass Ihre Währungen entsprechend benannt sind.",
     "Currency names must contain {bStart}at least one of{bEnd}:" : "Währungsnamen müssen {bStart}mindestens eines{bEnd} der folgenden Elemente enthalten:",
