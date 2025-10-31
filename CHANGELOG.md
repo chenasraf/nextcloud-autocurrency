@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.4.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.3.2...v1.4.0) (2025-10-31)
+
+
+### Features
+
+* add setting for history retention period ([3f60c04](https://github.com/chenasraf/nextcloud-autocurrency/commit/3f60c04853132f0483ee6d1a1b8dfe2e6c8f8a78))
+* support nextcloud 33 ([9c55936](https://github.com/chenasraf/nextcloud-autocurrency/commit/9c5593607bd3ec0b467ddee19953f24bc729c00a))
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([b2e9178](https://github.com/chenasraf/nextcloud-autocurrency/commit/b2e91787e4b3ade41c8f8319dd804af8bfd616bd))
+* **l10n:** Update translations from Transifex ([ff4bae8](https://github.com/chenasraf/nextcloud-autocurrency/commit/ff4bae85c1483c5d43056207d707ec6b99731c88))
+* notecard text color ([bf99016](https://github.com/chenasraf/nextcloud-autocurrency/commit/bf990161e51e7b23b99ab57f88eeafb93e4cf9b7))
+
 ## [1.3.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.3.1...v1.3.2) (2025-10-28)
 
 
