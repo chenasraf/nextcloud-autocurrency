@@ -42,7 +42,7 @@
     "prettier": "^2.8.8",
     "prettier-plugin-vue": "^1.1.6",
     "sass": "^1.93.2",
-    "sass-embedded": "^1.93.2",
+    "sass-embedded": "^1.93.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.2",
     "vite": "^6.4.0",
