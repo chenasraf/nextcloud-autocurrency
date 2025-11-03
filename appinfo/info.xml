@@ -26,7 +26,7 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 >
 > Without Cospend, this app will not work.
 ]]></description>
-	<version>1.4.0</version>
+	<version>1.4.1</version>
 	<licence>agpl</licence>
 	<author mail="contact@casraf.dev" homepage="https://casraf.dev">Chen Asraf</author>
 	<namespace>AutoCurrency</namespace>
