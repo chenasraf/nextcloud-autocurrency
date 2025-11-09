@@ -1,9 +1,7 @@
 <template>
   <div id="autocurrency-content" class="section">
     <h2>{{ strings.title }}</h2>
-    <NcAppSettingsSection id="autocurrency-info" :name="strings.infoTitle">
-      <p>{{ strings.info }}</p>
-
+    <NcSettingsSection :name="strings.infoTitle" :description="strings.info">
       <p v-html="strings.requirements"></p>
 
       <ol class="ol">
@@ -55,10 +53,10 @@
           </tbody>
         </table>
       </div>
+    </NcSettingsSection>
 
+    <NcSettingsSection :name="strings.historyHeader">
       <div class="history-block">
-        <h3>{{ strings.historyHeader }}</h3>
-
         <div class="history-controls">
           <!-- Project -->
           <NcSelect
@@ -104,12 +102,12 @@
           <canvas ref="historyCanvas" height="120"></canvas>
         </div>
       </div>
-    </NcAppSettingsSection>
+    </NcSettingsSection>
   </div>
 </template>
 
 <script lang="ts">
-import NcAppSettingsSection from '@nextcloud/vue/components/NcAppSettingsSection'
+import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
@@ -140,7 +138,7 @@ type HistoryResponse = { points: HistoryPoint[] }
 export default {
   name: 'App',
   components: {
-    NcAppSettingsSection,
+    NcSettingsSection,
     NcNoteCard,
     NcSelect,
     NcTextField,
@@ -585,7 +583,7 @@ export default {
       gap: 12px;
       align-items: end;
 
-      @media (max-width: 1180px) {
+      @media (max-width: 1280px) {
         grid-template-columns: 1fr 1fr;
 
         >* {

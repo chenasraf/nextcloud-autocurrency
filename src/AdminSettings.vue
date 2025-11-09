@@ -2,16 +2,18 @@
   <div id="autocurrency-content" class="section">
     <h2>{{ strings.title }}</h2>
 
-    <NcNoteCard type="info">
-      <p v-html="strings.instructionsHelp" />
-    </NcNoteCard>
+    <NcSettingsSection :name="strings.instructionsHeader">
+      <NcNoteCard type="info">
+        <p v-html="strings.instructionsHelp" />
+      </NcNoteCard>
+    </NcSettingsSection>
 
-    <NcAppSettingsSection id="custom-currencies" :name="strings.customCurrenciesHeader">
+    <NcSettingsSection :name="strings.customCurrenciesHeader">
       <NcNoteCard type="info">
         <p v-html="strings.customCurrenciesHelp" />
       </NcNoteCard>
 
-      <div class="settings-section">
+      <div class="settings-section-content">
         <div class="custom-currencies-list">
           <div
             v-for="(currency, index) in customCurrencies"
@@ -90,55 +92,53 @@
           </NcButton>
         </div>
       </div>
-    </NcAppSettingsSection>
+    </NcSettingsSection>
 
-    <NcAppSettingsSection id="cron-settings" :name="strings.cronSettingsHeader">
-      <section>
-        <form @submit.prevent="save">
-          <div class="settings-section">
-            <div class="cron-flex">
-              <NcSelect
-                v-model="interval"
-                :options="intervals"
-                :input-label="strings.intervalLabel"
-                required
-                :disabled="loading"
-              />
+    <NcSettingsSection :name="strings.cronSettingsHeader">
+      <form @submit.prevent="save">
+        <div class="settings-section-content">
+          <div class="cron-flex">
+            <NcSelect
+              v-model="interval"
+              :options="intervals"
+              :input-label="strings.intervalLabel"
+              required
+              :disabled="loading"
+            />
 
-              <div class="cron-last-update-container">
-                <NcButton @click="doCron" :disabled="loading">{{ strings.fetchNow }}</NcButton>
+            <div class="cron-last-update-container">
+              <NcButton @click="doCron" :disabled="loading">{{ strings.fetchNow }}</NcButton>
 
-                <div>
-                  {{ strings.lastFetched }}
-                  <span v-if="loading">{{ strings.loading }}</span>
-                  <span v-if="!loading && !lastUpdate">{{ strings.never }}</span>
-                  <NcDateTime v-if="!loading && lastUpdate" :timestamp="lastUpdate.valueOf()" />
-                </div>
+              <div>
+                {{ strings.lastFetched }}
+                <span v-if="loading">{{ strings.loading }}</span>
+                <span v-if="!loading && !lastUpdate">{{ strings.never }}</span>
+                <NcDateTime v-if="!loading && lastUpdate" :timestamp="lastUpdate.valueOf()" />
               </div>
             </div>
-            <div class="retention-field">
-              <NcTextField
-                v-model="retentionDays"
-                type="number"
-                :label="strings.retentionDaysLabel"
-                :helper-text="strings.retentionDaysHelp"
-                min="0"
-                required
-                :disabled="loading"
-              />
-            </div>
-            <div class="submit-buttons">
-              <NcButton type="submit">{{ strings.save }}</NcButton>
-            </div>
           </div>
-        </form>
-      </section>
-    </NcAppSettingsSection>
+          <div class="retention-field">
+            <NcTextField
+              v-model="retentionDays"
+              type="number"
+              :label="strings.retentionDaysLabel"
+              :helper-text="strings.retentionDaysHelp"
+              min="0"
+              required
+              :disabled="loading"
+            />
+          </div>
+          <div class="submit-buttons">
+            <NcButton type="submit">{{ strings.save }}</NcButton>
+          </div>
+        </div>
+      </form>
+    </NcSettingsSection>
   </div>
 </template>
 
 <script>
-import NcAppSettingsSection from '@nextcloud/vue/components/NcAppSettingsSection'
+import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcDateTime from '@nextcloud/vue/components/NcDateTime'
@@ -156,7 +156,7 @@ import { parseISO as parseDate } from 'date-fns/parseISO'
 export default {
   name: 'App',
   components: {
-    NcAppSettingsSection,
+    NcSettingsSection,
     NcButton,
     NcDateTime,
     NcSelect,
@@ -187,6 +187,7 @@ export default {
       ],
       strings: {
         title: t(APP_ID, 'Auto Currency for Cospend'),
+        instructionsHeader: t(APP_ID, 'Information'),
         customCurrenciesHeader: t(APP_ID, 'Custom Currencies'),
         customCurrenciesHelp: t(
           APP_ID,
@@ -424,9 +425,10 @@ export default {
     }
   }
 
-  .settings-section {
+  .settings-section-content {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 32px;
   }
 
