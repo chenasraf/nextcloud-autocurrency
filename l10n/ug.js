@@ -1,10 +1,10 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "ئۇچۇر",
     "Loading…" : "Loading…",
     "Never" : "Never",
     "Save" : "ساقلاش",
-    "Information" : "ئۇچۇر",
     "Search" : "ئىزدەش",
     "Code" : "كود",
     "Name" : "ئاتى",

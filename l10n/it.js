@@ -1,11 +1,11 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Informazioni",
     "Update Interval" : "Intervallo di aggiornamento",
     "Loading…" : "Caricamento…",
     "Never" : "Mai",
     "Save" : "Salva",
-    "Information" : "Informazioni",
     "Search" : "Cerca",
     "Code" : "Codice",
     "Name" : "Nome",

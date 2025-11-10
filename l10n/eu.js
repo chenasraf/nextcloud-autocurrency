@@ -1,10 +1,10 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Informazioa",
     "Loading…" : "Kargatzen…",
     "Never" : "Inoiz ez",
     "Save" : "Gorde",
-    "Information" : "Informazioa",
     "Search" : "Bilatu",
     "Code" : "Kodea",
     "Name" : "Izena",

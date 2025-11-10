@@ -1,10 +1,10 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Information" : "Information",
     "Loading…" : "Laddar...",
     "Never" : "Aldrig",
     "Save" : "Spara",
-    "Information" : "Information",
     "Search" : "Sök",
     "Symbol" : "Symbol",
     "Code" : "Kod",
