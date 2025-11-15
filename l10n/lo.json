@@ -2,6 +2,9 @@
     "Loading…" : "ກຳລັງໂຫຼດ",
     "Save" : "ບັນທຶກ",
     "Search" : "ຄົ້ນຫາ",
-    "Name" : "ຊື່"
+    "Name" : "ຊື່",
+    "From" : "ຈາກ",
+    "To" : "ເຖິງ",
+    "Time" : "ເວລາ"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

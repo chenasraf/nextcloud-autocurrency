@@ -4,6 +4,9 @@ OC.L10N.register(
     "Loading…" : "ກຳລັງໂຫຼດ",
     "Save" : "ບັນທຶກ",
     "Search" : "ຄົ້ນຫາ",
-    "Name" : "ຊື່"
+    "Name" : "ຊື່",
+    "From" : "ຈາກ",
+    "To" : "ເຖິງ",
+    "Time" : "ເວລາ"
 },
 "nplurals=1; plural=0;");
