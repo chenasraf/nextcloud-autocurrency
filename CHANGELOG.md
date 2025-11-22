@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.4.2...v1.5.0) (2025-11-22)
+
+
+### Features
+
+* update save button variants ([b8cd60c](https://github.com/chenasraf/nextcloud-autocurrency/commit/b8cd60cff23c00d68ff12d95292516a2213db877))
+
+
+### Bug Fixes
+
+* **Admin:** disable cron save button during loading ([ce669a5](https://github.com/chenasraf/nextcloud-autocurrency/commit/ce669a509c234483e6c24eec182d980c6b31bd70))
+* cron section responsiveness ([04c87e8](https://github.com/chenasraf/nextcloud-autocurrency/commit/04c87e8e3401e32bc3c31a9c581e29473d8b0037))
+* **l10n:** Update translations from Transifex ([fb63121](https://github.com/chenasraf/nextcloud-autocurrency/commit/fb631213a19f34bc5c9be0763c7e68c01d242998))
+* **l10n:** Update translations from Transifex ([aeb30ef](https://github.com/chenasraf/nextcloud-autocurrency/commit/aeb30ef8d8b4a13233d250792c70b86a3e5af160))
+* **l10n:** Update translations from Transifex ([de5ae15](https://github.com/chenasraf/nextcloud-autocurrency/commit/de5ae153e5540d123599a3dcd31a892494d22e99))
+
 ## [1.4.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.4.1...v1.4.2) (2025-11-10)
 
 
