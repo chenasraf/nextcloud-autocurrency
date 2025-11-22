@@ -384,6 +384,7 @@ export default {
 
   .cron-flex {
     display: flex;
+    flex-wrap: wrap;
     align-items: start;
     gap: 24px;
   }
