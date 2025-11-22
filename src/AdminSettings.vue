@@ -129,7 +129,9 @@
             />
           </div>
           <div class="submit-buttons">
-            <NcButton type="submit" variant="primary">{{ strings.save }}</NcButton>
+            <NcButton type="submit" variant="primary" :disabled="loading">{{
+              strings.save
+            }}</NcButton>
           </div>
         </div>
       </form>
