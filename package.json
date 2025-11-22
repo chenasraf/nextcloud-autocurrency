@@ -38,7 +38,7 @@
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.39.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
+    "lint-staged": "^16.2.7",
     "prettier": "^2.8.8",
     "prettier-plugin-vue": "^1.1.6",
     "sass": "^1.94.0",
