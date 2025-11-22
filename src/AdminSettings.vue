@@ -87,7 +87,7 @@
         </div>
 
         <div class="submit-buttons">
-          <NcButton type="primary" @click="saveCustomCurrencies" :disabled="loading">
+          <NcButton variant="primary" @click="saveCustomCurrencies" :disabled="loading">
             {{ strings.save }}
           </NcButton>
         </div>
@@ -129,7 +129,7 @@
             />
           </div>
           <div class="submit-buttons">
-            <NcButton type="submit">{{ strings.save }}</NcButton>
+            <NcButton type="submit" variant="primary">{{ strings.save }}</NcButton>
           </div>
         </div>
       </form>
