@@ -7,7 +7,6 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IAppConfig;
 use OCP\IL10N;
 use OCP\Settings\ISettings;
-use OCP\Util;
 
 class UserSettings implements ISettings {
 	public function __construct(
@@ -20,9 +19,10 @@ class UserSettings implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		Util::addScript(Application::APP_ID, Application::JS_DIR . '/autocurrency-user');
-		Util::addStyle(Application::APP_ID, Application::CSS_DIR . '/autocurrency-style');
-		return new TemplateResponse(Application::APP_ID, 'settings', [], '');
+		return new TemplateResponse(Application::APP_ID, 'settings', [
+			'script' => Application::getViteEntryScript('user.ts'),
+			'style' => Application::getViteEntryScript('style.css'),
+		], '');
 	}
 
 	public function getSection(): string {

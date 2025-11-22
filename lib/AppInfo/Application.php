@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+// SPDX-FileCopyrightText: Chen Asraf <contact@casraf.dev>
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 namespace OCA\AutoCurrency\AppInfo;
 
 use OCP\AppFramework\App;
@@ -26,7 +29,34 @@ class Application extends App implements IBootstrap {
 	public function boot(IBootContext $context): void {
 	}
 
+	/**
+	 * Helper to parse Vite Manifest
+	 */
+	public static function getViteEntryScript(string $entryName): string {
+		$jsDir = realpath(__DIR__ . '/../' . Application::JS_DIR);
+		$manifestPath = dirname($jsDir) . '/.vite/manifest.json';
+
+		if (!file_exists($manifestPath)) {
+			return '';
+		}
+
+		$manifest = json_decode(file_get_contents($manifestPath), true);
+
+		if (isset($manifest[$entryName]['file'])) {
+			$manifestFile = $manifest[$entryName]['file'];
+			$fullPath = dirname($jsDir) . '/' . $manifestFile;
+
+			if (!file_exists($fullPath)) {
+				return '';
+			}
+
+			return pathinfo($manifestFile, PATHINFO_FILENAME);
+		}
+
+		return '';
+	}
+
 	public static function tableName(string $table): string {
-		return 'autocurrency_' . $table;
+		return self::APP_ID . '_' . $table;
 	}
 }

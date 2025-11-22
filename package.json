@@ -9,9 +9,9 @@
   },
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vue-tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint src",
-    "format": "eslint --fix src && prettier --write {src/,README.md}",
+    "format": "eslint --fix src && prettier --write {vite.config.ts,src/,README.md}",
     "prepare": "husky",
     "gen": "simple-scaffold -c . -k"
   },
@@ -41,11 +41,13 @@
     "lint-staged": "^16.2.7",
     "prettier": "^2.8.8",
     "prettier-plugin-vue": "^1.1.6",
+    "rollup-plugin-visualizer": "^6.0.5",
     "sass": "^1.94.2",
     "sass-embedded": "^1.93.3",
-    "typescript": "^5.9.3",
+    "typescript": "5.9.2",
     "typescript-eslint": "^8.47.0",
     "vite": "^6.4.1",
+    "vite-plugin-checker": "^0.11.0",
     "vue-router": "^4.6.3",
     "vue-tsc": "^2.2.12"
   }

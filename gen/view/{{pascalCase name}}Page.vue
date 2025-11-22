@@ -1,5 +1,5 @@
 <template>
-  <div>{{ startCase name }}</div>
+  <div class="mynextcloudapp-{{ kebabCase name }}">{{ startCase name }} Page</div>
 </template>
 
 <script lang="ts">
@@ -9,11 +9,15 @@ import { defineComopnent, type PropType } from 'vue'
 // import IconExample from '@icons/Example.vue'
 
 export default defineComponent({
-  name: '{{pascalCase name}}',
+  name: '{{pascalCase name}}Page',
   components: {
     //
   },
 })
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+#mynextcloudapp-{{ kebabCase name }} {
+  /* Your styles here */
+}
+</style>

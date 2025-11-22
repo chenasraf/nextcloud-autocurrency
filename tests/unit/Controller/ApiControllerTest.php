@@ -127,7 +127,7 @@ final class ApiControllerTest extends TestCase {
 	/** Fake a Cospend Project without the class present. */
 	private function makeProject(string $id, string $name, string $base): object {
 		$p = $this->getMockBuilder(\stdClass::class)
-			->addMethods(['getId', 'getName', 'getCurrencyName'])
+			->onlyMethods(['getId', 'getName', 'getCurrencyName'])
 			->getMock();
 
 		$p->method('getId')->willReturn($id);
@@ -315,7 +315,7 @@ final class ApiControllerTest extends TestCase {
 		$this->userSession->method('getUser')->willReturn($user);
 		$p1 = $this->getMockBuilder(\OCA\Cospend\Db\Project::class)
 			->disableOriginalConstructor()
-			->addMethods(['getId', 'getName', 'getCurrencyName'])
+			->onlyMethods(['getId', 'getName', 'getCurrencyName'])
 			->getMock();
 		$p1->method('getId')->willReturn('p1');
 		$p1->method('getName')->willReturn('Trip');
@@ -323,7 +323,7 @@ final class ApiControllerTest extends TestCase {
 
 		$p2 = $this->getMockBuilder(\OCA\Cospend\Db\Project::class)
 			->disableOriginalConstructor()
-			->addMethods(['getId', 'getName', 'getCurrencyName'])
+			->onlyMethods(['getId', 'getName', 'getCurrencyName'])
 			->getMock();
 		$p2->method('getId')->willReturn('p2');
 		$p2->method('getName')->willReturn('');      // triggers fallback to id
@@ -404,7 +404,7 @@ final class ApiControllerTest extends TestCase {
 
 		$p1 = $this->getMockBuilder(\OCA\Cospend\Db\Project::class)
 			->disableOriginalConstructor()
-			->addMethods(['getId', 'getName', 'getCurrencyName'])
+			->onlyMethods(['getId', 'getName', 'getCurrencyName'])
 			->getMock();
 		$p1->method('getId')->willReturn('p1');
 		$p1->method('getName')->willReturn('Crypto Trip');
@@ -455,7 +455,7 @@ final class ApiControllerTest extends TestCase {
 		// Project with base 'usd'
 		$project = $this->getMockBuilder(\OCA\Cospend\Db\Project::class)
 			->disableOriginalConstructor()
-			->addMethods(['getCurrencyName'])
+			->onlyMethods(['getCurrencyName'])
 			->getMock();
 		$project->method('getCurrencyName')->willReturn('usd');
 

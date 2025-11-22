@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use ReflectionClass;
 
-final class CurrencyResolverTest extends TestCase {
+final class FetchCurrenciesServiceTest extends TestCase {
 	private FetchCurrenciesService $resolver;
 
 	protected function setUp(): void {
