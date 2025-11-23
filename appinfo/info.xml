@@ -49,6 +49,9 @@ Interval for fetch may be adjusted in the admin settings "Auto Currency" section
 	<background-jobs>
 		<job>OCA\AutoCurrency\Cron\FetchCurrenciesJob</job>
 	</background-jobs>
+	<commands>
+		<command>OCA\AutoCurrency\Command\FetchCurrencies</command>
+	</commands>
 	<settings>
 		<admin>OCA\AutoCurrency\Settings\AdminSettings</admin>
 		<admin-section>OCA\AutoCurrency\Sections\AdminSection</admin-section>
