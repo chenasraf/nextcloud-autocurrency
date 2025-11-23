@@ -24,7 +24,7 @@ class {{pascalCase name}} extends Command {
 	 */
 	protected function configure(): void {
 		parent::configure();
-		$this->setName('mynextcloudapp:{{kebabCase name}}');
+		$this->setName('autocurrency:{{kebabCase name}}');
 	}
 
 	/**
