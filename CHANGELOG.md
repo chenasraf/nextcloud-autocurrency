@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.5.0...v1.6.0) (2025-11-24)
+
+
+### Features
+
+* add fetch currencies OCC command ([43ffd01](https://github.com/chenasraf/nextcloud-autocurrency/commit/43ffd019ca39acb7738c0c6bf6a45774c3a76b39))
+
 ## [1.5.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.4.2...v1.5.0) (2025-11-22)
 
 
