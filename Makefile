@@ -179,6 +179,9 @@ appstore:
 		--exclude="*.log" \
 		--exclude="phpunit*xml" \
 		--exclude="composer.*" \
+		--exclude="composer" \
+		--exclude="vendor" \
+		--exclude="vendor-bin" \
 		--exclude="node_modules" \
 		--exclude="dist/js/node_modules" \
 		--exclude="dist/js/tests" \
