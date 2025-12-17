@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.3](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.6.2...v1.6.3) (2025-12-17)
+
+
+### Bug Fixes
+
+* remove unnecessary vendor files from build ([2b9b102](https://github.com/chenasraf/nextcloud-autocurrency/commit/2b9b1025269f3beb65c0eb5f1945d246f064f633))
+
 ## [1.6.2](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.6.1...v1.6.2) (2025-12-15)
 
 
