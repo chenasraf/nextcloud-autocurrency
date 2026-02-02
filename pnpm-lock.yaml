@@ -90,9 +90,6 @@ importers:
       vite-plugin-checker:
         specifier: ^0.12.0
         version: 0.12.0(eslint@9.39.2)(meow@13.2.0)(optionator@0.9.4)(typescript@5.9.2)(vite@6.4.1(@types/node@20.17.10)(sass-embedded@1.97.3)(sass@1.97.3)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.2))
-      vue-router:
-        specifier: ^4.6.4
-        version: 4.6.4(vue@3.5.27(typescript@5.9.2))
       vue-tsc:
         specifier: ^2.2.12
         version: 2.2.12(typescript@5.9.2)
