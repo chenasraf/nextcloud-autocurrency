@@ -6,6 +6,9 @@ OC.L10N.register(
     "Save" : "Хадгалах",
     "Search" : "Хайх",
     "Name" : "Нэр",
-    "Time" : "Цаг"
+    "From" : "Эхлэх",
+    "To" : "Хүртэл",
+    "Time" : "Цаг",
+    "-" : "-"
 },
 "nplurals=2; plural=(n != 1);");

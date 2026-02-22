@@ -4,6 +4,9 @@
     "Save" : "Хадгалах",
     "Search" : "Хайх",
     "Name" : "Нэр",
-    "Time" : "Цаг"
+    "From" : "Эхлэх",
+    "To" : "Хүртэл",
+    "Time" : "Цаг",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
