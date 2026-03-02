@@ -1,5 +1,6 @@
 import { createAppConfig } from '@nextcloud/vite-config'
-import path from 'path'
+import path from 'node:path'
+import { existsSync, rmSync } from 'node:fs'
 import { visualizer } from 'rollup-plugin-visualizer'
 import checker from 'vite-plugin-checker'
 
@@ -37,6 +38,7 @@ export default createAppConfig(
     user: path.resolve(path.join('src', 'user.ts')),
   },
   {
+    emptyOutputDirectory: false,
     config: {
       root: 'src',
       resolve: {
@@ -46,6 +48,17 @@ export default createAppConfig(
         },
       },
       plugins: [
+        {
+          name: 'clean-dist-js',
+          generateBundle() {
+            for (const dir of ['dist/js', 'dist/css']) {
+              const p = path.resolve(__dirname, dir)
+              if (existsSync(p)) {
+                rmSync(p, { recursive: true })
+              }
+            }
+          },
+        },
         checker({
           vueTsc: true,
         }),
