@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.6.9...v1.7.0) (2026-04-12)
+
+
+### Features
+
+* add more fiat currencies + add many crypto currencies ([15436c2](https://github.com/chenasraf/nextcloud-autocurrency/commit/15436c285e0f1028e98f5dcd83fe30d6a72face7))
+
 ## [1.6.9](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.6.8...v1.6.9) (2026-03-02)
 
 
