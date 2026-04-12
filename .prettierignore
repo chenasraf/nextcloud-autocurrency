@@ -1,2 +1,4 @@
 templates/
 gen/
+openapi.json
+openapi-*.json

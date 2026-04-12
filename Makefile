@@ -234,9 +234,13 @@ test: composer
 	fi; \
 	echo "\x1b[32mUsing Nextcloud root: $$NC_ROOT\x1b[0m"; \
 	NEXTCLOUD_ROOT="$$NC_ROOT" $(CURDIR)/vendor/phpunit/phpunit/phpunit -c tests/phpunit.xml; \
+	UNIT_EXIT=$$?; \
+	INTEG_EXIT=0; \
 	if [ -f tests/phpunit.integration.xml ]; then \
 		NEXTCLOUD_ROOT="$$NC_ROOT" $(CURDIR)/vendor/phpunit/phpunit/phpunit -c tests/phpunit.integration.xml; \
-	fi
+		INTEG_EXIT=$$?; \
+	fi; \
+	exit $$((UNIT_EXIT + INTEG_EXIT))
 
 # test-docker:
 #  - Run PHP unit tests inside a Nextcloud Docker container
@@ -269,6 +273,21 @@ test-docker:
 	fi; \
 	echo "\x1b[33mRunning tests in container $$CONTAINER_ID for app $$APP_DIR\x1b[0m"; \
 	docker exec $$CONTAINER_ID phpunit -c apps-shared/$$APP_DIR/tests/phpunit.docker.xml
+
+info_xsd_url=https://apps.nextcloud.com/schema/apps/info.xsd
+info_xsd=$(build_tools_directory)/info.xsd
+
+$(info_xsd):
+	@mkdir -p $(build_tools_directory)
+	curl -sS -o $(info_xsd) $(info_xsd_url)
+
+# lint-appinfo:
+#   - Validate appinfo/info.xml against the Nextcloud App Store XSD schema
+.PHONY: lint-appinfo
+lint-appinfo: $(info_xsd)
+	@echo "\x1b[33mValidating appinfo/info.xml against Nextcloud schema...\x1b[0m"
+	@xmllint --noout --schema $(info_xsd) appinfo/info.xml
+	@echo "\x1b[32mappinfo/info.xml is valid.\x1b[0m"
 
 # lint:
 #   - Lint JS via pnpm and PHP via composer script "lint"

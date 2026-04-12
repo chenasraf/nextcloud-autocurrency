@@ -91,11 +91,10 @@ don't hesitate to open an appropriate issue and I will do my best to reply promp
 Most development processes are automated:
 
 - **GitHub Actions** run tests, builds, and validations on each push or pull request.
-- **Pre-commit formatting** is handled by [lint-staged](https://github.com/okonet/lint-staged),
-  which automatically formats code before committing:
+- **Pre-commit formatting** is handled by [Lefthook](https://github.com/evilmartians/lefthook),
+  which automatically formats and lints code before committing.
 
-> 🛠️ The NPM package [husky](https://www.npmjs.com/package/husky) takes care of installing the
-> pre-commit hook automatically after `pnpm install`.
+> 🛠️ Lefthook is installed automatically via the `prepare` script after `pnpm install`.
 
 ---
 
