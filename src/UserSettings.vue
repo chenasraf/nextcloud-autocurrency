@@ -21,9 +21,11 @@
         <li>❌ <code>US Dollar</code></li>
         <li>❌ <code>United States Dollar</code></li>
       </ul>
+    </NcSettingsSection>
 
+    <NcSettingsSection :name="strings.supportedCurrenciesTitle">
       <div class="currency-list">
-        <p>{{ strings.supportedCurrencies }}</p>
+        <p>{{ strings.supportedFiatCurrencies(supportedCurrencies.length) }}</p>
 
         <div style="max-width: 300px">
           <NcTextField
@@ -49,6 +51,41 @@
               <td>{{ currency.symbol }}</td>
               <td>{{ currency.code }}</td>
               <td>{{ currency.name }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="currency-list mt">
+        <p>{{ strings.supportedCryptoCurrencies(cryptoTotalAll) }}</p>
+
+        <div style="max-width: 300px">
+          <NcTextField
+            v-model="cryptoSearch"
+            :label="strings.currencySearchLabel"
+            trailing-button-icon="close"
+            :placeholder="strings.cryptoSearchPlaceholder"
+            :show-trailing-button="cryptoSearch !== ''"
+            @trailing-button-click="clearCryptoSearch"
+          />
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>{{ strings.tableSymbol }}</th>
+              <th>{{ strings.tableCode }}</th>
+              <th>{{ strings.tableName }}</th>
+            </tr>
+          </thead>
+          <tbody ref="cryptoTbody" @scroll="onCryptoScroll">
+            <tr v-for="currency in cryptoCurrencies" :key="currency.code">
+              <td>{{ currency.symbol }}</td>
+              <td>{{ currency.code }}</td>
+              <td>{{ currency.name }}</td>
+            </tr>
+            <tr v-if="cryptoLoading">
+              <td colspan="3" style="text-align: center">{{ strings.loading }}</td>
             </tr>
           </tbody>
         </table>
@@ -154,6 +191,14 @@ export default {
       loading: true as boolean,
       supportedCurrencies: [] as SupportedCurrency[],
       currencySearch: '' as string,
+      cryptoCurrencies: [] as SupportedCurrency[],
+      cryptoSearch: '' as string,
+      cryptoSearchDebounce: null as ReturnType<typeof setTimeout> | null,
+      cryptoTotalAll: 0 as number,
+      cryptoTotal: 0 as number,
+      cryptoOffset: 0 as number,
+      cryptoLoading: false as boolean,
+      cryptoHasMore: true as boolean,
       projectsLoading: true as boolean,
       projects: [] as Project[],
       selectedProject: null as Project | null,
@@ -204,7 +249,13 @@ export default {
           { escape: false },
         ),
         exampleHeader: t(APP_ID, 'Example names:'),
-        supportedCurrencies: t(APP_ID, 'Supported currencies:'),
+        supportedCurrenciesTitle: t(APP_ID, 'Supported currencies'),
+        supportedFiatCurrencies: (count: number) =>
+          t(APP_ID, 'Supported fiat currencies ({count}):', { count: count.toLocaleString() }),
+        supportedCryptoCurrencies: (count: number) =>
+          t(APP_ID, 'Supported cryptocurrencies ({count}):', { count: count.toLocaleString() }),
+        loading: t(APP_ID, 'Loading…'),
+        cryptoSearchPlaceholder: t(APP_ID, 'e.g. BTC, Bitcoin'),
         currencySearchLabel: t(APP_ID, 'Search'),
         currencySearchPlaceholder: t(APP_ID, 'e.g. $, USD, US Dollar'),
         tableSymbol: t(APP_ID, 'Symbol'),
@@ -223,6 +274,7 @@ export default {
   },
   async created() {
     await this.fetchSettings()
+    this.fetchCryptoCurrencies()
     await this.fetchProjects()
   },
   watch: {
@@ -246,6 +298,15 @@ export default {
     showReversed() {
       this.$nextTick(() => this.renderChart())
     },
+    cryptoSearch() {
+      if (this.cryptoSearchDebounce) clearTimeout(this.cryptoSearchDebounce)
+      this.cryptoSearchDebounce = setTimeout(() => {
+        this.cryptoCurrencies = []
+        this.cryptoOffset = 0
+        this.cryptoHasMore = true
+        this.fetchCryptoCurrencies()
+      }, 300)
+    },
   },
   methods: {
     formatDate(value: Date | string | null | undefined): string {
@@ -254,8 +315,8 @@ export default {
         value instanceof Date
           ? value
           : typeof value === 'string'
-          ? parseDate(value)
-          : new Date(value as any)
+            ? parseDate(value)
+            : new Date(value as any)
 
       if (!isValid(d)) {
         console.warn('Invalid date received:', value)
@@ -286,6 +347,45 @@ export default {
 
     clearCurrencySearch() {
       this.currencySearch = ''
+    },
+
+    clearCryptoSearch() {
+      this.cryptoSearch = ''
+    },
+
+    async fetchCryptoCurrencies() {
+      if (this.cryptoLoading || !this.cryptoHasMore) return
+      try {
+        this.cryptoLoading = true
+        const params: Record<string, string | number> = {
+          limit: 50,
+          offset: this.cryptoOffset,
+        }
+        if (this.cryptoSearch.trim()) {
+          params.search = this.cryptoSearch.trim()
+        }
+        const resp = await ocs.get('/crypto-currencies', { params })
+        const data = resp.data ?? {}
+        const items: SupportedCurrency[] = data.currencies ?? []
+        this.cryptoTotal = data.total ?? 0
+        if (this.cryptoTotalAll === 0) {
+          this.cryptoTotalAll = this.cryptoTotal
+        }
+        this.cryptoCurrencies = [...this.cryptoCurrencies, ...items]
+        this.cryptoOffset += items.length
+        this.cryptoHasMore = this.cryptoOffset < this.cryptoTotal
+      } catch (e) {
+        console.error('Failed to fetch crypto currencies', e)
+      } finally {
+        this.cryptoLoading = false
+      }
+    },
+
+    onCryptoScroll(e: Event) {
+      const el = e.target as HTMLElement
+      if (el.scrollTop + el.clientHeight >= el.scrollHeight - 40) {
+        this.fetchCryptoCurrencies()
+      }
     },
 
     async fetchProjects() {
@@ -571,7 +671,10 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 2em;
+
+    &.mt {
+      margin-top: 2em;
+    }
   }
 
   .history-block {
@@ -586,7 +689,7 @@ export default {
       @media (max-width: 1280px) {
         grid-template-columns: 1fr 1fr;
 
-        >* {
+        > * {
           width: 100%;
         }
       }

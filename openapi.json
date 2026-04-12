@@ -163,6 +163,159 @@
                 }
             }
         },
+        "/ocs/v2.php/apps/autocurrency/api/crypto-currencies": {
+            "get": {
+                "operationId": "api-get-crypto-currencies",
+                "summary": "Get crypto currencies with pagination and search",
+                "tags": [
+                    "api"
+                ],
+                "security": [
+                    {
+                        "bearer_auth": []
+                    },
+                    {
+                        "basic_auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search query to filter by code or name",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "default": null
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Max results per page",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": 50,
+                            "minimum": 1,
+                            "maximum": 200
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset for pagination",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "OCS-APIRequest",
+                        "in": "header",
+                        "description": "Required to be true for the API request to pass",
+                        "required": true,
+                        "schema": {
+                            "type": "boolean",
+                            "default": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data returned",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": [
+                                        "ocs"
+                                    ],
+                                    "properties": {
+                                        "ocs": {
+                                            "type": "object",
+                                            "required": [
+                                                "meta",
+                                                "data"
+                                            ],
+                                            "properties": {
+                                                "meta": {
+                                                    "$ref": "#/components/schemas/OCSMeta"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "required": [
+                                                        "currencies",
+                                                        "total"
+                                                    ],
+                                                    "properties": {
+                                                        "currencies": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object",
+                                                                "required": [
+                                                                    "code",
+                                                                    "symbol",
+                                                                    "name"
+                                                                ],
+                                                                "properties": {
+                                                                    "code": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "symbol": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "total": {
+                                                            "type": "integer",
+                                                            "format": "int64"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Current user is not logged in",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": [
+                                        "ocs"
+                                    ],
+                                    "properties": {
+                                        "ocs": {
+                                            "type": "object",
+                                            "required": [
+                                                "meta",
+                                                "data"
+                                            ],
+                                            "properties": {
+                                                "meta": {
+                                                    "$ref": "#/components/schemas/OCSMeta"
+                                                },
+                                                "data": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/ocs/v2.php/apps/autocurrency/api/projects": {
             "get": {
                 "operationId": "api-get-projects",
@@ -343,7 +496,9 @@
                             "type": "integer",
                             "format": "int64",
                             "nullable": true,
-                            "default": null
+                            "default": null,
+                            "minimum": 1,
+                            "maximum": 1000
                         }
                     },
                     {

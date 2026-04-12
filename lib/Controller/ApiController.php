@@ -124,6 +124,47 @@ class ApiController extends OCSController {
 	}
 
 	/**
+	 * Get crypto currencies with pagination and search
+	 *
+	 * @param string|null $search Search query to filter by code or name
+	 * @param int<1, 200> $limit Max results per page
+	 * @param int $offset Offset for pagination
+	 * @return DataResponse<Http::STATUS_OK, array{
+	 *   currencies: list<array{code: string, symbol: string, name: string}>,
+	 *   total: int
+	 * }, array{}>
+	 *
+	 * 200: Data returned
+	 */
+	#[NoAdminRequired]
+	#[ApiRoute(verb: 'GET', url: '/api/crypto-currencies')]
+	public function getCryptoCurrencies(
+		?string $search = null,
+		int $limit = 50,
+		int $offset = 0,
+	): DataResponse {
+		$all = $this->service->getCryptoSymbols();
+
+		if ($search !== null && trim($search) !== '') {
+			$q = mb_strtolower(trim($search), 'UTF-8');
+			$all = array_filter($all, function ($sym) use ($q) {
+				return str_contains(mb_strtolower((string)($sym['code'] ?? ''), 'UTF-8'), $q)
+					|| str_contains(mb_strtolower((string)($sym['name'] ?? ''), 'UTF-8'), $q);
+			});
+		}
+
+		$total = count($all);
+		$page = array_slice(array_values($all), $offset, max(1, min($limit, 200)));
+
+		$currencies = array_map(
+			fn ($sym): array => ['name' => $sym['name'], 'code' => $sym['code'], 'symbol' => $sym['symbol']],
+			$page
+		);
+
+		return new DataResponse(['currencies' => $currencies, 'total' => $total]);
+	}
+
+	/**
 	 * Run cron immediately
 	 *
 	 * @return DataResponse<Http::STATUS_OK, array{status:non-empty-string}, array{}>
@@ -224,7 +265,7 @@ class ApiController extends OCSController {
 	 * @param string|null $currency Quoted currency code to filter (e.g. "eur")
 	 * @param string|null $from ISO-8601 datetime (inclusive)
 	 * @param string|null $to ISO-8601 datetime (inclusive)
-	 * @param int|null $limit Max rows to return (optional)
+	 * @param int<1, 1000>|null $limit Max rows to return (optional)
 	 * @param int|null $offset Offset for pagination (optional)
 	 *
 	 * @return DataResponse<Http::STATUS_OK, array{

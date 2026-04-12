@@ -31,8 +31,12 @@ async function main() {
   console.log(`Fetched ${Object.keys(rates.usd).length} currencies`)
 
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const symbols = require('../lib/Service/symbols.json')
-  const finalJson = findIntersections(symbols, rates)
+  const fiatSymbols = require('../lib/Service/symbols.json')
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const cryptoSymbols = require('../lib/Service/symbols-crypto.json')
+
+  const allSymbols = { ...fiatSymbols, ...cryptoSymbols }
+  const finalJson = findIntersections(allSymbols, rates)
 
   console.log(JSON.stringify(finalJson, null, 2))
 }

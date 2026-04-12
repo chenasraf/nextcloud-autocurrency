@@ -28,9 +28,16 @@ use Psr\Log\LoggerInterface;
 class FetchCurrenciesService {
 	private static $EXCHANGE_URL = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{base}.json';
 	private static $SYMBOLS_FILE = __DIR__ . '/symbols.json';
+	private static $CRYPTO_SYMBOLS_FILE = __DIR__ . '/symbols-crypto.json';
 
-	/** @var array<string, mixed> */
+	/** @var array<string, mixed> Fiat currencies (displayed in UI) */
 	public array $symbols = [];
+
+	/** @var array<string, mixed>|null Crypto currencies (lazy-loaded) */
+	private ?array $cryptoSymbols = null;
+
+	/** @var array<string, mixed>|null All currencies including crypto (lazy-loaded) */
+	private ?array $allSymbols = null;
 
 	/** @var array<string, mixed> */
 	private array $symbolPreference = [];
@@ -489,7 +496,7 @@ class FetchCurrenciesService {
 		$lower = mb_strtolower($original, 'UTF-8');
 
 		// Prefer explicit 3-letter code tokens (e.g., "US Dollar (USD)")
-		foreach ($this->symbols as $code => $currency) {
+		foreach ($this->getAllSymbols() as $code => $currency) {
 			$id = mb_strtolower((string)$code, 'UTF-8');
 			if (preg_match('/\b' . preg_quote($id, '/') . '\b/u', $lower)) {
 				return $id;
@@ -501,7 +508,7 @@ class FetchCurrenciesService {
 		// Collect all codes hit by symbols, then resolve with preference.
 		$hitsBySymbol = [];
 
-		foreach ($this->symbols as $code => $currency) {
+		foreach ($this->getAllSymbols() as $code => $currency) {
 			if (empty($currency['symbol'])) {
 				continue;
 			}
@@ -543,10 +550,35 @@ class FetchCurrenciesService {
 		return null;
 	}
 
-	/** Load symbols from the symbols.json file */
+	/**
+	 * Get crypto symbols (lazy-loaded)
+	 * @return array<string, mixed>
+	 */
+	public function getCryptoSymbols(): array {
+		if ($this->cryptoSymbols === null) {
+			$cryptoFile = FetchCurrenciesService::$CRYPTO_SYMBOLS_FILE;
+			$this->cryptoSymbols = file_exists($cryptoFile)
+				? (json_decode(file_get_contents($cryptoFile), true) ?? [])
+				: [];
+		}
+		return $this->cryptoSymbols;
+	}
+
+	/**
+	 * Get all symbols - fiat + crypto (lazy-loaded)
+	 * @return array<string, mixed>
+	 */
+	public function getAllSymbols(): array {
+		if ($this->allSymbols === null) {
+			$this->allSymbols = array_merge($this->symbols, $this->getCryptoSymbols());
+		}
+		return $this->allSymbols;
+	}
+
+	/** Load fiat symbols from JSON file */
 	private function loadSymbols(): void {
-		$this->symbols = json_decode(file_get_contents(FetchCurrenciesService::$SYMBOLS_FILE), true);
-		$this->logger->debug('Loaded symbols: ' . json_encode($this->symbols));
+		$this->symbols = json_decode(file_get_contents(FetchCurrenciesService::$SYMBOLS_FILE), true) ?? [];
+		$this->logger->debug('Loaded ' . count($this->symbols) . ' fiat symbols');
 	}
 
 	/**

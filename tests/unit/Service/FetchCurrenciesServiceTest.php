@@ -58,6 +58,10 @@ final class FetchCurrenciesServiceTest extends TestCase {
 		$propSymbols = $ref->getProperty('symbols');
 		$propSymbols->setAccessible(true);
 		$propSymbols->setValue($this->resolver, $symbols);
+
+		$propAllSymbols = $ref->getProperty('allSymbols');
+		$propAllSymbols->setAccessible(true);
+		$propAllSymbols->setValue($this->resolver, $symbols);
 	}
 
 	/**
