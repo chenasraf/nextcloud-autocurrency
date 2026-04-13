@@ -39,7 +39,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Der Währungscode - z.B. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (Groß-/Kleinschreibung wird nicht beachtet)",
     "The naming rules apply for both main &amp; additional currencies." : "Die Benennungsregeln gelten sowohl für Haupt- als auch für Zusatzwährungen.",
     "Example names:" : "Beispielnamen:",
-    "Supported currencies:" : "Unterstützte Währungen:",
     "Search" : "Suche",
     "e.g. $, USD, US Dollar" : "z. B. $, USD, US-Dollar",
     "Symbol" : "Symbol",

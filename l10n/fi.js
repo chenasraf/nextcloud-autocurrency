@@ -13,7 +13,6 @@ OC.L10N.register(
     "The currency symbol - e.g. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}" : "Valuutan symbolil - esim. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}",
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Valuutan koodi - esim. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (kirjainkoolla ei merkitystä)",
     "Example names:" : "Esimerkkinimet:",
-    "Supported currencies:" : "Tuetut valuutat:",
     "Search" : "Etsi",
     "Symbol" : "Symboli",
     "Code" : "Koodi",

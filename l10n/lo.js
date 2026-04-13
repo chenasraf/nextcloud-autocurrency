@@ -39,7 +39,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "ລະຫັດສະກຸນເງິນ - ຕົວຢ່າງ {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (ບໍ່ສົນໃຈຕົວພິມໃຫຍ່-ນ້ອຍ)",
     "The naming rules apply for both main &amp; additional currencies." : "ກົດການຕັ້ງຊື່ນີ້ນຳໃຊ້ໄດ້ທັງສະກຸນເງິນຫຼັກ ແລະ ສະກຸນເງິນເພີ່ມເຕີມ.",
     "Example names:" : "ຊື່ຕົວຢ່າງ:",
-    "Supported currencies:" : "ສະກຸນເງິນທີ່ຮອງຮັບ:",
     "Search" : "ຄົ້ນຫາ",
     "e.g. $, USD, US Dollar" : "ຕົວຢ່າງ: $, USD, ໂດລາສະຫະລັດ",
     "Symbol" : "ສັນຍາລັກ",

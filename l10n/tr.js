@@ -39,7 +39,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Para birimi kodu. Örneğin: {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (büyük/küçük harfe duyarsız)",
     "The naming rules apply for both main &amp; additional currencies." : "Adlandırma kuralları hem ana hem de ek para birimleri için geçerlidir.",
     "Example names:" : "Örnek adlar:",
-    "Supported currencies:" : "Desteklenen para birimleri:",
     "Search" : "Ara",
     "e.g. $, USD, US Dollar" : "Örneğin: $, USD, US Dollar",
     "Symbol" : "Simge",

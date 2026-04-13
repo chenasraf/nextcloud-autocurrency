@@ -36,7 +36,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Код валюти - наприклад, {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (без урахування регістру)",
     "The naming rules apply for both main &amp; additional currencies." : "Правила іменування застосовуються як до основних, так і до додаткових валют.",
     "Example names:" : "Приклади імен:",
-    "Supported currencies:" : "Підтримувані валюти:",
     "Search" : "Пошук",
     "e.g. $, USD, US Dollar" : "наприклад, $, USD, долар США",
     "Symbol" : "Символ",

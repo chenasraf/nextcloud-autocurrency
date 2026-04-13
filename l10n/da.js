@@ -16,7 +16,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Valutakoden - fx {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (versalfølsom)",
     "The naming rules apply for both main &amp; additional currencies." : "Navngivningsreglerne gælder for både hoved &amp; yderligere valutaer.",
     "Example names:" : "Eksempelnavne:",
-    "Supported currencies:" : "Understøttede valuter:",
     "Search" : "Søg",
     "e.g. $, USD, US Dollar" : "fx $, USD, US Dollar",
     "Symbol" : "Symbol",

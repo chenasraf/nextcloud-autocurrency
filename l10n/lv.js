@@ -19,7 +19,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "valūtas kods - piem., {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (reģistrnejutīgs)",
     "The naming rules apply for both main &amp; additional currencies." : "Nosaukuma kārtulas attiecas gan uz galveno, gan papildu valūtām.",
     "Example names:" : "Nosaukumu piemēri:",
-    "Supported currencies:" : "Atbalstītās valūtas:",
     "Search" : "Meklēt",
     "e.g. $, USD, US Dollar" : "piem., $, USD, US Dollar",
     "Symbol" : "Apzīmējums",

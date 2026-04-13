@@ -20,7 +20,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "A pénznem kódja – például {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (kis- és nagybetű nem számít)",
     "The naming rules apply for both main &amp; additional currencies." : "Az elnevezési szabályok érvényesek a fő és a további pénznemekre is.",
     "Example names:" : "Példanevek:",
-    "Supported currencies:" : "Támogatott pénznemek:",
     "Search" : "Keresés",
     "e.g. $, USD, US Dollar" : "például $, USD, USA dollár",
     "Symbol" : "Szimbólum",

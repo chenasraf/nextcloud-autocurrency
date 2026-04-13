@@ -37,7 +37,6 @@
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Valuutakood - nt. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (tõstutundlik)",
     "The naming rules apply for both main &amp; additional currencies." : "Nimede reegli kehtivad ühtemoodi põhi- ja lisavaluutadele.",
     "Example names:" : "Näidisnimed:",
-    "Supported currencies:" : "Toetatud vääringud:",
     "Search" : "Otsi",
     "e.g. $, USD, US Dollar" : "nt, $, USD, EUR, euro",
     "Symbol" : "Sümbol",

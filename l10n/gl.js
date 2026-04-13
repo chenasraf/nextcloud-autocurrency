@@ -39,7 +39,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "O código da divisa - p. ex., {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (non distingue entre maiúsculas e minúsculas)",
     "The naming rules apply for both main &amp; additional currencies." : "As regras de nomenclatura aplícanse tanto para as divisas principais como para as adicionais.",
     "Example names:" : "Nomes de exemplo:",
-    "Supported currencies:" : "Divisas admitidas:",
     "Search" : "Buscar",
     "e.g. $, USD, US Dollar" : "P. ex. $, USD, US Dollar",
     "Symbol" : "Símbolo",

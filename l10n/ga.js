@@ -39,7 +39,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "An cód airgeadra - m.sh.{cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (neamhíogair ó thaobh cás de)",
     "The naming rules apply for both main &amp; additional currencies." : "Baineann na rialacha ainmniúcháin leis an bpríomh-airgeadra agus leis an airgeadra breise araon.",
     "Example names:" : "Ainmneacha samplacha:",
-    "Supported currencies:" : "Airgeadraí a dtacaítear leo:",
     "Search" : "Cuardach",
     "e.g. $, USD, US Dollar" : "m.sh. $, USD, Dollar SAM",
     "Symbol" : "Siombail",

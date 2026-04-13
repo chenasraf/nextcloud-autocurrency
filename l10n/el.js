@@ -36,7 +36,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Ο κωδικός νομίσματος - π.χ. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (χωρίς διάκριση πεζών/κεφαλαίων)",
     "The naming rules apply for both main &amp; additional currencies." : "Οι κανόνες ονομασίας ισχύουν τόσο για τα κύρια όσο και για τα πρόσθετα νομίσματα.",
     "Example names:" : "Παραδείγματα ονομάτων:",
-    "Supported currencies:" : "Υποστηριζόμενα νομίσματα:",
     "Search" : "Αναζήτηση",
     "e.g. $, USD, US Dollar" : "π.χ. $, USD, US Dollar",
     "Symbol" : "Σύμβολο",

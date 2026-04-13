@@ -22,7 +22,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Кôд валуте - нпр. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (без разликоавања величине слова)",
     "The naming rules apply for both main &amp; additional currencies." : "Правила именовања се примењују и на главне и на додатне валуте.",
     "Example names:" : "Пример имена:",
-    "Supported currencies:" : "Подржане валуте:",
     "Search" : "Претрага",
     "e.g. $, USD, US Dollar" : "нпр. $, USD, US Dollar",
     "Symbol" : "Симбол",

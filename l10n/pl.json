@@ -21,7 +21,6 @@
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Kod waluty – np. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (bez rozróżniania wielkości liter)",
     "The naming rules apply for both main &amp; additional currencies." : "Zasady nazewnictwa dotyczą zarówno głównej, jak i dodatkowych walut.",
     "Example names:" : "Przykładowe nazwy:",
-    "Supported currencies:" : "Obsługiwane waluty:",
     "Search" : "Szukaj",
     "e.g. $, USD, US Dollar" : "np. $, USD, Dolar amerykański",
     "Symbol" : "Symbol",

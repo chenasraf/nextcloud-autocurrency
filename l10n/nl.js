@@ -20,7 +20,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "De valuta-code - bijv. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (hoofdlettergevoelig)",
     "The naming rules apply for both main &amp; additional currencies." : "De naamgevingsregels gelden voor zowel hoofd- &amp; aanvullende valuta.",
     "Example names:" : "Voorbeeldnamen:",
-    "Supported currencies:" : "Ondersteunde valuta:",
     "Search" : "Zoeken",
     "e.g. $, USD, US Dollar" : "bijv. $, USD, US Dollar",
     "Symbol" : "Symbool",

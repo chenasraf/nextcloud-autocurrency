@@ -39,7 +39,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Msimbo wa sarafu- mfano. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (kesi-isiyojali)",
     "The naming rules apply for both main &amp; additional currencies." : " Sheria za kutaja majina zinatumika kwa zote kuu &amp; sarafu za ziada.",
     "Example names:" : "Majina ya mfano:",
-    "Supported currencies:" : "Sarafu zinazotumika:",
     "Search" : "Tafuta",
     "e.g. $, USD, US Dollar" : "Mfano $, USD, US Dollar",
     "Symbol" : "Alama",

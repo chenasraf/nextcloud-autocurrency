@@ -37,7 +37,6 @@
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)",
     "The naming rules apply for both main &amp; additional currencies." : "The naming rules apply for both main &amp; additional currencies.",
     "Example names:" : "Example names:",
-    "Supported currencies:" : "Supported currencies:",
     "Search" : "Search",
     "e.g. $, USD, US Dollar" : "e.g. $, USD, US Dollar",
     "Symbol" : "Symbol",

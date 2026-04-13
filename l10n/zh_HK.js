@@ -39,7 +39,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "貨幣代碼，例如 {cStart}USD{cEnd}、{cStart}EUR{cEnd}、{cStart}GBP{cEnd}（不區分大小寫）",
     "The naming rules apply for both main &amp; additional currencies." : "命名規則同時適用於主要與額外貨幣。",
     "Example names:" : "範例名稱：",
-    "Supported currencies:" : "支援的貨幣：",
     "Search" : "搜尋",
     "e.g. $, USD, US Dollar" : "例如 $, USD, 美金",
     "Symbol" : "符號",

@@ -37,7 +37,6 @@
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Kode mata uang - misalnya {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (tidak peka huruf besar/kecil)",
     "The naming rules apply for both main &amp; additional currencies." : "Aturan penamaan berlaku untuk mata uang utama &amp; mata uang tambahan.",
     "Example names:" : "Contoh nama:",
-    "Supported currencies:" : "Mata uang yang didukung:",
     "Search" : "Cari",
     "e.g. $, USD, US Dollar" : "misalnya $, USD, Dolar AS",
     "Symbol" : "Simbol",

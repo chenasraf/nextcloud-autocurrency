@@ -14,7 +14,6 @@ OC.L10N.register(
     "Never" : "Jamais",
     "Save" : "Enregistrer",
     "Example names:" : "Exemples de noms :",
-    "Supported currencies:" : "Devises prises en charge :",
     "Search" : "Rechercher",
     "e.g. $, USD, US Dollar" : "par ex. €, EUR, Euro",
     "Symbol" : "Symbole",

@@ -37,7 +37,6 @@
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "O código da moeda - p. ex., {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (não diferencia maiúsculas de minúsculas)",
     "The naming rules apply for both main &amp; additional currencies." : "As regras de nomenclatura se aplicam tanto às moedas principais quanto às adicionais.",
     "Example names:" : "Exemplos de nomes:",
-    "Supported currencies:" : "Moedas suportadas:",
     "Search" : "Pesquisar",
     "e.g. $, USD, US Dollar" : "p. ex., $, USD, US Dollar",
     "Symbol" : "Símbolo",

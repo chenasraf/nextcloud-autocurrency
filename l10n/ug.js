@@ -39,7 +39,6 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "پۇل كودى - مەسىلەن، {cStart}USD{cEnd}، {cStart}EUR{cEnd}، {cStart}GBP{cEnd} (چوڭ-كىچىك ھەرپلەرگە پەرۋا قىلمايدۇ)",
     "The naming rules apply for both main &amp; additional currencies." : "نام بېرىش قائىدىسى ئاساسلىق ۋە قوشۇمچە پۇللارنىڭ ھەر ئىككىسىگە ماس كېلىدۇ.",
     "Example names:" : "مىسال ئىسىملار:",
-    "Supported currencies:" : "قوللايدىغان پۇللار:",
     "Search" : "ئىزدەش",
     "e.g. $, USD, US Dollar" : "مەسىلەن، دوللار، ئامېرىكا دوللىرى، ئامېرىكا دوللىرى",
     "Symbol" : "سىمۋول",
