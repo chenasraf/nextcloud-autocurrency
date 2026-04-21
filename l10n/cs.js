@@ -38,6 +38,8 @@ OC.L10N.register(
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Kód měny – např. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (jsou rozlišována VELKÁ-malá písmena)",
     "The naming rules apply for both main &amp; additional currencies." : "Pravidla pro názvy platí jak pro hlavní, tak pro dodatečné měny.",
     "Example names:" : "Názvy pro ukázku:",
+    "Supported currencies" : "Podporované měny",
+    "e.g. BTC, Bitcoin" : "např. BTC, Bitcoin",
     "Search" : "Hledat",
     "e.g. $, USD, US Dollar" : "např. $, USD, US Dollar",
     "Symbol" : "Symbol",
