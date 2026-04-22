@@ -146,7 +146,7 @@ class FetchCurrenciesService {
 		}
 
 		if ($newRate === null) {
-			$this->logger->error("Failed to fetch rate for $currencyCode");
+			$this->logger->error("Failed to fetch rate for $currencyCode (base=$baseCurrency, custom=" . ($customCurrency !== null ? 'yes' : 'no') . ')');
 			return;
 		}
 
@@ -161,14 +161,18 @@ class FetchCurrenciesService {
 			$json = $this->fetchStandardRates($baseCurrency);
 
 			if (!isset($json[$baseCurrency][$targetCurrency])) {
-				$this->logger->error("Rate not found for $targetCurrency in base $baseCurrency");
+				$availableKeys = is_array($json[$baseCurrency] ?? null)
+					? implode(', ', array_slice(array_keys($json[$baseCurrency]), 0, 10)) . '…'
+					: 'N/A';
+				$this->logger->error("Rate not found for $targetCurrency in base $baseCurrency (top-level keys: "
+					. implode(', ', array_keys($json)) . "; available rates: $availableKeys)");
 				return null;
 			}
 
 			$baseRate = $json[$baseCurrency][$targetCurrency];
 			return 1.0 / $baseRate;
 		} catch (\Throwable $e) {
-			$this->logger->error('Error fetching standard rate: ' . $e->getMessage());
+			$this->logger->error("Error fetching standard rate for $targetCurrency (base=$baseCurrency): " . $e->getMessage());
 			return null;
 		}
 	}
@@ -185,18 +189,27 @@ class FetchCurrenciesService {
 		$this->logger->info('Fetching exchange rates for base currency ' . $baseCurrency);
 		$url = $this->replaceTokens(self::$EXCHANGE_URL, $baseCurrency);
 
-		$fp = fopen($url, 'r');
+		$fp = @fopen($url, 'r');
 		if (!$fp) {
-			throw new \RuntimeException("Failed to open URL: $url");
+			$err = error_get_last();
+			throw new \RuntimeException("Failed to open URL: $url — " . ($err['message'] ?? 'unknown error'));
 		}
 
 		$data = stream_get_contents($fp);
 		fclose($fp);
 
+		if ($data === false || $data === '') {
+			throw new \RuntimeException("Empty response from URL: $url");
+		}
+
 		$json = json_decode($data, true);
 
+		if ($json === null) {
+			throw new \RuntimeException("Invalid JSON from $url (first 200 chars): " . substr($data, 0, 200));
+		}
+
 		if (!isset($json[$baseCurrency])) {
-			throw new \RuntimeException("Failed to fetch exchange rates for base currency $baseCurrency");
+			throw new \RuntimeException("Key '$baseCurrency' not found in response from $url (keys: " . implode(', ', array_keys($json)) . ')');
 		}
 
 		$this->apiCache[$baseCurrency] = $json;
@@ -264,7 +277,8 @@ class FetchCurrenciesService {
 			$rawRate = $this->extractJsonPath($response, $jsonPath);
 
 			if ($rawRate === null) {
-				$this->logger->error("Failed to extract rate from JSON path: $jsonPath");
+				$topKeys = is_array($response) ? implode(', ', array_keys($response)) : 'N/A';
+				$this->logger->error("Failed to extract rate from JSON path '$jsonPath' (endpoint: $endpoint, top-level keys: $topKeys)");
 				return null;
 			}
 
@@ -322,18 +336,23 @@ class FetchCurrenciesService {
 		}
 
 		$context = stream_context_create($opts);
-		$fp = fopen($url, 'r', false, $context);
+		$fp = @fopen($url, 'r', false, $context);
 		if (!$fp) {
-			throw new \RuntimeException("Failed to open URL: $url");
+			$err = error_get_last();
+			throw new \RuntimeException("Failed to open URL: $url — " . ($err['message'] ?? 'unknown error'));
 		}
 
 		$data = stream_get_contents($fp);
 		fclose($fp);
 
+		if ($data === false || $data === '') {
+			throw new \RuntimeException("Empty response from URL: $url");
+		}
+
 		$json = json_decode($data, true);
 
 		if ($json === null) {
-			throw new \RuntimeException("Failed to decode JSON from: $url");
+			throw new \RuntimeException("Failed to decode JSON from $url (first 200 chars): " . substr($data, 0, 200));
 		}
 
 		$this->apiCache[$cacheKey] = $json;
