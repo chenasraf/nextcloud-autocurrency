@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.7.1...v1.8.0) (2026-04-23)
+
+
+### Features
+
+* use IClientService (curl) for api requests ([4bc74e7](https://github.com/chenasraf/nextcloud-autocurrency/commit/4bc74e7bc6bd822e03b87b5572fc23679165fbe1))
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([65c2b24](https://github.com/chenasraf/nextcloud-autocurrency/commit/65c2b24273fca5b6de5bc0fc273b1aaae053d86b))
+
 ## [1.7.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.7.0...v1.7.1) (2026-04-22)
 
 
