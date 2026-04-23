@@ -40,6 +40,7 @@ use OCA\AutoCurrency\Db\CustomCurrency;
 use OCA\AutoCurrency\Db\CustomCurrencyMapper;
 use OCA\AutoCurrency\Service\FetchCurrenciesService;
 use OCA\Cospend\Db\Project;
+use OCP\Http\Client\IClientService;
 use OCP\IAppConfig;
 use OCP\IL10N;
 use OCP\IRequest;
@@ -87,10 +88,11 @@ final class ApiControllerTest extends TestCase {
 		$this->logger = $opts['logger'] ?? $this->createMock(LoggerInterface::class);
 
 		$this->customCurrencyMapper->method('findAll')->willReturn([]);
+		$clientService = $this->createMock(IClientService::class);
 
 		if (!empty($opts['serviceMethods'])) {
 			$this->service = $this->getMockBuilder(FetchCurrenciesService::class)
-				->setConstructorArgs([$this->config, $this->currencyMapper, $this->projectMapper, $this->historyMapper, $this->customCurrencyMapper, $this->logger])
+				->setConstructorArgs([$this->config, $this->currencyMapper, $this->projectMapper, $this->historyMapper, $this->customCurrencyMapper, $clientService, $this->logger])
 				->onlyMethods($opts['serviceMethods'])
 				->getMock();
 		} else {
@@ -100,6 +102,7 @@ final class ApiControllerTest extends TestCase {
 				$this->projectMapper,
 				$this->historyMapper,
 				$this->customCurrencyMapper,
+				$clientService,
 				$this->logger
 			);
 		}

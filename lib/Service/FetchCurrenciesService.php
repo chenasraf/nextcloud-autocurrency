@@ -21,6 +21,7 @@ use OCA\AutoCurrency\Db\CustomCurrency;
 use OCA\AutoCurrency\Db\CustomCurrencyMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
+use OCP\Http\Client\IClientService;
 use OCP\IAppConfig;
 
 use Psr\Log\LoggerInterface;
@@ -60,6 +61,7 @@ class FetchCurrenciesService {
 		private CospendProjectMapper $projectMapper,
 		private AutocurrencyRateHistoryMapper $historyMapper,
 		private CustomCurrencyMapper $customCurrencyMapper,
+		private IClientService $clientService,
 		private LoggerInterface $logger,
 	) {
 		$this->config = $config;
@@ -67,6 +69,7 @@ class FetchCurrenciesService {
 		$this->projectMapper = $projectMapper;
 		$this->historyMapper = $historyMapper;
 		$this->customCurrencyMapper = $customCurrencyMapper;
+		$this->clientService = $clientService;
 		$this->logger = $logger;
 		$this->loadSymbols();
 	}
@@ -189,23 +192,18 @@ class FetchCurrenciesService {
 		$this->logger->info('Fetching exchange rates for base currency ' . $baseCurrency);
 		$url = $this->replaceTokens(self::$EXCHANGE_URL, $baseCurrency);
 
-		$fp = @fopen($url, 'r');
-		if (!$fp) {
-			$err = error_get_last();
-			throw new \RuntimeException("Failed to open URL: $url — " . ($err['message'] ?? 'unknown error'));
-		}
+		$client = $this->clientService->newClient();
+		$response = $client->get($url);
+		$data = $response->getBody();
 
-		$data = stream_get_contents($fp);
-		fclose($fp);
-
-		if ($data === false || $data === '') {
-			throw new \RuntimeException("Empty response from URL: $url");
+		if ($data === '') {
+			throw new \RuntimeException("Empty response from URL: $url (HTTP " . $response->getStatusCode() . ')');
 		}
 
 		$json = json_decode($data, true);
 
 		if ($json === null) {
-			throw new \RuntimeException("Invalid JSON from $url (first 200 chars): " . substr($data, 0, 200));
+			throw new \RuntimeException("Invalid JSON from $url (HTTP " . $response->getStatusCode() . ', first 200 chars): ' . substr($data, 0, 200));
 		}
 
 		if (!isset($json[$baseCurrency])) {
@@ -322,37 +320,24 @@ class FetchCurrenciesService {
 
 		$this->logger->debug("Fetching API response from: $url");
 
-		// Set up stream context with headers if API key is provided
-		$opts = [
-			'http' => [
-				'method' => 'GET',
-				'header' => '',
-			],
-		];
-
+		$options = [];
 		if ($apiKey && $apiKey !== '') {
-			$opts['http']['header'] = "Authorization: Bearer $apiKey\r\n";
+			$options['headers'] = ['Authorization' => "Bearer $apiKey"];
 			$this->logger->debug('Using API key for authentication');
 		}
 
-		$context = stream_context_create($opts);
-		$fp = @fopen($url, 'r', false, $context);
-		if (!$fp) {
-			$err = error_get_last();
-			throw new \RuntimeException("Failed to open URL: $url — " . ($err['message'] ?? 'unknown error'));
-		}
+		$client = $this->clientService->newClient();
+		$response = $client->get($url, $options);
+		$data = $response->getBody();
 
-		$data = stream_get_contents($fp);
-		fclose($fp);
-
-		if ($data === false || $data === '') {
-			throw new \RuntimeException("Empty response from URL: $url");
+		if ($data === '') {
+			throw new \RuntimeException("Empty response from URL: $url (HTTP " . $response->getStatusCode() . ')');
 		}
 
 		$json = json_decode($data, true);
 
 		if ($json === null) {
-			throw new \RuntimeException("Failed to decode JSON from $url (first 200 chars): " . substr($data, 0, 200));
+			throw new \RuntimeException("Failed to decode JSON from $url (HTTP " . $response->getStatusCode() . ', first 200 chars): ' . substr($data, 0, 200));
 		}
 
 		$this->apiCache[$cacheKey] = $json;

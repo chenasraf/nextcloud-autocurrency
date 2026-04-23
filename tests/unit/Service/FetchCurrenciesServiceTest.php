@@ -13,6 +13,7 @@ use OCA\AutoCurrency\Db\CurrencyMapper;
 use OCA\AutoCurrency\Db\CustomCurrency;
 use OCA\AutoCurrency\Db\CustomCurrencyMapper;
 use OCA\AutoCurrency\Service\FetchCurrenciesService;
+use OCP\Http\Client\IClientService;
 use OCP\IAppConfig;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -27,6 +28,7 @@ final class FetchCurrenciesServiceTest extends TestCase {
 		$projectMapper = $this->createMock(CospendProjectMapper::class);
 		$historyMapper = $this->createMock(AutocurrencyRateHistoryMapper::class);
 		$customCurrencyMapper = $this->createMock(CustomCurrencyMapper::class);
+		$clientService = $this->createMock(IClientService::class);
 		$logger = $this->createMock(LoggerInterface::class);
 
 		$customCurrencyMapper->method('findAll')->willReturn([]);
@@ -37,6 +39,7 @@ final class FetchCurrenciesServiceTest extends TestCase {
 			$projectMapper,
 			$historyMapper,
 			$customCurrencyMapper,
+			$clientService,
 			$logger
 		);
 
