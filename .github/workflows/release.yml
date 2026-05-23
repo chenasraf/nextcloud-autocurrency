@@ -65,7 +65,7 @@ jobs:
 
       - name: Build App
         run: |
-          npm i -g pnpm
+          npm i -g pnpm@10
           make && make appstore
 
       - name: Upload Artifacts
