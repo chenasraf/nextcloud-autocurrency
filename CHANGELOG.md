@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.8.0...v1.8.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([966cbd3](https://github.com/chenasraf/nextcloud-autocurrency/commit/966cbd32bab9125828a2de93ae721b38db598f5e))
+* **l10n:** Update translations from Transifex ([69c4a96](https://github.com/chenasraf/nextcloud-autocurrency/commit/69c4a966ff0bbb5410be0da99958825f04ea0f16))
+
+
+### Miscellaneous Chores
+
+* mark support for nc-34 ([f926f79](https://github.com/chenasraf/nextcloud-autocurrency/commit/f926f7999ffdc7d8dc5e40ecb5403bd86b4490e4))
+
 ## [1.8.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.7.1...v1.8.0) (2026-04-23)
 
 
