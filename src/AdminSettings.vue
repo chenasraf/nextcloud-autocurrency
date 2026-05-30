@@ -419,7 +419,7 @@ export default {
           gap: 12px;
           flex-wrap: wrap;
 
-          >* {
+          > * {
             flex: 1;
             min-width: 200px;
           }

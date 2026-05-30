@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace OCA\AutoCurrency\Service;
 
 use DateTimeImmutable;
-
 use DateTimeZone;
 use Exception;
 use OCA\AutoCurrency\AppInfo;
@@ -23,7 +22,6 @@ use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
 use OCP\Http\Client\IClientService;
 use OCP\IAppConfig;
-
 use Psr\Log\LoggerInterface;
 
 class FetchCurrenciesService {
@@ -485,7 +483,6 @@ class FetchCurrenciesService {
 			$this->logger->warning('Failed to insert rate history row: ' . $e->getMessage());
 		}
 	}
-
 
 	/**
 	 * Try to derive a nice project display name safely without hard-coding Cospend internals.

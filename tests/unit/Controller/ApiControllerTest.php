@@ -25,7 +25,6 @@ if (!class_exists('OCA\\Cospend\\Db\\Project')) {
 	}
 }
 
-
 namespace Controller;
 
 use DateTimeImmutable;
