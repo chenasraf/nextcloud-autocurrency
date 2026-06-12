@@ -1,7 +1,13 @@
 { "translations": {
     "Loading…" : "Asali...",
+    "Never" : "Weṛǧin",
     "Save" : "Sekles",
     "Search" : "Nadi",
-    "Name" : "Nom"
+    "Code" : "Angal",
+    "Name" : "Nom",
+    "From" : "Seg",
+    "To" : "Ɣer",
+    "Time" : "Akud",
+    "-" : "-"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
