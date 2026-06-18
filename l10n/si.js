@@ -2,6 +2,7 @@ OC.L10N.register(
     "autocurrency",
     {
     "Loading…" : "පූරණය වෙමින්…",
+    "Save" : "Save",
     "Search" : "සොයන්න",
     "Name" : "නම",
     "Time" : "වේලාව"

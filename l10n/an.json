@@ -1,6 +1,7 @@
 { "translations": {
     "Loading…" : "Cargando...",
     "Never" : "Nunca",
+    "Save" : "Save",
     "Search" : "Buscar",
     "Name" : "Nombre"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
