@@ -1,15 +1,24 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Auto Currency for Cospend" : "Moeda Automática para Cospend",
+    "Information" : "Informações",
+    "Currency Code" : "Código da Moeda",
+    "e.g., https://api.example.com/rates/{base}" : "p. ex., https://api.example.com/taxas/{base}",
+    "Add Currency" : "Adicionar Moeda",
     "Loading…" : "A carregar…",
     "Never" : "Nunca",
     "Save" : "Guardar",
+    "Currency names must contain {bStart}at least one of{bEnd}:" : "Os nomes das moedas devem conter {bStart}pelo menos um dos seguintes{bEnd}:",
+    "Supported currencies" : "Moedas suportadas",
     "Search" : "Pesquisa sobre",
+    "Symbol" : "Símbolo",
     "Name" : "Nome",
     "Currency" : "Moeda",
     "From" : "De",
     "To" : "Para",
     "Time" : "Tempo",
-    "-" : "-"
+    "-" : "-",
+    "Rate ({dir})" : "Taxa ({dir})"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
