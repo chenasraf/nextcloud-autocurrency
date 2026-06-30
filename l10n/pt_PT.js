@@ -1,11 +1,17 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Auto Currency" : "Moeda Automática",
     "Auto Currency for Cospend" : "Moeda Automática para Cospend",
     "Information" : "Informações",
+    "Define custom currencies with their own API endpoints.{br}Use {cStart}{base}{cEnd} in the endpoint URL or JSON path to substitute the project's base currency.{br}The API should return a rate in the base currency (or USD if {cStart}{base}{cEnd} is not used).{br}The API key will be passed in the {cStart}Authorization{cEnd} header as {cStart}Bearer{cEnd} if provided." : "Defina moedas personalizadas com seus próprios endpoints de API.{br} Use {cStart}{base}{cEnd} no URL do endpoint ou no caminho JSON para substituir a moeda base do projeto.{br} A API deve retornar uma taxa na moeda base (ou em dólares americanos, se {cStart}{base}{cEnd} não for usado).{br} A chave API será passada no cabeçalho {cStart}Authorization{cEnd} como {cStart}Bearer{cEnd}, se fornecida.",
     "Currency Code" : "Código da Moeda",
+    "Symbol (optional)" : "Símbolo (opcional)",
     "e.g., https://api.example.com/rates/{base}" : "p. ex., https://api.example.com/taxas/{base}",
+    "API Key (optional)" : "Chave API (opcional)",
+    "e.g., $.rates.{base} or data[0].rate" : "p. ex., $.rates.{base} ou data[0].rate",
     "Add Currency" : "Adicionar Moeda",
+    "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Consulte as {aStart}Configurações pessoais{aEnd} para ver as instruções sobre como configurar suas moedas.",
     "Loading…" : "A carregar…",
     "Never" : "Nunca",
     "Save" : "Guardar",
@@ -13,12 +19,15 @@ OC.L10N.register(
     "Supported currencies" : "Moedas suportadas",
     "Search" : "Pesquisa sobre",
     "Symbol" : "Símbolo",
+    "Code" : "Código",
     "Name" : "Nome",
+    "Exchange rate history" : "Histórico das taxas de câmbio",
     "Currency" : "Moeda",
     "From" : "De",
     "To" : "Para",
     "Time" : "Tempo",
     "-" : "-",
-    "Rate ({dir})" : "Taxa ({dir})"
+    "Rate ({dir})" : "Taxa ({dir})",
+    "{label}: {value}" : "{label}: {value}"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
