@@ -25,6 +25,7 @@ OC.L10N.register(
     "Symbol" : "Symbool",
     "Code" : "Code",
     "Name" : "Naam",
+    "Project" : "Project",
     "Currency" : "Valuta",
     "From" : "Van",
     "To" : "Naar",
