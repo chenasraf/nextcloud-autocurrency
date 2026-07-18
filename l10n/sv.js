@@ -2,7 +2,7 @@ OC.L10N.register(
     "autocurrency",
     {
     "Information" : "Information",
-    "Loading…" : "Laddar...",
+    "Loading…" : "Läser in …",
     "Never" : "Aldrig",
     "Save" : "Spara",
     "Search" : "Sök",
