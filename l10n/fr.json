@@ -26,8 +26,10 @@
     "Save" : "Enregistrer",
     "History Retention (days)" : "Rétention de l'historique (jours)",
     "Number of days to keep currency history. Set to 0 for no limit (default: 30)" : "Nombre de jours de conservation de l'historique des devises. Définir à 0 pour pas de limite (par défaut : 30)",
+    "To make sure your currencies are found for the rates to be updated, please ensure your currencies are named appropriately." : "Pour garantir que vos devises soient trouvées afin d'actualiser les taux, veuillez vous assurer que vos devises sont nommées de manière appropriée.",
     "The currency symbol - e.g. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}" : "Le symbole de la devise - ex. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}",
     "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Le code de la devise - ex. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (insensible à la casse)",
+    "The naming rules apply for both main &amp; additional currencies." : "Les règles de nommage s'appliquent à la fois aux devises principales et à celles supplémentaires.",
     "Example names:" : "Exemples de noms :",
     "Supported currencies" : "Devises prises en charge",
     "Supported fiat currencies ({count}):" : "Monnaies fiduciaires prises en charge ({count}) :",
@@ -44,6 +46,7 @@
     "From" : "De",
     "To" : "Pour",
     "Time" : "Date et heure",
-    "-" : "-"
+    "-" : "-",
+    "Rate ({dir})" : "Taux ({dir})"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
