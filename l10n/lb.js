@@ -2,6 +2,7 @@ OC.L10N.register(
     "autocurrency",
     {
     "Loading…" : "Et gëtt gelueden",
+    "Never" : "Ni",
     "Save" : "Späicheren",
     "Search" : "Sichen",
     "Name" : "Numm",

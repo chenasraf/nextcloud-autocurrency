@@ -8,6 +8,7 @@
     "_Every %n hour (default)_::_Every %n hours (default)_" : ["Chaque %n heure (par défaut)","Toutes les %n heures (par défaut)","Toutes les %n heures (par défaut)"],
     "Information" : "Information",
     "Custom Currencies" : "Devises personnalisées",
+    "Define custom currencies with their own API endpoints.{br}Use {cStart}{base}{cEnd} in the endpoint URL or JSON path to substitute the project's base currency.{br}The API should return a rate in the base currency (or USD if {cStart}{base}{cEnd} is not used).{br}The API key will be passed in the {cStart}Authorization{cEnd} header as {cStart}Bearer{cEnd} if provided." : "Définissez des devises personnalisées avec leurs propres points de terminaison d'API.{br}Utilisez {cStart}{base}{cEnd} dans l'URL du point de terminaison ou dans le chemin JSON  pour y substituer la devise de base du projet.{br}L'API doit retourner un taux dans la devise de base (ou en USD si {cStart}{base}{cEnd} n'est pas utilisé).{br}La clé d'API sera transmise dans l'entête {cStart}Authorization{cEnd} comme {cStart}Bearer{cEnd} si elle est fournie.",
     "Currency Code" : "Code de devise",
     "e.g., BTC" : "ex. BTC",
     "Symbol (optional)" : "Symbole (facultatif)",
