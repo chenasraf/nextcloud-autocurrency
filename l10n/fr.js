@@ -51,6 +51,7 @@ OC.L10N.register(
     "Currency" : "Devise",
     "From" : "De",
     "To" : "Pour",
+    "Flip conversion" : "Inverser la conversion",
     "Time" : "Date et heure",
     "-" : "-",
     "Rate ({dir})" : "Taux ({dir})"
