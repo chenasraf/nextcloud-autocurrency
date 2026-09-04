@@ -54,6 +54,7 @@ OC.L10N.register(
     "Flip conversion" : "Inverser la conversion",
     "Time" : "Date et heure",
     "-" : "-",
-    "Rate ({dir})" : "Taux ({dir})"
+    "Rate ({dir})" : "Taux ({dir})",
+    "{label}: {value}" : "{label} : {value}"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
