@@ -1,4 +1,5 @@
 { "translations": {
+    "_Every %n hour_::_Every %n hours_" : ["Každú %n hodinu","Každé %n hodiny","Každých %n hodín","Každých %n hodín"],
     "Information" : "Informácie",
     "Loading…" : "Nahrávam...",
     "Never" : "Nikdy",
@@ -6,6 +7,7 @@
     "Search" : "Hľadať",
     "Code" : "Kód",
     "Name" : "Názov",
+    "Project" : "Projekt",
     "Currency" : "Mena",
     "From" : "Od",
     "To" : "Pre",
