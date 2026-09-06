@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "Every hour" : "Každú hodinu",
     "_Every %n hour_::_Every %n hours_" : ["Každú %n hodinu","Každé %n hodiny","Každých %n hodín","Každých %n hodín"],
     "Information" : "Informácie",
     "Loading…" : "Nahrávam...",
