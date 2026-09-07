@@ -51,12 +51,14 @@ OC.L10N.register(
     "Exchange rate history" : "Historique du taux de change",
     "Project" : "Projet",
     "Currency" : "Devise",
-    "From" : "De",
-    "To" : "Pour",
+    "From" : "Du",
+    "To" : "Au",
     "Flip conversion" : "Inverser la conversion",
     "Time" : "Date et heure",
     "-" : "-",
     "Rate ({dir})" : "Taux ({dir})",
-    "{label}: {value}" : "{label} : {value}"
+    "{label}: {value}" : "{label} : {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} par {to}"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
