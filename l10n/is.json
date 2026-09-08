@@ -1,4 +1,7 @@
 { "translations": {
+    "Every hour" : "Á klukkustundar fresti",
+    "_Every %n hour_::_Every %n hours_" : ["Á %n klukkustundar fresti","Á %n klukkustunda fresti"],
+    "_Every %n hour (default)_::_Every %n hours (default)_" : ["Á %n klukkustundar fresti (sjálfgefið)","Á %n klukkustunda fresti (sjálfgefið)"],
     "Information" : "Upplýsingar",
     "Custom Currencies" : "Sérsniðnir gjaldmiðlar",
     "Currency Code" : "Kóði gjaldmiðils",
@@ -10,12 +13,22 @@
     "API Key (optional)" : "API-lykill (valfrjálst)",
     "Leave empty if not required" : "Skildu eftir autt ef þessa er ekki krafist",
     "JSON Path" : "JSON-slóð",
+    "e.g., $.rates.{base} or data[0].rate" : "t.d., $.rates.{base} eða data[0].rate",
     "Add Currency" : "Bæta við gjaldmiðli",
     "Delete Currency" : "Eyða gjaldmiðli",
+    "Cron Settings" : "Stillingar cron",
+    "Update Interval" : "Uppfærslutíðni",
+    "Fetch Rates Now" : "Sækja gengi núna",
+    "Rates last fetched:" : "Gengi sótt síðast:",
     "Loading…" : "Hleð inn…",
     "Never" : "Aldrei",
     "Save" : "Vista",
+    "The currency symbol - e.g. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}" : "Gjaldmiðilstáknið - t.d. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}",
+    "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Gjaldmiðilskóðinn - t.d. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (óháð há/lágstöfum)",
     "Example names:" : "Dæmi um nöfn:",
+    "Supported currencies" : "Studdir gjaldmiðlar",
+    "Supported fiat currencies ({count}):" : "Studdir peningagjaldmiðlar ({count}):",
+    "Supported cryptocurrencies ({count}):" : "Studdar rafmyntir ({count}):",
     "e.g. BTC, Bitcoin" : "t.d. BTC, Bitcoin",
     "Search" : "Search",
     "e.g. $, USD, US Dollar" : "t.d. $, USD, US Dollar",
@@ -29,6 +42,10 @@
     "To" : "Til",
     "Flip conversion" : "Víxla umbreytingu",
     "Time" : "Tími",
-    "-" : "-"
+    "-" : "-",
+    "Rate ({dir})" : "Gengi ({dir})",
+    "{label}: {value}" : "{label}: {value}",
+    "1 {from} = {value} {to}" : "1 {from} = {value} {to}",
+    "{from} per {to}" : "{from} á {to}"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }
