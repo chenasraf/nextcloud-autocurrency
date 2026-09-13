@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.8.5](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.8.4...v1.8.5) (2026-09-13)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([b4bf98b](https://github.com/chenasraf/nextcloud-autocurrency/commit/b4bf98b38f400da8263e7e92737d8cbed1d94ad6))
+* **l10n:** Update translations from Transifex ([e057a35](https://github.com/chenasraf/nextcloud-autocurrency/commit/e057a3547f497c73d82f653b6c4884442879675d))
+* **l10n:** Update translations from Transifex ([eade3ba](https://github.com/chenasraf/nextcloud-autocurrency/commit/eade3baf2f61cba30e91fbdfcef75fef909993e4))
+* **l10n:** Update translations from Transifex ([7ca7c3e](https://github.com/chenasraf/nextcloud-autocurrency/commit/7ca7c3eeabd46c798dc1136d3cf288328be55c32))
+* **l10n:** Update translations from Transifex ([4c693ce](https://github.com/chenasraf/nextcloud-autocurrency/commit/4c693ce56ec7a0b58f34faaa36c92139c568f0c6))
+* **l10n:** Update translations from Transifex ([403964d](https://github.com/chenasraf/nextcloud-autocurrency/commit/403964d2f22109e93938c5e44841a51dc930c13d))
+* **l10n:** Update translations from Transifex ([6272bdc](https://github.com/chenasraf/nextcloud-autocurrency/commit/6272bdcd55658aca19929a99d1ca1b0d1a5e9ff4))
+* **l10n:** Update translations from Transifex ([5a82fae](https://github.com/chenasraf/nextcloud-autocurrency/commit/5a82faebb0c0cb9c717ffb6b36f104a0a130358f))
+* **l10n:** Update translations from Transifex ([3a35b80](https://github.com/chenasraf/nextcloud-autocurrency/commit/3a35b809a194ca89433bfc6f86de50dc76b2795d))
+* **l10n:** Update translations from Transifex ([fde627a](https://github.com/chenasraf/nextcloud-autocurrency/commit/fde627a37dcbea32e032e74c6cf10159a7ecfd97))
+* **l10n:** Update translations from Transifex ([029532d](https://github.com/chenasraf/nextcloud-autocurrency/commit/029532d54e78fa68d88a131f5170c5d6d60c7e48))
+* **l10n:** Update translations from Transifex ([3adbd3f](https://github.com/chenasraf/nextcloud-autocurrency/commit/3adbd3ff67608d76b3674312f75b5bd857223be6))
+
 ## [1.8.4](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.8.3...v1.8.4) (2026-08-10)
 
 
