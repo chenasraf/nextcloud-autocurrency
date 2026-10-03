@@ -34,7 +34,7 @@
     "To make sure your currencies are found for the rates to be updated, please ensure your currencies are named appropriately." : "Um sicherzustellen, dass deine Währungen für die zu aktualisierenden Kurse gefunden werden, achte bitte darauf, dass deine Währungen entsprechend benannt sind.",
     "Currency names must contain {bStart}at least one of{bEnd}:" : "Währungsnamen müssen {bStart} mindestens eines {bEnd} der folgenden Elemente enthalten:",
     "The currency symbol - e.g. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}" : "Das Währungssymbol - z.B. {cStart}${cEnd}, {cStart}€{cEnd}, {cStart}£{cEnd}",
-    "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Der Währungscode - z.B. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (Groß-/Kleinschreibung wird nicht beachtet)",
+    "The currency code - e.g. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (case-insensitive)" : "Der Währungscode - z. B. {cStart}USD{cEnd}, {cStart}EUR{cEnd}, {cStart}GBP{cEnd} (Groß-/Kleinschreibung wird nicht beachtet)",
     "The naming rules apply for both main &amp; additional currencies." : "Die Benennungsregeln gelten sowohl für Haupt- als auch für Zusatzwährungen.",
     "Example names:" : "Beispielnamen:",
     "Supported currencies" : "Unterstützte Währungen",
