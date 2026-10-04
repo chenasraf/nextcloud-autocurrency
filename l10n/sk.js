@@ -28,7 +28,7 @@ OC.L10N.register(
     "See the {aStart}Personal settings{aEnd} to view instructions on how to set up your currencies." : "Pokyny na nastavenie mien nájdete v {aStart}osobných nastaveniach{aEnd}.",
     "Fetch Rates Now" : "Získať kurzy teraz",
     "Rates last fetched:" : "Kurzy naposledy získané:",
-    "Loading…" : "Nahrávam...",
+    "Loading…" : "Načítavam...",
     "Never" : "Nikdy",
     "Save" : "Uložiť",
     "History Retention (days)" : "Uchovávanie histórie (dni)",
