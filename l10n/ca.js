@@ -7,6 +7,7 @@ OC.L10N.register(
     "Search" : "Cercar",
     "Code" : "Codi",
     "Name" : "Nom",
+    "Currency" : "Moneda",
     "From" : "De",
     "To" : "A",
     "Time" : "Hora",
