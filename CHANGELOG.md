@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.9.1](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.9.0...v1.9.1) (2026-10-23)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([3837fe3](https://github.com/chenasraf/nextcloud-autocurrency/commit/3837fe315e29a4673930ff3836698e603eb24bc7))
+* **l10n:** Update translations from Transifex ([fdf741a](https://github.com/chenasraf/nextcloud-autocurrency/commit/fdf741a54b7c5f65b74e0a32d28004abbb5172d3))
+* **l10n:** Update translations from Transifex ([1ef7201](https://github.com/chenasraf/nextcloud-autocurrency/commit/1ef72014a03e4046ffbdd294cdac7cbe57e49c13))
+* **l10n:** Update translations from Transifex ([1fda628](https://github.com/chenasraf/nextcloud-autocurrency/commit/1fda628035518529782400b3fd1ef8c314882e1b))
+* **l10n:** Update translations from Transifex ([6ed7ed7](https://github.com/chenasraf/nextcloud-autocurrency/commit/6ed7ed7cf52604eae345e14ac4090d3974bc0e3a))
+* **l10n:** Update translations from Transifex ([6f9671a](https://github.com/chenasraf/nextcloud-autocurrency/commit/6f9671acce7f3df4d98f5db42a1e5778963b6c4c))
+* **l10n:** Update translations from Transifex ([d2d9328](https://github.com/chenasraf/nextcloud-autocurrency/commit/d2d9328251a9f0acec3ef72d157765be0e8d6615))
+* **l10n:** Update translations from Transifex ([92dc704](https://github.com/chenasraf/nextcloud-autocurrency/commit/92dc704f3a5281253e7c6f5d66bd3f4ded859aa4))
+* **l10n:** Update translations from Transifex ([78222c2](https://github.com/chenasraf/nextcloud-autocurrency/commit/78222c21b4d363cd121389b8f668d72ab3ec9628))
+
 ## [1.9.0](https://github.com/chenasraf/nextcloud-autocurrency/compare/v1.8.4...v1.9.0) (2026-09-16)
 
 
