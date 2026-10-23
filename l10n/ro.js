@@ -1,6 +1,7 @@
 OC.L10N.register(
     "autocurrency",
     {
+    "_Every %n hour_::_Every %n hours_" : ["La fiecare %n oră","La fiecare %n ore","La fiecare %n de ore"],
     "Loading…" : "Se încarcă...",
     "Never" : "Niciodată",
     "Save" : "Salvează",
