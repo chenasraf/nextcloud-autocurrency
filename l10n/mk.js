@@ -6,6 +6,7 @@ OC.L10N.register(
     "Save" : "Сними",
     "Search" : "Барај",
     "Name" : "Име",
+    "Currency" : "Валута",
     "From" : "Од",
     "To" : "До",
     "Time" : "Време",

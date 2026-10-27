@@ -25,6 +25,7 @@ OC.L10N.register(
     "Symbol" : "Apzīmējums",
     "Code" : "Kods",
     "Name" : "Nosaukums",
+    "Currency" : "Valūta",
     "From" : "No",
     "To" : "Līdz",
     "Time" : "Laiks"

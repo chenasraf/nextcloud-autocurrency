@@ -7,6 +7,7 @@ OC.L10N.register(
     "Search" : "Kërko",
     "Code" : "Kod",
     "Name" : "Emër",
+    "Currency" : "Monedhë",
     "Time" : "Kohë"
 },
 "nplurals=2; plural=(n != 1);");

@@ -6,6 +6,7 @@ OC.L10N.register(
     "Save" : "Lagre",
     "Search" : "Søk",
     "Name" : "Namn",
+    "Currency" : "Valuta",
     "Time" : "Tid"
 },
 "nplurals=2; plural=(n != 1);");

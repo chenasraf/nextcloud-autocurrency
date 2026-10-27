@@ -5,6 +5,7 @@
     "Search" : "Kërko",
     "Code" : "Kod",
     "Name" : "Emër",
+    "Currency" : "Monedhë",
     "Time" : "Kohë"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

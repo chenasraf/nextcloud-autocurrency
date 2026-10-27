@@ -7,6 +7,7 @@ OC.L10N.register(
     "Search" : "Qidirish",
     "Code" : "Code",
     "Name" : "Nomi",
+    "Currency" : "Valyuta",
     "From" : "Dan",
     "To" : "Gacha",
     "Time" : "Vaqt",
