@@ -9,6 +9,7 @@ OC.L10N.register(
     "Search" : "Căutare",
     "Code" : "Cod",
     "Name" : "Nume",
+    "Project" : "Proiect",
     "Currency" : "Monedă",
     "From" : "De la",
     "To" : "Către",
